@@ -13,6 +13,7 @@ import com.github.javaparser.ast.body.BodyDeclaration;
 
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
+import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.MethodNode;
 
 import java.io.File;
@@ -49,7 +50,6 @@ public class Main {
 
     private void compile() {
         // found at https://stackoverflow.com/questions/8496494/running-command-line-in-java
-
         Process p = null;
         try {
             System.out.println(new File(".").getCanonicalPath());
@@ -111,20 +111,21 @@ public class Main {
         mv.visit(cu, null);
     }
 
+    // https://github.com/javaparser/javaparser/wiki/Manual
     private class MethodVis extends VoidVisitorAdapter<Object> {
 
         @Override
         public void visit(MethodDeclaration n, Object arg) {
-            // here you can access the attributes of the method.
-            // this method will be called for all methods in this
-            // CompilationUnit, including inner class methods
+            here you can access the attributes of the method.
+            this method will be called for all methods in this
+            CompilationUnit, including inner class methods
             System.out.println("NAME: " + n.getName());
             System.out.println("DECL: " + n.getDeclarationAsString());
             BlockStmt bs = n.getBody();
             for(Statement s : bs.getStmts()) {
                 process(s);
             }
-            super.visit(n, arg);
+            // super.visit(n, arg);
         }
 
         private void process(Statement s) {
