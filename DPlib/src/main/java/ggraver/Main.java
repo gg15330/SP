@@ -17,6 +17,8 @@ import org.objectweb.asm.tree.MethodNode;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.lang.Runtime;
 import java.lang.Process;
 
@@ -41,18 +43,46 @@ public class Main {
 
     private void analyseClass() {
         compile();
-        MethodNode cse = new MethodNode(Opcodes.ASM5);
-        System.out.println("Signature: " + cse.signature);
+        MethodNode mn = new MethodNode(Opcodes.ASM5);
+        System.out.println("Signature: " + mn.signature);
     }
 
     private void compile() {
+        // found at https://stackoverflow.com/questions/8496494/running-command-line-in-java
+
+        Process p = null;
         try {
-            ProcessBuilder build = new ProcessBuilder("javac", "../sample/FileToParse.java");
-            build.redirectErrorStream(true);
-            Process p = build.start();
+            System.out.println(new File(".").getCanonicalPath());
+            ProcessBuilder build = new ProcessBuilder("javac", "FileToParse.java");
+            File dir = new File("./sample");
+            build.directory(dir);
+            // build.redirectErrorStream(true);
+            build.inheritIO();
+
+            p = build.start();
+
+            // found somewhere else
+            // redirect output
+            BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String line=null;
+            while((line=input.readLine()) != null) {
+                System.out.println(line);
+            }
         } catch(Exception e) {
             e.printStackTrace();
         }
+
+        int result = 0;
+        try {
+            result = p.waitFor();
+        } catch(Exception e) {
+            System.out.println("Interrupted: ");
+            e.printStackTrace();
+        }
+        if(result != 0) {
+            throw new Error("Could not compile .java file. Please ensure your .java file is valid.");
+        }
+        System.out.println(".java file compiled successfully.");
     }
 
     private void analyseSource() {
