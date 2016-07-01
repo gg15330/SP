@@ -13,10 +13,12 @@ import com.github.javaparser.ast.body.BodyDeclaration;
 
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.commons.MethodNode;
+import org.objectweb.asm.tree.MethodNode;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.lang.Runtime;
+import java.lang.Process;
 
 public class Main {
 
@@ -29,13 +31,35 @@ public class Main {
         catch(Exception e) {
             System.err.println("Class not found.");
         }
+
     }
 
     private void run() {
+        // analyseSource();
+        analyseClass();
+    }
+
+    private void analyseClass() {
+        compile();
+        MethodNode cse = new MethodNode(Opcodes.ASM5);
+        System.out.println("Signature: " + cse.signature);
+    }
+
+    private void compile() {
+        try {
+            ProcessBuilder build = new ProcessBuilder("javac", "../sample/FileToParse.java");
+            build.redirectErrorStream(true);
+            Process p = build.start();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void analyseSource() {
         // creates an input stream for the file to be parsed
         FileInputStream in;
         try {
-            in = new FileInputStream("../FileToParse.java");
+            in = new FileInputStream("../sample/FileToParse.java");
         }
         catch(Exception e) {
             in = null;
@@ -55,10 +79,6 @@ public class Main {
 
         MethodVis mv = new MethodVis();
         mv.visit(cu, null);
-
-        MethodNode cse = new MethodNode(null);
-        System.out.println("MAX: " + cse.getMaxSize());
-        System.out.println("MIN: " + cse.getMinSize());
     }
 
     private class MethodVis extends VoidVisitorAdapter<Object> {
