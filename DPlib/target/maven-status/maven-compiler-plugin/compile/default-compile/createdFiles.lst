@@ -1,3 +1,5 @@
-ggraver/Main$1.class
-ggraver/Main$MethodVis.class
+ggraver/MethodVis.class
+ggraver/ClassAnalyser.class
+ggraver/SourceAnalyser.class
+IO.class
 ggraver/Main.class
