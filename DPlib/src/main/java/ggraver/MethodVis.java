@@ -1,5 +1,8 @@
 package ggraver;
 
+import java.util.Map;
+import java.util.HashMap;
+
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.Statement;
@@ -10,19 +13,44 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 // adapted from https://github.com/javaparser/javaparser/wiki/Manual
 public class MethodVis extends VoidVisitorAdapter<Object> {
 
+    private Map<String, BlockStmt> methodList;
+
+    public MethodVis() {
+
+        methodList = new HashMap<String, BlockStmt>();
+
+    }
+
+    // get information from all methods in the source file
     @Override
     public void visit(MethodDeclaration n, Object arg) {
 
-        System.out.println("NAME: " + n.getName());
-        System.out.println("DECL: " + n.getDeclarationAsString());
-        BlockStmt bs = n.getBody();
+        methodList.put(n.getName(), n.getBody());
 
-        for(Statement s : bs.getStmts()) {
-            process(s);
-        }
+        // if(n.getName().equals(method)) {
+        //     System.out.println("NAME: " + n.getName());
+        //     System.out.println("DECL: " + n.getDeclarationAsString());
+        //     BlockStmt bs = n.getBody();
+        //
+        //     for(Statement s : bs.getStmts()) {
+        //         process(s);
+        //     }
+        //
+        // }
 
-        // this doesn't seem to do anything but it was in the manual
-        // super.visit(n, arg);
+    }
+
+    // checks that the method to be analysed exists in the source file
+    public void checkMethodExists(String method) throws Exception {
+
+        // for(String m : methodList) {
+        //     if(m.equals(method)) {
+        //         return;
+        //     }
+        // }
+
+        throw new Exception("Required method \"" + method + "\" does not exist. " +
+        "\nPlease check source file.\n");
 
     }
 
@@ -43,6 +71,10 @@ public class MethodVis extends VoidVisitorAdapter<Object> {
             System.out.println("UPDATE: " + ((ForStmt) s).getUpdate());
         }
 
+    }
+
+    public Map<String, BlockStmt> getMethods() {
+        return methodList;
     }
 
 }
