@@ -1,20 +1,18 @@
 package ggraver;
 
-import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.Statement;
 import com.github.javaparser.ast.stmt.ForStmt;
+import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
+// goes through source code of a particular method and identifies each statement
 // adapted from https://github.com/javaparser/javaparser/wiki/Manual
 public class MethodVis extends VoidVisitorAdapter<Object> {
 
     @Override
     public void visit(MethodDeclaration n, Object arg) {
 
-        // here you can access the attributes of the method.
-        // this method will be called for all methods in this
-        // CompilationUnit, including inner class methods
         System.out.println("NAME: " + n.getName());
         System.out.println("DECL: " + n.getDeclarationAsString());
         BlockStmt bs = n.getBody();
@@ -23,6 +21,7 @@ public class MethodVis extends VoidVisitorAdapter<Object> {
             process(s);
         }
 
+        // this doesn't seem to do anything but it was in the manual
         // super.visit(n, arg);
 
     }
