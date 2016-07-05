@@ -46,36 +46,41 @@ public class SourceAnalyser {
 
     }
 
-    // check that the correct annotation exists for a method in the source file
-    // and that it is unique
+    // return the method to be analysed
     private MethodDeclaration findMethod() throws Exception {
-        System.out.println(methodAnnotation.getName());
 
         boolean found = false;
         MethodDeclaration methodDeclaration = null;
 
         for(MethodDeclaration md : methods) {
+
             for(AnnotationExpr ae : md.getAnnotations()) {
+
                 if(ae instanceof MarkerAnnotationExpr
                 && ae.getName().equals(methodAnnotation.getName())) {
-                    System.out.println("MarkerAnnotation: " + ae.getName());
+
                     if(found == true) {
-                        throw new Exception("Annotation already exists.");
+                        throw new Exception("Required annotation \"@" + methodAnnotation.getName() +
+                        "\" exists for multiple methods. Please amend source file.");
                     }
-                    else {
-                        methodDeclaration = md;
-                        found = true;
-                    }
+
+                    methodDeclaration = md;
+                    found = true;
                 }
+
             }
+            
         }
 
-        if(found == true) {
-            return methodDeclaration;
-        }
-        else {
+        if(found == false) {
             throw new Exception("Method with required annotation \"@" + methodAnnotation.getName() + "\" not found in source file.");
         }
+
+        if(methodDeclaration == null) {
+            throw new Error("methodDeclaration should not be null.");
+        }
+
+        return methodDeclaration;
 
     }
 

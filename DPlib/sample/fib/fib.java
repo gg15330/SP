@@ -11,7 +11,6 @@ class fib
     {
         /* Declare an array to store Fibonacci numbers. */
     int f[] = new int[n+1];
-    @Dynamic
     int i;
     /* 0th and 1st number of the series are 0 and 1*/
     f[0] = 0;
