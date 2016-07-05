@@ -7,24 +7,18 @@ import java.util.ArrayList;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.body.AnnotationDeclaration;
-import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
-import com.github.javaparser.ast.body.BodyDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.NameExpr;
 import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.expr.MarkerAnnotationExpr;
 import com.github.javaparser.ast.expr.NormalAnnotationExpr;
-import com.github.javaparser.ast.stmt.BlockStmt;
-import com.github.javaparser.ast.stmt.ForStmt;
-import com.github.javaparser.ast.stmt.Statement;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 // analyses source code for invalid solutions/errors
 public class SourceAnalyser {
 
     private File file;
-    private NormalAnnotationExpr methodAnnotation;
+    private MarkerAnnotationExpr methodAnnotation;
     private List<MethodDeclaration> methods = new ArrayList<MethodDeclaration>();
 
     // construct a new SourceAnalyser with references to the .java file
@@ -32,7 +26,7 @@ public class SourceAnalyser {
     public SourceAnalyser(File file, String annotation) {
 
         this.file = file;
-        this.methodAnnotation = new NormalAnnotationExpr();
+        this.methodAnnotation = new MarkerAnnotationExpr();
         methodAnnotation.setName(new NameExpr(annotation));
 
     }
@@ -47,13 +41,8 @@ public class SourceAnalyser {
         MV mv = new MV();
         mv.visit(cu, null);
 
-        try {
-            MethodDeclaration md = findMethod();
-            System.out.println(md.getBody());
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
+        MethodDeclaration md = findMethod();
+        System.out.println(md.getBody());
 
     }
 
@@ -85,7 +74,7 @@ public class SourceAnalyser {
             return methodDeclaration;
         }
         else {
-            throw new Exception("Required annotation \"" + methodAnnotation.getName() + "\" not present in source file.");
+            throw new Exception("Method with required annotation \"@" + methodAnnotation.getName() + "\" not found in source file.");
         }
 
     }
