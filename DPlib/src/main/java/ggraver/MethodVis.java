@@ -1,3 +1,5 @@
+// This class is deprecated - has been incorporated into the SourceAnalyser class
+
 package ggraver;
 
 import java.util.Map;

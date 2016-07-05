@@ -2,6 +2,8 @@ package ggraver;
 
 import java.io.File;
 
+import com.github.javaparser.ParseException;
+
 //overall program control
 public class Main {
 
@@ -34,7 +36,7 @@ public class Main {
 
     public void run() {
 
-        sa = new SourceAnalyser(file, "dfib");
+        sa = new SourceAnalyser(file, "Dynamic");
 
         try {
             sa.analyse();

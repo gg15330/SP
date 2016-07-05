@@ -2,29 +2,38 @@ package ggraver;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 
 import com.github.javaparser.JavaParser;
-import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.stmt.Statement;
+import com.github.javaparser.ast.body.AnnotationDeclaration;
+import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
+import com.github.javaparser.ast.body.BodyDeclaration;
+import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.expr.NameExpr;
+import com.github.javaparser.ast.expr.AnnotationExpr;
+import com.github.javaparser.ast.expr.MarkerAnnotationExpr;
+import com.github.javaparser.ast.expr.NormalAnnotationExpr;
 import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.stmt.ForStmt;
+import com.github.javaparser.ast.stmt.Statement;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 // analyses source code for invalid solutions/errors
 public class SourceAnalyser {
 
     private File file;
-    private String methodName;
-    private Map<String, BlockStmt> methodList;
+    private NormalAnnotationExpr methodAnnotation;
+    private List<MethodDeclaration> methods = new ArrayList<MethodDeclaration>();
 
-    public SourceAnalyser(File file, String methodName) {
+    // construct a new SourceAnalyser with references to the .java file
+    // and the annotation for the method to be analysed
+    public SourceAnalyser(File file, String annotation) {
 
         this.file = file;
-        this.methodName = methodName;
-        methodList = new HashMap<String, BlockStmt>();
+        this.methodAnnotation = new NormalAnnotationExpr();
+        methodAnnotation.setName(new NameExpr(annotation));
 
     }
 
@@ -34,41 +43,60 @@ public class SourceAnalyser {
         FileInputStream fis = new FileInputStream(file);
         CompilationUnit cu = JavaParser.parse(fis);
         fis.close();
-        // MethodVis mv = new MethodVis();
+
         MV mv = new MV();
         mv.visit(cu, null);
 
-        for(Map.Entry<String, BlockStmt> entry : methodList.entrySet()) {
-            String name = entry.getKey();
-            BlockStmt body = entry.getValue();
-            // System.out.println("Name: " + name + "\nBody: " + body);
+        try {
+            MethodDeclaration md = findMethod();
+            System.out.println(md.getBody());
         }
-
-        checkMethodExists();
-        // mv.checkMethodExists(methodName);
+        catch(Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
-    private void checkMethodExists() throws Exception {
+    // check that the correct annotation exists for a method in the source file
+    // and that it is unique
+    private MethodDeclaration findMethod() throws Exception {
+        System.out.println(methodAnnotation.getName());
 
-        for(String name : methodList.keySet()) {
-            if(name.equals(methodName)) {
-                return;
+        boolean found = false;
+        MethodDeclaration methodDeclaration = null;
+
+        for(MethodDeclaration md : methods) {
+            for(AnnotationExpr ae : md.getAnnotations()) {
+                if(ae instanceof MarkerAnnotationExpr
+                && ae.getName().equals(methodAnnotation.getName())) {
+                    System.out.println("MarkerAnnotation: " + ae.getName());
+                    if(found == true) {
+                        throw new Exception("Annotation already exists.");
+                    }
+                    else {
+                        methodDeclaration = md;
+                        found = true;
+                    }
+                }
             }
         }
 
-        throw new Exception("Required method \"" + methodName + "\" does not exist. " +
-        "\nPlease check source file.\n");
+        if(found == true) {
+            return methodDeclaration;
+        }
+        else {
+            throw new Exception("Required annotation \"" + methodAnnotation.getName() + "\" not present in source file.");
+        }
 
     }
 
+    // private class to extract method data for source file and insert it into the method list
     private class MV extends VoidVisitorAdapter<Object> {
 
-        // get information from all methods in the source file
         @Override
         public void visit(MethodDeclaration n, Object arg) {
 
-            methodList.put(n.getName(), n.getBody());
+            methods.add(n);
 
         }
 
