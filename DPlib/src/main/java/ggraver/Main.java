@@ -1,6 +1,8 @@
 package ggraver;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import com.github.javaparser.ParseException;
 
@@ -36,7 +38,26 @@ public class Main {
 
     public void run() {
 
-        sa = new SourceAnalyser(file, "Dynamic");
+        try {
+            sa = new SourceAnalyser();
+            sa.parse(file);
+        }
+        catch(FileNotFoundException fnfe) {
+            fnfe.printStackTrace();
+            System.err.println("\nFile not found.\n");
+            System.exit(1);
+        }
+        catch(ParseException pe) {
+            pe.printStackTrace();
+            System.err.println("\nFile could not be parsed, please ensure file is a valid .java class.\n");
+            System.exit(1);
+        }
+        catch(IOException ioe) {
+            ioe.printStackTrace();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
 
         try {
             sa.analyse();
@@ -44,7 +65,6 @@ public class Main {
         }
         catch(Exception e) {
             e.printStackTrace();
-            System.out.println();
         }
 
     }

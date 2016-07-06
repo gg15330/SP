@@ -7,8 +7,11 @@ class fib
        return n;
     return fib(n-1) + fib(n-2);
     }
+
+    @Dynamic
     static int dfib(int n)
     {
+        @Dynamic
         /* Declare an array to store Fibonacci numbers. */
     int f[] = new int[n+1];
     int i;

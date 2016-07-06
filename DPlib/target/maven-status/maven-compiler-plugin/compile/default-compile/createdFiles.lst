@@ -5,4 +5,5 @@ ggraver/SourceAnalyser.class
 IO.class
 ggraver/Main.class
 ggraver/Method.class
+ggraver/MethodAnalyser.class
 ggraver/MethodVis.class

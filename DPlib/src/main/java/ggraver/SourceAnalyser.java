@@ -2,10 +2,13 @@ package ggraver;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
 import com.github.javaparser.JavaParser;
+import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.NameExpr;
@@ -17,63 +20,72 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 // analyses source code for invalid solutions/errors
 public class SourceAnalyser {
 
-    private File file;
+    CompilationUnit cu;
     private MarkerAnnotationExpr methodAnnotation;
     private List<MethodDeclaration> methods = new ArrayList<MethodDeclaration>();
 
-    // construct a new SourceAnalyser with references to the .java file
-    // and the annotation for the method to be analysed
-    public SourceAnalyser(File file, String annotation) {
+    // construct a new SourceAnalyser with default annotation "Dynamic"
+    public SourceAnalyser() {
 
-        this.file = file;
+        this.methodAnnotation = new MarkerAnnotationExpr();
+        methodAnnotation.setName(new NameExpr("Dynamic"));
+
+    }
+
+    // construct a new SourceAnalyser with references to the .java file
+    // and a custom annotation for the method to be analysed
+    public SourceAnalyser(String annotation) {
+
         this.methodAnnotation = new MarkerAnnotationExpr();
         methodAnnotation.setName(new NameExpr(annotation));
 
     }
 
-    // analyse the user-submitted .java file for code errors/invalid solutions (e.g. recursion)
-    public void analyse() throws Exception {
+    public void parse(File file) throws Exception {
 
         FileInputStream fis = new FileInputStream(file);
-        CompilationUnit cu = JavaParser.parse(fis);
+        cu = JavaParser.parse(fis);
         fis.close();
+
+    }
+
+    // analyse the user-submitted .java file for code errors/invalid solutions (e.g. recursion)
+    public void analyse() {
 
         MV mv = new MV();
         mv.visit(cu, null);
 
-        MethodDeclaration md = findMethod();
-        System.out.println(md.getBody());
+        try {
+            checkAnnotation(methodAnnotation);
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+
+        MethodAnalyser ma = new MethodAnalyser();
+        MethodDeclaration md = assignMethod(methodAnnotation);
+        ma.analyse(md);
 
     }
 
-    // return the method to be analysed
-    private MethodDeclaration findMethod() throws Exception {
+    private MethodDeclaration assignMethod(MarkerAnnotationExpr methodAnnotation) {
 
-        boolean found = false;
         MethodDeclaration methodDeclaration = null;
 
         for(MethodDeclaration md : methods) {
 
-            for(AnnotationExpr ae : md.getAnnotations()) {
+            List<AnnotationExpr> annotations = md.getAnnotations();
 
-                if(ae instanceof MarkerAnnotationExpr
-                && ae.getName().equals(methodAnnotation.getName())) {
+            if(!annotations.isEmpty()) {
+                AnnotationExpr ae = annotations.get(0);
 
-                    if(found == true) {
-                        throw new Exception("Required annotation \"@" + methodAnnotation.getName() +
-                        "\" exists for multiple methods. Please amend source file.");
-                    }
-
+                if(ae.getName().equals(methodAnnotation.getName())) {
                     methodDeclaration = md;
-                    found = true;
                 }
 
             }
-            
-        }
 
-        if(found == false) {
-            throw new Exception("Method with required annotation \"@" + methodAnnotation.getName() + "\" not found in source file.");
         }
 
         if(methodDeclaration == null) {
@@ -81,6 +93,49 @@ public class SourceAnalyser {
         }
 
         return methodDeclaration;
+
+    }
+
+    // checks annotation for method to be analysed exists and is unique
+    private void checkAnnotation(MarkerAnnotationExpr methodAnnotation) throws Exception {
+
+        List<AnnotationExpr> annotations = new ArrayList<AnnotationExpr>();
+
+        for(MethodDeclaration md : methods) {
+            for(AnnotationExpr ae : md.getAnnotations()) {
+                annotations.add(ae);
+            }
+        }
+
+        if(!annotations.contains(methodAnnotation)) {
+            throw new Exception("Method with required annotation \"@" + methodAnnotation.getName() + "\" not found in source file.");
+        }
+
+        if(duplicateAnnotations(methodAnnotation, annotations)) {
+            throw new Exception("Required annotation \"@" + methodAnnotation.getName() +
+                                "\" exists for multiple methods. Please amend source file.");
+        }
+
+    }
+
+    private boolean duplicateAnnotations(MarkerAnnotationExpr methodAnnotation, List<AnnotationExpr> annotations) {
+
+        int count = 0;
+
+        for(AnnotationExpr ae : annotations) {
+
+            if(ae.getName().equals(methodAnnotation.getName())) {
+                count++;
+                
+                if(count > 1) {
+                    return true;
+                }
+                
+            }
+
+        }
+
+        return false;
 
     }
 
