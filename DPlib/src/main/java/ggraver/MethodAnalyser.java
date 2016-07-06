@@ -3,6 +3,7 @@ package ggraver;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.stmt.Statement;
 import com.github.javaparser.ast.stmt.BlockStmt;
@@ -18,6 +19,21 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 public class MethodAnalyser {
 
     public void analyse(MethodDeclaration md) {
+
+    }
+
+    public void process(Node node){
+
+        for (Node n : node.getChildrenNodes()){
+            System.out.println("Node: " + n.toString());
+
+            if(n instanceof MethodCallExpr) {
+                System.out.println("[METHOD CALL]");
+            }
+
+        process(n);
+
+        }
 
     }
 
@@ -52,6 +68,7 @@ public class MethodAnalyser {
                 }
                 else {
                     System.out.println("Expression: " + expr);
+                    System.out.println("Class: " + expr.getClass());
                 }
             }
 
