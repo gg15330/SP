@@ -1,6 +1,6 @@
 class fib
 {
-    @Recursive
+    @Dynamic
     static int fib(int n)
     {
     if (n <= 1)
@@ -8,7 +8,6 @@ class fib
     return fib(n-1) + fib(n-2);
     }
 
-    @Dynamic
     static int dfib(int n)
     {
         @Dynamic

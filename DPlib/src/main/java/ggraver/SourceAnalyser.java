@@ -65,7 +65,10 @@ public class SourceAnalyser {
 
         MethodAnalyser ma = new MethodAnalyser();
         MethodDeclaration md = assignMethod(methodAnnotation);
-        ma.analyse(md);
+        
+        if(ma.isRecursive(md)) {
+            System.out.println("Recursion detected!");
+        }
 
     }
 
@@ -126,11 +129,11 @@ public class SourceAnalyser {
 
             if(ae.getName().equals(methodAnnotation.getName())) {
                 count++;
-                
+
                 if(count > 1) {
                     return true;
                 }
-                
+
             }
 
         }
@@ -139,7 +142,7 @@ public class SourceAnalyser {
 
     }
 
-    // private class to extract method data for source file and insert it into the method list
+    // private visitor class to extract method data for source file and insert it into the method list
     private class MV extends VoidVisitorAdapter<Object> {
 
         @Override
