@@ -63,13 +63,9 @@ public class SourceAnalyser {
             System.exit(1);
         }
 
-        MethodAnalyser ma = new MethodAnalyser();
         MethodDeclaration md = assignMethod(methodAnnotation);
-        ma.process(md);
-
-        if(ma.isRecursive(md)) {
-            System.out.println("Recursion detected!");
-        }
+        MethodAnalyser ma = new MethodAnalyser(md);
+        ma.analyse();
 
     }
 

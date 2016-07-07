@@ -5,87 +5,84 @@ import java.util.ArrayList;
 
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.stmt.Statement;
-import com.github.javaparser.ast.stmt.BlockStmt;
-import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.MethodCallExpr;
-import com.github.javaparser.ast.stmt.ExpressionStmt;
-import com.github.javaparser.ast.stmt.ReturnStmt;
-import com.github.javaparser.ast.expr.MethodCallExpr;
-import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 
 // analyses method in-depth and checks for incorrect solutions to problem
 public class MethodAnalyser {
 
-    public void analyse(MethodDeclaration md) {
+    private MethodDeclaration method;
+    private boolean recursion;
 
-    }
+    public MethodAnalyser(MethodDeclaration method) {
 
-    public void process(Node node){
+        this.method = method;
 
-        for (Node n : node.getChildrenNodes()){
-            System.out.println("Node: " + n.toString());
-
-            if(n instanceof MethodCallExpr) {
-                System.out.println("[METHOD CALL]");
-            }
-
-        process(n);
-
+        if(this.method == null) {
+            throw new Error("this.method should not be null.");
         }
 
     }
 
-    public boolean isRecursive(MethodDeclaration md) {
+    public void analyse() {
 
-        System.out.println("Method name: " + md.getName());
-        BlockStmt body = md.getBody();
-        List<Statement> stmts = body.getStmts();
+        System.out.println("Recursion: " + recursive(method));
+        
+        // try {
+        //     recursiveWithException(method);
+        //     recursion = false;
+        // }
+        // catch(Exception e) {
+        //     System.out.println(e.getMessage());
+        //     recursion = true;
+        // }
+        // finally {
+        //     System.out.println("Recursive: " + recursion);
+        // }
 
-        MethodCallVisitor mcv = new MethodCallVisitor();
+    }
 
-        // mcv.visit(body, null);
+    // recursively check all nodes within the method for recursive function calls
+    private boolean recursive(Node node) {
 
-        for(Statement s : stmts) {
-            System.out.println("Statement");
+        if(node instanceof MethodCallExpr) {
 
-            if(s instanceof ExpressionStmt) {
-                System.out.println("Expression statement found");
-                Expression expr = ((ExpressionStmt)s).getExpression();
-                if(expr instanceof MethodCallExpr) {
-                    System.out.println("Method call expression: " + expr);
-                }
-                else {
-                    System.out.println("Expression: " + expr);
-                }
-            }
-            else if(s instanceof ReturnStmt) {
-                System.out.println("Return statement found");
-                Expression expr = ((ReturnStmt)s).getExpr();
-                if(expr instanceof MethodCallExpr) {
-                    System.out.println("Method call expression: " + expr);
-                }
-                else {
-                    System.out.println("Expression: " + expr);
-                    System.out.println("Class: " + expr.getClass());
-                }
+            MethodCallExpr mce = (MethodCallExpr)node;
+
+            if(mce.getName().equals(method.getName())) {
+                // throw new Exception("Recursive method call \"" + mce.getName() + "\" found at line " + mce.getBeginLine());
+                System.out.println("Recursive method call \"" + mce.getName() + "\" found at line " + mce.getBeginLine());
+                return true;
             }
 
+        }
+
+        for (Node n : node.getChildrenNodes()){
+            if(recursive(n) == true) {
+                return true;
+            }
         }
 
         return false;
 
     }
 
-    private class MethodCallVisitor extends VoidVisitorAdapter<Object> {
+    // recursively check all nodes within the method for recursive function calls,
+    // throw an exception if one is found
+    private void recursiveWithException(Node node) throws Exception {
 
-        @Override
-        public void visit(BlockStmt n, Object arg) {
+        if(node instanceof MethodCallExpr) {
 
-            System.out.println("Visiting...");
-            System.out.println("");
+            MethodCallExpr mce = (MethodCallExpr)node;
 
+            if(mce.getName().equals(method.getName())) {
+                throw new Exception("Recursive method call \"" + mce.getName() + "\" found at line " + mce.getBeginLine());
+            }
+
+        }
+
+        for (Node n : node.getChildrenNodes()){
+            recursiveWithException(n);
         }
 
     }

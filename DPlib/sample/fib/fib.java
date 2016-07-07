@@ -1,6 +1,6 @@
 class fib
 {
-    @Dynamic
+                @Dynamic
     static int fib(int n)
     {
     if (n <= 1)
