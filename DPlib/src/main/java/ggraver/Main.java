@@ -11,6 +11,7 @@ public class Main {
 
     private File file;
     private SourceAnalyser sa;
+    private ClassAnalyser ca;
 
     public Main(String file) {
 
@@ -38,30 +39,31 @@ public class Main {
 
     public void run() {
 
-        try {
-            sa = new SourceAnalyser();
-            sa.parse(file);
-        }
-        catch(FileNotFoundException fnfe) {
-            fnfe.printStackTrace();
-            System.err.println("\nFile not found.\n");
-            System.exit(1);
-        }
-        catch(ParseException pe) {
-            pe.printStackTrace();
-            System.err.println("\nFile could not be parsed, please ensure file is a valid .java class.\n");
-            System.exit(1);
-        }
-        catch(IOException ioe) {
-            ioe.printStackTrace();
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
+        // try {
+        //     sa = new SourceAnalyser();
+        //     sa.parse(file);
+        // }
+        // catch(FileNotFoundException fnfe) {
+        //     fnfe.printStackTrace();
+        //     System.err.println("\nFile not found.\n");
+        //     System.exit(1);
+        // }
+        // catch(ParseException pe) {
+        //     pe.printStackTrace();
+        //     System.err.println("\nFile could not be parsed, please ensure file is a valid .java class.\n");
+        //     System.exit(1);
+        // }
+        // catch(IOException ioe) {
+        //     ioe.printStackTrace();
+        // }
+        // catch(Exception e) {
+        //     e.printStackTrace();
+        // }
 
         try {
-            sa.analyse();
-            // analyseClass();
+            ca = new ClassAnalyser();
+            // sa.analyse();
+            ca.analyse(file);
         }
         catch(Exception e) {
             e.printStackTrace();

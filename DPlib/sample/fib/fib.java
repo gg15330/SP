@@ -1,6 +1,8 @@
+import ggraver.annotations.Dynamic;
+
 class fib
 {
-                @Dynamic
+    @Dynamic
     static int fib(int n)
     {
     if (n <= 1)
@@ -10,7 +12,6 @@ class fib
 
     static int dfib(int n)
     {
-        @Dynamic
         /* Declare an array to store Fibonacci numbers. */
     int f[] = new int[n+1];
     int i;
@@ -31,7 +32,6 @@ class fib
     public static void main (String args[])
     {
 
-    @onething
     int n = 45;
     System.out.println("Computing recursive solution...");
 
