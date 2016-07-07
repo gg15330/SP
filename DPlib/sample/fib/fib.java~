@@ -1,6 +1,5 @@
-class fib
+class fibonacci
 {
-                @Dynamic
     static int fib(int n)
     {
     if (n <= 1)
@@ -10,10 +9,10 @@ class fib
 
     static int dfib(int n)
     {
-        @Dynamic
         /* Declare an array to store Fibonacci numbers. */
     int f[] = new int[n+1];
     int i;
+
     /* 0th and 1st number of the series are 0 and 1*/
     f[0] = 0;
     f[1] = 1;
@@ -31,7 +30,6 @@ class fib
     public static void main (String args[])
     {
 
-    @onething
     int n = 45;
     System.out.println("Computing recursive solution...");
 
