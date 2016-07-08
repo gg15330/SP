@@ -43,6 +43,8 @@ public class SourceAnalyser {
 
     public void parse(File file) throws Exception {
 
+        // put FileInputStream in Main module - can control file stream for
+        // both modules that way
         FileInputStream fis = new FileInputStream(file);
         cu = JavaParser.parse(fis);
         fis.close();

@@ -1,6 +1,7 @@
 package ggraver;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.lang.Process;
 import java.net.URL;
 import java.nio.file.Path;
@@ -8,6 +9,7 @@ import java.nio.file.Paths;
 
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.MethodNode;
+import org.objectweb.asm.ClassReader;
 
 // generates .class files and analyses performance of user solution
 public class ClassAnalyser {
@@ -24,8 +26,19 @@ public class ClassAnalyser {
     public void analyse(File file) {
 
         compile(file);
-        MethodNode mn = new MethodNode(Opcodes.ASM5);
-        System.out.println("Signature: " + mn.signature);
+        ClassReader cr = null;
+
+        try {
+            File classFile = new File("sample/fib/fib.class");
+            FileInputStream fis = new FileInputStream(classFile);
+            cr = new ClassReader(fis);
+            fis.close();
+        }
+        catch(Exception e) {
+            System.out.println("Problem with file.");
+            e.printStackTrace();
+        }
+        System.out.println("Class name: " + cr.getClassName());
 
     }
 
@@ -42,14 +55,8 @@ public class ClassAnalyser {
         try {
             System.out.println("File name: " + file.getName());
             System.out.println("File path: " + file.getPath());
-            File f = new File("main/java/ggraver/ClassAnalyser.java");
-            System.out.println("File path: " + f.getPath());
 
-            Path currentRelativePath = Paths.get("");
-            String s = currentRelativePath.toAbsolutePath().toString();
-            System.out.println("Current relative path is: " + s);
-
-            ProcessBuilder build = new ProcessBuilder("javac -cp /home/george/Documents/sp/DPlib/target/DPlib-1.0-SNAPSHOT.jar ggraver/annotations/Dynamic.java", file.getName());
+            ProcessBuilder build = new ProcessBuilder("javac", file.getPath());
             // File dir = new File("sample/fib");
             // build.directory(dir);
             build.inheritIO();
@@ -70,7 +77,7 @@ public class ClassAnalyser {
             throw new Error("Could not compile .java file. Please ensure your .java file is valid.");
         }
 
-        System.out.println("FileToParse.java compiled successfully.");
+        System.out.println(file.getName() + " compiled successfully.");
 
     }
 

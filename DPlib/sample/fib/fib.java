@@ -1,8 +1,5 @@
-import ggraver.annotations.Dynamic;
-
 class fib
 {
-    @Dynamic
     static int fib(int n)
     {
     if (n <= 1)
