@@ -62,7 +62,9 @@ http://www.mkyong.com/maven/create-a-fat-jar-file-maven-shade-plugin/-->
 	  <artifactId>maven-shade-plugin</artifactId>
 	  <version>2.4.3</version>
       <configuration>
-        <minimizeJar>true</minimizeJar>
+
+        <!-- remember to minimize for production -->
+        <minimizeJar>false</minimizeJar>
       </configuration>
 	  <executions>
 	    <execution>
