@@ -72,7 +72,7 @@ public class ClassAnalyser {
         String f = FilenameUtils.removeExtension(file.getName());
 
         try {
-            ProcessBuilder build = new ProcessBuilder("java", f);
+            ProcessBuilder build = new ProcessBuilder("perf stat -e instructions:u java", f);
             File dir = new File("sample/fib");
             build.directory(dir);
             build.inheritIO();
@@ -84,8 +84,8 @@ public class ClassAnalyser {
             //
             // for(MemoryPoolMXBean mp : memoryPoolMXBeans) {
             //     System.out.println("Bean name: " + mp.getName() + "\nType: " + mp.getType().toString());
-            //     MemoryUsage pu = mp.getPeakUsage();
-            //     System.out.println("Memory usage: " + pu.toString() + "\n");
+            //     MemoryUsage pu = mp.getUsage();
+            //     System.out.println("[USAGE] " + pu.getUsed());
             // }
 
             // Runtime runtime = Runtime.getRuntime();

@@ -5,10 +5,6 @@ import java.lang.management.MemoryUsage;
 import java.lang.management.MemoryType;
 
 public class dfib {
-    static Runtime runtime;
-    static long memory;
-
-
     static int dfib(int n)
     {
         /* Declare an array to store Fibonacci numbers. */
@@ -21,15 +17,10 @@ public class dfib {
     for (i = 2; i <= n; i++)
     {
 
-        memory = runtime.totalMemory() - runtime.freeMemory();
-
-        // Calculate the used memory
-        long memory = runtime.totalMemory() - runtime.freeMemory();
        /* Add the previous 2 numbers in the series
          and store it */
 
         f[i] = f[i-1] + f[i-2];
-                System.out.println(memory);
     }
 
     return f[n];
@@ -38,14 +29,27 @@ public class dfib {
     public static void main (String args[])
     {
 
-    // Get the Java runtime
-    runtime = Runtime.getRuntime();
+        // List<MemoryPoolMXBean> memoryPoolMXBeans = ManagementFactory.getMemoryPoolMXBeans();
+        //
+        // for(MemoryPoolMXBean mp : memoryPoolMXBeans) {
+        //     if(mp.getName().equals("Code Cache")) {
+        //         MemoryUsage pu = mp.getUsage();
+        //         System.out.println("[USAGE] " + pu.getUsed());
+        //     }
+        // }
 
-    int n = 45;
-    System.out.println("Computing DP solution...");
-    System.out.println(dfib(n) + "\n");
+        int n = 45;
+        System.out.println("Computing DP solution...");
+        System.out.println(dfib(n) + "\n");
 
-    System.out.println("Memory used: " + memory);
+        // memoryPoolMXBeans = ManagementFactory.getMemoryPoolMXBeans();
+        //
+        // for(MemoryPoolMXBean mp : memoryPoolMXBeans) {
+        //     if(mp.getName().equals("Code Cache")) {
+        //         MemoryUsage pu = mp.getUsage();
+        //         System.out.println("[USAGE] " + pu.getUsed());
+        //     }
+        // }
 
     }
 }

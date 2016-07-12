@@ -6,15 +6,10 @@ import java.lang.management.MemoryType;
 
 class fib
 {
-    static Runtime runtime;
-    static long memory;
-
     static int fib(int n)
     {
 
     // Get the Java runtime
-    // Calculate the used memory
-    memory = runtime.totalMemory() - runtime.freeMemory();
 
     if (n <= 1)
        return n;
@@ -24,11 +19,27 @@ class fib
     public static void main (String args[])
     {
 
-    runtime = Runtime.getRuntime();
-    int n = 30;
-    System.out.println("Computing recursive solution...");
-    System.out.println(fib(n) + "\n");
+        // List<MemoryPoolMXBean> memoryPoolMXBeans = ManagementFactory.getMemoryPoolMXBeans();
+        //
+        // for(MemoryPoolMXBean mp : memoryPoolMXBeans) {
+        //     if(mp.getName().equals("Code Cache")) {
+        //         MemoryUsage pu = mp.getUsage();
+        //         System.out.println("[USAGE] " + pu.getUsed());
+        //     }
+        // }
 
-    System.out.println("Memory used: " + memory);
+        int n = 45;
+        System.out.println("Computing recursive solution...");
+        System.out.println(fib(n) + "\n");
+
+        // memoryPoolMXBeans = ManagementFactory.getMemoryPoolMXBeans();
+        //
+        // for(MemoryPoolMXBean mp : memoryPoolMXBeans) {
+        //     if(mp.getName().equals("Code Cache")) {
+        //         MemoryUsage pu = mp.getUsage();
+        //         System.out.println("[USAGE] " + pu.getUsed());
+        //     }
+        // }
+
     }
 }
