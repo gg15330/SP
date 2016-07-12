@@ -2,7 +2,11 @@ package ggraver;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
 import java.lang.Process;
+import java.lang.ProcessBuilder.Redirect;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -72,12 +76,33 @@ public class ClassAnalyser {
         String f = FilenameUtils.removeExtension(file.getName());
 
         try {
-            ProcessBuilder build = new ProcessBuilder("perf stat -e instructions:u java", f);
+            ProcessBuilder build = new ProcessBuilder("perf", "stat", "-e", "instructions:u", "java", f);
             File dir = new File("sample/fib");
             build.directory(dir);
-            build.inheritIO();
             build.redirectErrorStream(true);
             p = build.start();
+
+            ProcessBuilder build2 = new ProcessBuilder("perf", "stat", "-e", "instructions:u", "-o", "log.txt", "java", f);
+            File dir = new File("sample/fib");
+            build.directory(dir);
+            build.redirectErrorStream(true);
+            p = build.start();
+
+            String line = FileUtils.readLines(aFile).get(6);
+
+            System.out.println("Line: " + line);
+
+            // InputStreamReader isr = new InputStreamReader(p.getInputStream());
+            // BufferedReader br = new BufferedReader(isr);
+            // System.out.println("---[OUTPUT]---");
+            // String s = null;
+            // while((s = br.readLine()) != null) {
+            //     if(s.equals(" Performance counter stats for 'java " + methodName + "':")) {
+            //         System.out.println("FOUND IT");
+            //     }
+            //     System.out.println(s);
+            // }
+
             p.waitFor();
 
             // List<MemoryPoolMXBean> memoryPoolMXBeans = ManagementFactory.getMemoryPoolMXBeans();
