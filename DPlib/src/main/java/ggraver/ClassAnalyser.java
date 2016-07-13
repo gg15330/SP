@@ -3,6 +3,7 @@ package ggraver;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import java.lang.Process;
@@ -13,11 +14,13 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
-import org.apache.commons.io.FilenameUtils;
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryPoolMXBean;
 import java.lang.management.MemoryUsage;
 import java.lang.management.MemoryType;
+
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.FileUtils;
 
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.commons.CodeSizeEvaluator;
@@ -76,63 +79,45 @@ public class ClassAnalyser {
         String f = FilenameUtils.removeExtension(file.getName());
 
         try {
-            ProcessBuilder build = new ProcessBuilder("perf", "stat", "-e", "instructions:u", "java", f);
+            
             File dir = new File("sample/fib");
+            File temp = new File(dir + "/temp.txt");
+            temp.deleteOnExit();
+            System.out.println("Temp file name: " + temp.getPath());
+            temp.createNewFile();
+            if(!temp.exists()) {
+                throw new Error("temp file does not exist.");
+            }
+
+            ProcessBuilder build = new ProcessBuilder("perf", "stat", "-e", "instructions:u", "-o", temp.getName(), "java", f);
             build.directory(dir);
             build.redirectErrorStream(true);
+
             p = build.start();
-
-            ProcessBuilder build2 = new ProcessBuilder("perf", "stat", "-e", "instructions:u", "-o", "log.txt", "java", f);
-            File dir = new File("sample/fib");
-            build.directory(dir);
-            build.redirectErrorStream(true);
-            p = build.start();
-
-            String line = FileUtils.readLines(aFile).get(6);
-
-            System.out.println("Line: " + line);
-
-            // InputStreamReader isr = new InputStreamReader(p.getInputStream());
-            // BufferedReader br = new BufferedReader(isr);
-            // System.out.println("---[OUTPUT]---");
-            // String s = null;
-            // while((s = br.readLine()) != null) {
-            //     if(s.equals(" Performance counter stats for 'java " + methodName + "':")) {
-            //         System.out.println("FOUND IT");
-            //     }
-            //     System.out.println(s);
-            // }
-
             p.waitFor();
 
-            // List<MemoryPoolMXBean> memoryPoolMXBeans = ManagementFactory.getMemoryPoolMXBeans();
-            //
-            // for(MemoryPoolMXBean mp : memoryPoolMXBeans) {
-            //     System.out.println("Bean name: " + mp.getName() + "\nType: " + mp.getType().toString());
-            //     MemoryUsage pu = mp.getUsage();
-            //     System.out.println("[USAGE] " + pu.getUsed());
-            // }
-
-            // Runtime runtime = Runtime.getRuntime();
-            // // Run the garbage collector
-            // // runtime.gc();
-            // // Calculate the used memory
-            // long memory = runtime.totalMemory() - runtime.freeMemory();
-            // System.out.println("Used memory is bytes: " + memory);
-            //
-
-            //
-            // Runtime runtime2 = Runtime.getRuntime();
-            // // Run the garbage collector
-            // // runtime2.gc();
-            // // Calculate the used memory
-            // long memory2 = runtime2.totalMemory() - runtime2.freeMemory();
-            // System.out.println("Used memory is bytes: " + memory2);
-
-        } catch(Exception e) {
+            String line = FileUtils.readLines(temp).get(5);
+            System.out.println("[LINE] " + line);
+        }
+        catch(Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    private File tempFile(String prefix, String suffix) {
+
+        File file = null;
+
+        try {
+            file = new File(prefix + suffix);
+            // file.deleteOnExit();
+        }
+        catch(Exception e) {
+            throw new Error("Could not create temp file.");
+        }
+        System.out.println("Returning file: " + file.getPath());
+        return file;
 
     }
 
