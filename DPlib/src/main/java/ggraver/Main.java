@@ -64,9 +64,9 @@ public class Main {
         // }
 
         try {
-            ca = new ClassAnalyser();
+            ca = new ClassAnalyser(file, methodName);
             // sa.analyse();
-            ca.analyse(file, methodName);
+            ca.analyse();
         }
         catch(Exception e) {
             e.printStackTrace();

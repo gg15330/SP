@@ -30,10 +30,15 @@ import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.MethodNode;
 import org.objectweb.asm.ClassReader;
 
+import ggraver.Exception.CompileException;
+
 // remember to include file checks/exceptions
 
 // generates .class files and analyses performance of user solution
 public class ClassAnalyser {
+
+    private final int PERF_INSTR_LINE = 5;
+    private final int INSTR_WHITESPACE_INDENT = 7;
 
     private File file;
     private String methodName;
@@ -46,67 +51,58 @@ public class ClassAnalyser {
     }
 
     // analyse the compiled .class file for performance
-    public void analyse(File file, String methodName) {
-
-        System.out.println("---[" + file.getName().toUpperCase() + "]---");
-        compile(file);
-        // ClassReader cr = null;
-        //
-        // try {
-        //     File classFile = new File("sample/fib/fib.class");
-        //     FileInputStream fis = new FileInputStream(classFile);
-        //     cr = new ClassReader(fis);
-        //     fis.close();
-        // }
-        // catch(Exception e) {
-        //     e.printStackTrace();
-        // }
-
-        // System.out.println("Class name: " + cr.getClassName());
-        // ClassNode cn = new ClassNode();
-        // cr.accept(cn, 0);
-        //
-        // ArrayList<MethodNode> mnList = new ArrayList<MethodNode>(cn.methods);
-        // System.out.println("File: " + file.getName());
-        // for(MethodNode mn : mnList) {
-        //     if(mn.name.equals(methodName)) {
-        //         System.out.println("mn.maxStack: " + mn.maxStack);
-        //         CodeSizeEvaluator cse = new CodeSizeEvaluator(null);
-        //         mn.accept(cse);
-        //         System.out.println("Max size: " + cse.getMaxSize());
-        //     }
-        // }
-
-        Process p = null;
-        String f = FilenameUtils.removeExtension(file.getName());
+    public void analyse() {
 
         try {
+            compile(file);
+        }
+        catch(CompileException ce) {
+            ce.printStackTrace();
+        }
 
-            File dir = new File("sample/fib");
-            File temp = new File(dir + "/temp.txt");
-            temp.deleteOnExit();
-            System.out.println("Temp file name: " + temp.getPath());
-            temp.createNewFile();
+        String fname = FilenameUtils.removeExtension(file.getName());
+        File dir, temp = null;
 
-            if(!temp.exists()) {
-                throw new Error("temp file does not exist.");
-            }
+        try {
+            dir = new File("sample/fib");
+            temp = tempFile("temp.txt", dir);
+        }
+        catch(IOException ioe) {
+            throw new Error(ioe);
+        }
 
-            ProcessBuilder build = new ProcessBuilder("perf", "stat", "-e", "instructions:u", "-o", temp.getName(), "java", f);
-            build.directory(dir);
-            build.redirectErrorStream(true);
+        ProcessBuilder build = new ProcessBuilder("perf", "stat", "-e", "instructions:u", "-o", temp.getName(), "java", fname);
+        build.directory(dir);
+        build.redirectErrorStream(true);
 
-            System.out.println("Executing: " + build.command());
+        Process p = null;
+
+        try {
             p = build.start();
             p.waitFor();
-
-            long i = fetchInstructionCount(temp, 5);
-            System.out.println("i = " + i);
-
         }
         catch(Exception e) {
             e.printStackTrace();
+            System.exit(1);
         }
+
+        long i = fetchInstructionCount(temp, PERF_INSTR_LINE);
+        System.out.println("i = " + i);
+
+    }
+
+    private File tempFile(String fileName, File dir) throws IOException {
+
+        File temp = new File(dir + "/" + fileName);
+        System.out.println("Temp file name: " + temp.getPath());
+        temp.deleteOnExit();
+        temp.createNewFile();
+
+        if(!temp.exists()) {
+            throw new Error("temp file does not exist.");
+        }
+
+        return temp;
 
     }
 
@@ -114,6 +110,7 @@ public class ClassAnalyser {
     private long fetchInstructionCount(File f, int lineNum) {
 
         String line = null;
+
         try {
             line = FileUtils.readLines(f).get(lineNum);
         }
@@ -124,8 +121,7 @@ public class ClassAnalyser {
             e.printStackTrace();
         }
 
-        String instructionsString = line.split(" ", 0)[7];
-
+        String instructionsString = line.split(" ", 0)[INSTR_WHITESPACE_INDENT];
         long instructions = 0;
 
         try {
@@ -136,26 +132,11 @@ public class ClassAnalyser {
         }
 
         return instructions;
-    }
-
-    private File tempFile(String prefix, String suffix) {
-
-        File file = null;
-
-        try {
-            file = new File(prefix + suffix);
-            // file.deleteOnExit();
-        }
-        catch(Exception e) {
-            throw new Error("Could not create temp file.");
-        }
-        System.out.println("Returning file: " + file.getPath());
-        return file;
 
     }
 
     // compile the user-submitted .java file for performance analysis
-    private void compile(File file) {
+    private void compile(File file) throws CompileException {
 
         // found at https://stackoverflow.com/questions/8496494/running-command-line-in-java
         Process p = null;
@@ -165,7 +146,8 @@ public class ClassAnalyser {
             ProcessBuilder build = new ProcessBuilder("javac", file.getPath());
             build.inheritIO();
             p = build.start();
-        } catch(Exception e) {
+        }
+        catch(Exception e) {
             e.printStackTrace();
         }
 
@@ -173,12 +155,14 @@ public class ClassAnalyser {
 
         try {
             result = p.waitFor();
-        } catch(Exception e) {
+        }
+        catch(Exception e) {
             e.printStackTrace();
+            result = 1;
         }
 
         if(result != 0) {
-            throw new Error("Could not compile .java file. Please ensure your .java file is valid.");
+            throw new CompileException("Could not compile .java file. Please ensure your .java file is valid.");
         }
 
         System.out.println(file.getName() + " compiled successfully.");
