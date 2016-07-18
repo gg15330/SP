@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import java.lang.Process;
 import java.lang.ProcessBuilder.Redirect;
+import java.lang.NumberFormatException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -32,46 +33,48 @@ import org.objectweb.asm.ClassReader;
 
 import ggraver.Exception.CompileException;
 
-// remember to include file checks/exceptions
-
 // generates .class files and analyses performance of user solution
 public class ClassAnalyser {
 
     private final int PERF_INSTR_LINE = 5;
     private final int INSTR_WHITESPACE_INDENT = 7;
+    private final String TEMP_FILENAME = "log.txt";
 
-    private File file;
+    private File javaFile;
     private String methodName;
 
     public ClassAnalyser() {}
 
-    public ClassAnalyser(File file, String methodName) {
-        this.file = file;
+    public ClassAnalyser(File javaFile, String methodName) {
+
+        this.javaFile = javaFile;
         this.methodName = methodName;
+
     }
 
     // analyse the compiled .class file for performance
     public void analyse() {
 
         try {
-            compile(file);
+            compile(javaFile);
         }
         catch(CompileException ce) {
             ce.printStackTrace();
+            System.exit(1);
         }
 
-        String fname = FilenameUtils.removeExtension(file.getName());
-        File dir, temp = null;
+        String fname = FilenameUtils.removeExtension(javaFile.getName());
+        File dir, log = null;
 
         try {
-            dir = new File("sample/fib");
-            temp = tempFile("temp.txt", dir);
+            dir = new File(javaFile.getParent());
+            log = tempFile(TEMP_FILENAME, dir);
         }
         catch(IOException ioe) {
             throw new Error(ioe);
         }
 
-        ProcessBuilder build = new ProcessBuilder("perf", "stat", "-e", "instructions:u", "-o", temp.getName(), "java", fname);
+        ProcessBuilder build = new ProcessBuilder("perf", "stat", "-e", "instructions:u", "-o", log.getName(), "java", fname);
         build.directory(dir);
         build.redirectErrorStream(true);
 
@@ -79,6 +82,7 @@ public class ClassAnalyser {
 
         try {
             p = build.start();
+            // remember to put timeout in waitFor()
             p.waitFor();
         }
         catch(Exception e) {
@@ -86,7 +90,15 @@ public class ClassAnalyser {
             System.exit(1);
         }
 
-        long i = fetchInstructionCount(temp, PERF_INSTR_LINE);
+        long i = 0;
+
+        try {
+            i = fetchInstructionCount(log, PERF_INSTR_LINE);
+        }
+        catch(Exception e) {
+            throw new Error(e);
+        }
+
         System.out.println("i = " + i);
 
     }
@@ -99,7 +111,7 @@ public class ClassAnalyser {
         temp.createNewFile();
 
         if(!temp.exists()) {
-            throw new Error("temp file does not exist.");
+            throw new IOException("Temp file does not exist.");
         }
 
         return temp;
@@ -107,29 +119,15 @@ public class ClassAnalyser {
     }
 
     // get the line containing the instruction count from the perf stat output stream and return it as a long
-    private long fetchInstructionCount(File f, int lineNum) {
+    private long fetchInstructionCount(File f, int lineNum) throws IOException, NumberFormatException {
 
         String line = null;
-
-        try {
-            line = FileUtils.readLines(f).get(lineNum);
-        }
-        catch(IOException ioe) {
-            throw new Error(ioe);
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        String instructionsString = line.split(" ", 0)[INSTR_WHITESPACE_INDENT];
+        String instructionsString = null;
         long instructions = 0;
 
-        try {
-            instructions = Long.parseLong(instructionsString.replaceAll(",", ""));
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
+        line = FileUtils.readLines(f).get(lineNum);
+        instructionsString = line.split(" ", 0)[INSTR_WHITESPACE_INDENT];
+        instructions = Long.parseLong(instructionsString.replaceAll(",", ""));
 
         return instructions;
 
@@ -141,24 +139,16 @@ public class ClassAnalyser {
         // found at https://stackoverflow.com/questions/8496494/running-command-line-in-java
         Process p = null;
         System.out.println("Compiling file: " + file.getName());
+        int result = 0;
 
         try {
             ProcessBuilder build = new ProcessBuilder("javac", file.getPath());
             build.inheritIO();
             p = build.start();
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        int result = 0;
-
-        try {
             result = p.waitFor();
         }
         catch(Exception e) {
-            e.printStackTrace();
-            result = 1;
+            throw new Error(e);
         }
 
         if(result != 0) {
@@ -169,8 +159,8 @@ public class ClassAnalyser {
 
     }
 
-    public void setFile(File file) {
-        this.file = file;
+    public void setFile(File javaFile) {
+        this.javaFile = javaFile;
     }
 
 }
