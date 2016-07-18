@@ -76,30 +76,36 @@ public class ClassAnalyser {
 
         ProcessBuilder build = new ProcessBuilder("perf", "stat", "-e", "instructions:u", "-o", log.getName(), "java", fname);
         build.directory(dir);
+        build.inheritIO();
         build.redirectErrorStream(true);
 
         Process p = null;
+        long start = 0;
+        long end = 0;
 
         try {
             p = build.start();
             // remember to put timeout in waitFor()
+            start = System.currentTimeMillis();
             p.waitFor();
+            end = System.currentTimeMillis();
         }
         catch(Exception e) {
             e.printStackTrace();
             System.exit(1);
         }
 
-        long i = 0;
+        long numOfInstructions = 0;
 
         try {
-            i = fetchInstructionCount(log, PERF_INSTR_LINE);
+            numOfInstructions = fetchInstructionCount(log, PERF_INSTR_LINE);
         }
         catch(Exception e) {
             throw new Error(e);
         }
 
-        System.out.println("i = " + i);
+        System.out.println("[INSTRUCTIONS] " + numOfInstructions);
+        System.out.println("[TIME] " + (end - start) + "ms");
 
     }
 
@@ -107,7 +113,7 @@ public class ClassAnalyser {
 
         File temp = new File(dir + "/" + fileName);
         System.out.println("Temp file name: " + temp.getPath());
-        temp.deleteOnExit();
+        // temp.deleteOnExit();
         temp.createNewFile();
 
         if(!temp.exists()) {
@@ -121,14 +127,15 @@ public class ClassAnalyser {
     // get the line containing the instruction count from the perf stat output stream and return it as a long
     private long fetchInstructionCount(File f, int lineNum) throws IOException, NumberFormatException {
 
-        String line = null;
         String instructionsString = null;
         long instructions = 0;
 
-        line = FileUtils.readLines(f).get(lineNum);
-        instructionsString = line.split(" ", 0)[INSTR_WHITESPACE_INDENT];
-        instructions = Long.parseLong(instructionsString.replaceAll(",", ""));
+        instructionsString = FileUtils.readLines(f).get(lineNum)
+        .replaceAll(" ", "")
+        .replaceAll("instructions:u", "")
+        .replaceAll(",", "");
 
+        instructions = Long.parseLong(instructionsString);
         return instructions;
 
     }
