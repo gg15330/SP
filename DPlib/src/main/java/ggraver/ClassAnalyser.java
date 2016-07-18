@@ -6,6 +6,8 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.LineNumberReader;
+import java.io.IOException;
+
 import java.lang.Process;
 import java.lang.ProcessBuilder.Redirect;
 import java.net.URL;
@@ -79,12 +81,13 @@ public class ClassAnalyser {
         String f = FilenameUtils.removeExtension(file.getName());
 
         try {
-            
+
             File dir = new File("sample/fib");
             File temp = new File(dir + "/temp.txt");
             temp.deleteOnExit();
             System.out.println("Temp file name: " + temp.getPath());
             temp.createNewFile();
+
             if(!temp.exists()) {
                 throw new Error("temp file does not exist.");
             }
@@ -93,16 +96,46 @@ public class ClassAnalyser {
             build.directory(dir);
             build.redirectErrorStream(true);
 
+            System.out.println("Executing: " + build.command());
             p = build.start();
             p.waitFor();
 
-            String line = FileUtils.readLines(temp).get(5);
-            System.out.println("[LINE] " + line);
+            long i = fetchInstructionCount(temp, 5);
+            System.out.println("i = " + i);
+
         }
         catch(Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    // get the line containing the instruction count from the perf stat output stream and return it as a long
+    private long fetchInstructionCount(File f, int lineNum) {
+
+        String line = null;
+        try {
+            line = FileUtils.readLines(f).get(lineNum);
+        }
+        catch(IOException ioe) {
+            throw new Error(ioe);
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        String instructionsString = line.split(" ", 0)[7];
+
+        long instructions = 0;
+
+        try {
+            instructions = Long.parseLong(instructionsString.replaceAll(",", ""));
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return instructions;
     }
 
     private File tempFile(String prefix, String suffix) {
