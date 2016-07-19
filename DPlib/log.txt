@@ -1,0 +1,10 @@
+Computing DP solution...
+1134903170
+
+
+ Performance counter stats for 'java dfib':
+
+       149,277,532      instructions:u           
+
+       0.066909924 seconds time elapsed
+
