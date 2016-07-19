@@ -1,9 +1,9 @@
-# started on Tue Jul 19 12:46:32 2016
+# started on Tue Jul 19 14:02:59 2016
 
 
- Performance counter stats for 'java fib':
+ Performance counter stats for 'java dfib':
 
-    42,393,356,615      instructions:u           
+       149,346,117      instructions:u           
 
-       5.593132604 seconds time elapsed
+       0.087316040 seconds time elapsed
 
