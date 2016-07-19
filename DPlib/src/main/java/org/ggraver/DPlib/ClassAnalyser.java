@@ -1,4 +1,4 @@
-package ggraver;
+package org.ggraver.DPlib;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,7 +31,7 @@ import org.objectweb.asm.tree.ClassNode;
 import org.objectweb.asm.tree.MethodNode;
 import org.objectweb.asm.ClassReader;
 
-import ggraver.Exception.CompileException;
+import org.ggraver.DPlib.Exception.CompileException;
 
 // generates .class files and analyses performance of user solution
 public class ClassAnalyser {

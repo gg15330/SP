@@ -1,4 +1,4 @@
-package ggraver;
+package org.ggraver.DPlib;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class MethodAnalyser {
     public void analyse() {
 
         System.out.println("Recursion: " + recursive(method));
-        
+
         // try {
         //     recursiveWithException(method);
         //     recursion = false;

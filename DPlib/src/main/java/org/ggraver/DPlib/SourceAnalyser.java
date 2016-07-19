@@ -1,4 +1,4 @@
-package ggraver;
+package org.ggraver.DPlib;
 
 import java.io.File;
 import java.io.FileInputStream;

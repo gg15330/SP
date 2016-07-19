@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>ggraver</groupId>
+  <groupId>org.ggraver.DPlib</groupId>
   <artifactId>DPlib</artifactId>
   <version>1.0-SNAPSHOT</version>
   <!-- <packaging>pom</packaging> -->
@@ -82,7 +82,7 @@ http://www.mkyong.com/maven/create-a-fat-jar-file-maven-shade-plugin/-->
 			<configuration>
 			  <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-				  <mainClass>ggraver.Main</mainClass>
+				  <mainClass>org.ggraver.DPlib.Main</mainClass>
 				</transformer>
 			  </transformers>
 			</configuration>
