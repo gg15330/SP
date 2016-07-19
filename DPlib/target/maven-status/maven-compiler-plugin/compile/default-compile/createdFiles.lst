@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 ggraver/SourceAnalyser$1.class
 ggraver/SourceAnalyser$MV.class
 ggraver/Exception/CompileException.class
@@ -11,4 +9,3 @@ ggraver/Method.class
 ggraver/MethodAnalyser.class
 ggraver/MethodVis.class
 ggraver/annotations/Dynamic.class
->>>>>>> 44a922dd6ed38ace353d0f0d16609a3d41497a2d

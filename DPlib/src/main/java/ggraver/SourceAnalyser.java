@@ -36,20 +36,20 @@ public class SourceAnalyser {
     }
 
     // construct a new SourceAnalyser with a custom annotation for the method to be analysed
-    public SourceAnalyser(String annotation) {
-
-        this.methodAnnotation = new MarkerAnnotationExpr();
-        methodAnnotation.setName(new NameExpr(annotation));
-
-    }
+    // public SourceAnalyser(String annotation) {
+    //
+    //     this.methodAnnotation = new MarkerAnnotationExpr();
+    //     methodAnnotation.setName(new NameExpr(annotation));
+    //
+    // }
 
     // construct a new SourceAnalyser with a method declaration to check against the source file
     public SourceAnalyser(String methodName) {
 
         this.methodDeclaration = new MethodDeclaration();
         this.methodDeclaration.setName(methodName);
-        this.methodDeclaration.setType();
-        this.methodDeclaration.setParameters();
+        // this.methodDeclaration.setType();
+        // this.methodDeclaration.setParameters();
 
     }
 
