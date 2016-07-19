@@ -1,9 +1,9 @@
-# started on Tue Jul 19 12:28:06 2016
+# started on Tue Jul 19 12:46:32 2016
 
 
  Performance counter stats for 'java fib':
 
-    42,393,387,959      instructions:u           
+    42,393,356,615      instructions:u           
 
-       5.601282565 seconds time elapsed
+       5.593132604 seconds time elapsed
 

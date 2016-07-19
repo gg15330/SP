@@ -1,6 +1,6 @@
 // This class is deprecated - has been incorporated into the SourceAnalyser class
 
-package ggraver;
+package org.ggraver.DPlib;
 
 import java.util.Map;
 import java.util.HashMap;
