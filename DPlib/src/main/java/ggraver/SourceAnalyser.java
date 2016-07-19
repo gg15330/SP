@@ -11,6 +11,7 @@ import com.github.javaparser.JavaParser;
 import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.expr.NameExpr;
 import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.expr.MarkerAnnotationExpr;
@@ -21,6 +22,8 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 public class SourceAnalyser {
 
     CompilationUnit cu;
+
+    private MethodDeclaration methodDeclaration;
     private MarkerAnnotationExpr methodAnnotation;
     private List<MethodDeclaration> methods = new ArrayList<MethodDeclaration>();
 
@@ -32,12 +35,21 @@ public class SourceAnalyser {
 
     }
 
-    // construct a new SourceAnalyser with references to the .java file
-    // and a custom annotation for the method to be analysed
-    public SourceAnalyser(String annotation) {
+    // construct a new SourceAnalyser with a custom annotation for the method to be analysed
+    // public SourceAnalyser(String annotation) {
+    //
+    //     this.methodAnnotation = new MarkerAnnotationExpr();
+    //     methodAnnotation.setName(new NameExpr(annotation));
+    //
+    // }
 
-        this.methodAnnotation = new MarkerAnnotationExpr();
-        methodAnnotation.setName(new NameExpr(annotation));
+    // construct a new SourceAnalyser with a method declaration to check against the source file
+    public SourceAnalyser(String methodName) {
+
+        this.methodDeclaration = new MethodDeclaration();
+        this.methodDeclaration.setName(methodName);
+        // this.methodDeclaration.setType();
+        // this.methodDeclaration.setParameters();
 
     }
 

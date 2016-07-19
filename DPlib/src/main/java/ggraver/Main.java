@@ -42,26 +42,26 @@ public class Main {
 
     public void run() {
 
-        // try {
-        //     sa = new SourceAnalyser();
-        //     sa.parse(file);
-        // }
-        // catch(FileNotFoundException fnfe) {
-        //     fnfe.printStackTrace();
-        //     System.err.println("\nFile not found.\n");
-        //     System.exit(1);
-        // }
-        // catch(ParseException pe) {
-        //     pe.printStackTrace();
-        //     System.err.println("\nFile could not be parsed, please ensure file is a valid .java class.\n");
-        //     System.exit(1);
-        // }
-        // catch(IOException ioe) {
-        //     ioe.printStackTrace();
-        // }
-        // catch(Exception e) {
-        //     e.printStackTrace();
-        // }
+        try {
+            sa = new SourceAnalyser();
+            sa.parse(file);
+        }
+        catch(FileNotFoundException fnfe) {
+            fnfe.printStackTrace();
+            System.err.println("\nFile not found.\n");
+            System.exit(1);
+        }
+        catch(ParseException pe) {
+            pe.printStackTrace();
+            System.err.println("\nFile could not be parsed, please ensure file is a valid .java class.\n");
+            System.exit(1);
+        }
+        catch(IOException ioe) {
+            ioe.printStackTrace();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
 
         try {
             ca = new ClassAnalyser(file, methodName);
