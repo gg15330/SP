@@ -1,0 +1,110 @@
+Compiled from "fib.java"
+class fib {
+  fib();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  static int fib(int);
+    Code:
+       0: iload_0
+       1: iconst_1
+       2: if_icmpgt     7
+       5: iload_0
+       6: ireturn
+       7: iload_0
+       8: iconst_1
+       9: isub
+      10: invokestatic  #2                  // Method fib:(I)I
+      13: iload_0
+      14: iconst_2
+      15: isub
+      16: invokestatic  #2                  // Method fib:(I)I
+      19: iadd
+      20: ireturn
+
+  public static void main(java.lang.String[]);
+    Code:
+       0: invokestatic  #3                  // Method java/lang/management/ManagementFactory.getMemoryPoolMXBeans:()Ljava/util/List;
+       3: astore_1
+       4: aload_1
+       5: invokeinterface #4,  1            // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+      10: astore_2
+      11: aload_2
+      12: invokeinterface #5,  1            // InterfaceMethod java/util/Iterator.hasNext:()Z
+      17: ifeq          84
+      20: aload_2
+      21: invokeinterface #6,  1            // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+      26: checkcast     #7                  // class java/lang/management/MemoryPoolMXBean
+      29: astore_3
+      30: aload_3
+      31: invokeinterface #8,  1            // InterfaceMethod java/lang/management/MemoryPoolMXBean.getName:()Ljava/lang/String;
+      36: ldc           #9                  // String Code Cache
+      38: invokevirtual #10                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      41: ifeq          81
+      44: aload_3
+      45: invokeinterface #11,  1           // InterfaceMethod java/lang/management/MemoryPoolMXBean.getUsage:()Ljava/lang/management/MemoryUsage;
+      50: astore        4
+      52: getstatic     #12                 // Field java/lang/System.out:Ljava/io/PrintStream;
+      55: new           #13                 // class java/lang/StringBuilder
+      58: dup
+      59: invokespecial #14                 // Method java/lang/StringBuilder."<init>":()V
+      62: ldc           #15                 // String [USAGE]
+      64: invokevirtual #16                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      67: aload         4
+      69: invokevirtual #17                 // Method java/lang/management/MemoryUsage.getUsed:()J
+      72: invokevirtual #18                 // Method java/lang/StringBuilder.append:(J)Ljava/lang/StringBuilder;
+      75: invokevirtual #19                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      78: invokevirtual #20                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+      81: goto          11
+      84: bipush        47
+      86: istore_2
+      87: getstatic     #12                 // Field java/lang/System.out:Ljava/io/PrintStream;
+      90: ldc           #21                 // String Computing recursive solution...
+      92: invokevirtual #20                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+      95: getstatic     #12                 // Field java/lang/System.out:Ljava/io/PrintStream;
+      98: new           #13                 // class java/lang/StringBuilder
+     101: dup
+     102: invokespecial #14                 // Method java/lang/StringBuilder."<init>":()V
+     105: iload_2
+     106: invokestatic  #2                  // Method fib:(I)I
+     109: invokevirtual #22                 // Method java/lang/StringBuilder.append:(I)Ljava/lang/StringBuilder;
+     112: ldc           #23                 // String \n
+     114: invokevirtual #16                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     117: invokevirtual #19                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     120: invokevirtual #20                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+     123: invokestatic  #3                  // Method java/lang/management/ManagementFactory.getMemoryPoolMXBeans:()Ljava/util/List;
+     126: astore_1
+     127: aload_1
+     128: invokeinterface #4,  1            // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+     133: astore_3
+     134: aload_3
+     135: invokeinterface #5,  1            // InterfaceMethod java/util/Iterator.hasNext:()Z
+     140: ifeq          210
+     143: aload_3
+     144: invokeinterface #6,  1            // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+     149: checkcast     #7                  // class java/lang/management/MemoryPoolMXBean
+     152: astore        4
+     154: aload         4
+     156: invokeinterface #8,  1            // InterfaceMethod java/lang/management/MemoryPoolMXBean.getName:()Ljava/lang/String;
+     161: ldc           #9                  // String Code Cache
+     163: invokevirtual #10                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+     166: ifeq          207
+     169: aload         4
+     171: invokeinterface #11,  1           // InterfaceMethod java/lang/management/MemoryPoolMXBean.getUsage:()Ljava/lang/management/MemoryUsage;
+     176: astore        5
+     178: getstatic     #12                 // Field java/lang/System.out:Ljava/io/PrintStream;
+     181: new           #13                 // class java/lang/StringBuilder
+     184: dup
+     185: invokespecial #14                 // Method java/lang/StringBuilder."<init>":()V
+     188: ldc           #15                 // String [USAGE]
+     190: invokevirtual #16                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+     193: aload         5
+     195: invokevirtual #17                 // Method java/lang/management/MemoryUsage.getUsed:()J
+     198: invokevirtual #18                 // Method java/lang/StringBuilder.append:(J)Ljava/lang/StringBuilder;
+     201: invokevirtual #19                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+     204: invokevirtual #20                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+     207: goto          134
+     210: return
+}
