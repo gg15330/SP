@@ -1,59 +1,35 @@
 package org.ggraver.DPlib;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.LineNumberReader;
 import java.io.IOException;
 
 import java.lang.Process;
-import java.lang.ProcessBuilder.Redirect;
 import java.lang.NumberFormatException;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
-import java.lang.management.ManagementFactory;
-import java.lang.management.MemoryPoolMXBean;
-import java.lang.management.MemoryUsage;
-import java.lang.management.MemoryType;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.FileUtils;
 
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.commons.CodeSizeEvaluator;
-import org.objectweb.asm.tree.ClassNode;
-import org.objectweb.asm.tree.MethodNode;
-import org.objectweb.asm.ClassReader;
-
 import org.ggraver.DPlib.Exception.CompileException;
 
 // generates .class files and analyses performance of user solution
-public class ClassAnalyser {
+class ClassAnalyser {
 
     private final int PERF_INSTR_LINE = 5;
     private final int INSTR_WHITESPACE_INDENT = 7;
     private final String TEMP_FILENAME = "log.txt";
 
     private File javaFile;
-    private String methodName;
 
     public ClassAnalyser() {}
 
-    public ClassAnalyser(File javaFile, String methodName) {
+    ClassAnalyser(File javaFile, String methodName) {
 
         this.javaFile = javaFile;
-        this.methodName = methodName;
 
     }
 
     // analyse the compiled .class file for performance
-    public void analyse() {
+    void analyse() {
 
         try {
             compile(javaFile);
@@ -64,7 +40,8 @@ public class ClassAnalyser {
         }
 
         String fname = FilenameUtils.removeExtension(javaFile.getName());
-        File dir, log = null;
+        File dir;
+        File log;
 
         try {
             dir = new File(javaFile.getParent());
@@ -79,7 +56,7 @@ public class ClassAnalyser {
         build.inheritIO();
         build.redirectErrorStream(true);
 
-        Process p = null;
+        Process p;
         long start = 0;
         long end = 0;
 
@@ -95,7 +72,7 @@ public class ClassAnalyser {
             System.exit(1);
         }
 
-        long numOfInstructions = 0;
+        long numOfInstructions;
 
         try {
             numOfInstructions = fetchInstructionCount(log, PERF_INSTR_LINE);
@@ -113,11 +90,14 @@ public class ClassAnalyser {
 
         File temp = new File(dir + "/" + fileName);
         System.out.println("Temp file name: " + temp.getPath());
-        // temp.deleteOnExit();
-        temp.createNewFile();
+        temp.deleteOnExit();
+
+        if(!temp.createNewFile()) {
+            throw new IOException("Temp file \"" + TEMP_FILENAME + "\" already exists.");
+        }
 
         if(!temp.exists()) {
-            throw new IOException("Temp file does not exist.");
+            throw new IOException("Temp file \"" + TEMP_FILENAME + "\" was not created.");
         }
 
         return temp;
@@ -127,10 +107,10 @@ public class ClassAnalyser {
     // get the line containing the instruction count from the perf stat output stream and return it as a long
     private long fetchInstructionCount(File f, int lineNum) throws IOException, NumberFormatException {
 
-        String instructionsString = null;
-        long instructions = 0;
+        String instructionsString;
+        long instructions;
 
-        instructionsString = FileUtils.readLines(f).get(lineNum)
+        instructionsString = FileUtils.readLines(f, "UTF-8").get(lineNum)
         .replaceAll(" ", "")
         .replaceAll("instructions:u", "")
         .replaceAll(",", "");
@@ -144,9 +124,9 @@ public class ClassAnalyser {
     private void compile(File file) throws CompileException {
 
         // found at https://stackoverflow.com/questions/8496494/running-command-line-in-java
-        Process p = null;
+        Process p;
         System.out.println("Compiling file: " + file.getName());
-        int result = 0;
+        int result;
 
         try {
             ProcessBuilder build = new ProcessBuilder("javac", file.getPath());
@@ -164,10 +144,6 @@ public class ClassAnalyser {
 
         System.out.println(file.getName() + " compiled successfully.");
 
-    }
-
-    public void setFile(File javaFile) {
-        this.javaFile = javaFile;
     }
 
 }
