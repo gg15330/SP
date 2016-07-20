@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 import com.github.javaparser.ParseException;
+import com.github.javaparser.ast.expr.ArrayAccessExpr;
+import org.ggraver.DPlib.Exception.AnalysisException;
+import org.ggraver.DPlib.Exception.CompileException;
 
 //overall program control
 public class Main {
@@ -59,9 +62,12 @@ public class Main {
 
         try {
             ClassAnalyser ca = new ClassAnalyser(file, methodName);
-            ca.analyse();
+            File f = ca.compile(file);
+            ca.analyse(f);
         } catch (Exception e) {
             e.printStackTrace();
+            System.err.println(e.getMessage());
+            System.exit(1);
         }
 
     }

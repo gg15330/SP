@@ -4,6 +4,8 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import java.io.File;
+
 /**
  * Unit test for simple App.
  */
@@ -44,11 +46,12 @@ public class ClassAnalyserTest
     }
 
     static void runTests() {
-        test_returnsTrue();
+        test_tempFile();
     }
 
-    public static void test_returnsTrue() {
-        assertTrue(ca.returnsTrue());
+    public static void test_tempFile() {
+        File f = new File("test.txt", "src/test/java/org/ggraver/DPlib");
+        assertEquals(true, true);
     }
 
 }
