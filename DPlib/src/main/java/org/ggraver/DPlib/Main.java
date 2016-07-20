@@ -18,7 +18,7 @@ public class Main {
 
         this.file = new File(file);
 
-        if(!this.file.exists() || this.file.isDirectory()) {
+        if (!this.file.exists() || this.file.isDirectory()) {
             System.err.println("\nInvalid file name: " + file + "\n");
             System.exit(1);
         }
@@ -30,7 +30,9 @@ public class Main {
     // handle command line arguments
     public static void main(String[] args) {
 
-        if(args.length != 2) {
+        System.out.println("Starting up...");
+
+        if (args.length != 2) {
             System.out.println("\nUsage: java -jar DPLib-1.0-SNAPSHOT.jar <path/to.file.java>\n");
             System.exit(1);
         }
@@ -45,21 +47,17 @@ public class Main {
         try {
             sa = new SourceAnalyser();
             sa.parse(file);
-        }
-        catch(FileNotFoundException fnfe) {
+        } catch (FileNotFoundException fnfe) {
             fnfe.printStackTrace();
             System.err.println("\nFile not found.\n");
             System.exit(1);
-        }
-        catch(ParseException pe) {
+        } catch (ParseException pe) {
             pe.printStackTrace();
             System.err.println("\nFile could not be parsed, please ensure file is a valid .java class.\n");
             System.exit(1);
-        }
-        catch(IOException ioe) {
+        } catch (IOException ioe) {
             ioe.printStackTrace();
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -67,8 +65,7 @@ public class Main {
             ca = new ClassAnalyser(file, methodName);
             // sa.analyse();
             ca.analyse();
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
