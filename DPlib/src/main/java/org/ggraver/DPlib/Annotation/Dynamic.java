@@ -1,4 +1,4 @@
-package org.ggraver.DPlib.annotations;
+package org.ggraver.DPlib.Annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;

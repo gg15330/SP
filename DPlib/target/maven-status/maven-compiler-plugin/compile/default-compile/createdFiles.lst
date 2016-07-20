@@ -1,6 +1,5 @@
 org/ggraver/DPlib/Method.class
 org/ggraver/DPlib/MethodVis.class
-org/ggraver/DPlib/annotations/Dynamic.class
 org/ggraver/DPlib/SourceAnalyser$1.class
 org/ggraver/DPlib/Main.class
 org/ggraver/DPlib/Exception/CompileException.class
@@ -8,4 +7,5 @@ org/ggraver/DPlib/SourceAnalyser$MV.class
 org/ggraver/DPlib/MethodAnalyser.class
 org/ggraver/DPlib/ClassAnalyser.class
 org/ggraver/DPlib/SourceAnalyser.class
+org/ggraver/DPlib/Annotation/Dynamic.class
 org/ggraver/DPlib/IO.class
