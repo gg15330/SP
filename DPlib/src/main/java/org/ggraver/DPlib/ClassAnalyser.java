@@ -18,21 +18,11 @@ import org.ggraver.DPlib.Exception.AnalysisException;
 class ClassAnalyser {
 
     private final int PERF_INSTR_LINE = 5;
-    private final int INSTR_WHITESPACE_INDENT = 7;
     private final String TEMP_FILENAME = "log.txt";
-
-    private File javaFile;
     private long instructionCount;
-
     private long executionTime;
 
     public ClassAnalyser() {}
-
-    ClassAnalyser(File javaFile, String methodName) {
-
-        this.javaFile = javaFile;
-
-    }
 
     // analyse the compiled .class file for performance
     void analyse(File classFile) throws AnalysisException {
@@ -160,7 +150,7 @@ class ClassAnalyser {
         File classFile;
 
         try {
-            classFile = new File(file.getParent() + "/" + removeExtension(javaFile.getName()) + ".class");
+            classFile = new File(file.getParent() + "/" + removeExtension(file.getName()) + ".class");
         } catch (NullPointerException npe) {
             throw new CompileException(npe);
         }

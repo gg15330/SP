@@ -4,9 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 import com.github.javaparser.ParseException;
-import com.github.javaparser.ast.expr.ArrayAccessExpr;
-import org.ggraver.DPlib.Exception.AnalysisException;
-import org.ggraver.DPlib.Exception.CompileException;
 
 //overall program control
 public class Main {
@@ -29,8 +26,6 @@ public class Main {
 
     // handle command line arguments
     public static void main(String[] args) {
-
-        System.out.println("Starting up...");
 
         if (args.length != 2) {
             System.out.println("\nUsage: java -jar DPLib-1.0-SNAPSHOT.jar <path/to.file.java>\n");
@@ -61,7 +56,7 @@ public class Main {
         }
 
         try {
-            ClassAnalyser ca = new ClassAnalyser(file, methodName);
+            ClassAnalyser ca = new ClassAnalyser();
             File f = ca.compile(file);
             ca.analyse(f);
         } catch (Exception e) {
