@@ -1,0 +1,54 @@
+package org.ggraver.DPlib;
+
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
+
+/**
+ * Unit test for simple App.
+ */
+public class ClassAnalyserTest
+    extends TestCase
+{
+    private static ClassAnalyser ca;
+    /**
+     * Create the test case
+     *
+     * @param testName name of the test case
+     */
+    public ClassAnalyserTest(String testName )
+    {
+        super( testName );
+    }
+
+    /**
+     * @return the suite of tests being tested
+     */
+    public static Test suite()
+    {
+        return new TestSuite( org.ggraver.DPlib.ClassAnalyserTest.class );
+    }
+
+    /**
+     * Rigourous Test :-)
+     */
+    public void testClassAnalyser()
+    {
+        setup();
+        runTests();
+    }
+
+    static void setup() {
+        System.out.println("Setting up...");
+        ca = new ClassAnalyser();
+    }
+
+    static void runTests() {
+        test_returnsTrue();
+    }
+
+    public static void test_returnsTrue() {
+        assertTrue(ca.returnsTrue());
+    }
+
+}

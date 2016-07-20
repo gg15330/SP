@@ -28,6 +28,8 @@ class ClassAnalyser {
 
     }
 
+    boolean returnsTrue() { return true; }
+
     // analyse the compiled .class file for performance
     void analyse() {
 
