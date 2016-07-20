@@ -1,9 +1,9 @@
-# started on Wed Jul 20 10:49:35 2016
+# started on Wed Jul 20 10:51:12 2016
 
 
  Performance counter stats for 'java dfib':
 
-       149,325,323      instructions:u           
+       150,653,817      instructions:u           
 
-       0.091302021 seconds time elapsed
+       0.099517779 seconds time elapsed
 

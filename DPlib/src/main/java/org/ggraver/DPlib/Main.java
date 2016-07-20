@@ -30,6 +30,8 @@ public class Main {
     // handle command line arguments
     public static void main(String[] args) {
 
+        System.out.println("Starting up...");
+
         if (args.length != 2) {
             System.out.println("\nUsage: java -jar DPLib-1.0-SNAPSHOT.jar <path/to.file.java>\n");
             System.exit(1);
