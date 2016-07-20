@@ -23,20 +23,12 @@ class SourceAnalyser {
     private List<MethodDeclaration> methods = new ArrayList<>();
 
     // construct a new SourceAnalyser with default annotation "Dynamic"
-    public SourceAnalyser() {
+    SourceAnalyser() {
 
         this.methodAnnotation = new MarkerAnnotationExpr();
         methodAnnotation.setName(new NameExpr("Dynamic"));
 
     }
-
-    // construct a new SourceAnalyser with a custom annotation for the method to be analysed
-    // public SourceAnalyser(String annotation) {
-    //
-    //     this.methodAnnotation = new MarkerAnnotationExpr();
-    //     methodAnnotation.setName(new NameExpr(annotation));
-    //
-    // }
 
     // construct a new SourceAnalyser with a method declaration to check against the source file
     public SourceAnalyser(String methodName) {
@@ -105,6 +97,7 @@ class SourceAnalyser {
 
     }
 
+    // To do: convert this method to check method name, parameters, type
     // checks annotation for method to be analysed exists and is unique
     private void checkAnnotation(MarkerAnnotationExpr methodAnnotation) throws Exception {
 
@@ -125,6 +118,7 @@ class SourceAnalyser {
 
     }
 
+    // To do: convert to check for duplicate method names/parameters/type
     private boolean duplicateAnnotations(MarkerAnnotationExpr methodAnnotation, List<AnnotationExpr> annotations) {
 
         int count = 0;

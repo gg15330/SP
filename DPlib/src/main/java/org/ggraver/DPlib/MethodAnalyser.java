@@ -28,17 +28,17 @@ public class MethodAnalyser {
 
         System.out.println("Recursion: " + recursive(method));
 
-        // try {
-        //     recursiveWithException(method);
-        //     recursion = false;
-        // }
-        // catch(Exception e) {
-        //     System.out.println(e.getMessage());
-        //     recursion = true;
-        // }
-        // finally {
-        //     System.out.println("Recursive: " + recursion);
-        // }
+         try {
+             recursiveWithException(method);
+             recursion = false;
+         }
+         catch(Exception e) {
+             System.out.println(e.getMessage());
+             recursion = true;
+         }
+         finally {
+             System.out.println("Recursive: " + recursion);
+         }
 
     }
 
@@ -50,7 +50,6 @@ public class MethodAnalyser {
             MethodCallExpr mce = (MethodCallExpr)node;
 
             if(mce.getName().equals(method.getName())) {
-                // throw new Exception("Recursive method call \"" + mce.getName() + "\" found at line " + mce.getBeginLine());
                 System.out.println("Recursive method call \"" + mce.getName() + "\" found at line " + mce.getBeginLine());
                 return true;
             }
@@ -58,7 +57,7 @@ public class MethodAnalyser {
         }
 
         for (Node n : node.getChildrenNodes()){
-            if(recursive(n) == true) {
+            if(recursive(n)) {
                 return true;
             }
         }

@@ -7,5 +7,4 @@ org/ggraver/DPlib/SourceAnalyser$MV.class
 org/ggraver/DPlib/MethodAnalyser.class
 org/ggraver/DPlib/ClassAnalyser.class
 org/ggraver/DPlib/SourceAnalyser.class
-org/ggraver/DPlib/Annotation/Dynamic.class
 org/ggraver/DPlib/IO.class
