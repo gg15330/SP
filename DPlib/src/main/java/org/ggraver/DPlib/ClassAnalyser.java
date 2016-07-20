@@ -22,7 +22,7 @@ class ClassAnalyser {
     private long instructionCount;
     private long executionTime;
 
-    public ClassAnalyser() {}
+    ClassAnalyser() {}
 
     // analyse the compiled .class file for performance
     void analyse(File classFile) throws AnalysisException {
@@ -43,8 +43,8 @@ class ClassAnalyser {
                 dir
         );
         Process p;
-        long start = 0;
-        long end = 0;
+        long start;
+        long end;
 
         try {
             // remember to put timeout in waitFor()
@@ -126,6 +126,10 @@ class ClassAnalyser {
 
     // compile the user-submitted .java file for performance analysis
     File compile(File file) throws CompileException {
+
+        if(file == null) {
+            throw new CompileException(".java file should not be null.");
+        }
 
         System.out.println("Compiling file: " + file.getName());
 
