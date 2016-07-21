@@ -3,14 +3,12 @@ package org.ggraver.DPlib;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.CompileException;
 
 import java.io.File;
-import java.io.IOException;
 
 /**
- * Unit test for simple App.
+ * Unit test for ClassAnalyser class.
  */
 public class ClassAnalyserTest
     extends TestCase

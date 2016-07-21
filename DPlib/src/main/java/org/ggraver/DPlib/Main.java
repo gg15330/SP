@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 import com.github.javaparser.ParseException;
+import com.github.javaparser.ast.CompilationUnit;
 
 //overall program control
 public class Main {
@@ -41,8 +42,8 @@ public class Main {
 
         try {
             SourceAnalyser sa = new SourceAnalyser();
-            sa.parse(file);
-            sa.analyse();
+            CompilationUnit cu = sa.parse(file);
+            sa.analyse(cu);
         } catch (FileNotFoundException fnfe) {
             fnfe.printStackTrace();
             System.err.println("\nFile not found.\n");
