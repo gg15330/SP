@@ -27,6 +27,10 @@ class ClassAnalyser {
     // analyse the compiled .class file for performance
     void analyse(File classFile) throws AnalysisException {
 
+        if(!classFile.exists()) {
+            throw new AnalysisException("class file should exist.");
+        }
+
         File dir;
         File log;
 
@@ -167,11 +171,11 @@ class ClassAnalyser {
 
     }
 
-    public long getInstructionCount() {
+    long getInstructionCount() {
         return instructionCount;
     }
 
-    public long getExecutionTime() {
+    long getExecutionTime() {
         return executionTime;
     }
 
