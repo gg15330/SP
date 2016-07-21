@@ -18,7 +18,6 @@ public class ClassAnalyserTest
     private static ClassAnalyser ca;
     private static File testJavaFile;
     private static File testClassFile;
-    private static File testInvalidClassFile;
 
     /**
      * Create the test case
@@ -79,18 +78,6 @@ public class ClassAnalyserTest
 
     private static void analyseSetup() {
         System.out.println("Setting up for test_analyse()...");
-//        testInvalidClassFile = new File("src/test/resources/invalid.class");
-//        try {
-//            if (!testInvalidClassFile.createNewFile()) {
-//                throw new Error();
-//            }
-//        } catch (IOException e) {
-//            throw new Error(e);
-//        }
-//
-//        if(testInvalidClassFile == null) {
-//            throw new Error("testInvalidClassFile is null.");
-//        }
 
         try {
             ca.analyse(testClassFile);
@@ -109,14 +96,13 @@ public class ClassAnalyserTest
         assertTrue(0 < ca.getExecutionTime());
     }
 
-//    public static void test_AnalysisException() {
-//        Throwable t = null;
-//        try {
-//            ca.analyse(testInvalidClassFile);
-//        } catch(Exception e) {
+    public static void test_AnalysisException() {
+        Throwable t;
+        try {
+//            throw new Error("Expected AnalysisException.");
+        } catch(Exception e) {
 //            t = e;
-//        }
-//        assertEquals(t.getClass(), AnalysisException.class);
-//    }
+        }
+    }
 
 }

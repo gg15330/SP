@@ -27,12 +27,11 @@ class ClassAnalyser {
     // analyse the compiled .class file for performance
     void analyse(File classFile) throws AnalysisException {
 
-        if(!classFile.exists()) {
-            throw new AnalysisException("class file should exist.");
+        if(!classFile.exists() || classFile.length() == 0) {
+            throw new AnalysisException(".class file does not exist or is empty.");
         }
 
-        File dir;
-        File log;
+        File dir, log;
 
         try {
             dir = new File(classFile.getParent());
@@ -46,16 +45,9 @@ class ClassAnalyser {
                 removeExtension(classFile.getName()),
                 dir
         );
-        Process p;
-        long start;
-        long end;
 
         try {
-            // remember to put timeout in waitFor()
-            start = System.currentTimeMillis();
-            p = perfStat.start();
-            p.waitFor();
-            end = System.currentTimeMillis();
+            executionTime = execute(perfStat);
         } catch (Exception e) {
             throw new AnalysisException(e);
         }
@@ -66,14 +58,29 @@ class ClassAnalyser {
             throw new Error(e);
         }
 
+        System.out.println("[INSTRUCTIONS] " + instructionCount);
+        System.out.println("[TIME] " + executionTime + "ms");
+
+    }
+
+    private long execute(ProcessBuilder pb) throws Exception {
+
+        Process p;
+        long start, end;
+
+        // remember to put timeout in waitFor()
+        start = System.currentTimeMillis();
+        p = pb.start();
+        p.waitFor();
+        end = System.currentTimeMillis();
+
         executionTime = end - start;
 
         if(executionTime < 0) {
             throw new Error("Execution time should not be less than 0.");
         }
 
-        System.out.println("[INSTRUCTIONS] " + instructionCount);
-        System.out.println("[TIME] " + executionTime + "ms");
+        return executionTime;
 
     }
 
