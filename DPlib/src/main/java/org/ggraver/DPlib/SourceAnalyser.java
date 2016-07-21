@@ -2,10 +2,12 @@ package org.ggraver.DPlib;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
 import com.github.javaparser.JavaParser;
+import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.NameExpr;
@@ -15,8 +17,6 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 
 // analyses source code for invalid solutions/errors
 class SourceAnalyser {
-
-    private CompilationUnit cu;
 
     private MethodDeclaration methodDeclaration;
     private MarkerAnnotationExpr methodAnnotation;
@@ -40,18 +40,21 @@ class SourceAnalyser {
 
     }
 
-    void parse(File file) throws Exception {
+    CompilationUnit parse(File file) throws ParseException, IOException {
 
+        CompilationUnit cu;
         // put FileInputStream in Main module - can control file stream for
         // both modules that way
         FileInputStream fis = new FileInputStream(file);
         cu = JavaParser.parse(fis);
         fis.close();
 
+        return cu;
+
     }
 
     // analyse the user-submitted .java file for code errors/invalid solutions (e.g. recursion)
-    void analyse() {
+    void analyse(CompilationUnit cu) {
 
         MV mv = new MV();
         mv.visit(cu, null);

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 
 import com.github.javaparser.ParseException;
+import com.github.javaparser.ast.CompilationUnit;
 
 //overall program control
 public class Main {
@@ -27,8 +28,6 @@ public class Main {
     // handle command line arguments
     public static void main(String[] args) {
 
-        System.out.println("Starting up...");
-
         if (args.length != 2) {
             System.out.println("\nUsage: java -jar DPLib-1.0-SNAPSHOT.jar <path/to.file.java>\n");
             System.exit(1);
@@ -43,8 +42,8 @@ public class Main {
 
         try {
             SourceAnalyser sa = new SourceAnalyser();
-            sa.parse(file);
-            sa.analyse();
+            CompilationUnit cu = sa.parse(file);
+            sa.analyse(cu);
         } catch (FileNotFoundException fnfe) {
             fnfe.printStackTrace();
             System.err.println("\nFile not found.\n");
@@ -58,10 +57,13 @@ public class Main {
         }
 
         try {
-            ClassAnalyser ca = new ClassAnalyser(file, methodName);
-            ca.analyse();
+            ClassAnalyser ca = new ClassAnalyser();
+            File f = ca.compile(file);
+            ca.analyse(f);
         } catch (Exception e) {
             e.printStackTrace();
+            System.err.println(e.getMessage());
+            System.exit(1);
         }
 
     }

@@ -6,83 +6,98 @@ import java.io.IOException;
 import java.lang.Process;
 import java.lang.NumberFormatException;
 
-import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.FileUtils;
 
+import static org.apache.commons.io.FilenameUtils.removeExtension;
+
 import org.ggraver.DPlib.Exception.CompileException;
+import org.ggraver.DPlib.Exception.AnalysisException;
+
 
 // generates .class files and analyses performance of user solution
 class ClassAnalyser {
 
     private final int PERF_INSTR_LINE = 5;
-    private final int INSTR_WHITESPACE_INDENT = 7;
     private final String TEMP_FILENAME = "log.txt";
+    private long instructionCount;
+    private long executionTime;
 
-    private File javaFile;
+    ClassAnalyser() {}
 
-    public ClassAnalyser() {}
+    // analyse the compiled .class file for performance
+    void analyse(File classFile) throws AnalysisException {
 
-    ClassAnalyser(File javaFile, String methodName) {
+        if(!classFile.exists() || classFile.length() == 0) {
+            throw new AnalysisException(".class file does not exist or is empty.");
+        }
 
-        this.javaFile = javaFile;
+        File dir, log;
+
+        try {
+            dir = new File(classFile.getParent());
+            log = tempFile(TEMP_FILENAME, dir);
+        } catch (IOException ioe) {
+            throw new AnalysisException(ioe);
+        }
+
+        ProcessBuilder perfStat = buildPerfStat(
+                log.getName(),
+                removeExtension(classFile.getName()),
+                dir
+        );
+
+        try {
+            executionTime = execute(perfStat);
+        } catch (Exception e) {
+            throw new AnalysisException(e);
+        }
+
+        try {
+            instructionCount = fetchInstructionCount(log, PERF_INSTR_LINE);
+        } catch (Exception e) {
+            throw new Error(e);
+        }
+
+        System.out.println("[INSTRUCTIONS] " + instructionCount);
+        System.out.println("[TIME] " + executionTime + "ms");
 
     }
 
-    // analyse the compiled .class file for performance
-    void analyse() {
+    private long execute(ProcessBuilder pb) throws Exception {
 
-        try {
-            compile(javaFile);
-        }
-        catch(CompileException ce) {
-            ce.printStackTrace();
-            System.exit(1);
-        }
+        Process p;
+        long start, end;
 
-        String fname = FilenameUtils.removeExtension(javaFile.getName());
-        File dir;
-        File log;
+        // remember to put timeout in waitFor()
+        start = System.currentTimeMillis();
+        p = pb.start();
+        p.waitFor();
+        end = System.currentTimeMillis();
 
-        try {
-            dir = new File(javaFile.getParent());
-            log = tempFile(TEMP_FILENAME, dir);
-        }
-        catch(IOException ioe) {
-            throw new Error(ioe);
+        executionTime = end - start;
+
+        if(executionTime < 0) {
+            throw new Error("Execution time should not be less than 0.");
         }
 
-        ProcessBuilder build = new ProcessBuilder("perf", "stat", "-e", "instructions:u", "-o", log.getName(), "java", fname);
+        return executionTime;
+
+    }
+
+    private ProcessBuilder buildPerfStat(String logFileName, String classFileName, File dir) {
+
+        ProcessBuilder build = new ProcessBuilder(
+                "perf", "stat",
+                "-e", "instructions:u",
+                "-o", logFileName,
+                "java", classFileName
+        );
+
         build.directory(dir);
         build.inheritIO();
         build.redirectErrorStream(true);
 
-        Process p;
-        long start = 0;
-        long end = 0;
-
-        try {
-            p = build.start();
-            // remember to put timeout in waitFor()
-            start = System.currentTimeMillis();
-            p.waitFor();
-            end = System.currentTimeMillis();
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
-
-        long numOfInstructions;
-
-        try {
-            numOfInstructions = fetchInstructionCount(log, PERF_INSTR_LINE);
-        }
-        catch(Exception e) {
-            throw new Error(e);
-        }
-
-        System.out.println("[INSTRUCTIONS] " + numOfInstructions);
-        System.out.println("[TIME] " + (end - start) + "ms");
+        return build;
 
     }
 
@@ -92,11 +107,11 @@ class ClassAnalyser {
         System.out.println("Temp file name: " + temp.getPath());
         temp.deleteOnExit();
 
-        if(!temp.createNewFile()) {
+        if (!temp.createNewFile()) {
             throw new IOException("Temp file \"" + TEMP_FILENAME + "\" already exists.");
         }
 
-        if(!temp.exists()) {
+        if (!temp.exists()) {
             throw new IOException("Temp file \"" + TEMP_FILENAME + "\" was not created.");
         }
 
@@ -111,9 +126,9 @@ class ClassAnalyser {
         long instructions;
 
         instructionsString = FileUtils.readLines(f, "UTF-8").get(lineNum)
-        .replaceAll(" ", "")
-        .replaceAll("instructions:u", "")
-        .replaceAll(",", "");
+                .replaceAll(" ", "")
+                .replaceAll("instructions:u", "")
+                .replaceAll(",", "");
 
         instructions = Long.parseLong(instructionsString);
         return instructions;
@@ -121,11 +136,16 @@ class ClassAnalyser {
     }
 
     // compile the user-submitted .java file for performance analysis
-    private void compile(File file) throws CompileException {
+    File compile(File file) throws CompileException {
+
+        if(file == null) {
+            throw new CompileException(".java file should not be null.");
+        }
+
+        System.out.println("Compiling file: " + file.getName());
 
         // found at https://stackoverflow.com/questions/8496494/running-command-line-in-java
         Process p;
-        System.out.println("Compiling file: " + file.getName());
         int result;
 
         try {
@@ -133,17 +153,37 @@ class ClassAnalyser {
             build.inheritIO();
             p = build.start();
             result = p.waitFor();
-        }
-        catch(Exception e) {
-            throw new Error(e);
+        } catch (Exception e) {
+            throw new CompileException(e);
         }
 
-        if(result != 0) {
+        if (result != 0) {
             throw new CompileException("Could not compile .java file. Please ensure your .java file is valid.");
         }
 
         System.out.println(file.getName() + " compiled successfully.");
+        File classFile;
 
+        try {
+            classFile = new File(file.getParent() + "/" + removeExtension(file.getName()) + ".class");
+        } catch (NullPointerException npe) {
+            throw new CompileException(npe);
+        }
+
+        if (!classFile.exists()) {
+            throw new CompileException("Could not find .class file.");
+        }
+
+        return classFile;
+
+    }
+
+    long getInstructionCount() {
+        return instructionCount;
+    }
+
+    long getExecutionTime() {
+        return executionTime;
     }
 
 }
