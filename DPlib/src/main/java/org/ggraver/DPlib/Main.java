@@ -2,9 +2,12 @@ package org.ggraver.DPlib;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.CompilationUnit;
+import com.sun.codemodel.JClassAlreadyExistsException;
+import com.sun.javafx.sg.prism.NGShape;
 
 //overall program control
 public class Main {
@@ -39,6 +42,12 @@ public class Main {
     }
 
     private void run() {
+
+        Modeler modeler = new Modeler();
+        modeler.methodToAnalyse("");
+        modeler.methodParameters();
+        modeler.generate();
+
 
         try {
             SourceAnalyser sa = new SourceAnalyser();
