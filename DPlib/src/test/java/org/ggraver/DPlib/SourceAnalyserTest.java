@@ -54,7 +54,7 @@ public class SourceAnalyserTest
         System.out.println("Setting up for test_compile()...");
         sa = new SourceAnalyser();
 
-        testJavaFile = new File("src/test/resources/dfib.java");
+        testJavaFile = new File("src/test/resources/FibonnaciDP.java");
         if(!testJavaFile.exists()) {
             throw new Error("Test .java file does not exist.");
         }

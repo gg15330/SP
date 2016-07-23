@@ -42,12 +42,12 @@ public class ClassAnalyserTest
         System.out.println("Setting up for test_compile()...");
         ca = new ClassAnalyser();
 
-        testJavaFile = new File("src/test/resources/dfib.java");
+        testJavaFile = new File("src/test/resources/FibonnaciDP.java");
         if(!testJavaFile.exists()) {
             throw new Error("Test .class file does not exist.");
         }
 
-        testClassFile = new File("src/test/resources/dfib.class");
+        testClassFile = new File("src/test/resources/FibonnaciDP.class");
         if(!testClassFile.exists()) {
             throw new Error("Test .class file does not exist.");
         }

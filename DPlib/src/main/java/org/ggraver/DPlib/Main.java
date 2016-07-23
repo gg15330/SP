@@ -43,10 +43,10 @@ public class Main {
 
     private void run() {
 
-        Modeler modeler = new Modeler();
-        modeler.methodToAnalyse("");
-        modeler.methodParameters();
-        modeler.generate();
+//        Modeler modeler = new Modeler();
+//        modeler.methodToAnalyse("");
+//        modeler.methodParameters();
+//        modeler.generate();
 
 
         try {

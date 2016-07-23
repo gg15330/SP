@@ -42,8 +42,8 @@ class Problem {
         getter.javadoc().add("Returns the quantity.");
         getter.javadoc().addReturn().add(quantity.name());
 
-        JMethod dfib = jc.method(JMod.NONE, codeModel.INT, "dfib");
-//        dfib.param();
+        JMethod dfib = jc.method(JMod.NONE, codeModel.INT, "FibonnaciDP");
+//        FibonnaciDP.param();
 
         // Add set method
         JMethod setter = jc.method(JMod.PUBLIC, codeModel.VOID, "setQuantity");
