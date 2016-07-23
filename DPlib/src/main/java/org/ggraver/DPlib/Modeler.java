@@ -38,15 +38,15 @@ class Modeler {
 
     public void model(File sourceFile) {
 
-        SourceAnalyser sourceAnalyser = new SourceAnalyser();
-
-        try {
-            CompilationUnit compilationUnit = sourceAnalyser.parse(sourceFile);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        SourceAnalyser sourceAnalyser = new SourceAnalyser();
+//
+//        try {
+//            CompilationUnit compilationUnit = sourceAnalyser.parse(sourceFile);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
 
 
@@ -59,7 +59,7 @@ class Modeler {
 
         try {
             JCodeModel jcm = prob.generateSourceCode();
-            jcm.build(new File("sample/test/"));
+            jcm.build(new File("sample/code_generation_test/"));
         } catch (JClassAlreadyExistsException jcaee) {
             jcaee.printStackTrace();
         } catch (IOException ioe) {

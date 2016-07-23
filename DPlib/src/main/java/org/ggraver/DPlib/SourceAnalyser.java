@@ -9,114 +9,98 @@ import java.util.ArrayList;
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.expr.NameExpr;
+import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.expr.MarkerAnnotationExpr;
+import com.github.javaparser.ast.expr.MethodCallExpr;
+import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
+import org.ggraver.DPlib.Exception.AnalysisException;
 
 // analyses source code for invalid solutions/errors
 class SourceAnalyser {
 
-    private MethodDeclaration methodDeclaration;
-    private MarkerAnnotationExpr methodAnnotation;
-    private List<MethodDeclaration> methods = new ArrayList<>();
-
-    // construct a new SourceAnalyser with default annotation "Dynamic"
-    SourceAnalyser() {
-
-        this.methodAnnotation = new MarkerAnnotationExpr();
-        methodAnnotation.setName(new NameExpr("Dynamic"));
-
-    }
+    private CompilationUnit cu;
 
     // construct a new SourceAnalyser with a method declaration to check against the source file
-    public SourceAnalyser(String methodName) {
+    SourceAnalyser(File file) throws IOException, ParseException {
 
-        this.methodDeclaration = new MethodDeclaration();
-        this.methodDeclaration.setName(methodName);
-        // this.methodDeclaration.setType();
-        // this.methodDeclaration.setParameters();
+        this.cu = parse(file);
 
     }
 
-    CompilationUnit parse(File file) throws ParseException, IOException {
+    private CompilationUnit parse(File file) throws ParseException, IOException {
 
-        CompilationUnit cu;
-        // put FileInputStream in Main module - can control file stream for
-        // both modules that way
+        // put FileInputStream in Main module -
+        // can control file stream for both modules that way
         FileInputStream fis = new FileInputStream(file);
-        cu = JavaParser.parse(fis);
+        CompilationUnit compilationUnit = JavaParser.parse(fis);
         fis.close();
 
-        return cu;
+        return compilationUnit;
 
     }
 
-    // analyse the user-submitted .java file for code errors/invalid solutions (e.g. recursion)
-    void analyse(CompilationUnit cu) {
+//     analyse the user-submitted .java file for code errors/invalid solutions (e.g. recursion)
+    void analyse(CompilationUnit cu) throws AnalysisException {
+
+//        MethodDeclaration methodToAnalyse = findMethod();
+//        checkMethodProperties(methodToAnalyse);
+
+    }
+
+    MethodDeclaration findMethod(String methodName) throws AnalysisException {
 
         MV mv = new MV();
         mv.visit(cu, null);
 
-        try {
-//            checkAnnotation(methodAnnotation);
-        }
-        catch(Exception e) {
-            e.printStackTrace();
-            System.exit(1);
+        for (MethodDeclaration md : mv.methods()) {
+            if (md.getName().equals(methodName)) {
+                return md;
+            }
         }
 
-//        MethodDeclaration md = assignMethod(methodAnnotation);
-//        MethodAnalyser ma = new MethodAnalyser(md);
-//        ma.analyse();
+        throw new AnalysisException("expected MethodDeclaration \"" + methodName
+                + "\" does not exist in source file.");
 
     }
 
-    private MethodDeclaration assignMethod(MarkerAnnotationExpr methodAnnotation) {
+    // checks method properties to ensure the submitted method is the same as the template
+    void checkMethodProperties(MethodDeclaration expected, MethodDeclaration actual) throws AnalysisException {
 
-        MethodDeclaration methodDeclaration = null;
+        if (!actual.getType().equals(expected.getType())) {
+            throw new AnalysisException("Wrong method Type." +
+                    "\nExpected: " + expected.getType() +
+                    " Actual: " + actual.getType());
+        }
 
-        for(MethodDeclaration md : methods) {
+        if (!actual.getParameters().equals(expected.getParameters())) {
+            throw new AnalysisException("Wrong method Parameters." +
+                    "\nExpected: " + expected.getParameters() +
+                    " Actual: " + actual.getParameters());
+        }
 
-            List<AnnotationExpr> annotations = md.getAnnotations();
+    }
 
-            if(!annotations.isEmpty()) {
-                AnnotationExpr ae = annotations.get(0);
+    // recursively check all nodes within the method for recursive function calls,
+    // throw an exception if one is found
+    void checkForRecursion(Node node, String name) throws AnalysisException {
 
-                if(ae.getName().equals(methodAnnotation.getName())) {
-                    methodDeclaration = md;
-                }
+        if (node instanceof MethodCallExpr) {
 
+            MethodCallExpr mce = (MethodCallExpr) node;
+
+            if (mce.getName().equals(name)) {
+                throw new AnalysisException("Recursive method call \"" + mce.getName() +
+                        "\" found at line " + mce.getBeginLine());
             }
 
         }
 
-        if(methodDeclaration == null) {
-            throw new Error("methodDeclaration should not be null.");
-        }
-
-        return methodDeclaration;
-
-    }
-
-    // To do: convert this method to check method name, parameters, type
-    // checks annotation for method to be analysed exists and is unique
-    private void checkAnnotation(MarkerAnnotationExpr methodAnnotation) throws Exception {
-
-        List<AnnotationExpr> annotations = new ArrayList<>();
-
-        for(MethodDeclaration md : methods) {
-            annotations.addAll(md.getAnnotations());
-        }
-
-        if(!annotations.contains(methodAnnotation)) {
-            throw new Exception("Method with required annotation \"@" + methodAnnotation.getName() + "\" not found in source file.");
-        }
-
-        if(duplicateAnnotations(methodAnnotation, annotations)) {
-            throw new Exception("Required annotation \"@" + methodAnnotation.getName() +
-                                "\" exists for multiple methods. Please amend source file.");
+        for (Node n : node.getChildrenNodes()) {
+            checkForRecursion(n, name);
         }
 
     }
@@ -126,12 +110,12 @@ class SourceAnalyser {
 
         int count = 0;
 
-        for(AnnotationExpr ae : annotations) {
+        for (AnnotationExpr ae : annotations) {
 
-            if(ae.getName().equals(methodAnnotation.getName())) {
+            if (ae.getName().equals(methodAnnotation.getName())) {
                 count++;
 
-                if(count > 1) {
+                if (count > 1) {
                     return true;
                 }
 
@@ -143,14 +127,24 @@ class SourceAnalyser {
 
     }
 
+    public CompilationUnit getCompilationUnit() {
+        return cu;
+    }
+
     // private visitor class to extract method data for source file and insert it into the method list
     private class MV extends VoidVisitorAdapter<Object> {
+
+        private List<MethodDeclaration> methods = new ArrayList<>();
 
         @Override
         public void visit(MethodDeclaration n, Object arg) {
 
             methods.add(n);
 
+        }
+
+        List<MethodDeclaration> methods() {
+            return methods;
         }
 
     }

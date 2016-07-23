@@ -50,9 +50,10 @@ public class SourceAnalyserTest
     /**
      * Rigourous Test :-)
      */
+
+//    not set up correctly - wrong constructor
     private static void parseSetup() {
         System.out.println("Setting up for test_compile()...");
-        sa = new SourceAnalyser();
 
         testJavaFile = new File("src/test/resources/FibonnaciDP.java");
         if(!testJavaFile.exists()) {
@@ -64,13 +65,21 @@ public class SourceAnalyserTest
             throw new Error("Test .java file (invalid) does not exist.");
         }
 
+        try {
+            sa = new SourceAnalyser(testJavaFile);
+        } catch (IOException e) {
+            throw new Error(e);
+        } catch (ParseException e) {
+            throw new Error(e);
+        }
+
         System.out.println("Setup complete.");
     }
 
     public static void test_parse() {
         parseSetup();
         try {
-            CompilationUnit cu = sa.parse(testJavaFile);
+            CompilationUnit cu = sa.getCompilationUnit();
             assertEquals("List", cu.getImports().get(0).getName().getName());
             assertEquals("ManagementFactory", cu.getImports().get(1).getName().getName());
             assertEquals("MemoryPoolMXBean", cu.getImports().get(2).getName().getName());
@@ -85,7 +94,7 @@ public class SourceAnalyserTest
         parseSetup();
         Throwable t;
         try {
-            sa.parse(testInvalidJavaFile);
+            sa = new SourceAnalyser(testInvalidJavaFile);
             throw new Error("Expected ParseException.");
         } catch (Throwable ex) {
             t = ex;
@@ -97,7 +106,7 @@ public class SourceAnalyserTest
         parseSetup();
         Throwable t;
         try {
-            sa.parse(new File("src/"));
+            sa = new SourceAnalyser(new File("src/"));
             throw new Error("Expected ParseException.");
         } catch (Throwable ex) {
             t = ex;

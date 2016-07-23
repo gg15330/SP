@@ -22,7 +22,7 @@ public class GeneratedClass {
         return quantity;
     }
 
-    int dfib() {
+    int FibonnaciDP() {
     }
 
     /**
