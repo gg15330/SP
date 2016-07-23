@@ -43,37 +43,36 @@ public class Main {
 
     private void run() {
 
-//        Modeler modeler = new Modeler();
-//        modeler.methodToAnalyse("");
-//        modeler.methodParameters();
-//        modeler.generate();
+        Modeler modeler = new Modeler();
+        modeler.methodToAnalyse("");
+        modeler.methodParameters();
+        modeler.generate();
 
-
-        try {
-            SourceAnalyser sa = new SourceAnalyser();
-            CompilationUnit cu = sa.parse(file);
-            sa.analyse(cu);
-        } catch (FileNotFoundException fnfe) {
-            fnfe.printStackTrace();
-            System.err.println("\nFile not found.\n");
-            System.exit(1);
-        } catch (ParseException pe) {
-            pe.printStackTrace();
-            System.err.println("\nFile could not be parsed, please ensure file is a valid .java class.\n");
-            System.exit(1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        try {
-            ClassAnalyser ca = new ClassAnalyser();
-            File f = ca.compile(file);
-            ca.analyse(f);
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println(e.getMessage());
-            System.exit(1);
-        }
+//        try {
+//            SourceAnalyser sa = new SourceAnalyser();
+//            CompilationUnit cu = sa.parse(file);
+//            sa.analyse(cu);
+//        } catch (FileNotFoundException fnfe) {
+//            fnfe.printStackTrace();
+//            System.err.println("\nFile not found.\n");
+//            System.exit(1);
+//        } catch (ParseException pe) {
+//            pe.printStackTrace();
+//            System.err.println("\nFile could not be parsed, please ensure file is a valid .java class.\n");
+//            System.exit(1);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        try {
+//            ClassAnalyser ca = new ClassAnalyser();
+//            File f = ca.compile(file);
+//            ca.analyse(f);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            System.err.println(e.getMessage());
+//            System.exit(1);
+//        }
 
     }
 
