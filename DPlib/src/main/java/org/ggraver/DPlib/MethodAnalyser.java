@@ -1,8 +1,6 @@
 package org.ggraver.DPlib;
 
-import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.expr.MethodCallExpr;
 
 
 // analyses method in-depth and checks for incorrect solutions to problem

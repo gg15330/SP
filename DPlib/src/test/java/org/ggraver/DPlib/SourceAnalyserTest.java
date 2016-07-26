@@ -55,7 +55,7 @@ public class SourceAnalyserTest
     private static void parseSetup() {
         System.out.println("Setting up for test_compile()...");
 
-        testJavaFile = new File("src/test/resources/FibonnaciDP.java");
+        testJavaFile = new File("src/test/resources/FibonacciDP.java");
         if(!testJavaFile.exists()) {
             throw new Error("Test .java file does not exist.");
         }

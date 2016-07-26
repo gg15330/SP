@@ -42,7 +42,7 @@ public class ClassAnalyserTest
         System.out.println("Setting up for test_compile()...");
         ca = new ClassAnalyser();
 
-        testJavaFile = new File("src/test/resources/FibonnaciDP.java");
+        testJavaFile = new File("src/test/resources/FibonacciDP.java");
         if(!testJavaFile.exists()) {
             throw new Error("Test .class file does not exist.");
         }

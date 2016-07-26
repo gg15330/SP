@@ -6,20 +6,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.javaparser.ASTHelper;
 import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.body.Parameter;
-import com.github.javaparser.ast.body.VariableDeclarator;
-import com.github.javaparser.ast.body.VariableDeclaratorId;
+import com.github.javaparser.ast.PackageDeclaration;
+import com.github.javaparser.ast.body.*;
+import com.github.javaparser.ast.expr.FieldAccessExpr;
+import com.github.javaparser.ast.expr.MethodCallExpr;
+import com.github.javaparser.ast.expr.NameExpr;
+import com.github.javaparser.ast.expr.StringLiteralExpr;
+import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.type.PrimitiveType;
 import com.github.javaparser.ast.type.Type;
 import com.sun.codemodel.JClassAlreadyExistsException;
-import com.sun.corba.se.impl.orb.ParserTable;
-import com.sun.javafx.sg.prism.NGShape;
 import org.ggraver.DPlib.Exception.AnalysisException;
-
-import javax.xml.transform.Source;
 
 //overall program control
 public class Main {
@@ -55,7 +55,12 @@ public class Main {
 
     private void run() {
 
-//        Modeler modeler = new Modeler();
+        try {
+            Modeler modeler = new Modeler(new File("sample/fib/FibonacciRecursive.java"));
+            modeler.model();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 //        modeler.methodToAnalyse("");
 //        modeler.methodParameters();
 //        modeler.generate();

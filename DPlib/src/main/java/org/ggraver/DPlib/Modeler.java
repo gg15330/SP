@@ -4,6 +4,7 @@ import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.CompilationUnit;
 import com.sun.codemodel.JClassAlreadyExistsException;
 import com.sun.codemodel.JCodeModel;
+import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import java.io.IOException;
 class Modeler {
 
     private final Enum<ProblemType> problemType;
+    private File sourceFile;
     private String className;
 
 //    store output data in xml file for comparison with student solution
@@ -29,14 +31,25 @@ class Modeler {
 //    compute answers based on input and get performance analysis
 //    private ClassAnalyser classAnalyser;
 
-    Modeler() {
+    Modeler(File sourceFile) throws IOException {
+
         this.problemType = ProblemType.NONE;
         this.className = "Test";
+        this.sourceFile = sourceFile;
+
+        if(
+                !sourceFile.exists()
+                || sourceFile.isDirectory()
+                || !FilenameUtils.getExtension(sourceFile.getPath()).equals("java")
+                ) {
+            throw new IOException("Could not model input file: " + sourceFile.getPath());
+        }
+
     }
 
     public Modeler(Enum<ProblemType> problemType) { this.problemType = problemType; }
 
-    public void model(File sourceFile) {
+    void model(File sourceFile) {
 
 //        SourceAnalyser sourceAnalyser = new SourceAnalyser();
 //
@@ -48,21 +61,29 @@ class Modeler {
 //            e.printStackTrace();
 //        }
 
+    }
 
+    void model() {
+
+        SourceAnalyser sourceAnalyser;
+        try {
+            sourceAnalyser = new SourceAnalyser(sourceFile);
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+
+        sourceAnalyser.checkForRecursion();
 
     }
 
-    // found at http://sookocheff.com/post/java/generating-java-with-jcodemodel/
-    void generate() {
+    void generateSourceCode() {
 
         Problem prob = new Problem();
 
         try {
-            JCodeModel jcm = prob.generateSourceCode();
-            jcm.build(new File("sample/code_generation_test/"));
-        } catch (JClassAlreadyExistsException jcaee) {
-            jcaee.printStackTrace();
-        } catch (IOException ioe) {
+            prob.generateSourceCode();
+//            jcm.build(new File("sample/code_generation_test/"));
+        } catch (Exception ioe) {
             ioe.printStackTrace();
         }
 
