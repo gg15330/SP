@@ -11,23 +11,24 @@ import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.expr.MarkerAnnotationExpr;
 import com.github.javaparser.ast.expr.MethodCallExpr;
-import com.github.javaparser.ast.type.Type;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import org.ggraver.DPlib.Exception.AnalysisException;
 
 // analyses source code for invalid solutions/errors
 class SourceAnalyser {
 
+    private String methodName;
+    private int recursiveCallLineNo;
     private CompilationUnit cu;
 
     // construct a new SourceAnalyser with a method declaration to check against the source file
-    SourceAnalyser(File file) throws IOException, ParseException {
+    SourceAnalyser(File file, String methodName) throws IOException, ParseException {
 
         this.cu = parse(file);
+        this.methodName = methodName;
 
     }
 
@@ -86,7 +87,7 @@ class SourceAnalyser {
 
     // recursively check all nodes within the method for recursive function calls,
     // throw an exception if one is found
-    void checkForRecursion(Node node, String name) throws AnalysisException {
+    void isRecursive(Node node, String name) throws AnalysisException {
 
         if (node instanceof MethodCallExpr) {
 
@@ -100,8 +101,31 @@ class SourceAnalyser {
         }
 
         for (Node n : node.getChildrenNodes()) {
-            checkForRecursion(n, name);
+            isRecursive(n, name);
         }
+
+    }
+
+    public boolean isRecursive(Node node) {
+
+        if(node instanceof MethodCallExpr) {
+
+            MethodCallExpr mce = (MethodCallExpr) node;
+
+            if(mce.getName().equals(methodName)) {
+                recursiveCallLineNo = mce.getBeginLine();
+                return true;
+            }
+
+        }
+
+        for(Node child : node.getChildrenNodes()) {
+            if(isRecursive(child)) {
+                return true;
+            }
+        }
+
+        return false;
 
     }
 
@@ -129,6 +153,10 @@ class SourceAnalyser {
 
     public CompilationUnit getCompilationUnit() {
         return cu;
+    }
+
+    public int getRecursiveCallLineNo() {
+        return recursiveCallLineNo;
     }
 
     // private visitor class to extract method data for source file and insert it into the method list

@@ -1,10 +1,10 @@
 package org.ggraver.DPlib;
 
 import com.github.javaparser.ParseException;
-import com.github.javaparser.ast.CompilationUnit;
-import com.sun.codemodel.JClassAlreadyExistsException;
-import com.sun.codemodel.JCodeModel;
+import com.github.javaparser.ast.body.MethodDeclaration;
 import org.apache.commons.io.FilenameUtils;
+import org.ggraver.DPlib.Exception.AnalysisException;
+import org.ggraver.DPlib.Exception.ModelingException;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,6 +18,7 @@ class Modeler {
     private final Enum<ProblemType> problemType;
     private File sourceFile;
     private String className;
+    private String methodName;
 
 //    store output data in xml file for comparison with student solution
 //    private OutputFile xml;
@@ -31,10 +32,11 @@ class Modeler {
 //    compute answers based on input and get performance analysis
 //    private ClassAnalyser classAnalyser;
 
-    Modeler(File sourceFile) throws IOException {
+    Modeler(File sourceFile, String methodName) throws IOException {
 
         this.problemType = ProblemType.NONE;
         this.className = "Test";
+        this.methodName = methodName;
         this.sourceFile = sourceFile;
 
         if(
@@ -63,16 +65,22 @@ class Modeler {
 
     }
 
-    void model() {
+    void model() throws ModelingException {
 
         SourceAnalyser sourceAnalyser;
+
         try {
-            sourceAnalyser = new SourceAnalyser(sourceFile);
-        } catch (IOException | ParseException e) {
+            sourceAnalyser = new SourceAnalyser(sourceFile, methodName);
+            MethodDeclaration md = sourceAnalyser.findMethod(methodName);
+
+            if(sourceAnalyser.isRecursive(md)) {
+                throw new ModelingException("Recursive function call found at line: " + sourceAnalyser.getRecursiveCallLineNo());
+            }
+
+        } catch (IOException | ParseException | AnalysisException e) {
             e.printStackTrace();
         }
 
-        sourceAnalyser.checkForRecursion();
 
     }
 

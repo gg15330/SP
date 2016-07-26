@@ -34,7 +34,7 @@ public class SourceAnalyserTest
      *
      * @param testName name of the test case
      */
-    public SourceAnalyserTest(String testName )
+    public SourceAnalyserTest(String testName)
     {
         super( testName );
     }
@@ -66,7 +66,7 @@ public class SourceAnalyserTest
         }
 
         try {
-            sa = new SourceAnalyser(testJavaFile);
+            sa = new SourceAnalyser(testJavaFile, null);
         } catch (IOException e) {
             throw new Error(e);
         } catch (ParseException e) {
@@ -94,7 +94,7 @@ public class SourceAnalyserTest
         parseSetup();
         Throwable t;
         try {
-            sa = new SourceAnalyser(testInvalidJavaFile);
+            sa = new SourceAnalyser(testInvalidJavaFile, null);
             throw new Error("Expected ParseException.");
         } catch (Throwable ex) {
             t = ex;
@@ -106,7 +106,7 @@ public class SourceAnalyserTest
         parseSetup();
         Throwable t;
         try {
-            sa = new SourceAnalyser(new File("src/"));
+            sa = new SourceAnalyser(new File("src/"), null);
             throw new Error("Expected ParseException.");
         } catch (Throwable ex) {
             t = ex;

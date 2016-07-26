@@ -6,20 +6,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.javaparser.ASTHelper;
 import com.github.javaparser.ParseException;
-import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.PackageDeclaration;
 import com.github.javaparser.ast.body.*;
-import com.github.javaparser.ast.expr.FieldAccessExpr;
-import com.github.javaparser.ast.expr.MethodCallExpr;
-import com.github.javaparser.ast.expr.NameExpr;
-import com.github.javaparser.ast.expr.StringLiteralExpr;
-import com.github.javaparser.ast.stmt.BlockStmt;
 import com.github.javaparser.ast.type.PrimitiveType;
-import com.github.javaparser.ast.type.Type;
-import com.sun.codemodel.JClassAlreadyExistsException;
 import org.ggraver.DPlib.Exception.AnalysisException;
+import org.ggraver.DPlib.Exception.ModelingException;
 
 //overall program control
 public class Main {
@@ -56,11 +47,14 @@ public class Main {
     private void run() {
 
         try {
-            Modeler modeler = new Modeler(new File("sample/fib/FibonacciRecursive.java"));
+            Modeler modeler = new Modeler(file, methodName);
             modeler.model();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (ModelingException e) {
+            System.err.println(e.getMessage());
         }
+
 //        modeler.methodToAnalyse("");
 //        modeler.methodParameters();
 //        modeler.generate();
@@ -82,7 +76,7 @@ public class Main {
         SourceAnalyser sa = null;
 
         try {
-            sa = new SourceAnalyser(file);
+            sa = new SourceAnalyser(file, methodName);
         } catch (FileNotFoundException fnfe) {
             fnfe.printStackTrace();
             System.err.println("\nFile not found.\n");
@@ -100,14 +94,14 @@ public class Main {
 
 //         check submitted method matches template name/type/parameters
 //         and check that it is not recursive
-        try {
+/*        try {
             actual = sa.findMethod(expected.getName());
             sa.checkMethodProperties(expected, actual);
-            sa.checkForRecursion(actual, actual.getName());
+            sa.isRecursive(actual, actual.getName());
         } catch (AnalysisException e) {
             System.err.println(e.getMessage());
             System.exit(1);
-        }
+        }*/
 
 
 
