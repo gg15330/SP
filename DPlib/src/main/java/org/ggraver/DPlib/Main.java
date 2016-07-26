@@ -52,6 +52,7 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ModelingException e) {
+            e.printStackTrace();
             System.err.println(e.getMessage());
         }
 
@@ -77,17 +78,8 @@ public class Main {
 
         try {
             sa = new SourceAnalyser(file, methodName);
-        } catch (FileNotFoundException fnfe) {
-            fnfe.printStackTrace();
-            System.err.println("\nFile not found.\n");
-            System.exit(1);
-        } catch (ParseException pe) {
-            pe.printStackTrace();
-            System.err.println("\nFile could not be parsed, please ensure file is a valid .java class.\n");
-            System.exit(1);
-        } catch (IOException ioe) {
-            ioe.printStackTrace();
-            System.exit(1);
+        } catch (AnalysisException e) {
+            System.err.println(e.getMessage());
         }
 
         MethodDeclaration actual;

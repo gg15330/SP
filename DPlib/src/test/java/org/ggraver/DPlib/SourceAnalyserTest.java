@@ -11,6 +11,7 @@ import com.github.javaparser.ast.expr.NameExpr;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import org.ggraver.DPlib.Exception.AnalysisException;
 import org.junit.BeforeClass;
 
 import java.io.File;
@@ -67,9 +68,7 @@ public class SourceAnalyserTest
 
         try {
             sa = new SourceAnalyser(testJavaFile, null);
-        } catch (IOException e) {
-            throw new Error(e);
-        } catch (ParseException e) {
+        } catch (AnalysisException e) {
             throw new Error(e);
         }
 

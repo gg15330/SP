@@ -19,13 +19,22 @@ class ClassAnalyser {
 
     private final int PERF_INSTR_LINE = 5;
     private final String TEMP_FILENAME = "log.txt";
+    private File classFile;
     private long instructionCount;
     private long executionTime;
 
-    ClassAnalyser() {}
+    ClassAnalyser(File sourceFile) throws AnalysisException {
+
+        try {
+            compile(sourceFile);
+        } catch (CompileException e) {
+            throw new AnalysisException(e);
+        }
+
+    }
 
     // analyse the compiled .class file for performance
-    void analyse(File classFile) throws AnalysisException {
+    void analyse() throws AnalysisException {
 
         if(!classFile.exists() || classFile.length() == 0) {
             throw new AnalysisException(".class file does not exist or is empty.");
@@ -63,7 +72,7 @@ class ClassAnalyser {
 
     }
 
-    private long execute(ProcessBuilder pb) throws Exception {
+    private long execute(ProcessBuilder pb) throws IOException, InterruptedException {
 
         Process p;
         long start, end;
@@ -136,24 +145,24 @@ class ClassAnalyser {
     }
 
     // compile the user-submitted .java file for performance analysis
-    File compile(File file) throws CompileException {
+    private void compile(File sourceFile) throws CompileException {
 
-        if(file == null) {
+        if(sourceFile == null) {
             throw new CompileException(".java file should not be null.");
         }
 
-        System.out.println("Compiling file: " + file.getName());
+        System.out.println("Compiling file: " + sourceFile.getPath());
 
         // found at https://stackoverflow.com/questions/8496494/running-command-line-in-java
         Process p;
         int result;
 
         try {
-            ProcessBuilder build = new ProcessBuilder("javac", file.getPath());
+            ProcessBuilder build = new ProcessBuilder("javac", sourceFile.getPath());
             build.inheritIO();
             p = build.start();
             result = p.waitFor();
-        } catch (Exception e) {
+        } catch (IOException | InterruptedException e) {
             throw new CompileException(e);
         }
 
@@ -161,20 +170,18 @@ class ClassAnalyser {
             throw new CompileException("Could not compile .java file. Please ensure your .java file is valid.");
         }
 
-        System.out.println(file.getName() + " compiled successfully.");
-        File classFile;
+        System.out.println(sourceFile.getName() + " compiled successfully.");
 
         try {
-            classFile = new File(file.getParent() + "/" + removeExtension(file.getName()) + ".class");
+            this.classFile = new File(sourceFile.getParent() + "/" + removeExtension(sourceFile.getName()) + ".class");
         } catch (NullPointerException npe) {
+            System.out.println("could not create new file.");
             throw new CompileException(npe);
         }
 
-        if (!classFile.exists()) {
+        if (!this.classFile.exists()) {
             throw new CompileException("Could not find .class file.");
         }
-
-        return classFile;
 
     }
 

@@ -5,13 +5,6 @@ package org.ggraver.DPlib.Exception;
  */
 public class ModelingException extends Exception {
 
-
-    public ModelingException() {
-
-        super();
-
-    }
-
     public ModelingException(String message) {
 
         super(message);

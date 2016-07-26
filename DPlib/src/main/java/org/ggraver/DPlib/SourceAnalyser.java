@@ -25,9 +25,15 @@ class SourceAnalyser {
     private CompilationUnit cu;
 
     // construct a new SourceAnalyser with a method declaration to check against the source file
-    SourceAnalyser(File file, String methodName) throws IOException, ParseException {
+    SourceAnalyser(File file, String methodName) throws AnalysisException {
 
-        this.cu = parse(file);
+        try {
+            this.cu = parse(file);
+        } catch (ParseException e) {
+            throw new AnalysisException("Could not parse .java file.");
+        } catch (IOException e) {
+            throw new AnalysisException(e);
+        }
         this.methodName = methodName;
 
     }
@@ -81,27 +87,6 @@ class SourceAnalyser {
             throw new AnalysisException("Wrong method Parameters." +
                     "\nExpected: " + expected.getParameters() +
                     " Actual: " + actual.getParameters());
-        }
-
-    }
-
-    // recursively check all nodes within the method for recursive function calls,
-    // throw an exception if one is found
-    void isRecursive(Node node, String name) throws AnalysisException {
-
-        if (node instanceof MethodCallExpr) {
-
-            MethodCallExpr mce = (MethodCallExpr) node;
-
-            if (mce.getName().equals(name)) {
-                throw new AnalysisException("Recursive method call \"" + mce.getName() +
-                        "\" found at line " + mce.getBeginLine());
-            }
-
-        }
-
-        for (Node n : node.getChildrenNodes()) {
-            isRecursive(n, name);
         }
 
     }

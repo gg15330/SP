@@ -4,6 +4,7 @@ import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import org.apache.commons.io.FilenameUtils;
 import org.ggraver.DPlib.Exception.AnalysisException;
+import org.ggraver.DPlib.Exception.CompileException;
 import org.ggraver.DPlib.Exception.ModelingException;
 
 import java.io.File;
@@ -65,21 +66,34 @@ class Modeler {
 
     }
 
+//    remember to handle input parameters
     void model() throws ModelingException {
 
         SourceAnalyser sourceAnalyser;
+        MethodDeclaration md;
 
+//         parse input file, check method is not recursive
         try {
             sourceAnalyser = new SourceAnalyser(sourceFile, methodName);
-            MethodDeclaration md = sourceAnalyser.findMethod(methodName);
-
-            if(sourceAnalyser.isRecursive(md)) {
-                throw new ModelingException("Recursive function call found at line: " + sourceAnalyser.getRecursiveCallLineNo());
-            }
-
-        } catch (IOException | ParseException | AnalysisException e) {
-            e.printStackTrace();
+            md = sourceAnalyser.findMethod(methodName);
+        } catch (AnalysisException e) {
+            throw new ModelingException(e);
         }
+
+        if(sourceAnalyser.isRecursive(md)) {
+            throw new ModelingException("Recursive function call found at line: " + sourceAnalyser.getRecursiveCallLineNo());
+        }
+
+//        compile source
+        try {
+            ClassAnalyser ca =  new ClassAnalyser(sourceFile);
+            ca.analyse();
+        } catch (AnalysisException e) {
+            throw new ModelingException(e);
+        }
+
+//        run program, record stats in XML file
+
 
 
     }

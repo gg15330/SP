@@ -1,5 +1,5 @@
 // sourced from http://www.geeksforgeeks.org/program-for-nth-fibonacci-number/
-class FibonnaciRecursive
+class FibonacciRecursive
 {
     static int fibRec(int n)
     {

@@ -1,5 +1,5 @@
 // sourced from http://www.geeksforgeeks.org/program-for-nth-fibonacci-number/
-class FibonnaciDP {
+class FibonacciDP {
 
     static int fibDP(int n)
     {
