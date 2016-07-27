@@ -1,9 +1,0 @@
-# started on Wed Jul 20 14:53:58 2016
-
-
- Performance counter stats for 'java log.txt':
-
-       166,183,837      instructions:u           
-
-       0.069734312 seconds time elapsed
-

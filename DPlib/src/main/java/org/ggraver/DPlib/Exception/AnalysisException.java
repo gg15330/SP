@@ -5,12 +5,6 @@ package org.ggraver.DPlib.Exception;
  */
 public class AnalysisException extends Exception {
 
-    public AnalysisException() {
-
-        super();
-
-    }
-
     public AnalysisException(String message) {
 
         super(message);

@@ -11,6 +11,7 @@ import com.github.javaparser.ast.expr.NameExpr;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import org.ggraver.DPlib.Exception.AnalysisException;
 import org.junit.BeforeClass;
 
 import java.io.File;
@@ -34,7 +35,7 @@ public class SourceAnalyserTest
      *
      * @param testName name of the test case
      */
-    public SourceAnalyserTest(String testName )
+    public SourceAnalyserTest(String testName)
     {
         super( testName );
     }
@@ -50,11 +51,12 @@ public class SourceAnalyserTest
     /**
      * Rigourous Test :-)
      */
+
+//    not set up correctly - wrong constructor
     private static void parseSetup() {
         System.out.println("Setting up for test_compile()...");
-        sa = new SourceAnalyser();
 
-        testJavaFile = new File("src/test/resources/dfib.java");
+        testJavaFile = new File("src/test/resources/FibonacciDP.java");
         if(!testJavaFile.exists()) {
             throw new Error("Test .java file does not exist.");
         }
@@ -64,13 +66,19 @@ public class SourceAnalyserTest
             throw new Error("Test .java file (invalid) does not exist.");
         }
 
+        try {
+            sa = new SourceAnalyser(testJavaFile, null);
+        } catch (AnalysisException e) {
+            throw new Error(e);
+        }
+
         System.out.println("Setup complete.");
     }
 
     public static void test_parse() {
         parseSetup();
         try {
-            CompilationUnit cu = sa.parse(testJavaFile);
+            CompilationUnit cu = sa.getCompilationUnit();
             assertEquals("List", cu.getImports().get(0).getName().getName());
             assertEquals("ManagementFactory", cu.getImports().get(1).getName().getName());
             assertEquals("MemoryPoolMXBean", cu.getImports().get(2).getName().getName());
@@ -85,7 +93,7 @@ public class SourceAnalyserTest
         parseSetup();
         Throwable t;
         try {
-            sa.parse(testInvalidJavaFile);
+            sa = new SourceAnalyser(testInvalidJavaFile, null);
             throw new Error("Expected ParseException.");
         } catch (Throwable ex) {
             t = ex;
@@ -97,7 +105,7 @@ public class SourceAnalyserTest
         parseSetup();
         Throwable t;
         try {
-            sa.parse(new File("src/"));
+            sa = new SourceAnalyser(new File("src/"), null);
             throw new Error("Expected ParseException.");
         } catch (Throwable ex) {
             t = ex;

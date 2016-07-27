@@ -12,20 +12,42 @@ import static org.apache.commons.io.FilenameUtils.removeExtension;
 
 import org.ggraver.DPlib.Exception.CompileException;
 import org.ggraver.DPlib.Exception.AnalysisException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 
 // generates .class files and analyses performance of user solution
 class ClassAnalyser {
 
     private final int PERF_INSTR_LINE = 5;
-    private final String TEMP_FILENAME = "log.txt";
+    private final String TEMP_FILENAME = "temp.txt";
+    private File classFile;
+    private File XMLFile;
     private long instructionCount;
     private long executionTime;
 
-    ClassAnalyser() {}
+    ClassAnalyser(File sourceFile) throws AnalysisException {
+
+        try {
+            compile(sourceFile);
+        } catch (CompileException e) {
+            throw new AnalysisException(e);
+        }
+
+    }
 
     // analyse the compiled .class file for performance
-    void analyse(File classFile) throws AnalysisException {
+    void analyse() throws AnalysisException {
 
         if(!classFile.exists() || classFile.length() == 0) {
             throw new AnalysisException(".class file does not exist or is empty.");
@@ -58,12 +80,56 @@ class ClassAnalyser {
             throw new Error(e);
         }
 
-        System.out.println("[INSTRUCTIONS] " + instructionCount);
-        System.out.println("[TIME] " + executionTime + "ms");
+        try {
+            generateXMLFile();
+        } catch (ParserConfigurationException | TransformerException e) {
+            e.printStackTrace();
+            throw new Error("Could not generate XML results file.");
+        }
 
     }
 
-    private long execute(ProcessBuilder pb) throws Exception {
+//    template sourced from http://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
+    void generateXMLFile() throws ParserConfigurationException, TransformerException {
+
+        XMLFile = new File(classFile.getParent() + "/result.xml");
+
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        DocumentBuilder db = dbf.newDocumentBuilder();
+
+        Document document = db.newDocument();
+        Element root = document.createElement("root");
+        document.appendChild(root);
+
+        Element input = document.createElement("input");
+        root.appendChild(input);
+
+        Element output = document.createElement("output");
+        root.appendChild(output);
+
+        Element performance = document.createElement("performance");
+        root.appendChild(performance);
+
+        Element instructions = document.createElement("instructions");
+        instructions.appendChild(document.createTextNode(String.valueOf(instructionCount)));
+        performance.appendChild(instructions);
+
+        Element time = document.createElement("time");
+        time.appendChild(document.createTextNode(String.valueOf(executionTime)));
+        performance.appendChild(time);
+
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+
+        DOMSource source = new DOMSource(document);
+        StreamResult xml = new StreamResult(XMLFile);
+        transformer.transform(source, xml);
+
+    }
+
+    private long execute(ProcessBuilder pb) throws IOException, InterruptedException {
 
         Process p;
         long start, end;
@@ -136,24 +202,23 @@ class ClassAnalyser {
     }
 
     // compile the user-submitted .java file for performance analysis
-    File compile(File file) throws CompileException {
+    private void compile(File sourceFile) throws CompileException {
 
-        if(file == null) {
+        if(sourceFile == null) {
             throw new CompileException(".java file should not be null.");
         }
 
-        System.out.println("Compiling file: " + file.getName());
+        System.out.println("Compiling file: " + sourceFile.getPath());
 
-        // found at https://stackoverflow.com/questions/8496494/running-command-line-in-java
         Process p;
         int result;
 
         try {
-            ProcessBuilder build = new ProcessBuilder("javac", file.getPath());
+            ProcessBuilder build = new ProcessBuilder("javac", sourceFile.getPath());
             build.inheritIO();
             p = build.start();
             result = p.waitFor();
-        } catch (Exception e) {
+        } catch (IOException | InterruptedException e) {
             throw new CompileException(e);
         }
 
@@ -161,20 +226,17 @@ class ClassAnalyser {
             throw new CompileException("Could not compile .java file. Please ensure your .java file is valid.");
         }
 
-        System.out.println(file.getName() + " compiled successfully.");
-        File classFile;
+        System.out.println(sourceFile.getName() + " compiled successfully.");
 
         try {
-            classFile = new File(file.getParent() + "/" + removeExtension(file.getName()) + ".class");
+            this.classFile = new File(sourceFile.getParent() + "/" + removeExtension(sourceFile.getName()) + ".class");
         } catch (NullPointerException npe) {
-            throw new CompileException(npe);
+            throw new CompileException("Could not create new file.");
         }
 
-        if (!classFile.exists()) {
+        if (!this.classFile.exists()) {
             throw new CompileException("Could not find .class file.");
         }
-
-        return classFile;
 
     }
 
@@ -184,6 +246,10 @@ class ClassAnalyser {
 
     long getExecutionTime() {
         return executionTime;
+    }
+
+    File getXMLFile() {
+        return XMLFile;
     }
 
 }
