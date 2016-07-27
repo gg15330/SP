@@ -3,7 +3,6 @@ package org.ggraver.DPlib;
 import java.io.File;
 import java.io.IOException;
 
-import java.io.StringWriter;
 import java.lang.Process;
 import java.lang.NumberFormatException;
 
@@ -13,7 +12,6 @@ import static org.apache.commons.io.FilenameUtils.removeExtension;
 
 import org.ggraver.DPlib.Exception.CompileException;
 import org.ggraver.DPlib.Exception.AnalysisException;
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -34,9 +32,9 @@ class ClassAnalyser {
     private final int PERF_INSTR_LINE = 5;
     private final String TEMP_FILENAME = "temp.txt";
     private File classFile;
+    private File XMLFile;
     private long instructionCount;
     private long executionTime;
-    private Document XMLFile;
 
     ClassAnalyser(File sourceFile) throws AnalysisException {
 
@@ -82,52 +80,52 @@ class ClassAnalyser {
             throw new Error(e);
         }
 
-        System.out.println("[INSTRUCTIONS] " + instructionCount);
-        System.out.println("[TIME] " + executionTime + "ms");
-
-        generateXMLFile();
+        try {
+            generateXMLFile();
+        } catch (ParserConfigurationException | TransformerException e) {
+            e.printStackTrace();
+            throw new Error("Could not generate XML results file.");
+        }
 
     }
 
-//    template: sourced from http://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
-    void generateXMLFile() {
+//    template sourced from http://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
+    void generateXMLFile() throws ParserConfigurationException, TransformerException {
 
-        String filePath = (classFile.getParent() + "/result.xml");
-        System.out.println("PATH: " + filePath);
-        try {
+        XMLFile = new File(classFile.getParent() + "/result.xml");
 
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            DocumentBuilder db = dbf.newDocumentBuilder();
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+        DocumentBuilder db = dbf.newDocumentBuilder();
 
-            XMLFile = db.newDocument();
-            Element result = XMLFile.createElement("result");
-            XMLFile.appendChild(result);
+        Document document = db.newDocument();
+        Element root = document.createElement("root");
+        document.appendChild(root);
 
-            Element instructions = XMLFile.createElement("instructions");
-            instructions.appendChild(XMLFile.createTextNode(String.valueOf(instructionCount)));
-            result.appendChild(instructions);
+        Element input = document.createElement("input");
+        root.appendChild(input);
 
-            Element time = XMLFile.createElement("time");
-            time.appendChild(XMLFile.createTextNode(String.valueOf(executionTime)));
-            result.appendChild(time);
+        Element output = document.createElement("output");
+        root.appendChild(output);
 
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+        Element performance = document.createElement("performance");
+        root.appendChild(performance);
 
-            DOMSource source = new DOMSource(XMLFile);
+        Element instructions = document.createElement("instructions");
+        instructions.appendChild(document.createTextNode(String.valueOf(instructionCount)));
+        performance.appendChild(instructions);
 
-            // Output to console for testing
-             StreamResult file = new StreamResult(new File(filePath));
-             StreamResult streamResult = new StreamResult(System.out);
+        Element time = document.createElement("time");
+        time.appendChild(document.createTextNode(String.valueOf(executionTime)));
+        performance.appendChild(time);
 
-            transformer.transform(source, streamResult);
-            transformer.transform(source, file);
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        Transformer transformer = transformerFactory.newTransformer();
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
 
-        } catch (ParserConfigurationException | TransformerException pce) {
-            pce.printStackTrace();
-        }
+        DOMSource source = new DOMSource(document);
+        StreamResult xml = new StreamResult(XMLFile);
+        transformer.transform(source, xml);
 
     }
 
@@ -212,7 +210,6 @@ class ClassAnalyser {
 
         System.out.println("Compiling file: " + sourceFile.getPath());
 
-        // found at https://stackoverflow.com/questions/8496494/running-command-line-in-java
         Process p;
         int result;
 
@@ -234,8 +231,7 @@ class ClassAnalyser {
         try {
             this.classFile = new File(sourceFile.getParent() + "/" + removeExtension(sourceFile.getName()) + ".class");
         } catch (NullPointerException npe) {
-            System.out.println("could not create new file.");
-            throw new CompileException(npe);
+            throw new CompileException("Could not create new file.");
         }
 
         if (!this.classFile.exists()) {
@@ -252,7 +248,7 @@ class ClassAnalyser {
         return executionTime;
     }
 
-    Document getXMLFile() {
+    File getXMLFile() {
         return XMLFile;
     }
 

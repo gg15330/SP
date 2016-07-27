@@ -10,7 +10,7 @@ class FibonacciRecursive
         return fibRec(n-1) + fibRec(n-2);
     }
 
-    public static void main (String args[])
+    public static void main (String[] args)
     {
         int n = 45;
         System.out.println(fibRec(n));
