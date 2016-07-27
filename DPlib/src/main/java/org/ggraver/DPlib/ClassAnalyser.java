@@ -3,6 +3,7 @@ package org.ggraver.DPlib;
 import java.io.File;
 import java.io.IOException;
 
+import java.io.StringWriter;
 import java.lang.Process;
 import java.lang.NumberFormatException;
 
@@ -19,6 +20,7 @@ import org.w3c.dom.Element;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -30,10 +32,11 @@ import javax.xml.transform.stream.StreamResult;
 class ClassAnalyser {
 
     private final int PERF_INSTR_LINE = 5;
-    private final String TEMP_FILENAME = "log.txt";
+    private final String TEMP_FILENAME = "temp.txt";
     private File classFile;
     private long instructionCount;
     private long executionTime;
+    private Document XMLFile;
 
     ClassAnalyser(File sourceFile) throws AnalysisException {
 
@@ -82,71 +85,50 @@ class ClassAnalyser {
         System.out.println("[INSTRUCTIONS] " + instructionCount);
         System.out.println("[TIME] " + executionTime + "ms");
 
-        generateXML();
+        generateXMLFile();
 
     }
 
 //    template: sourced from http://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
-    private void generateXML() {
+    void generateXMLFile() {
+
+        String filePath = (classFile.getParent() + "/result.xml");
+        System.out.println("PATH: " + filePath);
         try {
 
-            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
 
-            // root elements
-            Document doc = docBuilder.newDocument();
-            Element rootElement = doc.createElement("company");
-            doc.appendChild(rootElement);
+            XMLFile = db.newDocument();
+            Element result = XMLFile.createElement("result");
+            XMLFile.appendChild(result);
 
-            // staff elements
-            Element staff = doc.createElement("Staff");
-            rootElement.appendChild(staff);
+            Element instructions = XMLFile.createElement("instructions");
+            instructions.appendChild(XMLFile.createTextNode(String.valueOf(instructionCount)));
+            result.appendChild(instructions);
 
-            // set attribute to staff element
-            Attr attr = doc.createAttribute("id");
-            attr.setValue("1");
-            staff.setAttributeNode(attr);
+            Element time = XMLFile.createElement("time");
+            time.appendChild(XMLFile.createTextNode(String.valueOf(executionTime)));
+            result.appendChild(time);
 
-            // shorten way
-            // staff.setAttribute("id", "1");
-
-            // firstname elements
-            Element firstname = doc.createElement("firstname");
-            firstname.appendChild(doc.createTextNode("yong"));
-            staff.appendChild(firstname);
-
-            // lastname elements
-            Element lastname = doc.createElement("lastname");
-            lastname.appendChild(doc.createTextNode("mook kim"));
-            staff.appendChild(lastname);
-
-            // nickname elements
-            Element nickname = doc.createElement("nickname");
-            nickname.appendChild(doc.createTextNode("mkyong"));
-            staff.appendChild(nickname);
-
-            // salary elements
-            Element salary = doc.createElement("salary");
-            salary.appendChild(doc.createTextNode("100000"));
-            staff.appendChild(salary);
-
-            // write the content into xml file
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(doc);
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+
+            DOMSource source = new DOMSource(XMLFile);
 
             // Output to console for testing
-             StreamResult result = new StreamResult(System.out);
+             StreamResult file = new StreamResult(new File(filePath));
+             StreamResult streamResult = new StreamResult(System.out);
 
-            transformer.transform(source, result);
+            transformer.transform(source, streamResult);
+            transformer.transform(source, file);
 
-            System.out.println("File saved!");
-
-        } catch (ParserConfigurationException pce) {
+        } catch (ParserConfigurationException | TransformerException pce) {
             pce.printStackTrace();
-        } catch (TransformerException tfe) {
-            tfe.printStackTrace();
         }
+
     }
 
     private long execute(ProcessBuilder pb) throws IOException, InterruptedException {
@@ -268,6 +250,10 @@ class ClassAnalyser {
 
     long getExecutionTime() {
         return executionTime;
+    }
+
+    Document getXMLFile() {
+        return XMLFile;
     }
 
 }
