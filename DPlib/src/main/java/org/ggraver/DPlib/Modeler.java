@@ -66,31 +66,31 @@ class Modeler {
 
     }
 
-//    remember to handle input parameters
+//    remember to handle input parameterList
     void model() throws ModelingException {
-
-        SourceAnalyser sourceAnalyser;
-        MethodDeclaration md;
-
-//         parse input file, check method is not recursive
-        try {
-            sourceAnalyser = new SourceAnalyser(sourceFile, methodName);
-            md = sourceAnalyser.findMethod(methodName);
-        } catch (AnalysisException e) {
-            throw new ModelingException(e);
-        }
-
-        if(sourceAnalyser.isRecursive(md)) {
-            throw new ModelingException("Recursive function call found at line: " + sourceAnalyser.getRecursiveCallLineNo());
-        }
-
-//        compile source
-        try {
-            ClassAnalyser ca =  new ClassAnalyser(sourceFile);
-            ca.analyse();
-        } catch (AnalysisException e) {
-            throw new ModelingException(e);
-        }
+//
+//        SourceAnalyser sourceAnalyser;
+//        MethodDeclaration md;
+//
+////         parse input file, check method is not recursive
+//        try {
+//            sourceAnalyser = new SourceAnalyser(sourceFile, methodName);
+//            md = sourceAnalyser.findMethod(methodName);
+//        } catch (AnalysisException e) {
+//            throw new ModelingException(e);
+//        }
+//
+//        if(sourceAnalyser.isRecursive(md)) {
+//            throw new ModelingException("Recursive function call found at line: " + sourceAnalyser.getRecursiveCallLineNo());
+//        }
+//
+////        compile source
+//        try {
+//            ClassAnalyser ca =  new ClassAnalyser(sourceFile);
+//            ca.analyse();
+//        } catch (AnalysisException e) {
+//            throw new ModelingException(e);
+//        }
 
 //        run program, record stats in XML file
 

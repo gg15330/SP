@@ -1,29 +1,33 @@
 package org.ggraver.DPlib;
 
+import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.body.Parameter;
+import com.github.javaparser.ast.body.VariableDeclaratorId;
+import com.github.javaparser.ast.type.PrimitiveType;
+import org.apache.commons.io.FilenameUtils;
+import org.ggraver.DPlib.Exception.AnalysisException;
+import org.ggraver.DPlib.Exception.ModelingException;
+
+import javax.xml.transform.Source;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.javaparser.ParseException;
-import com.github.javaparser.ast.body.*;
-import com.github.javaparser.ast.type.PrimitiveType;
-import org.ggraver.DPlib.Exception.AnalysisException;
-import org.ggraver.DPlib.Exception.ModelingException;
-
 //overall program control
 public class Main {
 
-    private File file;
+    private File sourceFile;
     private String methodName;
 
     private Main(String file, String methodName) {
 
-        this.file = new File(file);
+        this.sourceFile = new File(file);
 
-        if (!this.file.exists() || this.file.isDirectory()) {
-            System.err.println("\nInvalid file name: " + file + "\n");
+        if (!this.sourceFile.exists()
+                || this.sourceFile.isDirectory()
+                || !FilenameUtils.getExtension(this.sourceFile.getName()).equals("java")) {
+            System.err.println("\nInvalid sourceFile name: " + file + "\n");
             System.exit(1);
         }
 
@@ -31,11 +35,10 @@ public class Main {
 
     }
 
-    // handle command line arguments
     public static void main(String[] args) {
 
         if (args.length != 2) {
-            System.out.println("\nUsage: java -jar DPLib-1.0-SNAPSHOT.jar <path/to.file.java>\n");
+            System.out.println("\nUsage: java -jar DPLib-1.0-SNAPSHOT.jar <path/to.sourceFile.java>\n");
             System.exit(1);
         }
 
@@ -47,7 +50,7 @@ public class Main {
     private void run() {
 
         try {
-            Modeler modeler = new Modeler(file, methodName);
+            Modeler modeler = new Modeler(sourceFile, methodName);
             modeler.model();
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,35 +59,59 @@ public class Main {
             System.err.println(e.getMessage());
         }
 
-//        modeler.methodToAnalyse("");
-//        modeler.methodParameters();
-//        modeler.generate();
-
-//         create method properties
-        PrimitiveType pt = new PrimitiveType(PrimitiveType.Primitive.Int);
-        List<Parameter> parameters = new ArrayList<>();
-        Parameter param = new Parameter();
-        param.setType(pt);
-        param.setId(new VariableDeclaratorId("n"));
-        parameters.add(param);
-
-//         create expected method
-        MethodDeclaration expected = new MethodDeclaration();
-        expected.setName(methodName);
-        expected.setType(pt);
-        expected.setParameters(parameters);
-
-        SourceAnalyser sa = null;
+        SourceAnalyser studentFileAnalyser;
 
         try {
-            sa = new SourceAnalyser(file, methodName);
+            studentFileAnalyser = new SourceAnalyser(sourceFile, methodName);
+            studentFileAnalyser.findMethod(methodName);
+            if(!studentFileAnalyser.isRecursive(studentFileAnalyser.getMethodDeclaration())) {
+                System.out.println("Method is not recursive.");
+            }
+            else {
+                System.out.println("Method IS recursive.");
+            }
+
+//             create method properties
+            List<Parameter> parameterList = new ArrayList<>();
+
+            Parameter param = new Parameter();
+            param.setType(new PrimitiveType(PrimitiveType.Primitive.Int));
+            param.setId(new VariableDeclaratorId("n"));
+            parameterList.add(param);
+
+//             create expected method
+            MethodDeclaration expected = new MethodDeclaration();
+            expected.setName(methodName);
+            expected.setType(new PrimitiveType(PrimitiveType.Primitive.Int));
+            expected.setParameters(parameterList);
+
+            studentFileAnalyser.checkMethodProperties(expected, studentFileAnalyser.getMethodDeclaration());
+
         } catch (AnalysisException e) {
+            e.printStackTrace();
             System.err.println(e.getMessage());
+            System.exit(1);
         }
 
-        MethodDeclaration actual;
 
-//         check submitted method matches template name/type/parameters
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//         check submitted method matches template name/type/parameterList
 //         and check that it is not recursive
 /*        try {
             actual = sa.findMethod(expected.getName());
@@ -95,13 +122,9 @@ public class Main {
             System.exit(1);
         }*/
 
-
-
-
-
 //        try {
 //            ClassAnalyser ca = new ClassAnalyser();
-//            File f = ca.compile(file);
+//            File f = ca.compile(sourceFile);
 //            ca.analyse(f);
 //        } catch (Exception e) {
 //            e.printStackTrace();

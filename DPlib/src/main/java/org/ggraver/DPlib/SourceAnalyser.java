@@ -11,61 +11,66 @@ import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.body.Parameter;
 import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.expr.MarkerAnnotationExpr;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import org.ggraver.DPlib.Exception.AnalysisException;
 
-// analyses source code for invalid solutions/errors
+// this class analyses source code for invalid solutions/errors
+// the analysis can be different depending on whether the .java file
+// is submitted by the tutor or the student
 class SourceAnalyser {
 
     private String methodName;
     private int recursiveCallLineNo;
     private CompilationUnit cu;
+    private MethodDeclaration methodDeclaration;
 
     // construct a new SourceAnalyser with a method declaration to check against the source file
     SourceAnalyser(File file, String methodName) throws AnalysisException {
 
         try {
-            this.cu = parse(file);
+            parse(file);
         } catch (ParseException e) {
             throw new AnalysisException("Could not parse .java file.");
         } catch (IOException e) {
             throw new AnalysisException(e);
         }
+
         this.methodName = methodName;
 
     }
 
-    private CompilationUnit parse(File file) throws ParseException, IOException {
+    private void parse(File file) throws ParseException, IOException {
 
-        // put FileInputStream in Main module -
-        // can control file stream for both modules that way
         FileInputStream fis = new FileInputStream(file);
-        CompilationUnit compilationUnit = JavaParser.parse(fis);
+        cu = JavaParser.parse(fis);
         fis.close();
 
-        return compilationUnit;
+    }
+
+//    no parameterList - expected method name/list of expected method parameterList is generated
+    void analyse() throws AnalysisException {
 
     }
 
-//     analyse the user-submitted .java file for code errors/invalid solutions (e.g. recursion)
-    void analyse(CompilationUnit cu) throws AnalysisException {
 
-//        MethodDeclaration methodToAnalyse = findMethod();
-//        checkMethodProperties(methodToAnalyse);
+    //    list of expected method parameterList is supplied - for checking student-submitted files
+    void analyse(List<Parameter> expectedParams) throws AnalysisException {
 
     }
 
-    MethodDeclaration findMethod(String methodName) throws AnalysisException {
+    void findMethod(String methodName) throws AnalysisException {
 
         MV mv = new MV();
         mv.visit(cu, null);
 
         for (MethodDeclaration md : mv.methods()) {
             if (md.getName().equals(methodName)) {
-                return md;
+                methodDeclaration = md;
+                return;
             }
         }
 
@@ -74,7 +79,7 @@ class SourceAnalyser {
 
     }
 
-    // checks method properties to ensure the submitted method is the same as the template
+    // checks method properties to ensure the submitted method is the same as the tutor-defined template
     void checkMethodProperties(MethodDeclaration expected, MethodDeclaration actual) throws AnalysisException {
 
         if (!actual.getType().equals(expected.getType())) {
@@ -84,14 +89,14 @@ class SourceAnalyser {
         }
 
         if (!actual.getParameters().equals(expected.getParameters())) {
-            throw new AnalysisException("Wrong method Parameters." +
+            throw new AnalysisException("Method parameters do not match." +
                     "\nExpected: " + expected.getParameters() +
-                    " Actual: " + actual.getParameters());
+                    "\nActual: " + actual.getParameters());
         }
 
     }
 
-    public boolean isRecursive(Node node) {
+    boolean isRecursive(Node node) {
 
         if(node instanceof MethodCallExpr) {
 
@@ -114,7 +119,7 @@ class SourceAnalyser {
 
     }
 
-    // To do: convert to check for duplicate method names/parameters/type
+    // To do: convert to check for duplicate method names/parameterList/type
     private boolean duplicateAnnotations(MarkerAnnotationExpr methodAnnotation, List<AnnotationExpr> annotations) {
 
         int count = 0;
@@ -142,6 +147,10 @@ class SourceAnalyser {
 
     public int getRecursiveCallLineNo() {
         return recursiveCallLineNo;
+    }
+
+    public MethodDeclaration getMethodDeclaration() {
+        return methodDeclaration;
     }
 
     // private visitor class to extract method data for source file and insert it into the method list
