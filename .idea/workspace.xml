@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dbf27813-b393-4f5c-a162-70ce6f80ac8c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/sample/fib/result.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/SourceAnalyser$MV.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/DPlib-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/DPlib/target/DPlib-1.0-SNAPSHOT.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Main.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Modeler.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Modeler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/SourceAnalyser.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/SourceAnalyser.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/original-DPlib-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/DPlib/target/original-DPlib-1.0-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Main.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Modeler.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Modeler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Result.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Result.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SourceAnalyser.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SourceAnalyser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/DPlib/target/maven-archiver/pom.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/DPlib/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
@@ -36,11 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1022">
-              <caret line="73" column="11" selection-start-line="73" selection-start-column="11" selection-end-line="73" selection-end-column="11" />
+            <state relative-caret-position="319">
+              <caret line="71" column="65" selection-start-line="71" selection-start-column="55" selection-end-line="71" selection-end-column="65" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -48,12 +45,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Modeler.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Modeler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Modeler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
+            <state relative-caret-position="-240">
+              <caret line="36" column="62" selection-start-line="36" selection-start-column="62" selection-end-line="36" selection-end-column="62" />
+              <caret line="37" column="63" selection-start-line="37" selection-start-column="63" selection-end-line="37" selection-end-column="63" />
               <folding>
+                <element signature="e#1236#1247#0" expanded="true" />
+                <element signature="e#1302#1313#0" expanded="true" />
                 <element signature="method#addInputToXML#0;class#Modeler#0" expanded="false" />
                 <element signature="method#addOutputToXML#0;class#Modeler#0" expanded="false" />
                 <element signature="method#setMethod#0;class#Modeler#0" expanded="false" />
@@ -77,31 +77,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FibonacciDP.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DPlib/sample/fib/FibonacciDP.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="70">
-              <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SourceAnalyser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SourceAnalyser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="798">
-              <caret line="158" column="32" selection-start-line="158" selection-start-column="32" selection-end-line="158" selection-end-column="32" />
+            <state relative-caret-position="348">
+              <caret line="238" column="57" selection-start-line="238" selection-start-column="57" selection-end-line="238" selection-end-column="57" />
               <folding>
-                <element signature="method#parse#0;class#SourceAnalyser#0" expanded="false" />
-                <element signature="method#analyse#0;class#SourceAnalyser#0" expanded="false" />
-                <element signature="method#analyse#1;class#SourceAnalyser#0" expanded="false" />
-                <element signature="method#findMethod#0;class#SourceAnalyser#0" expanded="false" />
                 <element signature="method#checkMethodProperties#0;class#SourceAnalyser#0" expanded="false" />
-                <element signature="method#isRecursive#0;class#SourceAnalyser#0" expanded="false" />
                 <element signature="method#duplicateAnnotations#0;class#SourceAnalyser#0" expanded="false" />
-                <element signature="e#4605#4606#0" expanded="true" />
-                <element signature="e#4645#4646#0" expanded="true" />
+                <element signature="e#6258#6259#0" expanded="true" />
+                <element signature="e#6296#6297#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -110,9 +95,17 @@
       <file leaf-file-name="ClassAnalyser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ClassAnalyser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="837">
-              <caret line="128" column="0" selection-start-line="96" selection-start-column="8" selection-end-line="128" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="308">
+              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+              <folding>
+                <element signature="method#ClassAnalyser#0;class#ClassAnalyser#0" expanded="false" />
+                <element signature="method#analyse#0;class#ClassAnalyser#0" expanded="false" />
+                <element signature="method#execute#0;class#ClassAnalyser#0" expanded="false" />
+                <element signature="method#buildPerfStat#0;class#ClassAnalyser#0" expanded="false" />
+                <element signature="method#tempFile#0;class#ClassAnalyser#0" expanded="false" />
+                <element signature="method#fetchInstructionCount#0;class#ClassAnalyser#0" expanded="false" />
+                <element signature="method#compile#0;class#ClassAnalyser#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -156,11 +149,11 @@
         <option value="$PROJECT_DIR$/DPlib/src/test/java/org/ggraver/DPlib/ClassAnalyserTest.java" />
         <option value="$PROJECT_DIR$/DPlib/sample/fib/FibonacciDP.java" />
         <option value="$PROJECT_DIR$/DPlib/sample/fib/FibonacciRecursive.java" />
-        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ClassAnalyser.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Result.java" />
-        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Main.java" />
-        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SourceAnalyser.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Modeler.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ClassAnalyser.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SourceAnalyser.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Main.java" />
       </list>
     </option>
   </component>
@@ -175,7 +168,8 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="274" />
+    <option name="x" value="-1366" />
+    <option name="y" value="18" />
     <option name="width" value="1366" />
     <option name="height" value="750" />
   </component>
@@ -207,126 +201,7 @@
       <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DPlib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DPlib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DPlib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DPlib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DPlib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DPlib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
+        <subPane />
       </pane>
       <pane id="PackagesPane" />
     </panes>
@@ -651,7 +526,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="274" width="1366" height="750" extended-state="6" />
+    <frame x="-1366" y="18" width="1366" height="750" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -665,6 +540,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19399707" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -676,7 +552,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42093703" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -719,21 +594,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ClassAnalyser.java</url>
-          <line>242</line>
-          <properties />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ClassAnalyser.java</url>
-          <line>241</line>
-          <properties class="org.ggraver.DPlib.ClassAnalyser" />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="11" />
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <option name="time" value="14" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -747,6 +611,8 @@
         <state relative-caret-position="28">
           <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
           <folding>
+            <element signature="e#1236#1247#0" expanded="true" />
+            <element signature="e#1302#1313#0" expanded="true" />
             <element signature="method#addInputToXML#0;class#Modeler#0" expanded="false" />
             <element signature="method#addOutputToXML#0;class#Modeler#0" expanded="false" />
             <element signature="method#setMethod#0;class#Modeler#0" expanded="false" />
@@ -776,7 +642,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1400">
           <caret line="111" column="9" selection-start-line="111" selection-start-column="9" selection-end-line="111" selection-end-column="9" />
-          <folding />
+          <folding>
+            <element signature="method#ClassAnalyser#0;class#ClassAnalyser#0" expanded="false" />
+            <element signature="method#analyse#0;class#ClassAnalyser#0" expanded="false" />
+            <element signature="method#execute#0;class#ClassAnalyser#0" expanded="false" />
+            <element signature="method#buildPerfStat#0;class#ClassAnalyser#0" expanded="false" />
+            <element signature="method#tempFile#0;class#ClassAnalyser#0" expanded="false" />
+            <element signature="method#fetchInstructionCount#0;class#ClassAnalyser#0" expanded="false" />
+            <element signature="method#compile#0;class#ClassAnalyser#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -860,7 +734,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1666">
           <caret line="130" column="39" selection-start-line="130" selection-start-column="39" selection-end-line="130" selection-end-column="39" />
-          <folding />
+          <folding>
+            <element signature="method#ClassAnalyser#0;class#ClassAnalyser#0" expanded="false" />
+            <element signature="method#analyse#0;class#ClassAnalyser#0" expanded="false" />
+            <element signature="method#execute#0;class#ClassAnalyser#0" expanded="false" />
+            <element signature="method#buildPerfStat#0;class#ClassAnalyser#0" expanded="false" />
+            <element signature="method#tempFile#0;class#ClassAnalyser#0" expanded="false" />
+            <element signature="method#fetchInstructionCount#0;class#ClassAnalyser#0" expanded="false" />
+            <element signature="method#compile#0;class#ClassAnalyser#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1044,20 +926,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ClassAnalyser.java">
+    <entry file="file://$PROJECT_DIR$/DPlib/sample/fib/FibonacciDP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="837">
-          <caret line="128" column="0" selection-start-line="96" selection-start-column="8" selection-end-line="128" selection-end-column="0" />
+        <state relative-caret-position="70">
+          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Main.java">
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ClassAnalyser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1022">
-          <caret line="73" column="11" selection-start-line="73" selection-start-column="11" selection-end-line="73" selection-end-column="11" />
+        <state relative-caret-position="308">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="method#ClassAnalyser#0;class#ClassAnalyser#0" expanded="false" />
+            <element signature="method#analyse#0;class#ClassAnalyser#0" expanded="false" />
+            <element signature="method#execute#0;class#ClassAnalyser#0" expanded="false" />
+            <element signature="method#buildPerfStat#0;class#ClassAnalyser#0" expanded="false" />
+            <element signature="method#tempFile#0;class#ClassAnalyser#0" expanded="false" />
+            <element signature="method#fetchInstructionCount#0;class#ClassAnalyser#0" expanded="false" />
+            <element signature="method#compile#0;class#ClassAnalyser#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1072,43 +960,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/sample/fib/FibonacciDP.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SourceAnalyser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="158" column="32" selection-start-line="158" selection-start-column="32" selection-end-line="158" selection-end-column="32" />
-          <folding>
-            <element signature="method#parse#0;class#SourceAnalyser#0" expanded="false" />
-            <element signature="method#analyse#0;class#SourceAnalyser#0" expanded="false" />
-            <element signature="method#analyse#1;class#SourceAnalyser#0" expanded="false" />
-            <element signature="method#findMethod#0;class#SourceAnalyser#0" expanded="false" />
-            <element signature="method#checkMethodProperties#0;class#SourceAnalyser#0" expanded="false" />
-            <element signature="method#isRecursive#0;class#SourceAnalyser#0" expanded="false" />
-            <element signature="method#duplicateAnnotations#0;class#SourceAnalyser#0" expanded="false" />
-            <element signature="e#4605#4606#0" expanded="true" />
-            <element signature="e#4645#4646#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Modeler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="36" column="34" selection-start-line="36" selection-start-column="34" selection-end-line="36" selection-end-column="34" />
+        <state relative-caret-position="-240">
+          <caret line="36" column="62" selection-start-line="36" selection-start-column="62" selection-end-line="36" selection-end-column="62" />
+          <caret line="37" column="63" selection-start-line="37" selection-start-column="63" selection-end-line="37" selection-end-column="63" />
           <folding>
+            <element signature="e#1236#1247#0" expanded="true" />
+            <element signature="e#1302#1313#0" expanded="true" />
             <element signature="method#addInputToXML#0;class#Modeler#0" expanded="false" />
             <element signature="method#addOutputToXML#0;class#Modeler#0" expanded="false" />
             <element signature="method#setMethod#0;class#Modeler#0" expanded="false" />
             <element signature="method#setInputs#0;class#Modeler#0" expanded="false" />
             <element signature="method#methodToAnalyse#0;class#Modeler#0" expanded="false" />
             <element signature="method#methodParameters#0;class#Modeler#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SourceAnalyser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="238" column="57" selection-start-line="238" selection-start-column="57" selection-end-line="238" selection-end-column="57" />
+          <folding>
+            <element signature="method#checkMethodProperties#0;class#SourceAnalyser#0" expanded="false" />
+            <element signature="method#duplicateAnnotations#0;class#SourceAnalyser#0" expanded="false" />
+            <element signature="e#6258#6259#0" expanded="true" />
+            <element signature="e#6296#6297#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="71" column="65" selection-start-line="71" selection-start-column="55" selection-end-line="71" selection-end-column="65" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
