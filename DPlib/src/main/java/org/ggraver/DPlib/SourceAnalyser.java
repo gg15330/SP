@@ -27,6 +27,7 @@ class SourceAnalyser {
     private int recursiveCallLineNo;
     private CompilationUnit cu;
     private MethodDeclaration methodDeclaration;
+    private List<Object> methodInputValues;
 
     // construct a new SourceAnalyser with a method declaration to check against the source file
     SourceAnalyser(File file, String methodName) throws AnalysisException {
@@ -151,6 +152,11 @@ class SourceAnalyser {
 
     public MethodDeclaration getMethodDeclaration() {
         return methodDeclaration;
+    }
+
+    public List<Object> getMethodInputValues()
+    {
+        return methodInputValues;
     }
 
     // private visitor class to extract method data for source file and insert it into the method list

@@ -2,42 +2,77 @@ package org.ggraver.DPlib;
 
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.body.Parameter;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.*;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 /**
  * Created by george on 28/07/16.
  */
-public class Result
+class Result
 {
 
+    private MethodDeclaration method;
     private List<Object> inputs;
     private List<Object> outputs;
     private long executionTime;
     private long instructionCount;
 
-    private Result(File XMLFile)
+    Result() {}
+
+    Result(File XMLFile)
     {
-        if (XMLFile == null)
-        {
-            throw new NullPointerException("XML result file should not be null.");
-        }
-        parse(XMLFile);
+        parseXML(XMLFile);
     }
 
 //    interpret XML file into analysable data
-    private void parse(File f)
+    private void parseXML(File f) throws NullPointerException
     {
+        if (f == null)
+        {
+            throw new NullPointerException("XML result file should not be null.");
+        }
+    }
 
+    public void setMethod(MethodDeclaration method)
+    {
+        this.method = method;
+    }
+
+    public void setInputs(List<Object> inputs)
+    {
+        this.inputs = inputs;
+    }
+
+    public void setOutputs(List<Object> outputs)
+    {
+        this.outputs = outputs;
+    }
+
+    public void setExecutionTime(long executionTime)
+    {
+        this.executionTime = executionTime;
+    }
+
+    public void setInstructionCount(long instructionCount)
+    {
+        this.instructionCount = instructionCount;
     }
 
     public MethodDeclaration getMethod()
     {
         return method;
     }
-
-    private MethodDeclaration method;
 
     public List getInputs()
     {

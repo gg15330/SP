@@ -3,7 +3,7 @@
     <input/>
     <output/>
     <performance>
-        <instructions>150593241</instructions>
-        <time>71</time>
+        <instructions>5000</instructions>
+        <time>100</time>
     </performance>
 </root>
