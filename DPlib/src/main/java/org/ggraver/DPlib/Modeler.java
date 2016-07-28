@@ -21,14 +21,8 @@ class Modeler {
     private String className;
     private String methodName;
 
-//    store output data in xml file for comparison with student solution
-//    private OutputFile xml;
-//
-//    input for sample .java file
-//    private Object input;
-
 //    analyse source file and make sure the method is recursive
-//    private SourceAnalyser sourceAnalyser = new SourceAnalyser();
+//    private SourceAnalyser sourceAnalyser;
 
 //    compute answers based on input and get performance analysis
 //    private ClassAnalyser classAnalyser;
@@ -108,6 +102,14 @@ class Modeler {
         } catch (Exception ioe) {
             ioe.printStackTrace();
         }
+
+    }
+
+    void setMethod(String methodName) {
+
+    }
+
+    void setInputs(String... inputs) {
 
     }
 
