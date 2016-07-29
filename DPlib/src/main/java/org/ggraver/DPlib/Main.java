@@ -1,114 +1,104 @@
 package org.ggraver.DPlib;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.github.javaparser.ParseException;
-import com.github.javaparser.ast.body.*;
-import com.github.javaparser.ast.type.PrimitiveType;
+import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.stmt.Statement;
+import org.apache.commons.io.FilenameUtils;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
 
-//overall program control
-public class Main {
+import java.io.File;
+import java.io.IOException;
+import java.text.NumberFormat;
+import java.util.Locale;
 
-    private File file;
+//overall program control
+public class Main
+{
+
+    private File tutorFile;
+    private File studentFile;
     private String methodName;
 
-    private Main(String file, String methodName) {
+    private Main(String file, String methodName)
+    {
 
-        this.file = new File(file);
+        this.tutorFile = new File(file);
+        this.studentFile = new File("sample/fib/FibonacciDPStudent.java");
 
-        if (!this.file.exists() || this.file.isDirectory()) {
-            System.err.println("\nInvalid file name: " + file + "\n");
+        if (!this.tutorFile.exists()
+                || this.tutorFile.isDirectory()
+                || !FilenameUtils.getExtension(this.tutorFile.getName()).equals("java")
+                || !this.studentFile.exists()
+                || this.studentFile.isDirectory()
+                || !FilenameUtils.getExtension(this.studentFile.getName()).equals("java"))
+        {
+            System.err.println("\nInvalid tutorFile name: " + file + "\n");
             System.exit(1);
         }
-
         this.methodName = methodName;
-
     }
 
-    // handle command line arguments
-    public static void main(String[] args) {
-
-        if (args.length != 2) {
-            System.out.println("\nUsage: java -jar DPLib-1.0-SNAPSHOT.jar <path/to.file.java>\n");
+    public static void main(String[] args)
+    {
+        if (args.length != 2)
+        {
+            System.out.println("\nUsage: java -jar DPLib-1.0-SNAPSHOT.jar <path/to.tutorFile.java>\n");
             System.exit(1);
         }
 
         Main main = new Main(args[0], args[1]);
         main.run();
-
     }
 
-    private void run() {
+    private void run()
+    {
+        try
+        {
+            Modeler modeler = new Modeler(tutorFile, methodName);
+            Model model = modeler.model();
 
-        try {
-            Modeler modeler = new Modeler(file, methodName);
-            modeler.model();
-        } catch (IOException e) {
+//             this part will eventually go in a solver/marker module
+            SourceAnalyser sa = new SourceAnalyser(studentFile, methodName);
+            MethodDeclaration studentMain = sa.findMethod("main");
+
+            if (!model.getCallingMethod().getBody().getStmts()
+                      .equals(studentMain.getBody().getStmts()))
+            {
+                throw new Error("Main methods do not match.");
+            }
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
-        } catch (ModelingException e) {
+        }
+        catch (ModelingException | AnalysisException e)
+        {
             e.printStackTrace();
             System.err.println(e.getMessage());
         }
 
-//        modeler.methodToAnalyse("");
-//        modeler.methodParameters();
-//        modeler.generate();
 
-//         create method properties
-        PrimitiveType pt = new PrimitiveType(PrimitiveType.Primitive.Int);
-        List<Parameter> parameters = new ArrayList<>();
-        Parameter param = new Parameter();
-        param.setType(pt);
-        param.setId(new VariableDeclaratorId("n"));
-        parameters.add(param);
-
-//         create expected method
-        MethodDeclaration expected = new MethodDeclaration();
-        expected.setName(methodName);
-        expected.setType(pt);
-        expected.setParameters(parameters);
-
-        SourceAnalyser sa = null;
-
-        try {
-            sa = new SourceAnalyser(file, methodName);
-        } catch (AnalysisException e) {
-            System.err.println(e.getMessage());
-        }
-
-        MethodDeclaration actual;
-
-//         check submitted method matches template name/type/parameters
-//         and check that it is not recursive
-/*        try {
-            actual = sa.findMethod(expected.getName());
-            sa.checkMethodProperties(expected, actual);
-            sa.isRecursive(actual, actual.getName());
-        } catch (AnalysisException e) {
-            System.err.println(e.getMessage());
-            System.exit(1);
-        }*/
-
-
-
-
-
-//        try {
-//            ClassAnalyser ca = new ClassAnalyser();
-//            File f = ca.compile(file);
-//            ca.analyse(f);
-//        } catch (Exception e) {
+////             create method properties
+//            List<Parameter> parameterList = new ArrayList<>();
+//
+//            Parameter param = new Parameter();
+//            param.setType(new PrimitiveType(PrimitiveType.Primitive.Int));
+//            param.setId(new VariableDeclaratorId("n"));
+//            parameterList.add(param);
+//
+////             create expected method
+//            MethodDeclaration expected = new MethodDeclaration();
+//            expected.setName(methodName);
+//            expected.setType(new PrimitiveType(PrimitiveType.Primitive.Int));
+//            expected.setParameters(parameterList);
+//
+//            studentFileAnalyser.checkMethodProperties(expected, studentFileAnalyser.getMethodDeclaration());
+//
+//        } catch (AnalysisException e) {
 //            e.printStackTrace();
 //            System.err.println(e.getMessage());
 //            System.exit(1);
 //        }
-
     }
 
 }
