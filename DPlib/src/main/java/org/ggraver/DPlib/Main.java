@@ -8,6 +8,8 @@ import org.ggraver.DPlib.Exception.ModelingException;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 //overall program control
 public class Main
@@ -62,10 +64,16 @@ public class Main
             for(Statement s : studentMain.getBody().getStmts()) {
                 System.out.println("[STUDENT] " + s);
             }
+//
+//            if(!model.getCallingMethod().getBody().getStmts().equals(studentMain.getBody().getStmts())) {
+//                throw new Error("Main methods do not match.");
+//            }
 
-            if(!model.getCallingMethod().getBody().getStmts().equals(studentMain.getBody().getStmts())) {
-                throw new Error("Main methods do not match.");
-            }
+            ClassAnalyser ca = new ClassAnalyser(tutorFile);
+            ca.analyse();
+            System.out.println("Time: " + ca.getExecutionTime());
+            System.out.println("Instructions: " + NumberFormat.getNumberInstance(Locale.UK).format(ca.getInstructionCount()));
+
         }
         catch (IOException e)
         {
@@ -76,6 +84,7 @@ public class Main
             e.printStackTrace();
             System.err.println(e.getMessage());
         }
+
 
 ////             create method properties
 //            List<Parameter> parameterList = new ArrayList<>();

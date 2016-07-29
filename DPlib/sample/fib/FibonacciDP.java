@@ -1,4 +1,6 @@
 // sourced from http://www.geeksforgeeks.org/program-for-nth-fibonacci-number/
+import java.lang.management.ManagementFactory;
+
 class FibonacciDP {
 
     static int fibDP(int n)
@@ -18,6 +20,7 @@ class FibonacciDP {
 
     public static void main (String[] args)
     {
+        System.out.println("THREADS " + ManagementFactory.getThreadMXBean().getThreadCount());
         int n = 45;
         System.out.println(fibDP(n));
     }
