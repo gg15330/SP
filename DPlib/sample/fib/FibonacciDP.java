@@ -20,7 +20,6 @@ class FibonacciDP {
 
     public static void main (String[] args)
     {
-        System.out.println("THREADS " + ManagementFactory.getThreadMXBean().getThreadCount());
         int n = 45;
         System.out.println(fibDP(n));
     }

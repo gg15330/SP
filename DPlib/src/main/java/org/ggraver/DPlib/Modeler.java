@@ -43,9 +43,12 @@ class Modeler
             MethodDeclaration main = sa.findMethod("main");
             model.setMethodToAnalyse(new MethodDeclaration());
             model.setCallingMethod(main);
-            model.setExpectedOutput("1134903170");
-            model.setExecutionTime(100);
-            model.setInstructionCount(5000);
+
+            ClassAnalyser ca = new ClassAnalyser(sourceFile);
+            ca.analyse();
+            model.setExpectedOutput(ca.getOutput());
+            model.setExecutionTime(ca.getExecutionTime());
+            model.setInstructionCount(ca.getInstructionCount() + 100000); // margin of error - temporary
             generateXML(model);
 
             //get Model object back from XML file

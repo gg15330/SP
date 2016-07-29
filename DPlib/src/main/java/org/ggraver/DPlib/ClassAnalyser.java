@@ -17,13 +17,13 @@ class ClassAnalyser
     private final int PERF_INSTR_LINE = 5;
     private final String TEMP_FILENAME = "temp.txt";
     private File classFile;
+    private String output = "test_output";
     private long instructionCount;
     private long executionTime;
 
     ClassAnalyser(File sourceFile)
     throws AnalysisException
     {
-
         try
         {
             compile(sourceFile);
@@ -32,21 +32,17 @@ class ClassAnalyser
         {
             throw new AnalysisException(e);
         }
-
     }
 
     // analyse the compiled .class file for performance
     void analyse()
     throws AnalysisException
     {
-
         if (!classFile.exists() || classFile.length() == 0)
         {
             throw new AnalysisException(".class file does not exist or is empty.");
         }
-
         File dir, log;
-
         try
         {
             dir = new File(classFile.getParent());
@@ -56,12 +52,10 @@ class ClassAnalyser
         {
             throw new AnalysisException(ioe);
         }
-
         ProcessBuilder perfStat = buildPerfStat(
                 log.getName(),
                 removeExtension(classFile.getName()),
                 dir);
-
         try
         {
             executionTime = execute(perfStat);
@@ -70,7 +64,6 @@ class ClassAnalyser
         {
             throw new AnalysisException(e);
         }
-
         try
         {
             instructionCount = fetchInstructionCount(log, PERF_INSTR_LINE);
@@ -79,71 +72,47 @@ class ClassAnalyser
         {
             throw new Error(e);
         }
-
     }
 
     private long execute(ProcessBuilder pb)
     throws IOException, InterruptedException
     {
-
+        // remember to put timeout in waitFor()
         Process p;
         long start, end;
-
-        // remember to put timeout in waitFor()
         start = System.currentTimeMillis();
         p = pb.start();
         p.waitFor();
         end = System.currentTimeMillis();
-
         executionTime = end - start;
-
         if (executionTime < 0)
         {
             throw new Error("Execution time should not be less than 0.");
         }
-
         return executionTime;
-
     }
 
     private ProcessBuilder buildPerfStat(String logFileName, String classFileName, File dir)
     {
-
         ProcessBuilder build = new ProcessBuilder(
                 "perf", "stat",
                 "-e", "instructions:u",
                 "-o", logFileName,
                 "java", classFileName
         );
-
         build.directory(dir);
         build.inheritIO();
         build.redirectErrorStream(true);
-
         return build;
-
     }
 
     private File tempFile(String fileName, File dir)
     throws IOException
     {
-
         File temp = new File(dir + "/" + fileName);
         System.out.println("Temp file name: " + temp.getPath());
         temp.deleteOnExit();
-
-        if (!temp.createNewFile())
-        {
-            throw new IOException("Temp file \"" + TEMP_FILENAME + "\" already exists.");
-        }
-
-        if (!temp.exists())
-        {
-            throw new IOException("Temp file \"" + TEMP_FILENAME + "\" was not created.");
-        }
-
         return temp;
-
     }
 
     // get the line containing the instruction count from the perf stat output stream and return it as a long
@@ -168,17 +137,13 @@ class ClassAnalyser
     private void compile(File sourceFile)
     throws CompileException
     {
-
         if (sourceFile == null)
         {
             throw new CompileException(".java file should not be null.");
         }
-
         System.out.println("Compiling file: " + sourceFile.getPath());
-
         Process p;
         int result;
-
         try
         {
             ProcessBuilder build = new ProcessBuilder("javac", sourceFile.getPath());
@@ -190,14 +155,11 @@ class ClassAnalyser
         {
             throw new CompileException(e);
         }
-
         if (result != 0)
         {
             throw new CompileException("Could not compile .java file. Please ensure your .java file is valid.");
         }
-
         System.out.println(sourceFile.getName() + " compiled successfully.");
-
         try
         {
             this.classFile = new File(sourceFile.getParent() + "/" + removeExtension(sourceFile.getName()) + ".class");
@@ -206,12 +168,10 @@ class ClassAnalyser
         {
             throw new CompileException("Could not create new file.");
         }
-
         if (!this.classFile.exists())
         {
             throw new CompileException("Could not find .class file.");
         }
-
     }
 
     long getInstructionCount()
@@ -222,6 +182,11 @@ class ClassAnalyser
     long getExecutionTime()
     {
         return executionTime;
+    }
+
+    public String getOutput()
+    {
+        return output;
     }
 
 }

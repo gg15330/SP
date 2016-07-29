@@ -13,17 +13,17 @@
   <callingMethod>
     <beginLine>21</beginLine>
     <beginColumn>5</beginColumn>
-    <endLine>26</endLine>
+    <endLine>25</endLine>
     <endColumn>5</endColumn>
     <parentNode class="com.github.javaparser.ast.body.ClassOrInterfaceDeclaration">
       <beginLine>4</beginLine>
       <beginColumn>1</beginColumn>
-      <endLine>28</endLine>
+      <endLine>27</endLine>
       <endColumn>1</endColumn>
       <parentNode class="com.github.javaparser.ast.CompilationUnit">
         <beginLine>2</beginLine>
         <beginColumn>1</beginColumn>
-        <endLine>28</endLine>
+        <endLine>27</endLine>
         <endColumn>2</endColumn>
         <childrenNodes class="linked-list">
           <com.github.javaparser.ast.ImportDeclaration>
@@ -939,7 +939,7 @@
       <com.github.javaparser.ast.stmt.BlockStmt>
         <beginLine>22</beginLine>
         <beginColumn>5</beginColumn>
-        <endLine>26</endLine>
+        <endLine>25</endLine>
         <endColumn>5</endColumn>
         <parentNode class="com.github.javaparser.ast.body.MethodDeclaration" reference="../../.."/>
         <childrenNodes class="linked-list">
@@ -947,157 +947,20 @@
             <beginLine>23</beginLine>
             <beginColumn>9</beginColumn>
             <endLine>23</endLine>
-            <endColumn>94</endColumn>
-            <parentNode class="com.github.javaparser.ast.stmt.BlockStmt" reference="../../.."/>
-            <childrenNodes class="linked-list">
-              <com.github.javaparser.ast.expr.MethodCallExpr>
-                <beginLine>23</beginLine>
-                <beginColumn>9</beginColumn>
-                <endLine>23</endLine>
-                <endColumn>93</endColumn>
-                <parentNode class="com.github.javaparser.ast.stmt.ExpressionStmt" reference="../../.."/>
-                <childrenNodes class="linked-list">
-                  <com.github.javaparser.ast.expr.FieldAccessExpr>
-                    <beginLine>23</beginLine>
-                    <beginColumn>9</beginColumn>
-                    <endLine>23</endLine>
-                    <endColumn>18</endColumn>
-                    <parentNode class="com.github.javaparser.ast.expr.MethodCallExpr" reference="../../.."/>
-                    <childrenNodes class="linked-list">
-                      <com.github.javaparser.ast.expr.NameExpr>
-                        <beginLine>23</beginLine>
-                        <beginColumn>9</beginColumn>
-                        <endLine>23</endLine>
-                        <endColumn>14</endColumn>
-                        <parentNode class="com.github.javaparser.ast.expr.FieldAccessExpr" reference="../../.."/>
-                        <childrenNodes class="linked-list"/>
-                        <orphanComments class="linked-list"/>
-                        <name>System</name>
-                      </com.github.javaparser.ast.expr.NameExpr>
-                    </childrenNodes>
-                    <orphanComments class="linked-list"/>
-                    <scope class="com.github.javaparser.ast.expr.NameExpr" reference="../childrenNodes/com.github.javaparser.ast.expr.NameExpr"/>
-                    <field>
-                      <beginLine>23</beginLine>
-                      <beginColumn>16</beginColumn>
-                      <endLine>23</endLine>
-                      <endColumn>18</endColumn>
-                      <childrenNodes class="linked-list"/>
-                      <orphanComments class="linked-list"/>
-                      <name>out</name>
-                    </field>
-                  </com.github.javaparser.ast.expr.FieldAccessExpr>
-                  <com.github.javaparser.ast.expr.BinaryExpr>
-                    <beginLine>23</beginLine>
-                    <beginColumn>28</beginColumn>
-                    <endLine>23</endLine>
-                    <endColumn>92</endColumn>
-                    <parentNode class="com.github.javaparser.ast.expr.MethodCallExpr" reference="../../.."/>
-                    <childrenNodes class="linked-list">
-                      <com.github.javaparser.ast.expr.StringLiteralExpr>
-                        <beginLine>23</beginLine>
-                        <beginColumn>28</beginColumn>
-                        <endLine>23</endLine>
-                        <endColumn>37</endColumn>
-                        <parentNode class="com.github.javaparser.ast.expr.BinaryExpr" reference="../../.."/>
-                        <childrenNodes class="linked-list"/>
-                        <orphanComments class="linked-list"/>
-                        <value>THREADS </value>
-                      </com.github.javaparser.ast.expr.StringLiteralExpr>
-                      <com.github.javaparser.ast.expr.MethodCallExpr>
-                        <beginLine>23</beginLine>
-                        <beginColumn>41</beginColumn>
-                        <endLine>23</endLine>
-                        <endColumn>92</endColumn>
-                        <parentNode class="com.github.javaparser.ast.expr.BinaryExpr" reference="../../.."/>
-                        <childrenNodes class="linked-list">
-                          <com.github.javaparser.ast.expr.MethodCallExpr>
-                            <beginLine>23</beginLine>
-                            <beginColumn>41</beginColumn>
-                            <endLine>23</endLine>
-                            <endColumn>75</endColumn>
-                            <parentNode class="com.github.javaparser.ast.expr.MethodCallExpr" reference="../../.."/>
-                            <childrenNodes class="linked-list">
-                              <com.github.javaparser.ast.expr.NameExpr>
-                                <beginLine>23</beginLine>
-                                <beginColumn>41</beginColumn>
-                                <endLine>23</endLine>
-                                <endColumn>57</endColumn>
-                                <parentNode class="com.github.javaparser.ast.expr.MethodCallExpr" reference="../../.."/>
-                                <childrenNodes class="linked-list"/>
-                                <orphanComments class="linked-list"/>
-                                <name>ManagementFactory</name>
-                              </com.github.javaparser.ast.expr.NameExpr>
-                            </childrenNodes>
-                            <orphanComments class="linked-list"/>
-                            <scope class="com.github.javaparser.ast.expr.NameExpr" reference="../childrenNodes/com.github.javaparser.ast.expr.NameExpr"/>
-                            <name>
-                              <beginLine>23</beginLine>
-                              <beginColumn>59</beginColumn>
-                              <endLine>23</endLine>
-                              <endColumn>73</endColumn>
-                              <childrenNodes class="linked-list"/>
-                              <orphanComments class="linked-list"/>
-                              <name>getThreadMXBean</name>
-                            </name>
-                          </com.github.javaparser.ast.expr.MethodCallExpr>
-                        </childrenNodes>
-                        <orphanComments class="linked-list"/>
-                        <scope class="com.github.javaparser.ast.expr.MethodCallExpr" reference="../childrenNodes/com.github.javaparser.ast.expr.MethodCallExpr"/>
-                        <name>
-                          <beginLine>23</beginLine>
-                          <beginColumn>77</beginColumn>
-                          <endLine>23</endLine>
-                          <endColumn>90</endColumn>
-                          <childrenNodes class="linked-list"/>
-                          <orphanComments class="linked-list"/>
-                          <name>getThreadCount</name>
-                        </name>
-                      </com.github.javaparser.ast.expr.MethodCallExpr>
-                    </childrenNodes>
-                    <orphanComments class="linked-list"/>
-                    <left class="com.github.javaparser.ast.expr.StringLiteralExpr" reference="../childrenNodes/com.github.javaparser.ast.expr.StringLiteralExpr"/>
-                    <right class="com.github.javaparser.ast.expr.MethodCallExpr" reference="../childrenNodes/com.github.javaparser.ast.expr.MethodCallExpr"/>
-                    <op>plus</op>
-                  </com.github.javaparser.ast.expr.BinaryExpr>
-                </childrenNodes>
-                <orphanComments class="linked-list"/>
-                <scope class="com.github.javaparser.ast.expr.FieldAccessExpr" reference="../childrenNodes/com.github.javaparser.ast.expr.FieldAccessExpr"/>
-                <name>
-                  <beginLine>23</beginLine>
-                  <beginColumn>20</beginColumn>
-                  <endLine>23</endLine>
-                  <endColumn>26</endColumn>
-                  <childrenNodes class="linked-list"/>
-                  <orphanComments class="linked-list"/>
-                  <name>println</name>
-                </name>
-                <args class="linked-list">
-                  <com.github.javaparser.ast.expr.BinaryExpr reference="../../childrenNodes/com.github.javaparser.ast.expr.BinaryExpr"/>
-                </args>
-              </com.github.javaparser.ast.expr.MethodCallExpr>
-            </childrenNodes>
-            <orphanComments class="linked-list"/>
-            <expr class="com.github.javaparser.ast.expr.MethodCallExpr" reference="../childrenNodes/com.github.javaparser.ast.expr.MethodCallExpr"/>
-          </com.github.javaparser.ast.stmt.ExpressionStmt>
-          <com.github.javaparser.ast.stmt.ExpressionStmt>
-            <beginLine>24</beginLine>
-            <beginColumn>9</beginColumn>
-            <endLine>24</endLine>
             <endColumn>19</endColumn>
             <parentNode class="com.github.javaparser.ast.stmt.BlockStmt" reference="../../.."/>
             <childrenNodes class="linked-list">
               <com.github.javaparser.ast.expr.VariableDeclarationExpr>
-                <beginLine>24</beginLine>
+                <beginLine>23</beginLine>
                 <beginColumn>9</beginColumn>
-                <endLine>24</endLine>
+                <endLine>23</endLine>
                 <endColumn>18</endColumn>
                 <parentNode class="com.github.javaparser.ast.stmt.ExpressionStmt" reference="../../.."/>
                 <childrenNodes class="linked-list">
                   <com.github.javaparser.ast.type.PrimitiveType>
-                    <beginLine>24</beginLine>
+                    <beginLine>23</beginLine>
                     <beginColumn>9</beginColumn>
-                    <endLine>24</endLine>
+                    <endLine>23</endLine>
                     <endColumn>11</endColumn>
                     <parentNode class="com.github.javaparser.ast.expr.VariableDeclarationExpr" reference="../../.."/>
                     <childrenNodes class="linked-list"/>
@@ -1105,16 +968,16 @@
                     <type>Int</type>
                   </com.github.javaparser.ast.type.PrimitiveType>
                   <com.github.javaparser.ast.body.VariableDeclarator>
-                    <beginLine>24</beginLine>
+                    <beginLine>23</beginLine>
                     <beginColumn>13</beginColumn>
-                    <endLine>24</endLine>
+                    <endLine>23</endLine>
                     <endColumn>18</endColumn>
                     <parentNode class="com.github.javaparser.ast.expr.VariableDeclarationExpr" reference="../../.."/>
                     <childrenNodes class="linked-list">
                       <com.github.javaparser.ast.body.VariableDeclaratorId>
-                        <beginLine>24</beginLine>
+                        <beginLine>23</beginLine>
                         <beginColumn>13</beginColumn>
-                        <endLine>24</endLine>
+                        <endLine>23</endLine>
                         <endColumn>13</endColumn>
                         <parentNode class="com.github.javaparser.ast.body.VariableDeclarator" reference="../../.."/>
                         <childrenNodes class="linked-list"/>
@@ -1123,9 +986,9 @@
                         <arrayCount>0</arrayCount>
                       </com.github.javaparser.ast.body.VariableDeclaratorId>
                       <com.github.javaparser.ast.expr.IntegerLiteralExpr>
-                        <beginLine>24</beginLine>
+                        <beginLine>23</beginLine>
                         <beginColumn>17</beginColumn>
-                        <endLine>24</endLine>
+                        <endLine>23</endLine>
                         <endColumn>18</endColumn>
                         <parentNode class="com.github.javaparser.ast.body.VariableDeclarator" reference="../../.."/>
                         <childrenNodes class="linked-list"/>
@@ -1150,30 +1013,30 @@
             <expr class="com.github.javaparser.ast.expr.VariableDeclarationExpr" reference="../childrenNodes/com.github.javaparser.ast.expr.VariableDeclarationExpr"/>
           </com.github.javaparser.ast.stmt.ExpressionStmt>
           <com.github.javaparser.ast.stmt.ExpressionStmt>
-            <beginLine>25</beginLine>
+            <beginLine>24</beginLine>
             <beginColumn>9</beginColumn>
-            <endLine>25</endLine>
+            <endLine>24</endLine>
             <endColumn>37</endColumn>
             <parentNode class="com.github.javaparser.ast.stmt.BlockStmt" reference="../../.."/>
             <childrenNodes class="linked-list">
               <com.github.javaparser.ast.expr.MethodCallExpr>
-                <beginLine>25</beginLine>
+                <beginLine>24</beginLine>
                 <beginColumn>9</beginColumn>
-                <endLine>25</endLine>
+                <endLine>24</endLine>
                 <endColumn>36</endColumn>
                 <parentNode class="com.github.javaparser.ast.stmt.ExpressionStmt" reference="../../.."/>
                 <childrenNodes class="linked-list">
                   <com.github.javaparser.ast.expr.FieldAccessExpr>
-                    <beginLine>25</beginLine>
+                    <beginLine>24</beginLine>
                     <beginColumn>9</beginColumn>
-                    <endLine>25</endLine>
+                    <endLine>24</endLine>
                     <endColumn>18</endColumn>
                     <parentNode class="com.github.javaparser.ast.expr.MethodCallExpr" reference="../../.."/>
                     <childrenNodes class="linked-list">
                       <com.github.javaparser.ast.expr.NameExpr>
-                        <beginLine>25</beginLine>
+                        <beginLine>24</beginLine>
                         <beginColumn>9</beginColumn>
-                        <endLine>25</endLine>
+                        <endLine>24</endLine>
                         <endColumn>14</endColumn>
                         <parentNode class="com.github.javaparser.ast.expr.FieldAccessExpr" reference="../../.."/>
                         <childrenNodes class="linked-list"/>
@@ -1184,9 +1047,9 @@
                     <orphanComments class="linked-list"/>
                     <scope class="com.github.javaparser.ast.expr.NameExpr" reference="../childrenNodes/com.github.javaparser.ast.expr.NameExpr"/>
                     <field>
-                      <beginLine>25</beginLine>
+                      <beginLine>24</beginLine>
                       <beginColumn>16</beginColumn>
-                      <endLine>25</endLine>
+                      <endLine>24</endLine>
                       <endColumn>18</endColumn>
                       <childrenNodes class="linked-list"/>
                       <orphanComments class="linked-list"/>
@@ -1194,16 +1057,16 @@
                     </field>
                   </com.github.javaparser.ast.expr.FieldAccessExpr>
                   <com.github.javaparser.ast.expr.MethodCallExpr>
-                    <beginLine>25</beginLine>
+                    <beginLine>24</beginLine>
                     <beginColumn>28</beginColumn>
-                    <endLine>25</endLine>
+                    <endLine>24</endLine>
                     <endColumn>35</endColumn>
                     <parentNode class="com.github.javaparser.ast.expr.MethodCallExpr" reference="../../.."/>
                     <childrenNodes class="linked-list">
                       <com.github.javaparser.ast.expr.NameExpr>
-                        <beginLine>25</beginLine>
+                        <beginLine>24</beginLine>
                         <beginColumn>34</beginColumn>
-                        <endLine>25</endLine>
+                        <endLine>24</endLine>
                         <endColumn>34</endColumn>
                         <parentNode class="com.github.javaparser.ast.expr.MethodCallExpr" reference="../../.."/>
                         <childrenNodes class="linked-list"/>
@@ -1213,9 +1076,9 @@
                     </childrenNodes>
                     <orphanComments class="linked-list"/>
                     <name>
-                      <beginLine>25</beginLine>
+                      <beginLine>24</beginLine>
                       <beginColumn>28</beginColumn>
-                      <endLine>25</endLine>
+                      <endLine>24</endLine>
                       <endColumn>32</endColumn>
                       <childrenNodes class="linked-list"/>
                       <orphanComments class="linked-list"/>
@@ -1229,9 +1092,9 @@
                 <orphanComments class="linked-list"/>
                 <scope class="com.github.javaparser.ast.expr.FieldAccessExpr" reference="../childrenNodes/com.github.javaparser.ast.expr.FieldAccessExpr"/>
                 <name>
-                  <beginLine>25</beginLine>
+                  <beginLine>24</beginLine>
                   <beginColumn>20</beginColumn>
-                  <endLine>25</endLine>
+                  <endLine>24</endLine>
                   <endColumn>26</endColumn>
                   <childrenNodes class="linked-list"/>
                   <orphanComments class="linked-list"/>
@@ -1250,7 +1113,6 @@
         <stmts class="linked-list">
           <com.github.javaparser.ast.stmt.ExpressionStmt reference="../../childrenNodes/com.github.javaparser.ast.stmt.ExpressionStmt"/>
           <com.github.javaparser.ast.stmt.ExpressionStmt reference="../../childrenNodes/com.github.javaparser.ast.stmt.ExpressionStmt[2]"/>
-          <com.github.javaparser.ast.stmt.ExpressionStmt reference="../../childrenNodes/com.github.javaparser.ast.stmt.ExpressionStmt[3]"/>
         </stmts>
       </com.github.javaparser.ast.stmt.BlockStmt>
     </childrenNodes>
@@ -1273,7 +1135,7 @@
     <body reference="../childrenNodes/com.github.javaparser.ast.stmt.BlockStmt"/>
     <isDefault>false</isDefault>
   </callingMethod>
-  <expectedOutput>1134903170</expectedOutput>
-  <executionTime>100</executionTime>
-  <instructionCount>5000</instructionCount>
+  <expectedOutput>test_output</expectedOutput>
+  <executionTime>73</executionTime>
+  <instructionCount>150608493</instructionCount>
 </org.ggraver.DPlib.Model>
