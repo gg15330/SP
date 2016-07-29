@@ -79,7 +79,7 @@ class SourceAnalyser
 
     }
 
-    void findMethod(String methodName)
+    MethodDeclaration findMethod(String methodName)
     throws AnalysisException
     {
         MethodDeclarationVisitor methodDeclarationVisitor = new MethodDeclarationVisitor();
@@ -88,25 +88,23 @@ class SourceAnalyser
         {
             if (md.getName().equals(methodName))
             {
-                methodDeclaration = md;
-                return;
+                return md;
             }
         }
         throw new AnalysisException("expected MethodDeclaration \"" + methodName
                                             + "\" does not exist in source file.");
     }
 
-    void findMethodCall(Node node, String methodCallName)
+    MethodCallExpr findMethodCall(MethodDeclaration parentMethod, String methodCallName)
     throws AnalysisException
     {
         MethodCallExprVisitor methodCallExprVisitor = new MethodCallExprVisitor();
-        methodCallExprVisitor.visit(cu, null);
+        methodCallExprVisitor.visit(parentMethod, null);
         for (MethodCallExpr mce : methodCallExprVisitor.getMethodCalls())
         {
             if (mce.getName().equals(methodCallName))
             {
-                methodCall = mce;
-                return;
+                return mce;
             }
         }
         throw new AnalysisException("expected MethodDeclaration \"" + methodName
@@ -234,9 +232,6 @@ class SourceAnalyser
         @Override
         public void visit(MethodCallExpr n, Object arg)
         {
-            System.out.println("[" + n.getBeginLine() + "] Method call: " + n.getName());
-            System.out.println("Args: " + n.getArgs());
-            System.out.println("Scope: " + n.getScope());
             methodCalls.add(n);
             List<Expression> args = n.getArgs();
             for(Expression e : args) {

@@ -3,46 +3,20 @@ import java.lang.*;
 
 public class LIS {
 
-    private int[] arr;
-    private int max_ref;
-    private int[] solution;
+    private static int[] arr;
+    private static int max_ref;
+    private static int[] solution;
 
     public static void main(String[] args) {
-        LIS lis = new LIS();
+
         int[] A = { 10, 22, 9, 33, 21, 50, 41, 60, 80 };
-        int[] B = lis.randarr();
+        int l = lisDP(A, (A.length));
+        System.out.println(l);
 
-        long t1 = System.nanoTime();
-        System.out.println("l: " + Arrays.toString(B));
-        int l = lis.rec(B, (B.length));
-        System.out.println("Length of LIS = " + l);
-        long t2 = System.nanoTime();
-        double sec = (double)((t2 - t1) / 1000000000.0);
-        System.out.println("Recursive solution elapsed time: " + sec + "seconds");
-        
-        t1 = System.nanoTime();
-        System.out.println("l: " + Arrays.toString(B));
-        l = lis.dyn(B, (B.length));
-        System.out.println("Length of LIS = " + l);
-        t2 = System.nanoTime();
-        sec = (double)((t2 - t1) / 1000000000.0);
-        System.out.println("Dynamic solution elapsed time: " + sec + " seconds");
-
-    }
-
-    // generate random number array
-    private int[] randarr() {
-        Random r = new Random();
-
-        int[] rand = new int[20];
-        for(int i = 0; i < 20; i++) {
-            rand[i] = r.nextInt(20);
-        }
-        return rand;
     }
 
     // find recursive solution
-    private int rec(int[] arr, int n)
+    private static int lisRec(int[] arr, int n)
     {
        // base case
        if (n == 1)
@@ -57,7 +31,7 @@ public class LIS {
            update it */
         for (int i = 1; i < n; i++)
         {
-            res = rec(arr, i);
+            res = lisRec(arr, i);
             if (arr[i-1] < arr[n-1] && res + 1 > max_ending_here)
                 max_ending_here = res + 1;
         }
@@ -71,7 +45,7 @@ public class LIS {
         return max_ending_here;
    }
 
-    private int dyn(int[] arr, int n) {
+    private static int lisDP(int[] arr, int n) {
         int lis[] = new int[n];
         int i,j,max = 0;
 

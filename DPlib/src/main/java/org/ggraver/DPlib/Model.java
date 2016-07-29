@@ -14,12 +14,15 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by george on 28/07/16.
  */
-class Result
+class Model
+        implements Serializable
 {
 
     private MethodDeclaration method;
@@ -28,15 +31,16 @@ class Result
     private long executionTime;
     private long instructionCount;
 
-    Result() {}
+    Model() {}
 
-    Result(File XMLFile)
+    Model(File XMLFile)
     {
         parseXML(XMLFile);
     }
 
-//    interpret XML file into analysable data
-    private void parseXML(File f) throws NullPointerException
+    //    interpret XML file into analysable data
+    private void parseXML(File f)
+    throws NullPointerException
     {
         if (f == null)
         {

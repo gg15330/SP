@@ -1,0 +1,17 @@
+<org.ggraver.DPlib.Model>
+  <method>
+    <beginLine>0</beginLine>
+    <beginColumn>0</beginColumn>
+    <endLine>0</endLine>
+    <endColumn>0</endColumn>
+    <childrenNodes class="linked-list"/>
+    <orphanComments class="linked-list"/>
+    <modifiers>0</modifiers>
+    <arrayCount>0</arrayCount>
+    <isDefault>false</isDefault>
+  </method>
+  <inputs/>
+  <outputs/>
+  <executionTime>100</executionTime>
+  <instructionCount>5000</instructionCount>
+</org.ggraver.DPlib.Model>

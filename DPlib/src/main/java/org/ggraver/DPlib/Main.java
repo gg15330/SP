@@ -66,29 +66,6 @@ public class Main
             System.err.println(e.getMessage());
         }
 
-        try
-        {
-            SourceAnalyser sa = new SourceAnalyser(sourceFile, methodName);
-            sa.findMethodCall(sa.getCompilationUnit(), methodName);
-            MethodCallExpr call = sa.getMethodCall();
-
-            System.out.println("------------------------------------------");
-            System.out.println("[" + call.getBeginLine() + "] Method call: " + call.getName());
-            List<Expression> args = call.getArgs();
-            for(Expression e : args) {
-                System.out.println("Arg: " + e);
-                System.out.println("Arg class: " + e.getClass());
-                System.out.println("Arg parent: " + e.getParentNode());
-                System.out.println("Arg parent class: " + e.getParentNode().getClass());
-                System.out.println("Arg parent data: " + e.getParentNode().getData());
-            }
-            System.out.println("Scope: " + call.getScope());
-
-        }
-        catch (AnalysisException e)
-        {
-            e.printStackTrace();
-        }
 ////             create method properties
 //            List<Parameter> parameterList = new ArrayList<>();
 //
