@@ -112,6 +112,16 @@ class ClassAnalyser
         File temp = new File(dir + "/" + fileName);
         System.out.println("Temp file name: " + temp.getPath());
         temp.deleteOnExit();
+
+        if(!temp.createNewFile())
+        {
+            throw new Error("Temp file \"" + temp.getName() + "\" already exists.");
+        }
+
+        if(!temp.exists())
+        {
+            throw new Error("Could not create temp file.");
+        }
         return temp;
     }
 

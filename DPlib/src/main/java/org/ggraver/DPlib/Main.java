@@ -56,27 +56,16 @@ public class Main
         {
             Modeler modeler = new Modeler(tutorFile, methodName);
             Model model = modeler.model();
+
+//             this part will eventually go in a solver/marker module
             SourceAnalyser sa = new SourceAnalyser(studentFile, methodName);
             MethodDeclaration studentMain = sa.findMethod("main");
-
-            for (Statement s : model.getCallingMethod().getBody().getStmts())
-            {
-                System.out.println("[TUTOR] " + s);
-            }
-            for (Statement s : studentMain.getBody().getStmts())
-            {
-                System.out.println("[STUDENT] " + s);
-            }
 
             if (!model.getCallingMethod().getBody().getStmts()
                       .equals(studentMain.getBody().getStmts()))
             {
                 throw new Error("Main methods do not match.");
             }
-            ClassAnalyser ca = new ClassAnalyser(tutorFile);
-            ca.analyse();
-            System.out.println("Time: " + ca.getExecutionTime());
-            System.out.println("Instructions: " + NumberFormat.getNumberInstance(Locale.UK).format(ca.getInstructionCount()));
         }
         catch (IOException e)
         {

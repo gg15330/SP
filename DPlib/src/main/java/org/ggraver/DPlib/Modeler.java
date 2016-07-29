@@ -53,10 +53,9 @@ class Modeler
 
             //get Model object back from XML file
             XStream xStream = new XStream();
-            File getBack = new File(sourceFile.getParentFile(), "model.xml");
-            FileInputStream fis = new FileInputStream(getBack);
-            Model newModel = new Model();
-            xStream.fromXML(fis, newModel);
+            File modelFile = new File(sourceFile.getParentFile(), "model.xml");
+            FileInputStream fis = new FileInputStream(modelFile);
+            Model newModel = (Model) xStream.fromXML(fis);
         }
         catch (FileNotFoundException | AnalysisException e)
         {
