@@ -1,66 +1,31 @@
 package org.ggraver.DPlib;
 
 import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.body.Parameter;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.*;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by george on 28/07/16.
  */
 class Model
-        implements Serializable
 {
 
-    private MethodDeclaration method;
-    private List<Object> inputs;
-    private List<Object> outputs;
+    private MethodDeclaration methodToAnalyse;
+    private MethodDeclaration callingMethod;
+    private String expectedOutput;
     private long executionTime;
     private long instructionCount;
 
     Model() {}
 
-    Model(File XMLFile)
+    public void setMethodToAnalyse(MethodDeclaration methodToAnalyse)
     {
-        parseXML(XMLFile);
+        this.methodToAnalyse = methodToAnalyse;
     }
 
-    //    interpret XML file into analysable data
-    private void parseXML(File f)
-    throws NullPointerException
+    public void setExpectedOutput(String expectedOutputs)
     {
-        if (f == null)
-        {
-            throw new NullPointerException("XML result file should not be null.");
-        }
-    }
-
-    public void setMethod(MethodDeclaration method)
-    {
-        this.method = method;
-    }
-
-    public void setInputs(List<Object> inputs)
-    {
-        this.inputs = inputs;
-    }
-
-    public void setOutputs(List<Object> outputs)
-    {
-        this.outputs = outputs;
+        this.expectedOutput = expectedOutputs;
     }
 
     public void setExecutionTime(long executionTime)
@@ -73,19 +38,14 @@ class Model
         this.instructionCount = instructionCount;
     }
 
-    public MethodDeclaration getMethod()
+    public MethodDeclaration getMethodToAnalyse()
     {
-        return method;
+        return methodToAnalyse;
     }
 
-    public List getInputs()
+    public String getExpectedOutputs()
     {
-        return inputs;
-    }
-
-    public List getOutputs()
-    {
-        return outputs;
+        return expectedOutput;
     }
 
     public long getExecutionTime()
@@ -98,4 +58,13 @@ class Model
         return instructionCount;
     }
 
+    public MethodDeclaration getCallingMethod()
+    {
+        return callingMethod;
+    }
+
+    public void setCallingMethod(MethodDeclaration callingMethod)
+    {
+        this.callingMethod = callingMethod;
+    }
 }

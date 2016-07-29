@@ -1,66 +1,77 @@
 package org.ggraver.DPlib;
 
 import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.expr.Expression;
-import com.github.javaparser.ast.expr.MethodCallExpr;
+import com.github.javaparser.ast.stmt.Statement;
 import org.apache.commons.io.FilenameUtils;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 //overall program control
 public class Main
 {
 
-    private File sourceFile;
+    private File tutorFile;
+    private File studentFile;
     private String methodName;
 
     private Main(String file, String methodName)
     {
 
-        this.sourceFile = new File(file);
+        this.tutorFile = new File(file);
+        this.studentFile = new File("sample/fib/FibonacciDPStudent.java");
 
-        if (!this.sourceFile.exists()
-                || this.sourceFile.isDirectory()
-                || !FilenameUtils.getExtension(this.sourceFile.getName()).equals("java"))
+        if (!this.tutorFile.exists()
+                || this.tutorFile.isDirectory()
+                || !FilenameUtils.getExtension(this.tutorFile.getName()).equals("java")
+                || !this.studentFile.exists()
+                || this.studentFile.isDirectory()
+                || !FilenameUtils.getExtension(this.studentFile.getName()).equals("java"))
         {
-            System.err.println("\nInvalid sourceFile name: " + file + "\n");
+            System.err.println("\nInvalid tutorFile name: " + file + "\n");
             System.exit(1);
         }
-
         this.methodName = methodName;
-
     }
 
     public static void main(String[] args)
     {
-
         if (args.length != 2)
         {
-            System.out.println("\nUsage: java -jar DPLib-1.0-SNAPSHOT.jar <path/to.sourceFile.java>\n");
+            System.out.println("\nUsage: java -jar DPLib-1.0-SNAPSHOT.jar <path/to.tutorFile.java>\n");
             System.exit(1);
         }
 
         Main main = new Main(args[0], args[1]);
         main.run();
-
     }
 
     private void run()
     {
         try
         {
-            Modeler modeler = new Modeler(sourceFile, methodName);
-            modeler.model();
+            Modeler modeler = new Modeler(tutorFile, methodName);
+            Model model = modeler.model();
+            SourceAnalyser sa = new SourceAnalyser(studentFile, methodName);
+            MethodDeclaration studentMain = sa.findMethod("main");
+            for(Statement s : model.getCallingMethod().getBody().getStmts()) {
+                System.out.println("[TUTOR] " + s);
+            }
+            for(Statement s : studentMain.getBody().getStmts()) {
+                System.out.println("[STUDENT] " + s);
+            }
+
+            if(!model.getCallingMethod().getBody().getStmts().equals(studentMain.getBody().getStmts())) {
+                throw new Error("Main methods do not match.");
+            }
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
-        catch (ModelingException e)
+        catch (ModelingException | AnalysisException e)
         {
             e.printStackTrace();
             System.err.println(e.getMessage());

@@ -27,6 +27,7 @@
               <goal>shade</goal>
             </goals>
             <configuration>
+              <minimizeJar>false</minimizeJar>
               <transformers>
                 <transformer>
                   <mainClass>org.ggraver.DPlib.Main</mainClass>
@@ -35,9 +36,6 @@
             </configuration>
           </execution>
         </executions>
-        <configuration>
-          <minimizeJar>false</minimizeJar>
-        </configuration>
       </plugin>
     </plugins>
   </build>

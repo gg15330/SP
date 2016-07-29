@@ -1,28 +1,12 @@
 package org.ggraver.DPlib;
 
 import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.body.Parameter;
 import com.thoughtworks.xstream.XStream;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.ws.Service;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by george on 22/07/16.
@@ -33,9 +17,6 @@ class Modeler
 
     private File sourceFile;
     private String methodName;
-    private Model model;
-    private List<Parameter> inputs = new ArrayList<Parameter>();
-    private List<Parameter> outputs = new ArrayList<Parameter>();
 
     Modeler(File sourceFile, String methodName)
     throws IOException
@@ -51,60 +32,36 @@ class Modeler
         }
     }
 
-    void model(File sourceFile)
-    {
-    }
-
     //    remember to handle input parameterList
-    void model()
+    Model model()
     throws ModelingException
     {
+        Model model = new Model();
         try
         {
             SourceAnalyser sa = new SourceAnalyser(sourceFile, methodName);
             MethodDeclaration main = sa.findMethod("main");
-            String body = main.toString();
-//            System.out.println("Main body:\n" + body);
-            String comparison = "public static void main(String[] args) {\n" +
-                    "    int n = 45;\n" +
-                    "    System.out.println(fibDP(n));\n" +
-                    "}";
-//            System.out.println("Comparison:\n" + comparison);
-            if (!body.equals(comparison))
-            {
-                throw new ModelingException("Main body does not match.");
-            }
-        }
-        catch (AnalysisException e)
-        {
-            e.printStackTrace();
-        }
+            model.setMethodToAnalyse(new MethodDeclaration());
+            model.setCallingMethod(main);
+            model.setExpectedOutput("1134903170");
+            model.setExecutionTime(100);
+            model.setInstructionCount(5000);
+            generateXML(model);
 
-        model = new Model();
-        model.setMethod(new MethodDeclaration());
-        model.setInputs(new ArrayList<Object>());
-        model.setOutputs(new ArrayList<Object>());
-        model.setExecutionTime(100);
-        model.setInstructionCount(5000);
-        generateXML(model);
-
-        try
-        {
+            //get Model object back from XML file
             XStream xStream = new XStream();
             File getBack = new File(sourceFile.getParentFile(), "model.xml");
             FileInputStream fis = new FileInputStream(getBack);
-            Model getModel = new Model();
-            xStream.fromXML(fis, getModel);
-            System.out.println("Model:\n" + getModel.getInstructionCount() +
-                                       "\n" + getModel.getExecutionTime());
+            Model newModel = new Model();
+            xStream.fromXML(fis, newModel);
         }
-        catch (FileNotFoundException e)
+        catch (FileNotFoundException | AnalysisException e)
         {
-            e.printStackTrace();
+            throw new ModelingException(e);
         }
+        return model;
     }
 
-    //    template sourced from http://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
     private void generateXML(Model m)
     {
         File XML = new File(sourceFile.getParentFile(), "model.xml");
@@ -125,36 +82,6 @@ class Modeler
             throw new Error("XML file does not exist.");
         }
         System.out.println("Model file generated");
-    }
-
-    private void addInputToXML(Object o, Element input)
-    {
-
-    }
-
-    private void addOutputToXML(Object o, Element output)
-    {
-
-    }
-
-    void setMethod(String methodName)
-    {
-
-    }
-
-    void setInputs(String... inputs)
-    {
-
-    }
-
-    void methodToAnalyse(String s)
-    {
-
-    }
-
-    void methodParameters()
-    {
-
     }
 
 }
