@@ -37,6 +37,7 @@ class Modeler
     throws ModelingException
     {
         Model model = new Model();
+
         try
         {
             SourceAnalyser sa = new SourceAnalyser(sourceFile, methodName);
@@ -61,6 +62,7 @@ class Modeler
         {
             throw new ModelingException(e);
         }
+
         return model;
     }
 

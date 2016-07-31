@@ -30,7 +30,7 @@
               <minimizeJar>false</minimizeJar>
               <transformers>
                 <transformer>
-                  <mainClass>org.ggraver.DPlib.Main</mainClass>
+                  <mainClass>org.ggraver.DPlib.Instrumenter</mainClass>
                 </transformer>
               </transformers>
             </configuration>

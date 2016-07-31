@@ -72,6 +72,26 @@ class ClassAnalyser
         {
             throw new Error(e);
         }
+
+        ProcessBuilder build = new ProcessBuilder(
+                "java", "org.objectweb.asm.util.ASMifier",
+                "../../src/main/java/org/ggraver/DPlib/TestInstrumented");
+        build.directory(dir);
+        build.inheritIO();
+        build.redirectErrorStream(true);
+        Process p;
+
+        try
+        {
+            p = build.start();
+            p.waitFor();
+        }
+        catch (IOException | InterruptedException e)
+        {
+            throw new Error(e);
+        }
+
+
     }
 
     private long execute(ProcessBuilder pb)
