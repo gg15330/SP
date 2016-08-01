@@ -84,7 +84,7 @@ class SourceAnalyser
     {
         MethodDeclarationVisitor methodDeclarationVisitor = new MethodDeclarationVisitor();
         methodDeclarationVisitor.visit(cu, null);
-        for (MethodDeclaration md : methodDeclarationVisitor.methods())
+        for (MethodDeclaration md : methodDeclarationVisitor.getMethods())
         {
             if (md.getName().equals(methodName))
             {
@@ -216,7 +216,7 @@ class SourceAnalyser
             methods.add(n);
         }
 
-        List<MethodDeclaration> methods()
+        List<MethodDeclaration> getMethods()
         {
             return methods;
         }

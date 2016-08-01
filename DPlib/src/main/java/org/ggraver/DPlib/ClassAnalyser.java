@@ -110,7 +110,6 @@ class ClassAnalyser
     throws IOException
     {
         File temp = new File(dir + "/" + fileName);
-        System.out.println("Temp file name: " + temp.getPath());
         temp.deleteOnExit();
 
         if(!temp.createNewFile())

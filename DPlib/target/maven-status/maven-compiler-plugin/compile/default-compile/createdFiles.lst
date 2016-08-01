@@ -1,9 +1,11 @@
 org/ggraver/DPlib/Method.class
+org/ggraver/DPlib/Command.class
 org/ggraver/DPlib/SourceAnalyser$MethodDeclarationVisitor.class
 org/ggraver/DPlib/SourceAnalyser$1.class
 org/ggraver/DPlib/MethodAnalyser.class
 org/ggraver/DPlib/SourceAnalyser$MethodCallExprVisitor.class
 org/ggraver/DPlib/IO.class
+org/ggraver/DPlib/FileHandler.class
 org/ggraver/DPlib/Exception/ModelingException.class
 org/ggraver/DPlib/MethodVis.class
 org/ggraver/DPlib/Main.class
