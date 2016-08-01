@@ -2,17 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dbf27813-b393-4f5c-a162-70ce6f80ac8c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/DPlib-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/DPlib/target/DPlib-1.0-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/ClassAnalyser.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/ClassAnalyser.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Main.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Modeler.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Modeler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/original-DPlib-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/DPlib/target/original-DPlib-1.0-SNAPSHOT.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Command.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/DPlib-1.0-SNAPSHOT.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/ClassAnalyser.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Exception/AnalysisException.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Exception/CompileException.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Exception/ModelingException.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/IO.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Main.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/MethodAnalyser.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/MethodVis.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Model.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Modeler.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Problem.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/ProblemType.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/SourceAnalyser$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/SourceAnalyser$MethodCallExprVisitor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/SourceAnalyser$MethodDeclarationVisitor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/SourceAnalyser.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/maven-archiver/pom.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/original-DPlib-1.0-SNAPSHOT.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/test-classes/dfib.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/test-classes/dfib.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/test-classes/invalid.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/test-classes/invalid.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/test-classes/org/ggraver/DPlib/ClassAnalyserTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/test-classes/org/ggraver/DPlib/SourceAnalyserTest.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/sample/fib/model.xml" afterPath="$PROJECT_DIR$/DPlib/sample/fib/model.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ClassAnalyser.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ClassAnalyser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/IO.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/IO.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Main.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Modeler.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Modeler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/DPlib/target/maven-archiver/pom.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ProblemType.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ProblemType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/DPlib/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
     </list>
     <ignored path="SP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,8 +60,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="571">
-              <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
+            <state relative-caret-position="291">
+              <caret line="50" column="9" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -46,11 +69,43 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Modeler.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="IO.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/IO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="431">
+              <caret line="47" column="54" selection-start-line="47" selection-start-column="54" selection-end-line="47" selection-end-column="54" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Command.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Command.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="70">
+              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProblemType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ProblemType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Modeler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Modeler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="55" column="58" selection-start-line="55" selection-start-column="58" selection-end-line="55" selection-end-column="58" />
+            <state relative-caret-position="-30">
+              <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -61,14 +116,10 @@
       <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+            <state relative-caret-position="95">
+              <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1251#1252#0" expanded="true" />
-                <element signature="e#1287#1288#0" expanded="true" />
-                <element signature="e#1360#1361#0" expanded="true" />
-                <element signature="e#1410#1411#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -77,8 +128,8 @@
       <file leaf-file-name="SourceAnalyser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SourceAnalyser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1344">
-              <caret line="113" column="8" selection-start-line="113" selection-start-column="7" selection-end-line="113" selection-end-column="8" />
+            <state relative-caret-position="137">
+              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
               <folding>
                 <element signature="method#checkMethodProperties#0;class#SourceAnalyser#0" expanded="false" />
                 <element signature="method#duplicateAnnotations#0;class#SourceAnalyser#0" expanded="false" />
@@ -90,7 +141,7 @@
       <file leaf-file-name="ClassAnalyser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ClassAnalyser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
+            <state relative-caret-position="546">
               <caret line="115" column="16" selection-start-line="115" selection-start-column="16" selection-end-line="115" selection-end-column="16" />
               <folding>
                 <element signature="method#ClassAnalyser#0;class#ClassAnalyser#0" expanded="false" />
@@ -109,8 +160,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -128,7 +179,6 @@
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Annotations/Dynamic.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Exceptions/CompileException.java" />
         <option value="$PROJECT_DIR$/DPlib/src/test/resources/invalid.java" />
-        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ProblemType.java" />
         <option value="$PROJECT_DIR$/DPlib/sample/fib/dfib.java" />
         <option value="$PROJECT_DIR$/DPlib/sample/fib/fib.java" />
         <option value="$PROJECT_DIR$/DPlib/sample/fib/FibonnaciRecursive.java" />
@@ -149,8 +199,11 @@
         <option value="$PROJECT_DIR$/DPlib/sample/fib/FibonacciDPStudent.java" />
         <option value="$PROJECT_DIR$/DPlib/sample/fib/FibonacciDP.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ClassAnalyser.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ProblemType.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Command.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Modeler.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Main.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/IO.java" />
       </list>
     </option>
   </component>
@@ -524,7 +577,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="253" width="1368" height="772" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -533,7 +586,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40528634" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4238653" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4238653" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19399707" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -603,13 +656,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ProblemType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
@@ -732,13 +778,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/sample/FileToParse.java" />
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/IO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Method.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
@@ -776,13 +815,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/sample/test/com/sookocheff/codemodel/GeneratedClass.java" />
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ProblemType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/DPlib.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -905,38 +937,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
           <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1251#1252#0" expanded="true" />
-            <element signature="e#1287#1288#0" expanded="true" />
-            <element signature="e#1360#1361#0" expanded="true" />
-            <element signature="e#1410#1411#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SourceAnalyser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1344">
-          <caret line="113" column="8" selection-start-line="113" selection-start-column="7" selection-end-line="113" selection-end-column="8" />
-          <folding>
-            <element signature="method#checkMethodProperties#0;class#SourceAnalyser#0" expanded="false" />
-            <element signature="method#duplicateAnnotations#0;class#SourceAnalyser#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ClassAnalyser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
+        <state relative-caret-position="546">
           <caret line="115" column="16" selection-start-line="115" selection-start-column="16" selection-end-line="115" selection-end-column="16" />
           <folding>
             <element signature="method#ClassAnalyser#0;class#ClassAnalyser#0" expanded="false" />
@@ -949,20 +955,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Main.java">
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Model.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="67" column="13" selection-start-line="67" selection-start-column="13" selection-end-line="67" selection-end-column="13" />
+        <state relative-caret-position="95">
+          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SourceAnalyser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding>
+            <element signature="method#checkMethodProperties#0;class#SourceAnalyser#0" expanded="false" />
+            <element signature="method#duplicateAnnotations#0;class#SourceAnalyser#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ProblemType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Command.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Modeler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="55" column="58" selection-start-line="55" selection-start-column="58" selection-end-line="55" selection-end-column="58" />
+        <state relative-caret-position="-30">
+          <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="50" column="9" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/IO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="47" column="54" selection-start-line="47" selection-start-column="54" selection-end-line="47" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
