@@ -1,94 +1,79 @@
 package org.ggraver.DPlib;
 
-import com.thoughtworks.xstream.XStream;
-import org.apache.commons.io.FilenameUtils;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 
 // IO handling
 class IO
 {
 
-    private File dir;
+    private String command;
+    private String filePath;
+    private String methodName;
 
-    IO()
-    {
-
-    }
-
-    void checkArgs(String[] args)
+    IO(String[] args)
     throws IOException
     {
-        System.out.println("Num of args: " + args.length);
-        if (args.length != 2)
+        if (args.length == 3)
+        {
+            command = args[0];
+            filePath = args[1];
+            if(!command.equals("model"))
+            {
+                fail(new IOException(usage));
+            }
+        }
+        else if(args.length == 2)
+        {
+            command = args[0];
+            filePath = args[1];
+            methodName = args[2];
+            if(!command.equals("solve"))
+            {
+                fail(new IOException(usage));
+            }
+        }
+        else
         {
             throw new IOException(usage);
         }
     }
 
-    private void checkValidSourceFile(File file, String extension)
-    throws IOException
-    {
-        if (!file.exists()
-                || file.isDirectory()
-                || !FilenameUtils.getExtension(file.getPath()).equals(extension))
-        {
-            throw new IOException("Invalid input file: " + file.getPath());
-        }
-    }
-
-    private void checkDir(File)
-    throws IOException
-    {
-        if()
-    }
-
-    private void generateXML(Model m)
-    {
-        File XML = new File(sourceFile.getParentFile(), "model.xml");
-        XStream xstream = new XStream();
-        FileOutputStream fos;
-        try
-        {
-            fos = new FileOutputStream(XML);
-            xstream.toXML(m, fos);
-            fos.close();
-        }
-        catch (IOException e)
-        {
-            throw new Error("Could not serialize Model object to XML.");
-        }
-        if (!XML.exists())
-        {
-            throw new Error("XML file does not exist.");
-        }
-        System.out.println("Model file generated");
-    }
-
     void fail(Exception e)
     {
-        if (!(e instanceof AnalysisException) && !(e instanceof ModelingException))
+        if (!(e instanceof AnalysisException)
+                && !(e instanceof ModelingException)
+                && !(e instanceof IOException))
         {
-            e.printStackTrace();
-            throw new Error("Expected either ModelingException or AnalysisException.");
+            throw new Error("Expected ModelingException, AnalysisException or IOException.");
         }
-        e.printStackTrace();
         System.err.println(e.getMessage());
-        System.exit(1);
     }
 
-    private String usage = "\nUsage: java -jar DPLib-1.0-SNAPSHOT.jar " +
-            "<path/to/file_to_model.java> <method_to_analyse>\n";
+    String getMethodName()
+    {
+        return methodName;
+    }
+
+    String getFilePath()
+    {
+        return filePath;
+    }
+
+    private String usage = "\nUsage:\n" +
+            "\nTo model a problem:\n" +
+            "\njava -jar DPLib-1.0-SNAPSHOT.jar " +
+            "model <path/to/file_to_model.java> <method_to_analyse>\n" +
+            "\nTo solve:\n" +
+            "\njava -jar DPLib-1.0-SNAPSHOT.jar " +
+            "solve <path/to/file_to_solve.java>\n";
 
     private String analysisReport;
 
-    public File getDir()
+    String getCommand()
     {
-        return dir;
+        return command;
     }
-
 }

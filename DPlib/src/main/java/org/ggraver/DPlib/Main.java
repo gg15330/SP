@@ -1,82 +1,66 @@
 package org.ggraver.DPlib;
 
-import com.github.javaparser.ast.body.MethodDeclaration;
-import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
 
-import java.io.File;
 import java.io.IOException;
 
 // overall program control
 public class Main
 {
 
-    private IO io = new IO();
-    private File file;
-    private String methodName;
-
-    private Main(String file, String methodName)
-    {
-        this.file = new File(file);
-        this.methodName = methodName;
-    }
-
     public static void main(String[] args)
     {
-        Main main = new Main(args[0], args[1]);
-        main.run(args);
-    }
-
-    private void run(String[] args)
-    {
+        IO io = null;
+        FileHandler fileHandler = null;
         try
         {
-            io.checkArgs(args);
-            io.checkValidSourceFile(file, "java");
+            io = new IO(args);
+            fileHandler = new FileHandler(io.getFilePath());
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
+            System.exit(1);
         }
 
-        switch (args[0]) {
-            case "model": model(); break;
-            case "solve": solve(); break;
-            default: io.fail(new IOException("Invalid command line")); break;
-        }
-    }
-
-    private void model()
-    {
-        try
-        {
-            Modeler modeler = new Modeler(file, methodName);
-            Model model = modeler.model();
-        }
-        catch (ModelingException e)
-        {
-            io.fail(e);
+        switch (io.getCommand()) {
+            case "model":
+                Modeler modeler = new Modeler(fileHandler.getSourceFile(), io.getMethodName());
+                Model model = null;
+                try
+                {
+                    model = modeler.model();
+                }
+                catch (ModelingException e)
+                {
+                    io.fail(e);
+                    System.exit(1);
+                }
+                fileHandler.generateXML(model);
+                break;
+            case "solve": break;
+            default: throw new Error("Invalid command: " + io.getCommand());
         }
     }
 
     private void solve()
     {
-        try
-        {
-//             this part will eventually go in a solver/marker module
-            SourceAnalyser sa = new SourceAnalyser(studentFile, methodName);
-            MethodDeclaration studentMain = sa.findMethod("main");
-
+//        try
+//        {
+////             this part will eventually go in a solver/marker module
+//            SourceAnalyser sa = new SourceAnalyser(studentFile, methodName);
+//            MethodDeclaration studentMain = sa.findMethod("main");
+//
 //                    if (!model.getCallingMethod().getBody().getStmts()
 //                              .equals(studentMain.getBody().getStmts()))
 //                    {
 //                        throw new Error("Main methods do not match.");
 //                    }
-        }
-        catch (AnalysisException e)
-        {
-            io.fail(e);
-        }
+//        }
+//        catch (AnalysisException e)
+//        {
+//            io.fail(e);
+//        }
     }
 
 }
