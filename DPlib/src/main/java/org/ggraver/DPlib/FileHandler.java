@@ -11,20 +11,21 @@ import java.io.*;
 public class FileHandler
 {
 
-    private File sourceFile;
+    private File file;
     private File dir;
 
-    FileHandler(String file)
+    FileHandler(String file, String ext)
     throws IOException
     {
-        sourceFile = new File(file);
-        checkValidSourceFile(sourceFile, "java");
+        System.out.println("File: " + file);
+        this.file = new File(file);
+        checkValidFile(this.file, ext);
 
-        dir = sourceFile.getParentFile();
+        dir = this.file.getParentFile();
         checkDir(dir);
     }
 
-    private void checkValidSourceFile(File file, String extension)
+    private void checkValidFile(File file, String extension)
     throws IOException
     {
         if (!file.exists()
@@ -65,12 +66,13 @@ public class FileHandler
         }
     }
 
-    Model parseXML(File XML)
-    throws FileNotFoundException
+    Model parseXML()
+    throws IOException
     {
         XStream xStream = new XStream();
-        File modelFile = new File(sourceFile.getParentFile(), "model.xml");
-        FileInputStream fis = new FileInputStream(modelFile);
+        File XML = new File(file.getParentFile() + "/model.xml");
+        checkValidFile(XML, "xml");
+        FileInputStream fis = new FileInputStream(XML);
         return (Model) xStream.fromXML(fis);
     }
 
@@ -79,9 +81,9 @@ public class FileHandler
         return dir;
     }
 
-    File getSourceFile()
+    File getFile()
     {
-        return sourceFile;
+        return file;
     }
 
 }

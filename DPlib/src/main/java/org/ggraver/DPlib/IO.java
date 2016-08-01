@@ -16,23 +16,23 @@ class IO
     IO(String[] args)
     throws IOException
     {
-        if (args.length == 3)
+        if(args.length == 3)
         {
             command = args[0];
             filePath = args[1];
+            methodName = args[2];
             if(!command.equals("model"))
             {
-                fail(new IOException(usage));
+                throw new IOException(usage);
             }
         }
         else if(args.length == 2)
         {
             command = args[0];
             filePath = args[1];
-            methodName = args[2];
             if(!command.equals("solve"))
             {
-                fail(new IOException(usage));
+                throw new IOException(usage);
             }
         }
         else

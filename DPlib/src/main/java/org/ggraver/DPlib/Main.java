@@ -1,6 +1,6 @@
 package org.ggraver.DPlib;
 
-import com.github.javaparser.ast.body.MethodDeclaration;
+import com.sun.javafx.sg.prism.NGShape;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
 
@@ -14,10 +14,11 @@ public class Main
     {
         IO io = null;
         FileHandler fileHandler = null;
+
         try
         {
             io = new IO(args);
-            fileHandler = new FileHandler(io.getFilePath());
+            fileHandler = new FileHandler(io.getFilePath(), "java");
         }
         catch (IOException e)
         {
@@ -25,37 +26,28 @@ public class Main
             System.exit(1);
         }
 
-        switch (io.getCommand()) {
-            case "model":
-                try
-                {
-                    Model model = new Modeler().model(fileHandler.getSourceFile(), io.getMethodName());
+        try
+        {
+            switch (io.getCommand()) {
+                case "model":
+                    Model model = new Modeler().model(fileHandler.getFile(), io.getMethodName());
                     fileHandler.generateXML(model);
-                }
-                catch (ModelingException e)
-                {
-                    io.fail(e);
-                    System.exit(1);
-                }
-                break;
-            case "solve":
-                try
-                {
-//                     this part will eventually go in a solver/marker module
-                    SourceAnalyser sa = new SourceAnalyser(fileHandler.getSourceFile(), io.getMethodName());
-                    MethodDeclaration studentMain = sa.findMethod("main");
-//                            if (!model.getCallingMethod().getBody().getStmts()
-//                                      .equals(studentMain.getBody().getStmts()))
-//                            {
-//                                throw new Error("Main getMethods do not match.");
-//                            }
-                }
-                catch (AnalysisException e)
-                {
-                    io.fail(e);
-                }
-                break;
-            default: throw new Error("Invalid command: " + io.getCommand());
+                    break;
+                case "solve":
+                    Model modelToSolve = fileHandler.parseXML();
+                    new Solver().solve(modelToSolve, fileHandler.getFile());
+                    break;
+                default: throw new Error("Invalid command: " + io.getCommand());
+            }
+        }
+        catch (ModelingException | IOException e)
+        {
+            io.fail(e);
+            System.exit(1);
+        }
+        catch (AnalysisException e)
+        {
+            e.printStackTrace();
         }
     }
 

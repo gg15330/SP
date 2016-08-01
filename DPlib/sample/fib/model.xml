@@ -1136,6 +1136,6 @@
     <isDefault>false</isDefault>
   </callingMethod>
   <expectedOutput>test_output</expectedOutput>
-  <executionTime>79</executionTime>
-  <instructionCount>152665163</instructionCount>
+  <executionTime>71</executionTime>
+  <instructionCount>152672716</instructionCount>
 </org.ggraver.DPlib.Model>

@@ -36,7 +36,6 @@ class SourceAnalyser
     SourceAnalyser(File file, String methodName)
     throws AnalysisException
     {
-
         try
         {
             parse(file);
@@ -51,7 +50,6 @@ class SourceAnalyser
         }
 
         this.methodName = methodName;
-
     }
 
     private void parse(File file)
