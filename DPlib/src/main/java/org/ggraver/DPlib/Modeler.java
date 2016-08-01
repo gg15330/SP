@@ -1,8 +1,6 @@
 package org.ggraver.DPlib;
 
 import com.github.javaparser.ast.body.MethodDeclaration;
-import com.thoughtworks.xstream.XStream;
-import org.apache.commons.io.FilenameUtils;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
 
@@ -11,21 +9,11 @@ import java.io.*;
 /**
  * Created by george on 22/07/16.
  */
-// constructs a new Problem object which contains one method to analyse in the Solver
+// constructs a new Model object which contains one method to analyse in the Solver
 class Modeler
 {
 
-    private File sourceFile;
-    private String methodName;
-
-    Modeler(File sourceFile, String methodName)
-    {
-        this.methodName = methodName;
-        this.sourceFile = sourceFile;
-    }
-
-    //    remember to handle input parameterList
-    Model model()
+    Model model(File sourceFile, String methodName)
     throws ModelingException
     {
         Model model = new Model();
@@ -41,19 +29,12 @@ class Modeler
             model.setExpectedOutput(ca.getOutput());
             model.setExecutionTime(ca.getExecutionTime());
             model.setInstructionCount(ca.getInstructionCount() + 100000); // margin of error - temporary
-
-            //get Model object back from XML file
-            XStream xStream = new XStream();
-            File modelFile = new File(sourceFile.getParentFile(), "model.xml");
-            FileInputStream fis = new FileInputStream(modelFile);
-            Model newModel = (Model) xStream.fromXML(fis);
         }
-        catch (FileNotFoundException | AnalysisException e)
+        catch (AnalysisException e)
         {
             throw new ModelingException(e);
         }
         return model;
     }
-
 
 }

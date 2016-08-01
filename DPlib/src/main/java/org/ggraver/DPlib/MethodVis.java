@@ -23,7 +23,7 @@ public class MethodVis extends VoidVisitorAdapter<Object> {
 
     }
 
-    // get information from all methods in the source file
+    // get information from all getMethods in the source file
     @Override
     public void visit(MethodDeclaration n, Object arg) {
 

@@ -1,5 +1,7 @@
 package org.ggraver.DPlib;
 
+import com.github.javaparser.ast.body.MethodDeclaration;
+import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
 
 import java.io.IOException;
@@ -25,42 +27,36 @@ public class Main
 
         switch (io.getCommand()) {
             case "model":
-                Modeler modeler = new Modeler(fileHandler.getSourceFile(), io.getMethodName());
-                Model model = null;
                 try
                 {
-                    model = modeler.model();
+                    Model model = new Modeler().model(fileHandler.getSourceFile(), io.getMethodName());
+                    fileHandler.generateXML(model);
                 }
                 catch (ModelingException e)
                 {
                     io.fail(e);
                     System.exit(1);
                 }
-                fileHandler.generateXML(model);
                 break;
-            case "solve": break;
+            case "solve":
+                try
+                {
+//                     this part will eventually go in a solver/marker module
+                    SourceAnalyser sa = new SourceAnalyser(fileHandler.getSourceFile(), io.getMethodName());
+                    MethodDeclaration studentMain = sa.findMethod("main");
+//                            if (!model.getCallingMethod().getBody().getStmts()
+//                                      .equals(studentMain.getBody().getStmts()))
+//                            {
+//                                throw new Error("Main getMethods do not match.");
+//                            }
+                }
+                catch (AnalysisException e)
+                {
+                    io.fail(e);
+                }
+                break;
             default: throw new Error("Invalid command: " + io.getCommand());
         }
-    }
-
-    private void solve()
-    {
-//        try
-//        {
-////             this part will eventually go in a solver/marker module
-//            SourceAnalyser sa = new SourceAnalyser(studentFile, methodName);
-//            MethodDeclaration studentMain = sa.findMethod("main");
-//
-//                    if (!model.getCallingMethod().getBody().getStmts()
-//                              .equals(studentMain.getBody().getStmts()))
-//                    {
-//                        throw new Error("Main methods do not match.");
-//                    }
-//        }
-//        catch (AnalysisException e)
-//        {
-//            io.fail(e);
-//        }
     }
 
 }

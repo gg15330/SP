@@ -3,9 +3,7 @@ package org.ggraver.DPlib;
 import com.thoughtworks.xstream.XStream;
 import org.apache.commons.io.FilenameUtils;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Created by george on 01/08/16.
@@ -65,7 +63,15 @@ public class FileHandler
         {
             throw new Error("XML file does not exist.");
         }
-        System.out.println("Model file generated");
+    }
+
+    Model parseXML(File XML)
+    throws FileNotFoundException
+    {
+        XStream xStream = new XStream();
+        File modelFile = new File(sourceFile.getParentFile(), "model.xml");
+        FileInputStream fis = new FileInputStream(modelFile);
+        return (Model) xStream.fromXML(fis);
     }
 
     File getDir()
