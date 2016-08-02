@@ -4,8 +4,10 @@ import org.apache.commons.io.FileUtils;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.CompileException;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import static org.apache.commons.io.FilenameUtils.removeExtension;
 
@@ -17,7 +19,7 @@ class ClassAnalyser
     private final int PERF_INSTR_LINE = 5;
     private final String TEMP_FILENAME = "temp.txt";
     private File classFile;
-    private String output = "test_output";
+    private String output;
     private long instructionCount;
     private long executionTime;
 
@@ -58,7 +60,7 @@ class ClassAnalyser
                 dir);
         try
         {
-            executionTime = execute(perfStat);
+            execute(perfStat);
         }
         catch (Exception e)
         {
@@ -74,8 +76,8 @@ class ClassAnalyser
         }
     }
 
-    private long execute(ProcessBuilder pb)
-    throws IOException, InterruptedException
+    private void execute(ProcessBuilder pb)
+    throws IOException, InterruptedException, AnalysisException
     {
         // remember to put timeout in waitFor()
         Process p;
@@ -89,7 +91,22 @@ class ClassAnalyser
         {
             throw new Error("Execution time should not be less than 0.");
         }
-        return executionTime;
+
+        InputStreamReader isr = new InputStreamReader(p.getInputStream());
+        BufferedReader br = new BufferedReader(isr);
+        StringBuilder sb = new StringBuilder();
+        String line;
+        int lineCount = 0;
+
+        while((line = br.readLine()) != null) {
+            sb.append(line);
+            lineCount++;
+            if(lineCount > 1)
+            {
+                throw new AnalysisException("Program produced more than 1 line of output.");
+            }
+        }
+        output = sb.toString();
     }
 
     private ProcessBuilder buildPerfStat(String logFileName, String classFileName, File dir)
@@ -101,7 +118,6 @@ class ClassAnalyser
                 "java", classFileName
         );
         build.directory(dir);
-        build.inheritIO();
         build.redirectErrorStream(true);
         return build;
     }

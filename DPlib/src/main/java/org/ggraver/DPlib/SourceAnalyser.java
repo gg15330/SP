@@ -36,7 +36,6 @@ class SourceAnalyser
     SourceAnalyser(File file, String methodName)
     throws AnalysisException
     {
-
         try
         {
             parse(file);
@@ -49,19 +48,15 @@ class SourceAnalyser
         {
             throw new AnalysisException(e);
         }
-
         this.methodName = methodName;
-
     }
 
     private void parse(File file)
     throws ParseException, IOException
     {
-
         FileInputStream fis = new FileInputStream(file);
         cu = JavaParser.parse(fis);
         fis.close();
-
     }
 
     //    no parameterList - expected method name/list of expected method parameterList is generated

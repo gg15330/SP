@@ -1,8 +1,8 @@
 package org.ggraver.DPlib;
 
-import com.github.javaparser.ast.body.MethodDeclaration;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
+import org.ggraver.DPlib.Result.Result;
 
 import java.io.IOException;
 
@@ -10,52 +10,77 @@ import java.io.IOException;
 public class Main
 {
 
+    private IO io;
+    private FileHandler fileHandler;
+
+    private Main(String[] args)
+    throws IOException
+    {
+        io = new IO(args);
+        fileHandler = new FileHandler(io.getFilePath(), "java");
+    }
+
     public static void main(String[] args)
     {
-        IO io = null;
-        FileHandler fileHandler = null;
+        Main program = null;
         try
         {
-            io = new IO(args);
-            fileHandler = new FileHandler(io.getFilePath());
+            program = new Main(args);
+            program.run();
         }
         catch (IOException e)
         {
             System.err.println(e.getMessage());
             System.exit(1);
         }
+    }
 
-        switch (io.getCommand()) {
-            case "model":
-                try
-                {
-                    Model model = new Modeler().model(fileHandler.getSourceFile(), io.getMethodName());
+    private void run()
+    {
+        try
+        {
+            switch (io.getCommand()) {
+                case "model":
+                    Model model = new Modeler().model(fileHandler.getFile(), io.getMethodName());
                     fileHandler.generateXML(model);
-                }
-                catch (ModelingException e)
-                {
-                    io.fail(e);
-                    System.exit(1);
-                }
+                    break;
+                case "solve":
+                    Model modelToSolve = fileHandler.parseXML();
+                    Result result = new Solver().solve(modelToSolve, fileHandler.getFile());
+                    processResult(result);
+                    break;
+                default: throw new Error("Invalid command: " + io.getCommand());
+            }
+        }
+        catch (ModelingException | IOException e)
+        {
+            io.exit(e);
+            System.exit(1);
+        }
+        catch (AnalysisException e)
+        {
+            io.exit(e);
+        }
+    }
+
+    private void processResult(Result result)
+    {
+        switch (result.getResultType())
+        {
+            case OUTPUT_FAILURE:
+                io.fail();
                 break;
-            case "solve":
-                try
-                {
-//                     this part will eventually go in a solver/marker module
-                    SourceAnalyser sa = new SourceAnalyser(fileHandler.getSourceFile(), io.getMethodName());
-                    MethodDeclaration studentMain = sa.findMethod("main");
-//                            if (!model.getCallingMethod().getBody().getStmts()
-//                                      .equals(studentMain.getBody().getStmts()))
-//                            {
-//                                throw new Error("Main getMethods do not match.");
-//                            }
-                }
-                catch (AnalysisException e)
-                {
-                    io.fail(e);
-                }
+            case EXECUTION_TIME_FAILURE:
+                io.fail();
                 break;
-            default: throw new Error("Invalid command: " + io.getCommand());
+            case INSTRUCTION_COUNT_FAILURE:
+                io.fail();
+                break;
+            case PASS:
+                io.success();
+                break;
+            default:
+                throw new Error("Could not interpret Result type.");
         }
     }
 

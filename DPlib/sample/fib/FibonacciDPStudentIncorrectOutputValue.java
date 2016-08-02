@@ -1,8 +1,8 @@
-class FibonacciDPStudent {
+class FibonacciDPStudentIncorrectOutputValue {
 
     static int fibDP(int n)
     {
-        return 1134903170;
+        return 294872;
     }
 
     public static void main (String[] args)

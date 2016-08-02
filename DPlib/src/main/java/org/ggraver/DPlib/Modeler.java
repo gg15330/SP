@@ -21,7 +21,8 @@ class Modeler
         {
             SourceAnalyser sa = new SourceAnalyser(sourceFile, methodName);
             MethodDeclaration main = sa.findMethod("main");
-            model.setMethodToAnalyse(new MethodDeclaration());
+            MethodDeclaration methodToAnalyse = sa.findMethod(methodName);
+            model.setMethodToAnalyse(methodToAnalyse);
             model.setCallingMethod(main);
 
             ClassAnalyser ca = new ClassAnalyser(sourceFile);

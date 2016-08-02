@@ -2,8 +2,6 @@ package org.ggraver.DPlib;
 
 import com.github.javaparser.ast.body.MethodDeclaration;
 
-import java.util.List;
-
 /**
  * Created by george on 28/07/16.
  */
@@ -43,7 +41,7 @@ class Model
         return methodToAnalyse;
     }
 
-    public String getExpectedOutputs()
+    public String getOutput()
     {
         return expectedOutput;
     }

@@ -16,23 +16,23 @@ class IO
     IO(String[] args)
     throws IOException
     {
-        if (args.length == 3)
+        if(args.length == 3)
         {
             command = args[0];
             filePath = args[1];
+            methodName = args[2];
             if(!command.equals("model"))
             {
-                fail(new IOException(usage));
+                throw new IOException(usage);
             }
         }
         else if(args.length == 2)
         {
             command = args[0];
             filePath = args[1];
-            methodName = args[2];
             if(!command.equals("solve"))
             {
-                fail(new IOException(usage));
+                throw new IOException(usage);
             }
         }
         else
@@ -41,15 +41,26 @@ class IO
         }
     }
 
-    void fail(Exception e)
+    void exit(Exception e)
     {
         if (!(e instanceof AnalysisException)
                 && !(e instanceof ModelingException)
                 && !(e instanceof IOException))
         {
+            e.printStackTrace();
             throw new Error("Expected ModelingException, AnalysisException or IOException.");
         }
         System.err.println(e.getMessage());
+    }
+
+    void fail()
+    {
+        System.out.println("FAIL");
+    }
+
+    void success()
+    {
+        System.out.println("SUCCESS");
     }
 
     String getMethodName()
@@ -72,8 +83,11 @@ class IO
 
     private String analysisReport;
 
+    private String pass;
+
     String getCommand()
     {
         return command;
     }
+
 }
