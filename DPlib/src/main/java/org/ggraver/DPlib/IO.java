@@ -2,6 +2,7 @@ package org.ggraver.DPlib;
 
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
+import org.ggraver.DPlib.Result.Result;
 
 import java.io.IOException;
 
@@ -76,4 +77,6 @@ class IO
     {
         return command;
     }
+
+    public void displayResult(Result result) {}
 }

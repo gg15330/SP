@@ -2,6 +2,7 @@ package org.ggraver.DPlib;
 
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
+import org.ggraver.DPlib.Result.Result;
 
 import java.io.IOException;
 
@@ -34,7 +35,8 @@ public class Main
                     break;
                 case "solve":
                     Model modelToSolve = fileHandler.parseXML();
-                    new Solver().solve(modelToSolve, fileHandler.getFile());
+                    Result result = new Solver().solve(modelToSolve, fileHandler.getFile());
+                    io.displayResult(result);
                     break;
                 default: throw new Error("Invalid command: " + io.getCommand());
             }

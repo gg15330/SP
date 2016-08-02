@@ -41,7 +41,7 @@ class Model
         return methodToAnalyse;
     }
 
-    public String getExpectedOutputs()
+    public String getOutput()
     {
         return expectedOutput;
     }
