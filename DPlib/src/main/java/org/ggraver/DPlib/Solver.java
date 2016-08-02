@@ -21,7 +21,6 @@ class Solver
     Result solve(Model model, File file)
     throws AnalysisException
     {
-
         SourceAnalyser sa = new SourceAnalyser(file, model.getMethodToAnalyse().getName());
         MethodDeclaration studentCallingMethod = sa.findMethod("main");
 
@@ -42,13 +41,13 @@ class Solver
                                             model.getOutput(),
                                             ca.getOutput());
         }
-        else if(ca.getExecutionTime() > (model.getExecutionTime() * EXECUTION_TIME_MARGIN))
+        else if(ca.getExecutionTime() > (Math.round(model.getExecutionTime() * EXECUTION_TIME_MARGIN)))
         {
             return new FailureResult(ResultType.EXECUTION_TIME_FAILURE,
                               String.valueOf(model.getExecutionTime()),
                               String.valueOf(ca.getExecutionTime()));
         }
-        else if(ca.getInstructionCount() > (model.getInstructionCount() * INSTRUCTION_COUNT_MARGIN))
+        else if(ca.getInstructionCount() > (Math.round(model.getInstructionCount() * INSTRUCTION_COUNT_MARGIN)))
         {
             return new FailureResult(ResultType.INSTRUCTION_COUNT_FAILURE,
                               String.valueOf(model.getInstructionCount()),
@@ -71,20 +70,3 @@ class Solver
     }
 
 }
-
-
-
-
-
-/*System.out.println("Model Method: " + model.getMethodToAnalyse().getName());
-        System.out.println("Model Calling method: " + model.getCallingMethod().getName());
-        System.out.println("Model Output: " + model.getOutput());
-        System.out.println("Model Instructions: " + model.getInstructionCount());
-        System.out.println("Model Time: " + model.getExecutionTime());
-        System.out.println();
-
-        System.out.println("Submitted Method: " + sa.findMethod(model.getMethodToAnalyse().getName()).getName());
-        System.out.println("Submitted Calling method: " + sa.findMethod(model.getCallingMethod().getName()).getName());
-        System.out.println("Submitted Output: " + ca.getOutput());
-        System.out.println("Submitted Instructions: " + ca.getInstructionCount());
-        System.out.println("Submitted Time: " + ca.getExecutionTime());*/

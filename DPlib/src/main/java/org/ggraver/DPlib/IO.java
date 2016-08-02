@@ -2,7 +2,6 @@ package org.ggraver.DPlib;
 
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
-import org.ggraver.DPlib.Result.Result;
 
 import java.io.IOException;
 
@@ -42,15 +41,26 @@ class IO
         }
     }
 
-    void fail(Exception e)
+    void exit(Exception e)
     {
         if (!(e instanceof AnalysisException)
                 && !(e instanceof ModelingException)
                 && !(e instanceof IOException))
         {
+            e.printStackTrace();
             throw new Error("Expected ModelingException, AnalysisException or IOException.");
         }
         System.err.println(e.getMessage());
+    }
+
+    void fail()
+    {
+        System.out.println("FAIL");
+    }
+
+    void success()
+    {
+        System.out.println("SUCCESS");
     }
 
     String getMethodName()
@@ -73,10 +83,11 @@ class IO
 
     private String analysisReport;
 
+    private String pass;
+
     String getCommand()
     {
         return command;
     }
 
-    public void displayResult(Result result) {}
 }
