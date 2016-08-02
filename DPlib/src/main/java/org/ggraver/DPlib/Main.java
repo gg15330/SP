@@ -1,6 +1,5 @@
 package org.ggraver.DPlib;
 
-import com.sun.javafx.sg.prism.NGShape;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
 
