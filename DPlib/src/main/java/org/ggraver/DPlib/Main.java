@@ -2,7 +2,6 @@ package org.ggraver.DPlib;
 
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
-import org.ggraver.DPlib.Result.Result;
 
 import java.io.IOException;
 
@@ -22,7 +21,7 @@ public class Main
 
     public static void main(String[] args)
     {
-        Main program = null;
+        Main program;
         try
         {
             program = new Main(args);
@@ -46,8 +45,20 @@ public class Main
                     break;
                 case "solve":
                     Model modelToSolve = fileHandler.parseXML();
-                    Result result = new Solver().solve(modelToSolve, fileHandler.getFile());
-                    processResult(result);
+                    Solver solver = new Solver();
+                    Result result = solver.solve(modelToSolve, fileHandler.getFile());
+
+                    boolean output = solver.pass(modelToSolve.getOutput(), result.getOutput());
+
+                    boolean executionTime = solver.pass(modelToSolve.getExecutionTime(),
+                                                        result.getExecutionTime(),
+                                                        solver.getEXECUTION_TIME_MARGIN());
+
+                    boolean instructionCount = solver.pass(modelToSolve.getInstructionCount(),
+                                                           result.getInstructionCount(),
+                                                           solver.getINSTRUCTION_COUNT_MARGIN());
+
+                    io.displayResult(output, executionTime, instructionCount);
                     break;
                 default: throw new Error("Invalid command: " + io.getCommand());
             }
@@ -60,27 +71,6 @@ public class Main
         catch (AnalysisException e)
         {
             io.exit(e);
-        }
-    }
-
-    private void processResult(Result result)
-    {
-        switch (result.getResultType())
-        {
-            case OUTPUT_FAILURE:
-                io.fail();
-                break;
-            case EXECUTION_TIME_FAILURE:
-                io.fail();
-                break;
-            case INSTRUCTION_COUNT_FAILURE:
-                io.fail();
-                break;
-            case PASS:
-                io.success();
-                break;
-            default:
-                throw new Error("Could not interpret Result type.");
         }
     }
 

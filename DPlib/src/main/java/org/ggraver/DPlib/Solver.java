@@ -2,10 +2,6 @@ package org.ggraver.DPlib;
 
 import com.github.javaparser.ast.body.MethodDeclaration;
 import org.ggraver.DPlib.Exception.AnalysisException;
-import org.ggraver.DPlib.Result.FailureResult;
-import org.ggraver.DPlib.Result.PassResult;
-import org.ggraver.DPlib.Result.Result;
-import org.ggraver.DPlib.Result.ResultType;
 
 import java.io.File;
 
@@ -35,28 +31,21 @@ class Solver
         ClassAnalyser ca = new ClassAnalyser(file);
         ca.analyse();
 
-        if(!model.getOutput().equals(ca.getOutput()))
-        {
-            return new FailureResult(ResultType.OUTPUT_FAILURE,
-                                            model.getOutput(),
-                                            ca.getOutput());
-        }
-        else if(ca.getExecutionTime() > (Math.round(model.getExecutionTime() * EXECUTION_TIME_MARGIN)))
-        {
-            return new FailureResult(ResultType.EXECUTION_TIME_FAILURE,
-                              String.valueOf(model.getExecutionTime()),
-                              String.valueOf(ca.getExecutionTime()));
-        }
-        else if(ca.getInstructionCount() > (Math.round(model.getInstructionCount() * INSTRUCTION_COUNT_MARGIN)))
-        {
-            return new FailureResult(ResultType.INSTRUCTION_COUNT_FAILURE,
-                              String.valueOf(model.getInstructionCount()),
-                              String.valueOf(ca.getInstructionCount()));
-        }
-        else
-        {
-            return new PassResult();
-        }
+        return new Result(ca.getOutput(),
+                ca.getExecutionTime(),
+                ca.getInstructionCount());
+    }
+
+//    pass test for program output
+    boolean pass(String expected, String actual)
+    {
+        return expected.equals(actual);
+    }
+
+//    pass test for execution time/instruction count
+    boolean pass(long expected, long actual, double margin)
+    {
+        return actual < Math.round(expected * margin);
     }
 
     public void setINSTRUCTION_COUNT_MARGIN(int INSTRUCTION_COUNT_MARGIN)
@@ -69,4 +58,13 @@ class Solver
         this.EXECUTION_TIME_MARGIN = EXECUTION_TIME_MARGIN;
     }
 
+    public double getINSTRUCTION_COUNT_MARGIN()
+    {
+        return INSTRUCTION_COUNT_MARGIN;
+    }
+
+    public double getEXECUTION_TIME_MARGIN()
+    {
+        return EXECUTION_TIME_MARGIN;
+    }
 }

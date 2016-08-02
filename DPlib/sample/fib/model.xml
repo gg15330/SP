@@ -1126,6 +1126,6 @@
   </methodToAnalyse>
   <callingMethod reference="../methodToAnalyse/parentNode/childrenNodes/com.github.javaparser.ast.body.MethodDeclaration[2]"/>
   <expectedOutput>1134903170</expectedOutput>
-  <executionTime>70</executionTime>
-  <instructionCount>152704054</instructionCount>
+  <executionTime>74</executionTime>
+  <instructionCount>152651774</instructionCount>
 </org.ggraver.DPlib.Model>

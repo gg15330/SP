@@ -53,14 +53,24 @@ class IO
         System.err.println(e.getMessage());
     }
 
-    void fail()
+    void displayResult(boolean output, boolean executionTime, boolean instructionCount)
     {
-        System.out.println("FAIL");
+        System.out.format("\n%-20s %s \n%-20s %s \n%-20s %s\n\n",
+                          "[OUTPUT]", passOrFail(output),
+                          "[EXECUTION TIME]", passOrFail(executionTime),
+                          "[INSTRUCTION COUNT]", passOrFail(instructionCount));
     }
 
-    void success()
+    private String passOrFail(boolean result)
     {
-        System.out.println("SUCCESS");
+        if(result)
+        {
+            return "PASS";
+        }
+        else
+        {
+            return "FAIL";
+        }
     }
 
     String getMethodName()
@@ -83,7 +93,6 @@ class IO
 
     private String analysisReport;
 
-    private String pass;
 
     String getCommand()
     {
