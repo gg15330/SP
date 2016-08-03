@@ -38,27 +38,17 @@ public class Main
     {
         try
         {
+            Model model;
             switch (io.getCommand()) {
                 case "model":
-                    Model model = new Modeler().model(fileHandler.getFile(), io.getMethodName());
+                    model = new Modeler().model(fileHandler.getFile(), io.getMethodName());
                     fileHandler.generateXML(model);
                     break;
                 case "solve":
-                    Model modelToSolve = fileHandler.parseXML();
+                    model = fileHandler.parseXML();
                     Solver solver = new Solver();
-                    Result result = solver.solve(modelToSolve, fileHandler.getFile());
-
-                    boolean output = solver.pass(modelToSolve.getOutput(), result.getOutput());
-
-                    boolean executionTime = solver.pass(modelToSolve.getExecutionTime(),
-                                                        result.getExecutionTime(),
-                                                        solver.getEXECUTION_TIME_MARGIN());
-
-                    boolean instructionCount = solver.pass(modelToSolve.getInstructionCount(),
-                                                           result.getInstructionCount(),
-                                                           solver.getINSTRUCTION_COUNT_MARGIN());
-
-                    io.displayResult(output, executionTime, instructionCount);
+                    Result result = solver.solve(model, fileHandler.getFile());
+                    io.displayResult(result);
                     break;
                 default: throw new Error("Invalid command: " + io.getCommand());
             }

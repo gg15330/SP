@@ -3119,7 +3119,7 @@
     <body reference="../childrenNodes/com.github.javaparser.ast.stmt.BlockStmt"/>
     <isDefault>false</isDefault>
   </callingMethod>
-  <expectedOutput>test_output</expectedOutput>
+  <output>test_output</output>
   <executionTime>70</executionTime>
   <instructionCount>150696035</instructionCount>
 </org.ggraver.DPlib.Model>

@@ -11,60 +11,33 @@ import java.io.File;
 class Solver
 {
 
-    private double INSTRUCTION_COUNT_MARGIN = 1.2;
-    private double EXECUTION_TIME_MARGIN = 1.2;
-
     Result solve(Model model, File file)
     throws AnalysisException
     {
         SourceAnalyser sa = new SourceAnalyser(file, model.getMethodToAnalyse().getName());
-        MethodDeclaration studentCallingMethod = sa.findMethod("main");
+        MethodDeclaration userCallingMethod = sa.findMethod("main");
 
-        if(!studentCallingMethod.equals(model.getCallingMethod()))
+        if(!userCallingMethod.equals(model.getCallingMethod()))
         {
             throw new AnalysisException("Submitted calling method \"" +
-            studentCallingMethod.getName() +
-            "\" does not match modelled calling method \"" +
-            model.getCallingMethod() + "\".");
+                                                userCallingMethod.getName() +
+                                                "\" does not match modelled calling method \"" +
+                                                model.getCallingMethod().getName() + "\".");
         }
 
         ClassAnalyser ca = new ClassAnalyser(file);
         ca.analyse();
 
-        return new Result(ca.getOutput(),
-                ca.getExecutionTime(),
-                ca.getInstructionCount());
+        Result result = new Result();
+        result.setOutput(model.getOutput(), ca.getOutput());
+        result.setExecutionTime(model.getExecutionTime(),
+                                ca.getExecutionTime(),
+                                model.getEXECUTION_TIME_MARGIN());
+        result.setInstructionCount(model.getInstructionCount(),
+                                   ca.getInstructionCount(),
+                                   model.getINSTRUCTION_COUNT_MARGIN());
+
+        return result;
     }
 
-//    pass test for program output
-    boolean pass(String expected, String actual)
-    {
-        return expected.equals(actual);
-    }
-
-//    pass test for execution time/instruction count
-    boolean pass(long expected, long actual, double margin)
-    {
-        return actual < Math.round(expected * margin);
-    }
-
-    public void setINSTRUCTION_COUNT_MARGIN(int INSTRUCTION_COUNT_MARGIN)
-    {
-        this.INSTRUCTION_COUNT_MARGIN = INSTRUCTION_COUNT_MARGIN;
-    }
-
-    public void setEXECUTION_TIME_MARGIN(int EXECUTION_TIME_MARGIN)
-    {
-        this.EXECUTION_TIME_MARGIN = EXECUTION_TIME_MARGIN;
-    }
-
-    public double getINSTRUCTION_COUNT_MARGIN()
-    {
-        return INSTRUCTION_COUNT_MARGIN;
-    }
-
-    public double getEXECUTION_TIME_MARGIN()
-    {
-        return EXECUTION_TIME_MARGIN;
-    }
 }

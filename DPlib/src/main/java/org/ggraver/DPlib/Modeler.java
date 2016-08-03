@@ -27,7 +27,7 @@ class Modeler
 
             ClassAnalyser ca = new ClassAnalyser(sourceFile);
             ca.analyse();
-            model.setExpectedOutput(ca.getOutput());
+            model.setOutput(ca.getOutput());
             model.setExecutionTime(ca.getExecutionTime());
             model.setInstructionCount(ca.getInstructionCount() + 100000); // margin of error - temporary
         }

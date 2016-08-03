@@ -53,17 +53,41 @@ class IO
         System.err.println(e.getMessage());
     }
 
-    void displayResult(boolean output, boolean executionTime, boolean instructionCount)
+    void displayResult(Result result)
     {
-        System.out.format("\n%-20s %s \n%-20s %s \n%-20s %s\n\n",
-                          "[OUTPUT]", passOrFail(output),
-                          "[EXECUTION TIME]", passOrFail(executionTime),
-                          "[INSTRUCTION COUNT]", passOrFail(instructionCount));
+        String[][] resultsTable = new String[4][4];
+
+        resultsTable[0] = new String[] {"", "MODEL", "USER", "RESULT"};
+        resultsTable[1] = new String[] {
+                "OUTPUT",
+                result.getOutput().getKey().getKey(),
+                result.getOutput().getKey().getValue(),
+                pass(result.getOutput().getValue())
+        };
+        resultsTable[2] = new String[] {
+                "EXECUTION TIME",
+                result.getExecutionTime().getKey().getKey().toString(),
+                result.getExecutionTime().getKey().getValue().toString(),
+                pass(result.getExecutionTime().getValue())
+        };
+        resultsTable[3] = new String[] {
+                "INSTRUCTION COUNT",
+                result.getInstructionCount().getKey().getKey().toString(),
+                result.getInstructionCount().getKey().getValue().toString(),
+                pass(result.getInstructionCount().getValue())
+        };
+
+        System.out.println();
+        for(String[] row : resultsTable)
+        {
+            System.out.format("%-20s%-20s%-20s%-20s\n", row[0], row[1], row[2], row[3]);
+        }
+        System.out.println();
     }
 
-    private String passOrFail(boolean result)
+    private String pass(boolean b)
     {
-        if(result)
+        if(b)
         {
             return "PASS";
         }
