@@ -36,6 +36,7 @@ public class Main
 
     private void run()
     {
+        Result result = null;
         try
         {
             Model model;
@@ -47,7 +48,7 @@ public class Main
                 case "solve":
                     model = fileHandler.parseXML();
                     Solver solver = new Solver();
-                    Result result = solver.solve(model, fileHandler.getFile());
+                    result = solver.solve(model, fileHandler.getFile());
                     io.displayResult(result);
                     break;
                 default: throw new Error("Invalid command: " + io.getCommand());
@@ -62,6 +63,7 @@ public class Main
         {
             io.exit(e);
         }
+        new Graph().run();
     }
 
 }
