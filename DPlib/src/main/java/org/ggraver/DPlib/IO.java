@@ -53,14 +53,48 @@ class IO
         System.err.println(e.getMessage());
     }
 
-    void fail()
+    void displayResult(Result result)
     {
-        System.out.println("FAIL");
+        String[][] resultsTable = new String[4][4];
+
+        resultsTable[0] = new String[] {"", "MODEL", "USER", "RESULT"};
+        resultsTable[1] = new String[] {
+                "OUTPUT",
+                result.getOutput().getKey().getKey(),
+                result.getOutput().getKey().getValue(),
+                pass(result.getOutput().getValue())
+        };
+        resultsTable[2] = new String[] {
+                "EXECUTION TIME",
+                result.getExecutionTime().getKey().getKey().toString(),
+                result.getExecutionTime().getKey().getValue().toString(),
+                pass(result.getExecutionTime().getValue())
+        };
+        resultsTable[3] = new String[] {
+                "INSTRUCTION COUNT",
+                result.getInstructionCount().getKey().getKey().toString(),
+                result.getInstructionCount().getKey().getValue().toString(),
+                pass(result.getInstructionCount().getValue())
+        };
+
+        System.out.println();
+        for(String[] row : resultsTable)
+        {
+            System.out.format("%-20s%-20s%-20s%-20s\n", row[0], row[1], row[2], row[3]);
+        }
+        System.out.println();
     }
 
-    void success()
+    private String pass(boolean b)
     {
-        System.out.println("SUCCESS");
+        if(b)
+        {
+            return "PASS";
+        }
+        else
+        {
+            return "FAIL";
+        }
     }
 
     String getMethodName()
@@ -83,7 +117,6 @@ class IO
 
     private String analysisReport;
 
-    private String pass;
 
     String getCommand()
     {

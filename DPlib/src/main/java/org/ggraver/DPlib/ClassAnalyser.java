@@ -20,8 +20,8 @@ class ClassAnalyser
     private final String TEMP_FILENAME = "temp.txt";
     private File classFile;
     private String output;
-    private long instructionCount;
     private long executionTime;
+    private long instructionCount;
 
     ClassAnalyser(File sourceFile)
     throws AnalysisException
@@ -58,6 +58,7 @@ class ClassAnalyser
                 log.getName(),
                 removeExtension(classFile.getName()),
                 dir);
+
         try
         {
             execute(perfStat);
@@ -80,17 +81,17 @@ class ClassAnalyser
     throws IOException, InterruptedException, AnalysisException
     {
         // remember to put timeout in waitFor()
-        Process p;
-        long start, end;
-        start = System.currentTimeMillis();
-        p = pb.start();
+        long start = System.currentTimeMillis();
+        Process p = pb.start();
         p.waitFor();
-        end = System.currentTimeMillis();
-        executionTime = end - start;
-        if (executionTime < 0)
+        long end = System.currentTimeMillis();
+
+        if ((end - start) < 0)
         {
             throw new Error("Execution time should not be less than 0.");
         }
+
+        executionTime = end - start;
 
         InputStreamReader isr = new InputStreamReader(p.getInputStream());
         BufferedReader br = new BufferedReader(isr);
@@ -106,6 +107,7 @@ class ClassAnalyser
                 throw new AnalysisException("Program produced more than 1 line of output.");
             }
         }
+
         output = sb.toString();
     }
 
@@ -144,18 +146,11 @@ class ClassAnalyser
     private long fetchInstructionCount(File f, int lineNum)
     throws IOException, NumberFormatException
     {
-
-        String instructionsString;
-        long instructions;
-
-        instructionsString = FileUtils.readLines(f, "UTF-8").get(lineNum)
+        String instructionsString = FileUtils.readLines(f, "UTF-8").get(lineNum)
                                       .replaceAll(" ", "")
                                       .replaceAll("instructions:u", "")
                                       .replaceAll(",", "");
-
-        instructions = Long.parseLong(instructionsString);
-        return instructions;
-
+        return Long.parseLong(instructionsString);
     }
 
     // compile the user-submitted .java file for performance analysis

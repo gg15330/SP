@@ -59,21 +59,6 @@ class SourceAnalyser
         fis.close();
     }
 
-    //    no parameterList - expected method name/list of expected method parameterList is generated
-    void analyse()
-    throws AnalysisException
-    {
-
-    }
-
-
-    //    list of expected method parameterList is supplied - for checking student-submitted files
-    void analyse(List<Parameter> expectedParams)
-    throws AnalysisException
-    {
-
-    }
-
     MethodDeclaration findMethod(String methodName)
     throws AnalysisException
     {
@@ -174,7 +159,7 @@ class SourceAnalyser
 
     }
 
-    public CompilationUnit getCompilationUnit()
+    CompilationUnit getCompilationUnit()
     {
         return cu;
     }
@@ -184,20 +169,6 @@ class SourceAnalyser
         return recursiveCallLineNo;
     }
 
-    public MethodDeclaration getMethodDeclaration()
-    {
-        return methodDeclaration;
-    }
-
-    public List<Object> getMethodInputValues()
-    {
-        return methodInputValues;
-    }
-
-    public MethodCallExpr getMethodCall()
-    {
-        return methodCall;
-    }
 
     // private visitor class to extract method data for source file and insert it into the method list
     private class MethodDeclarationVisitor extends VoidVisitorAdapter<Object>

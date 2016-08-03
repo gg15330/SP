@@ -2,7 +2,6 @@ package org.ggraver.DPlib;
 
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
-import org.ggraver.DPlib.Result.Result;
 
 import java.io.IOException;
 
@@ -22,7 +21,7 @@ public class Main
 
     public static void main(String[] args)
     {
-        Main program = null;
+        Main program;
         try
         {
             program = new Main(args);
@@ -39,15 +38,17 @@ public class Main
     {
         try
         {
+            Model model;
             switch (io.getCommand()) {
                 case "model":
-                    Model model = new Modeler().model(fileHandler.getFile(), io.getMethodName());
+                    model = new Modeler().model(fileHandler.getFile(), io.getMethodName());
                     fileHandler.generateXML(model);
                     break;
                 case "solve":
-                    Model modelToSolve = fileHandler.parseXML();
-                    Result result = new Solver().solve(modelToSolve, fileHandler.getFile());
-                    processResult(result);
+                    model = fileHandler.parseXML();
+                    Solver solver = new Solver();
+                    Result result = solver.solve(model, fileHandler.getFile());
+                    io.displayResult(result);
                     break;
                 default: throw new Error("Invalid command: " + io.getCommand());
             }
@@ -60,27 +61,6 @@ public class Main
         catch (AnalysisException e)
         {
             io.exit(e);
-        }
-    }
-
-    private void processResult(Result result)
-    {
-        switch (result.getResultType())
-        {
-            case OUTPUT_FAILURE:
-                io.fail();
-                break;
-            case EXECUTION_TIME_FAILURE:
-                io.fail();
-                break;
-            case INSTRUCTION_COUNT_FAILURE:
-                io.fail();
-                break;
-            case PASS:
-                io.success();
-                break;
-            default:
-                throw new Error("Could not interpret Result type.");
         }
     }
 
