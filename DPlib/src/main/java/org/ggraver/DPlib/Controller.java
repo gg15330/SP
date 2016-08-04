@@ -46,8 +46,6 @@ implements Initializable
     {
         if(!(oldResult == result))
         {
-            System.out.println("EX time: " + result.getModelExecutionTime());
-            System.out.println("EX time: " + result.getUserExecutionTime());
             executionTimeGraph.setTitle("Execution time");
             executionTimeGraph.getYAxis().setLabel("Execution Time (ms)");
             XYChart.Series model = createSeries("Model", result.getModelExecutionTime());
@@ -55,15 +53,6 @@ implements Initializable
             executionTimeGraph.getData().setAll(model, user);
             oldResult = result;
         }
-    }
-
-    private XYChart.Series createSeries(String name, long value)
-    {
-        XYChart.Series s = new XYChart.Series();
-        s.setName(name);
-        XYChart.Data<String, Long> data = new XYChart.Data<>("", value);
-        s.getData().add(data);
-        return s;
     }
 
     private void setInstructionCountGraph()
@@ -74,6 +63,15 @@ implements Initializable
 //                                               "Number of Instructions Executed",
 //                                               result.getModelInstructionCount(),
 //                                               result.getUserInstructionCount());
+    }
+
+    private XYChart.Series createSeries(String name, long value)
+    {
+        XYChart.Series s = new XYChart.Series();
+        s.setName(name);
+        XYChart.Data<String, Long> data = new XYChart.Data<>("", value);
+        s.getData().add(data);
+        return s;
     }
 
     public void setResult(Result result)
