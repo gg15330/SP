@@ -60,21 +60,21 @@ class IO
         resultsTable[0] = new String[] {"", "MODEL", "USER", "RESULT"};
         resultsTable[1] = new String[] {
                 "OUTPUT",
-                result.getOutput().getKey().getKey(),
-                result.getOutput().getKey().getValue(),
-                pass(result.getOutput().getValue())
+                result.getModelOutput(),
+                result.getUserOutput(),
+                pass(result.getOutputPass())
         };
         resultsTable[2] = new String[] {
                 "EXECUTION TIME",
-                result.getExecutionTime().getKey().getKey().toString(),
-                result.getExecutionTime().getKey().getValue().toString(),
-                pass(result.getExecutionTime().getValue())
+                String.valueOf(result.getModelExecutionTime()),
+                String.valueOf(result.getUserExecutionTime()),
+                pass(result.getExecutionTimePass())
         };
         resultsTable[3] = new String[] {
                 "INSTRUCTION COUNT",
-                result.getInstructionCount().getKey().getKey().toString(),
-                result.getInstructionCount().getKey().getValue().toString(),
-                pass(result.getInstructionCount().getValue())
+                String.valueOf(result.getModelInstructionCount()),
+                String.valueOf(result.getUserInstructionCount()),
+                pass(result.getInstructionCountPass())
         };
 
         System.out.println();
