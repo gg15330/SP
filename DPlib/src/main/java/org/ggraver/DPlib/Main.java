@@ -1,11 +1,17 @@
 package org.ggraver.DPlib;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
 import javafx.stage.Stage;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.List;
 
 // overall program control
@@ -49,24 +55,34 @@ extends Application
             io.exit(e);
             System.exit(1);
         }
+
+
     }
 
     @Override
-    public void start(Stage graph)
+    public void start(Stage stage)
     throws Exception
     {
-//        Parent root = FXMLLoader.load(getClass().getResource("fxml_example.fxml"));
+        try {
+            URL fxmlURL = getClass().getClassLoader().getResource("gui.fxml");
+            assert fxmlURL != null;
+            FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
+            Parent root = fxmlLoader.load();
+            Controller controller = fxmlLoader.getController();
+            controller.loadJavaFile();
+            controller.setResult(result);
 
-        graph = new Graph("Execution Time Summary",
-                          "Execution Time(ms)",
-                          result.getModelExecutionTime(),
-                          result.getUserExecutionTime());
-        Stage graph2 = new Graph("Instruction Summary",
-                                 "Instruction count",
-                                 result.getModelInstructionCount(),
-                                 result.getUserInstructionCount());
-        graph.show();
-        graph2.show();
+            stage.setTitle("TEST");
+            stage.setScene(new Scene(root, 800, 600));
+            stage.setResizable(false);
+            stage.show();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            System.exit(1);
+        }
+
     }
 
 }
