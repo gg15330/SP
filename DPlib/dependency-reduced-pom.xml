@@ -30,8 +30,8 @@
               <minimizeJar>false</minimizeJar>
               <transformers>
                 <transformer>
+                  <mainClass>org.ggraver.DPlib.Main</mainClass>
                   <manifestEntries>
-                    <Main-Class>org.ggraver.DPlib.Main</Main-Class>
                     <X-Compile-Source-JDK>1.8</X-Compile-Source-JDK>
                     <X-Compile-Target-JDK>1.8</X-Compile-Target-JDK>
                   </manifestEntries>
