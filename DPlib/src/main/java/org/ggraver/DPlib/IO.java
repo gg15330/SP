@@ -13,7 +13,7 @@ class IO
     private String filePath;
     private String methodName;
 
-    IO(String[] args)
+    void processArgs(String[] args)
     throws IOException
     {
         if(args.length == 3)
