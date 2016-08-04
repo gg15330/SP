@@ -1,8 +1,7 @@
 package org.ggraver.DPlib;
 
-import java.lang.reflect.AccessibleObject;
 import java.util.AbstractMap;
-import java.util.Hashtable;
+import java.util.prefs.PreferenceChangeEvent;
 
 /**
  * Created by george on 02/08/16.
@@ -41,16 +40,49 @@ class Result
         instructionCount = new AbstractMap.SimpleEntry<>(instructions, pass(expected, actual, margin));
     }
 
-    AbstractMap.SimpleEntry<AbstractMap.SimpleEntry<Long,Long>, Boolean> getExecutionTime()
+    String getModelOutput()
     {
-        return executionTime;
+        return output.getKey().getKey();
     }
 
-    AbstractMap.SimpleEntry<AbstractMap.SimpleEntry<String,String>, Boolean> getOutput()
+    String getUserOutput()
     {
-        return output;
+        return output.getKey().getValue();
     }
 
-    AbstractMap.SimpleEntry<AbstractMap.SimpleEntry<Long,Long>, Boolean> getInstructionCount() { return instructionCount; }
+    boolean getOutputPass()
+    {
+        return output.getValue();
+    }
 
+    long getModelExecutionTime()
+    {
+        return executionTime.getKey().getKey();
+    }
+
+    long getUserExecutionTime()
+    {
+        return executionTime.getKey().getValue();
+    }
+
+    boolean getExecutionTimePass()
+    {
+        return executionTime.getValue();
+    }
+
+    long getModelInstructionCount()
+    {
+        return instructionCount.getKey().getKey();
+    }
+
+    long getUserInstructionCount()
+    {
+        return instructionCount.getKey().getValue();
+    }
+
+    boolean getInstructionCountPass()
+    {
+        return instructionCount.getValue();
+    }
 }
+

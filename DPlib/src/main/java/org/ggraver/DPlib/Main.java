@@ -1,8 +1,6 @@
 package org.ggraver.DPlib;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.stage.Stage;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
@@ -59,14 +57,14 @@ extends Application
     {
 //        Parent root = FXMLLoader.load(getClass().getResource("fxml_example.fxml"));
 
-        graph = new Graph("Summary",
+        graph = new Graph("Execution Time Summary",
                           "Execution Time(ms)",
-                          result.getExecutionTime().getKey().getKey(),
-                          result.getExecutionTime().getKey().getValue());
-        Stage graph2 = new Graph("Instruction summary",
+                          result.getModelExecutionTime(),
+                          result.getUserExecutionTime());
+        Stage graph2 = new Graph("Instruction Summary",
                                  "Instruction count",
-                                 result.getInstructionCount().getKey().getKey(),
-                                 result.getInstructionCount().getKey().getValue());
+                                 result.getModelInstructionCount(),
+                                 result.getUserInstructionCount());
         graph.show();
         graph2.show();
     }
