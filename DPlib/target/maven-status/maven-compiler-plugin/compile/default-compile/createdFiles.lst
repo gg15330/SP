@@ -5,6 +5,7 @@ org/ggraver/DPlib/Graph.class
 org/ggraver/DPlib/SourceAnalyser$MethodCallExprVisitor.class
 org/ggraver/DPlib/IO.class
 org/ggraver/DPlib/FileHandler.class
+org/ggraver/DPlib/DPlib.class
 org/ggraver/DPlib/Exception/ModelingException.class
 org/ggraver/DPlib/Controller.class
 org/ggraver/DPlib/Result.class
