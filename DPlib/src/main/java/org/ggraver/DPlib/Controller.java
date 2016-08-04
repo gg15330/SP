@@ -1,15 +1,15 @@
 package org.ggraver.DPlib;
 
+import javafx.application.Platform;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by george on 04/08/16.
@@ -22,8 +22,8 @@ implements Initializable
     public Button solve;
     public BarChart executionTimeGraph;
     public BarChart instructionCountGraph;
-    public Result result;
-    public Result oldResult;
+    private Result result;
+    private boolean resultAlreadySet = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -38,31 +38,36 @@ implements Initializable
 
     public void setGraphs()
     {
-        setExecutionTimeGraph();
-//        setInstructionCountGraph();
+        if(!resultAlreadySet)
+        {
+            setExecutionTimeGraph();
+            setInstructionCountGraph();
+            resultAlreadySet = true;
+        }
     }
 
     private void setExecutionTimeGraph()
     {
-        if(!(oldResult == result))
-        {
-            executionTimeGraph.setTitle("Execution time");
-            executionTimeGraph.getYAxis().setLabel("Execution Time (ms)");
-            XYChart.Series model = createSeries("Model", result.getModelExecutionTime());
-            XYChart.Series user = createSeries("Model", result.getUserExecutionTime());
-            executionTimeGraph.getData().setAll(model, user);
-            oldResult = result;
-        }
+        executionTimeGraph.setTitle("Execution time");
+        executionTimeGraph.getYAxis().setLabel("Execution Time (ms)");
+        XYChart.Series model = createSeries("Model", result.getModelExecutionTime());
+        XYChart.Series user = createSeries("User", result.getUserExecutionTime());
+        executionTimeGraph.getData().setAll(model, user);
+        executionTimeGraph.getYAxis().setAnimated(false);
+        executionTimeGraph.getXAxis().setAnimated(false);
+        executionTimeGraph.setAnimated(false);
     }
 
     private void setInstructionCountGraph()
     {
-//        this.instructionCountGraph = new Graph(new CategoryAxis(),
-//                                               new NumberAxis(),
-//                                               "Instructions",
-//                                               "Number of Instructions Executed",
-//                                               result.getModelInstructionCount(),
-//                                               result.getUserInstructionCount());
+        instructionCountGraph.setTitle("Instructions");
+        instructionCountGraph.getYAxis().setLabel("Instruction count");
+        XYChart.Series model = createSeries("Model", result.getModelInstructionCount());
+        XYChart.Series user = createSeries("User", result.getUserInstructionCount());
+        instructionCountGraph.getData().setAll(model, user);
+        instructionCountGraph.getYAxis().setAnimated(false);
+        instructionCountGraph.getXAxis().setAnimated(false);
+        instructionCountGraph.setAnimated(false);
     }
 
     private XYChart.Series createSeries(String name, long value)

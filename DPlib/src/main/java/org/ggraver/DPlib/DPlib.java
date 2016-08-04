@@ -65,7 +65,7 @@ extends Application
             controller.loadJavaFile();
             controller.setResult(result);
 
-            stage.setTitle("TEST");
+            stage.setTitle("DPLib");
             stage.setScene(new Scene(root, 800, 600));
             stage.setResizable(false);
             stage.show();
@@ -75,7 +75,6 @@ extends Application
             e.printStackTrace();
             System.exit(1);
         }
-
     }
 
 }
