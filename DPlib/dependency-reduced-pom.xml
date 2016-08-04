@@ -30,9 +30,6 @@
               <minimizeJar>false</minimizeJar>
               <transformers>
                 <transformer>
-                  <resource>META-INF/services/conf.file</resource>
-                </transformer>
-                <transformer>
                   <manifestEntries>
                     <Main-Class>org.ggraver.DPlib.Main</Main-Class>
                     <X-Compile-Source-JDK>1.8</X-Compile-Source-JDK>
