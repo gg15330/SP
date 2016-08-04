@@ -11,37 +11,34 @@ import javafx.stage.Stage;
 /**
  * Created by george on 03/08/16.
  */
-public class Graph
-        extends Application
+class Graph
+extends Stage
 {
 
-    void run()
+    Graph(String title, String yLabel, long modelVal, long userVal)
     {
-        launch();
+        create(title, yLabel, modelVal, userVal);
     }
 
-    @Override
-    public void start(Stage stage)
+    void create(String title, String yLabel, long modelVal, long userVal)
     {
-        stage.setTitle("Summary");
+        this.setTitle(title);
 
         CategoryAxis x = new CategoryAxis();
-        x.setLabel("Execution time");
         NumberAxis y = new NumberAxis();
-        y.setLabel("Time(ms)");
+        y.setLabel(yLabel);
 
         BarChart<String, Number> barChart = new BarChart<>(x, y);
         barChart.setTitle("Program Performance");
         barChart.setCategoryGap(50.0);
         barChart.setBarGap(30.0);
 
-        XYChart.Series model = createSeries("Model", 1000);
-        XYChart.Series user = createSeries("User", 10000);
+        XYChart.Series model = createSeries("Model", modelVal);
+        XYChart.Series user = createSeries("User", userVal);
 
         barChart.getData().addAll(model, user);
         Scene scene = new Scene(barChart, 320, 240);
-        stage.setScene(scene);
-        stage.show();
+        this.setScene(scene);
     }
 
 

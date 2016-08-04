@@ -1,11 +1,8 @@
 package org.ggraver.DPlib;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.stage.Stage;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
@@ -57,37 +54,21 @@ extends Application
     }
 
     @Override
-    public void start(Stage stage)
+    public void start(Stage graph)
     throws Exception
     {
-        stage.setTitle("Summary");
+//        Parent root = FXMLLoader.load(getClass().getResource("fxml_example.fxml"));
 
-        CategoryAxis x = new CategoryAxis();
-        x.setLabel("Execution time");
-        NumberAxis y = new NumberAxis();
-        y.setLabel("Time(ms)");
-
-        BarChart<String, Number> barChart = new BarChart<>(x, y);
-        barChart.setTitle("Program Performance");
-        barChart.setCategoryGap(50.0);
-        barChart.setBarGap(30.0);
-
-        XYChart.Series modelSeries = createSeries("Model", result.getExecutionTime().getKey().getKey());
-        XYChart.Series userSeries = createSeries("User", result.getExecutionTime().getKey().getValue());
-
-        barChart.getData().addAll(modelSeries, userSeries);
-        Scene scene = new Scene(barChart, 320, 240);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    private XYChart.Series createSeries(String name, long value)
-    {
-        XYChart.Series s = new XYChart.Series();
-        s.setName(name);
-        XYChart.Data<String, Long> data = new XYChart.Data<>("", value);
-        s.getData().add(data);
-        return s;
+        graph = new Graph("Summary",
+                          "Execution Time(ms)",
+                          result.getExecutionTime().getKey().getKey(),
+                          result.getExecutionTime().getKey().getValue());
+        Stage graph2 = new Graph("Instruction summary",
+                                 "Instruction count",
+                                 result.getInstructionCount().getKey().getKey(),
+                                 result.getInstructionCount().getKey().getValue());
+        graph.show();
+        graph2.show();
     }
 
 }
