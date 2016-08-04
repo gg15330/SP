@@ -66,9 +66,16 @@
                             <!--remember to minimize for production -->
                             <minimizeJar>false</minimizeJar>
                             <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>
+                                        META-INF/services/conf.file
+                                    </resource>
+                                </transformer>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <mainClass>org.ggraver.DPlib.Main</mainClass>
                                     <manifestEntries>
+                                        <Main-Class>org.ggraver.DPlib.Main</Main-Class>
                                         <X-Compile-Source-JDK>1.8</X-Compile-Source-JDK>
                                         <X-Compile-Target-JDK>1.8</X-Compile-Target-JDK>
                                     </manifestEntries>
