@@ -14,16 +14,27 @@ package org.ggraver.DPlib;
 //import java.net.URL;
 //import java.util.List;
 
+import javafx.application.Application;
+import javafx.stage.Stage;
+
 // overall program control
 public class Main
+extends Application
 {
 
     private Result result;
 
     public static void main(String[] args)
     {
-        System.out.println("worked");
+        System.out.println("Main");
 //        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage)
+    throws Exception
+    {
+        System.out.println("Start");
     }
 //
 //    @Override
