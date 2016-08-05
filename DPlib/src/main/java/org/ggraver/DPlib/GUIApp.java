@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by george on 04/08/16.
  */
-public class DPlib
+public class GUIApp
 extends Application
 {
 
@@ -23,33 +23,11 @@ extends Application
 
     @Override
     public void init()
+            throws Exception
     {
         IO io = new IO();
         List<String> args = getParameters().getRaw();
 
-        try
-        {
-            io.processArgs(args.toArray(new String[args.size()]));
-            FileHandler fileHandler = new FileHandler(io.getFilePath(), "java");
-            switch (io.getCommand()) {
-                case "model":
-                    Model model = new Modeler().model(fileHandler.getFile(), io.getMethodName());
-                    fileHandler.generateXML(model);
-                    break;
-                case "solve":
-                    model = fileHandler.parseXML();
-                    Solver solver = new Solver();
-                    result = solver.solve(model, fileHandler.getFile());
-                    io.displayResult(result);
-                    break;
-                default: throw new Error("Invalid command: " + io.getCommand());
-            }
-        }
-        catch (IOException | ModelingException | AnalysisException e)
-        {
-            io.exit(e);
-            System.exit(1);
-        }
     }
 
     @Override

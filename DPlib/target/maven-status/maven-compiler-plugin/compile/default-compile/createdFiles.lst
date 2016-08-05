@@ -6,10 +6,11 @@ org/ggraver/DPlib/SourceAnalyser$MethodCallExprVisitor.class
 org/ggraver/DPlib/Launcher.class
 org/ggraver/DPlib/IO.class
 org/ggraver/DPlib/FileHandler.class
-org/ggraver/DPlib/DPlib.class
 org/ggraver/DPlib/Exception/ModelingException.class
+org/ggraver/DPlib/CommandLineApp.class
 org/ggraver/DPlib/Controller.class
 org/ggraver/DPlib/Result.class
+org/ggraver/DPlib/GUIApp.class
 org/ggraver/DPlib/Exception/CompileException.class
 org/ggraver/DPlib/Model.class
 org/ggraver/DPlib/Modeler.class
