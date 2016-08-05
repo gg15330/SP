@@ -9,6 +9,7 @@ import static javafx.application.Application.launch;
 
 // overall program control
 public class Launcher
+
 {
     public static void main(String args[])
     {
@@ -16,7 +17,7 @@ public class Launcher
         {
             launch(GUIApp.class, args);
         }
-        catch (Exception e)
+        catch (Error e)
         {
             System.err.println("Could not launch JavaFX Application - " +
                                "reverting to command line interface...\n");
