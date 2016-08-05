@@ -61,9 +61,9 @@ implements Initializable
     private void setInstructionCountGraph()
     {
         instructionCountGraph.setTitle("Instructions");
-        instructionCountGraph.getYAxis().setLabel("Instruction count");
-        XYChart.Series model = createSeries("Model", result.getModelInstructionCount());
-        XYChart.Series user = createSeries("User", result.getUserInstructionCount());
+        instructionCountGraph.getYAxis().setLabel("Instructions (millions)");
+        XYChart.Series model = createSeries("Model", result.getModelInstructionCount() / 1000000);
+        XYChart.Series user = createSeries("User", result.getUserInstructionCount() / 1000000);
         instructionCountGraph.getData().setAll(model, user);
         instructionCountGraph.getYAxis().setAnimated(false);
         instructionCountGraph.getXAxis().setAnimated(false);
