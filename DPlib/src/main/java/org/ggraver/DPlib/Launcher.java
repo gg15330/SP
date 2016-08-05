@@ -1,6 +1,6 @@
 package org.ggraver.DPlib;
 
-import javafx.application.Application;
+import static javafx.application.Application.launch;
 
 // overall program control
 public class Launcher
@@ -8,7 +8,7 @@ public class Launcher
 {
     public static void main(String args[])
     {
-        Application.launch(DPlib.class, args);
+        launch(DPlib.class, args);
     }
 
 }
