@@ -3,13 +3,15 @@ package org.ggraver.DPlib;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Properties;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
+
+import static javafx.application.Application.launch;
 
 // overall program control
 public class Launcher
@@ -19,46 +21,57 @@ public class Launcher
 //    {
 //        launch(GUIApp.class, args);
 //
-//        try
-//        {
-//            new CommandLineApp().start(args);
-//        }
-//        catch (IOException | AnalysisException | ModelingException ex)
-//        {
-//            new IO().exit(ex);
-//            System.exit(1);
-//        }
+
 //    }
 
-    private static void createAndShowGUI() {
-        //Create and set up the window.
-        JFrame frame = new JFrame("HelloWorldSwing");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    private void createAndShowGUI()
+    {
+        System.out.println("Swing app EDT: " + SwingUtilities.isEventDispatchThread());
 
-        //Add the ubiquitous "Hello World" label.
-        JLabel label = new JLabel("Hello World");
-        frame.getContentPane().add(label);
+        JButton btn2 = new JButton("button 2");
+        JButton btn3 = new JButton("button 3");
+        JButton btn4 = new JButton("button 4");
+        JButton btn5 = new JButton("button 5");
 
-        //Display the window.
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout());
+        mainPanel.add(btn2, BorderLayout.EAST);
+        mainPanel.add(btn3, BorderLayout.WEST);
+        mainPanel.add(btn4, BorderLayout.SOUTH);
+        mainPanel.add(btn5, BorderLayout.CENTER);
+
+        JFrame frame = new JFrame("Test gui");
+        frame.add(mainPanel);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//        frame.setPreferredSize(new Dimension(800, 600));
         frame.pack();
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
+//        String jre = System.getProperty("java.runtime.name");
+//        if (jre.equals("Java(TM) SE Runtime Environment"))
+//        {
+//            launch(GUIApp.class, args);
+//        }
+//        else if (jre.equals("OpenJDK Runtime Environment"))
+//        {
+//
+//        }
 
-        String jre = System.getProperty("java.runtime.name");
-        System.out.println(jre);
-        if(jre.equals("OpenJDK Runtime Environment"))
+        Launcher launcher = new Launcher();
+        javax.swing.SwingUtilities.invokeLater(launcher::createAndShowGUI);
+        try
         {
-            System.out.println("Found you");
+            new CommandLineApp().start(args);
+            System.out.println("Command line app EDT: " + SwingUtilities.isEventDispatchThread());
         }
-        //Schedule a job for the event-dispatching thread:
-        //creating and showing this application's GUI.
-//        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-//            public void run() {
-//                createAndShowGUI();
-//            }
-//        });
+        catch (IOException | AnalysisException | ModelingException ex)
+        {
+            new IO().exit(ex);
+            System.exit(1);
+        }
     }
 
 }

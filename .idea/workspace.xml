@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dbf27813-b393-4f5c-a162-70ce6f80ac8c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SwingGui.form" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SwingGui.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Launcher$1.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/DPlib-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/DPlib/target/DPlib-1.0-SNAPSHOT.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Launcher.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Launcher.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/SwingGui.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/SwingGui.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/jfx/app/DPlib-1.0-SNAPSHOT-jfx.jar" afterPath="$PROJECT_DIR$/DPlib/target/jfx/app/DPlib-1.0-SNAPSHOT-jfx.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Launcher.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Launcher.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SwingGui.form" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SwingGui.form" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SwingGui.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SwingGui.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/DPlib/target/maven-archiver/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/DPlib/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
     </list>
     <ignored path="SP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,8 +36,8 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DPlib/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="294">
+              <caret line="92" column="57" selection-start-line="92" selection-start-column="57" selection-end-line="92" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -46,10 +46,32 @@
       <file leaf-file-name="Launcher.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Launcher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="431">
-              <caret line="49" column="39" selection-start-line="49" selection-start-column="39" selection-end-line="49" selection-end-column="39" />
+            <state relative-caret-position="350">
+              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SwingGui.form" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SwingGui.form">
+          <provider selected="true" editor-type-id="ui-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SwingGui.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SwingGui.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+              <folding>
+                <element signature="e#396#397#0" expanded="true" />
+                <element signature="e#430#431#0" expanded="true" />
+                <element signature="e#463#464#0" expanded="true" />
+                <element signature="e#495#496#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -58,9 +80,11 @@
       <file leaf-file-name="CommandLineApp.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/CommandLineApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
+            <state relative-caret-position="532">
               <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -68,70 +92,9 @@
       <file leaf-file-name="GUIApp.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/GUIApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+            <state relative-caret-position="28">
+              <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="602">
-              <caret line="58" column="5" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#698#699#0" expanded="false" />
-                <element signature="e#745#746#0" expanded="false" />
-                <element signature="e#784#785#0" expanded="false" />
-                <element signature="e#838#839#0" expanded="false" />
-                <element signature="e#2554#2555#0" expanded="false" />
-                <element signature="e#2590#2591#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gui.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DPlib/src/main/resources/gui.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="910">
-              <caret line="65" column="23" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Graph.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Graph.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="25" column="38" selection-start-line="24" selection-start-column="60" selection-end-line="25" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/IO.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1050">
-              <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#2633#2634#0" expanded="false" />
-                <element signature="e#2666#2667#0" expanded="false" />
-                <element signature="e#2698#2699#0" expanded="false" />
-                <element signature="e#2729#2730#0" expanded="false" />
-                <element signature="e#3139#3140#0" expanded="false" />
-                <element signature="e#3169#3170#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -157,7 +120,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/DPlib/src/test/resources/invalid.java" />
         <option value="$PROJECT_DIR$/DPlib/sample/fib/dfib.java" />
         <option value="$PROJECT_DIR$/DPlib/sample/fib/fib.java" />
         <option value="$PROJECT_DIR$/DPlib/sample/fib/FibonnaciRecursive.java" />
@@ -202,11 +164,12 @@
         <option value="$PROJECT_DIR$/DPlib/src/main/resources/gui.fxml" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Main.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Controller.java" />
-        <option value="$PROJECT_DIR$/DPlib/pom.xml" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/DPlib.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/GUIApp.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/CommandLineApp.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SwingGui.form" />
+        <option value="$PROJECT_DIR$/DPlib/pom.xml" />
+        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SwingGui.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Launcher.java" />
       </list>
     </option>
@@ -227,9 +190,10 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="-750" />
-    <option name="width" value="1366" />
-    <option name="height" value="750" />
+    <option name="x" value="-1367" />
+    <option name="y" value="-3" />
+    <option name="width" value="1368" />
+    <option name="height" value="772" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -242,7 +206,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -255,21 +219,14 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scratches" />
-      <pane id="ProjectPane">
-        <subPane />
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/DPlib/pom.xml" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.JavaFX" />
+    <property name="settings.editor.selected.configurable" value="project.propGUI" />
     <property name="settings.editor.splitter.proportion" value="0.23512195" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
@@ -597,7 +554,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-750" width="1366" height="750" extended-state="6" />
+    <frame x="-1367" y="-3" width="1368" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -858,32 +815,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="728">
           <caret line="85" column="4" selection-start-line="85" selection-start-column="4" selection-end-line="85" selection-end-column="4" />
-          <folding>
-            <element signature="e#512#513#0" expanded="false" />
-            <element signature="e#566#567#0" expanded="false" />
-            <element signature="e#607#608#0" expanded="false" />
-            <element signature="e#643#644#0" expanded="false" />
-            <element signature="e#985#986#0" expanded="false" />
-            <element signature="e#1032#1033#0" expanded="false" />
-            <element signature="e#1077#1078#0" expanded="false" />
-            <element signature="e#1121#1122#0" expanded="false" />
-            <element signature="e#1174#1175#0" expanded="false" />
-            <element signature="e#1224#1225#0" expanded="false" />
-            <element signature="e#1283#1284#0" expanded="false" />
-            <element signature="e#1339#1340#0" expanded="false" />
-            <element signature="e#1389#1390#0" expanded="false" />
-            <element signature="e#1427#1428#0" expanded="false" />
-            <element signature="e#1457#1458#0" expanded="false" />
-            <element signature="e#1486#1487#0" expanded="false" />
-            <element signature="e#1521#1522#0" expanded="false" />
-            <element signature="e#1557#1558#0" expanded="false" />
-            <element signature="e#1595#1596#0" expanded="false" />
-            <element signature="e#1634#1635#0" expanded="false" />
-            <element signature="e#1682#1683#0" expanded="false" />
-            <element signature="e#1718#1719#0" expanded="false" />
-            <element signature="e#1784#1785#0" expanded="false" />
-            <element signature="e#1834#1835#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -894,56 +825,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/resources/gui.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="910">
-          <caret line="65" column="23" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Graph.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
           <caret line="25" column="38" selection-start-line="24" selection-start-column="60" selection-end-line="25" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="602">
-          <caret line="58" column="5" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#698#699#0" expanded="false" />
-            <element signature="e#745#746#0" expanded="false" />
-            <element signature="e#784#785#0" expanded="false" />
-            <element signature="e#838#839#0" expanded="false" />
-            <element signature="e#2554#2555#0" expanded="false" />
-            <element signature="e#2590#2591#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/GUIApp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -951,24 +836,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1050">
           <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2633#2634#0" expanded="false" />
-            <element signature="e#2666#2667#0" expanded="false" />
-            <element signature="e#2698#2699#0" expanded="false" />
-            <element signature="e#2729#2730#0" expanded="false" />
-            <element signature="e#3139#3140#0" expanded="false" />
-            <element signature="e#3169#3170#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/CommandLineApp.java">
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="529">
+          <caret line="58" column="5" selection-start-line="58" selection-start-column="5" selection-end-line="58" selection-end-column="5" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/resources/gui.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="577">
+          <caret line="65" column="23" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SwingGui.form">
@@ -978,16 +863,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SwingGui.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="126">
+          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+          <folding>
+            <element signature="e#396#397#0" expanded="true" />
+            <element signature="e#430#431#0" expanded="true" />
+            <element signature="e#463#464#0" expanded="true" />
+            <element signature="e#495#496#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/CommandLineApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/GUIApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="92" column="57" selection-start-line="92" selection-start-column="57" selection-end-line="92" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Launcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="49" column="39" selection-start-line="49" selection-start-column="39" selection-end-line="49" selection-end-column="39" />
+        <state relative-caret-position="350">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
