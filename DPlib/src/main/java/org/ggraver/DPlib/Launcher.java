@@ -4,8 +4,12 @@ import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
 
 import java.io.IOException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.Properties;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 
 // overall program control
 public class Launcher
@@ -41,13 +45,20 @@ public class Launcher
     }
 
     public static void main(String[] args) {
+
+        String jre = System.getProperty("java.runtime.name");
+        System.out.println(jre);
+        if(jre.equals("OpenJDK Runtime Environment"))
+        {
+            System.out.println("Found you");
+        }
         //Schedule a job for the event-dispatching thread:
         //creating and showing this application's GUI.
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowGUI();
-            }
-        });
+//        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+//            public void run() {
+//                createAndShowGUI();
+//            }
+//        });
     }
 
 }
