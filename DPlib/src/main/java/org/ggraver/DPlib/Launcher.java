@@ -17,7 +17,7 @@ public class Launcher
         {
             launch(GUIApp.class, args);
         }
-        catch (Error e)
+        catch (NoClassDefFoundError e)
         {
             System.err.println("Could not launch JavaFX Application - " +
                                "reverting to command line interface...\n");
