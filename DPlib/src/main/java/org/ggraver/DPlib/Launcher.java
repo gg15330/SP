@@ -5,7 +5,6 @@ import org.ggraver.DPlib.Exception.ModelingException;
 
 import java.io.IOException;
 
-import static javafx.application.Application.launch;
 import javax.swing.*;
 
 // overall program control
