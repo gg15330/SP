@@ -15,13 +15,15 @@ public class Launcher
     {
         try
         {
+            Class.forName("javafx.application.Application", false, javafx.application.Application.class.getClassLoader());
             launch(GUIApp.class, args);
         }
-        catch (NoClassDefFoundError e)
+        catch (ClassNotFoundException cnfe)
         {
             System.err.println("Could not launch JavaFX Application - " +
-                               "reverting to command line interface...\n");
-            try {
+                                "reverting to command line interface...\n");
+            try
+            {
                 new CommandLineApp().start(args);
             }
             catch (IOException | AnalysisException | ModelingException ex)
@@ -30,6 +32,8 @@ public class Launcher
                 System.exit(1);
             }
         }
+
+
     }
 
 }
