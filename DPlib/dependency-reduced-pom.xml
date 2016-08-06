@@ -33,8 +33,9 @@
                   <resource>META-INF/services/conf.file</resource>
                 </transformer>
                 <transformer>
+                  <mainClass>org.ggraver.DPlib.Launcher</mainClass>
                   <manifestEntries>
-                    <Main-Class>org.ggraver.DPlib.Main</Main-Class>
+                    <Main-Class>org.ggraver.DPlib.Launcher</Main-Class>
                     <X-Compile-Source-JDK>1.8</X-Compile-Source-JDK>
                     <X-Compile-Target-JDK>1.8</X-Compile-Target-JDK>
                   </manifestEntries>
