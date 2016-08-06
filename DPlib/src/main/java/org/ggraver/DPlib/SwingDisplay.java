@@ -1,6 +1,7 @@
 package org.ggraver.DPlib;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
 
@@ -13,75 +14,88 @@ class SwingDisplay
     void createAndShowGUI()
     {
         System.out.println("Swing app EDT: " + SwingUtilities.isEventDispatchThread());
+        GridBagConstraints gbc = new GridBagConstraints();
 
-//        editorPanel components
-        JTextArea editorTextArea = new JTextArea();
-        editorTextArea.setText("Your code here");
+//        editorTextArea
+        JTextArea editor = new JTextArea();
+        editor.setLineWrap(true);
+        editor.setText("Your code here");
+        editor.setBackground(Color.LIGHT_GRAY);
+        JScrollPane editorScrollPane = new JScrollPane(editor);
+        editorScrollPane.setPreferredSize(new Dimension(1, 1));
+        editorScrollPane.setBackground(Color.ORANGE);
 
-//      add editor text area to editor scroll pane
-        JScrollPane editorScrollPane = new JScrollPane(editorTextArea);
-        editorScrollPane.setPreferredSize(new Dimension(300, 300));
+//        terminalTextArea
+        JTextArea terminal = new JTextArea();
+        terminal.setLineWrap(true);
+        terminal.setText("Terminal");
+        terminal.setBackground(Color.LIGHT_GRAY);
+        JScrollPane terminalScrollPane = new JScrollPane(terminal);
+        terminalScrollPane.setPreferredSize(new Dimension(1, 1));
+        terminalScrollPane.setBackground(Color.GREEN);
 
-//        add components to editorPanel
-        JPanel editorPanel = new JPanel();
-        editorPanel.setLayout(new BorderLayout());
-        editorPanel.setBorder(new EtchedBorder());
-        editorPanel.add(editorScrollPane, BorderLayout.CENTER);
+//        ioPanel
+        JPanel ioPanel = new JPanel();
+        ioPanel.setBackground(Color.BLUE);
+        ioPanel.setLayout(new GridBagLayout());
 
-//        terminalPanel components
-        JTextArea terminalTextArea = new JTextArea();
-        terminalTextArea.setText("Terminal output");
+        gbc.gridx = 0;
+        gbc. gridy = 0;
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        ioPanel.add(editorScrollPane, gbc);
 
-//      add terminalTextArea to terminalScrollPane
-        JScrollPane terminalScrollPane = new JScrollPane(terminalTextArea);
+        gbc.gridx = 0;
+        gbc. gridy = 1;
+        gbc.weightx = 0;
+        gbc.weighty = 0.5;
+        gbc.fill = GridBagConstraints.BOTH;
+        ioPanel.add(terminalScrollPane, gbc);
 
-//        add components to terminalPanel
-        JPanel terminalPanel = new JPanel();
-        terminalPanel.setLayout(new BorderLayout());
-        terminalPanel.setBorder(new EtchedBorder());
-        terminalPanel.add(terminalScrollPane, BorderLayout.CENTER);
+//        button
+        JButton solveBtn = new JButton();
+        solveBtn.setText("Solve");
 
-//        btnPanel components
-        JButton solveBtn = new JButton("Solve");
+        JTextArea executionTimeGraph = new JTextArea();
+        executionTimeGraph.setText("Execution time");
+        executionTimeGraph.setBorder(new EtchedBorder());
 
-//        add components to btnPanel
-        JPanel btnPanel = new JPanel();
-        btnPanel.add(solveBtn);
+        JTextArea instructionCountGraph = new JTextArea();
+        instructionCountGraph.setText("Instruction count");
+        instructionCountGraph.setBorder(new EtchedBorder());
 
-//        graphPanel components
-        JTextArea graph1 = new JTextArea();
-        JTextArea graph2 = new JTextArea();
-        graph1.setText("Graph 1");
-        graph2.setText("Graph 2");
-
-//        add components to graphPanel
+//        graphPanel
         JPanel graphPanel = new JPanel();
         BoxLayout graphPanelLayout = new BoxLayout(graphPanel, BoxLayout.Y_AXIS);
         graphPanel.setLayout(graphPanelLayout);
-        graphPanel.setBorder(new EtchedBorder());
-        graphPanel.add(btnPanel);
-        graphPanel.add(graph1);
-        graphPanel.add(graph2);
+        graphPanel.add(solveBtn);
+        graphPanel.add(executionTimeGraph);
+        graphPanel.add(instructionCountGraph);
 
-//        add editorPanel and terminalPanel to ioPanel
-        JPanel ioPanel = new JPanel();
-        BoxLayout ioPanelLayout = new BoxLayout(ioPanel, BoxLayout.Y_AXIS);
-        ioPanel.setLayout(ioPanelLayout);
-        ioPanel.setBorder(new EtchedBorder());
-        ioPanel.add(editorPanel);
-        ioPanel.add(terminalPanel);
-
-//        set layout
+//        mainPanel
         JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BorderLayout());
-        mainPanel.setBorder(new EtchedBorder());
-        mainPanel.add(graphPanel, BorderLayout.EAST);
-        mainPanel.add(ioPanel, BorderLayout.CENTER);
+        mainPanel.setLayout(new GridBagLayout());
+        mainPanel.setBackground(Color.GRAY);
+
+        gbc.gridx = 0;
+        gbc. gridy = 0;
+        gbc.weightx = 1;
+        gbc.weighty = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        mainPanel.add(ioPanel, gbc);
+
+        gbc.gridx = 1;
+        gbc. gridy = 0;
+        gbc.weightx = 0.25;
+        gbc.weighty = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        mainPanel.add(graphPanel, gbc);
 
         JFrame frame = new JFrame("Test gui");
-        frame.add(mainPanel);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(800, 600));
+        frame.add(mainPanel);
         frame.setResizable(false);
         frame.pack();
         frame.setLocationRelativeTo(null);
