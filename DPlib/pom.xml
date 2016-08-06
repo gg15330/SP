@@ -73,7 +73,7 @@
                 <!--<configuration>-->
                     <!--<archive>-->
                         <!--<manifest>-->
-                            <!--<mainClass>org.ggraver.GUIApp.Launchercher</mainClass>-->
+                            <!--<mainClass>org.ggraver.FXDisplay.Launchercher</mainClass>-->
                         <!--</manifest>-->
                     <!--</archive>-->
                     <!--<descriptorRefs>-->
@@ -89,7 +89,6 @@
                     <!--</execution>-->
                 <!--</executions>-->
             <!--</plugin>-->
-
 
             <plugin>
                 <groupId>com.zenjava</groupId>
@@ -140,9 +139,9 @@
                                     <!--</resource>-->
                                 <!--</transformer>-->
                                 <!--<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">-->
-                                    <!--<mainClass>org.ggraver.GUIApp.Launchercher</mainClass>-->
+                                    <!--<mainClass>org.ggraver.FXDisplay.Launchercher</mainClass>-->
                                     <!--<manifestEntries>-->
-                                        <!--<Launcher-Class>org.ggraver.GUIApp.Launchercher</Launcher-Class>-->
+                                        <!--<Launcher-Class>org.ggraver.FXDisplay.Launchercher</Launcher-Class>-->
                                         <!--<X-Compile-Source-JDK>1.8</X-Compile-Source-JDK>-->
                                         <!--<X-Compile-Target-JDK>1.8</X-Compile-Target-JDK>-->
                                     <!--</manifestEntries>-->

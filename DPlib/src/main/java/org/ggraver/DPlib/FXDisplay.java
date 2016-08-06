@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by george on 04/08/16.
  */
-public class GUIApp
+public class FXDisplay
 extends Application
 {
 
