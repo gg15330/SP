@@ -1,5 +1,12 @@
 package org.ggraver.DPlib;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
@@ -65,13 +72,35 @@ class SwingDisplay
         instructionCountGraph.setText("Instruction count");
         instructionCountGraph.setBorder(new EtchedBorder());
 
+//        executionTimeGraph
+        JFreeChart executionTimeChart = ChartFactory.createBarChart(
+                "Test Chart",
+                "Category",
+                "Score",
+                createDataset(),
+                PlotOrientation.VERTICAL,
+                true, true, false);
+        ChartPanel executionTimeChartPanel = new ChartPanel(executionTimeChart);
+        executionTimeChartPanel.setPreferredSize(new Dimension(200, 300));
+
+//        instructionCountGraph
+        JFreeChart instructionCountChart = ChartFactory.createBarChart(
+                "Test Chart",
+                "Category",
+                "Score",
+                createDataset(),
+                PlotOrientation.VERTICAL,
+                true, true, false);
+        ChartPanel instructionCountChartPanel = new ChartPanel(instructionCountChart);
+        instructionCountChartPanel.setPreferredSize(new Dimension(200, 300));
+
 //        graphPanel
         JPanel graphPanel = new JPanel();
         BoxLayout graphPanelLayout = new BoxLayout(graphPanel, BoxLayout.Y_AXIS);
         graphPanel.setLayout(graphPanelLayout);
         graphPanel.add(solveBtn);
-        graphPanel.add(executionTimeGraph);
-        graphPanel.add(instructionCountGraph);
+        graphPanel.add(executionTimeChartPanel);
+        graphPanel.add(instructionCountChartPanel);
 
 //        mainPanel
         JPanel mainPanel = new JPanel();
@@ -95,11 +124,41 @@ class SwingDisplay
         JFrame frame = new JFrame("Test gui");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(800, 600));
-        frame.add(mainPanel);
+        frame.setContentPane(mainPanel);
         frame.setResizable(false);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+
+    private CategoryDataset createDataset( )
+    {
+        final String fiat = "FIAT";
+        final String audi = "AUDI";
+        final String ford = "FORD";
+        final String speed = "Speed";
+        final String millage = "Millage";
+        final String userrating = "User Rating";
+        final String safety = "safety";
+        final DefaultCategoryDataset dataset =
+                new DefaultCategoryDataset( );
+
+        dataset.addValue( 1.0 , fiat , speed );
+        dataset.addValue( 3.0 , fiat , userrating );
+        dataset.addValue( 5.0 , fiat , millage );
+        dataset.addValue( 5.0 , fiat , safety );
+
+        dataset.addValue( 5.0 , audi , speed );
+        dataset.addValue( 6.0 , audi , userrating );
+        dataset.addValue( 10.0 , audi , millage );
+        dataset.addValue( 4.0 , audi , safety );
+
+        dataset.addValue( 4.0 , ford , speed );
+        dataset.addValue( 2.0 , ford , userrating );
+        dataset.addValue( 3.0 , ford , millage );
+        dataset.addValue( 6.0 , ford , safety );
+
+        return dataset;
     }
 
 }

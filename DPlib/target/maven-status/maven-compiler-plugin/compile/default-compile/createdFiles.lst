@@ -19,3 +19,4 @@ org/ggraver/DPlib/SwingGui.class
 org/ggraver/DPlib/ClassAnalyser.class
 org/ggraver/DPlib/SourceAnalyser.class
 org/ggraver/DPlib/Exception/AnalysisException.class
+org/ggraver/DPlib/ChartExample.class
