@@ -2,6 +2,7 @@ package org.ggraver.DPlib;
 
 import com.thoughtworks.xstream.XStream;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.output.FileWriterWithEncoding;
 
 import java.io.*;
 
@@ -86,4 +87,14 @@ public class FileHandler
         return file;
     }
 
+    public File createJavaFile(String editorText)
+    throws IOException
+    {
+        File javaFile = new File(dir, "temp.java");
+        javaFile.deleteOnExit();
+        FileWriter fileWriter = new FileWriter(javaFile);
+        fileWriter.write(editorText);
+        fileWriter.close();
+        return javaFile;
+    }
 }

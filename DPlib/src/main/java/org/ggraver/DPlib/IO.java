@@ -13,34 +13,6 @@ public class IO
     private String filePath;
     private String methodName;
 
-    void processArgs(String[] args)
-    throws IOException
-    {
-        if(args.length == 3)
-        {
-            command = args[0];
-            filePath = args[1];
-            methodName = args[2];
-            if(!command.equals("model"))
-            {
-                throw new IOException(usage);
-            }
-        }
-        else if(args.length == 2)
-        {
-            command = args[0];
-            filePath = args[1];
-            if(!command.equals("solve"))
-            {
-                throw new IOException(usage);
-            }
-        }
-        else
-        {
-            throw new IOException(usage);
-        }
-    }
-
     public void errorMsg(Exception e)
     {
         if (!(e instanceof AnalysisException)
@@ -123,4 +95,8 @@ public class IO
         return command;
     }
 
+    String getUsage()
+    {
+        return usage;
+    }
 }

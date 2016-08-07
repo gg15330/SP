@@ -6,6 +6,7 @@ import org.ggraver.DPlib.Exception.AnalysisException;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -17,15 +18,14 @@ public class SwingController
     private Model model;
     private SwingView swingView = new SwingView();
     private Solver solver = new Solver();
-    private IO io;
+    private IO io = new IO();
     private FileHandler fileHandler;
     private Result result;
 
-    public SwingController(IO io, FileHandler fileHandler)
+    public SwingController(FileHandler fileHandler)
     throws IOException
     {
         swingView.addSolveBtnListener(new solveBtnListener());
-        this.io = io;
         this.fileHandler = fileHandler;
     }
 
@@ -47,15 +47,16 @@ public class SwingController
         {
             try
             {
-                model = fileHandler.parseXML();
-                result = solver.solve(model, fileHandler.getFile());
-                System.out.println("actionPerformed EDT: " + SwingUtilities.isEventDispatchThread());
+                String editorText = swingView.getEditorText();
+                File javaFile = fileHandler.createJavaFile(editorText);
+                result = solver.solve(model, javaFile);
             }
-            catch (IOException | AnalysisException ex)
+            catch (AnalysisException | IOException ex)
             {
                 io.errorMsg(ex);
             }
             swingView.setExecutionTimeGraph(result.getModelExecutionTime(), result.getUserExecutionTime());
+            swingView.setInstructionCountGraph(result.getModelInstructionCount(), result.getUserInstructionCount());
         }
 
     }

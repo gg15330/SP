@@ -16,16 +16,15 @@ import java.awt.event.ActionListener;
 /**
  * Created by george on 05/08/16.
  */
-public class SwingView
+class SwingView
 {
     private JTextArea editor = new JTextArea();
     private JTextArea terminal = new JTextArea();
     private JButton solveBtn = new JButton();
     private ChartPanel executionTimeChartPanel;
     private ChartPanel instructionCountChartPanel;
-    private Result result;
 
-    public void createAndShowGUI()
+    void createAndShowGUI()
     {
         System.out.println("SwingView createAndShowGUI EDT: " + SwingUtilities.isEventDispatchThread());
 
@@ -35,29 +34,28 @@ public class SwingView
 
 //        button
         solveBtn.setText("Solve");
+        JPanel btnPanel = new JPanel();
+        btnPanel.add(solveBtn);
 
 //        executionTimeGraph
-        Dimension chartDimension = new Dimension(200, 300);
         executionTimeChartPanel = createChart("Execution Time",
                                                     null,
                                                     "Time (ms)",
                                                     createDataset(0, 0),
-                                                    PlotOrientation.VERTICAL,
-                                                    chartDimension);
+                                                    PlotOrientation.VERTICAL);
 
 //        instructionCountGraph
         instructionCountChartPanel = createChart("Instructions",
                                                             null,
-                                                            "No. of instructions executed",
+                                                            "Instructions (millions)",
                                                             createDataset(0, 0),
-                                                            PlotOrientation.VERTICAL,
-                                                            chartDimension);
+                                                            PlotOrientation.VERTICAL);
 
 //        ioPanel
         JPanel ioPanel = createIOPanel(editorScrollPane, terminalScrollPane);
 
 //        graphPanel
-        JPanel graphPanel = createGraphPanel(solveBtn, executionTimeChartPanel, instructionCountChartPanel);
+        JPanel graphPanel = createGraphPanel(btnPanel, executionTimeChartPanel, instructionCountChartPanel);
 
 //        mainPanel
         JPanel mainPanel = createMainPanel(ioPanel, graphPanel);
@@ -94,13 +92,13 @@ public class SwingView
         return mainPanel;
     }
 
-    private JPanel createGraphPanel(JButton solveBtn, JPanel executionTimeChartPanel, JPanel instructionCountChartPanel)
+    private JPanel createGraphPanel(JPanel btnPanel, JPanel executionTimeChartPanel, JPanel instructionCountChartPanel)
     {
         JPanel graphPanel = new JPanel();
         BoxLayout graphPanelLayout = new BoxLayout(graphPanel, BoxLayout.Y_AXIS);
         graphPanel.setLayout(graphPanelLayout);
         graphPanel.setBorder(new EtchedBorder());
-        graphPanel.add(solveBtn);
+        graphPanel.add(btnPanel);
         graphPanel.add(executionTimeChartPanel);
         graphPanel.add(instructionCountChartPanel);
         return graphPanel;
@@ -122,7 +120,7 @@ public class SwingView
         gbc.gridx = 0;
         gbc. gridy = 1;
         gbc.weightx = 0;
-        gbc.weighty = 0.5;
+        gbc.weighty = 0.3;
         gbc.fill = GridBagConstraints.BOTH;
         ioPanel.add(terminalScrollPane, gbc);
         return ioPanel;
@@ -132,8 +130,7 @@ public class SwingView
                                    String xLabel,
                                    String yLabel,
                                    CategoryDataset dataSet,
-                                   PlotOrientation orientation,
-                                   Dimension size)
+                                   PlotOrientation orientation)
     {
         JFreeChart jFreeChart = ChartFactory.createBarChart(
                 name,
@@ -145,20 +142,19 @@ public class SwingView
                 true,
                 false);
         ChartPanel chartPanel = new ChartPanel(jFreeChart);
-        chartPanel.setPreferredSize(size);
         return chartPanel;
     }
 
     private JScrollPane createTextAreaWithScrollPane(JTextArea jTextArea, String text, boolean editable)
     {
         jTextArea.setLineWrap(true);
+        jTextArea.setTabSize(4);
         jTextArea.setText(text);
         jTextArea.setEditable(editable);
         JScrollPane scrollPane = new JScrollPane(jTextArea);
         scrollPane.setPreferredSize(new Dimension(1, 1));
         return scrollPane;
     }
-
 
     private CategoryDataset createDataset(long modelVal, long userVal)
     {
@@ -186,14 +182,15 @@ public class SwingView
         editor.setText(s);
     }
 
-    public void setResult(Result result)
-    {
-        this.result = result;
-    }
+    void setTerminalText(String s) { terminal.setText(s); }
 
     void setExecutionTimeGraph(long modelExecutionTime, long userExecutionTime)
     {
-        System.out.println("setExecutionTimeGraph EDT: " + SwingUtilities.isEventDispatchThread());
         executionTimeChartPanel.getChart().getCategoryPlot().setDataset(createDataset(modelExecutionTime, userExecutionTime));
+    }
+
+    void setInstructionCountGraph(long modelInstructionCount, long userInstructionCount)
+    {
+        instructionCountChartPanel.getChart().getCategoryPlot().setDataset(createDataset(modelInstructionCount / 1000000, userInstructionCount / 1000000));
     }
 }
