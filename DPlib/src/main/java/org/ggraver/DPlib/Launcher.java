@@ -1,13 +1,10 @@
 package org.ggraver.DPlib;
 
 import org.ggraver.DPlib.Display.SwingController;
-import org.ggraver.DPlib.Display.SwingView;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
 
 import java.io.IOException;
-
-import javax.swing.*;
 
 import static javafx.application.Application.launch;
 
@@ -23,7 +20,6 @@ public class Launcher
 //        }
 //        else
 //        {
-        SwingView swingView = new SwingView();
         IO io = new IO();
         FileHandler fileHandler;
         try
@@ -36,17 +32,15 @@ public class Launcher
                     fileHandler.generateXML(model);
                     break;
                 case "solve":
-                    SwingController swingController = new SwingController(swingView, io);
-                    javax.swing.SwingUtilities.invokeLater(swingView::createAndShowGUI);
-                    System.out.println("Launcher EDT: " + SwingUtilities.isEventDispatchThread());
-
+                    SwingController swingController = new SwingController(io, fileHandler);
+                    swingController.start();
                     break;
                 default: throw new Error("Invalid command: " + io.getCommand());
             }
         }
         catch (IOException | ModelingException | AnalysisException e)
         {
-            io.exit(e);
+            io.errorMsg(e);
             System.exit(1);
         }
 

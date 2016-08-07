@@ -75,6 +75,10 @@ class ClassAnalyser
         {
             throw new Error(e);
         }
+        if(!log.delete())
+        {
+            throw new Error("temp log file not successfully deleted.");
+        }
     }
 
     private void execute(ProcessBuilder pb)
@@ -128,16 +132,18 @@ class ClassAnalyser
     throws IOException
     {
         File temp = new File(dir + "/" + fileName);
-        temp.deleteOnExit();
 
-        if(!temp.createNewFile())
+        if(temp.exists())
         {
-            throw new Error("Temp file \"" + temp.getName() + "\" already exists.");
-        }
-
-        if(!temp.exists())
-        {
-            throw new Error("Could not create temp file.");
+            System.err.println("Deleting pre-existing temp file - should not exist...");
+            if(!temp.delete())
+            {
+                throw new Error("Could not delete pre-existing temp file.");
+            }
+            if(!temp.createNewFile())
+            {
+                throw new Error("Could not create new temp file after deleting the old one.");
+            }
         }
         return temp;
     }

@@ -2,7 +2,6 @@ package org.ggraver.DPlib.Display;
 
 import org.ggraver.DPlib.*;
 import org.ggraver.DPlib.Exception.AnalysisException;
-import org.ggraver.DPlib.Exception.ModelingException;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,23 +14,28 @@ import java.io.IOException;
 public class SwingController
 {
 
-    SwingView swingView;
-    Solver solver;
-    IO io;
+    private Model model;
+    private SwingView swingView = new SwingView();
+    private Solver solver = new Solver();
+    private IO io;
+    private FileHandler fileHandler;
+    private Result result;
 
-    public SwingController(SwingView swingView, IO io)
-    throws AnalysisException, IOException
+    public SwingController(IO io, FileHandler fileHandler)
+    throws IOException
     {
-        this.swingView = swingView;
-        this.swingView.addSolveBtnListener(new solveBtnListener());
+        swingView.addSolveBtnListener(new solveBtnListener());
         this.io = io;
+        this.fileHandler = fileHandler;
+    }
 
-        FileHandler fileHandler = new FileHandler();
-        Model model = fileHandler.parseXML();
-        Result result = solver.solve(model, fileHandler.getFile());
-        io.displayResult(result);
-
+    public void start()
+    throws IOException, AnalysisException
+    {
+        model = fileHandler.parseXML();
+        result = solver.solve(model, fileHandler.getFile());
         SwingUtilities.invokeLater(swingView::createAndShowGUI);
+        System.out.println("SwingController EDT: " + SwingUtilities.isEventDispatchThread());
     }
 
     private class solveBtnListener
@@ -41,7 +45,17 @@ public class SwingController
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            swingView.setEditorText("MVC BABByYYY!!!");
+            try
+            {
+                model = fileHandler.parseXML();
+                result = solver.solve(model, fileHandler.getFile());
+                System.out.println("actionPerformed EDT: " + SwingUtilities.isEventDispatchThread());
+            }
+            catch (IOException | AnalysisException ex)
+            {
+                io.errorMsg(ex);
+            }
+            swingView.setExecutionTimeGraph(result.getModelExecutionTime(), result.getUserExecutionTime());
         }
 
     }

@@ -41,7 +41,7 @@ public class IO
         }
     }
 
-    public void exit(Exception e)
+    public void errorMsg(Exception e)
     {
         if (!(e instanceof AnalysisException)
                 && !(e instanceof ModelingException)
@@ -53,7 +53,7 @@ public class IO
         System.err.println(e.getMessage());
     }
 
-    public void displayResult(Result result)
+    void displayResult(Result result)
     {
         String[][] resultsTable = new String[4][4];
 
@@ -102,7 +102,7 @@ public class IO
         return methodName;
     }
 
-    String getFilePath()
+    public String getFilePath()
     {
         return filePath;
     }

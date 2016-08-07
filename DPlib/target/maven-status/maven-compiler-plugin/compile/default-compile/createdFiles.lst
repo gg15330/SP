@@ -10,7 +10,6 @@ org/ggraver/DPlib/IO.class
 org/ggraver/DPlib/Display/FXController.class
 org/ggraver/DPlib/FileHandler.class
 org/ggraver/DPlib/Exception/ModelingException.class
-org/ggraver/DPlib/CommandLineApp.class
 org/ggraver/DPlib/Result.class
 org/ggraver/DPlib/Exception/CompileException.class
 org/ggraver/DPlib/Display/SwingController.class

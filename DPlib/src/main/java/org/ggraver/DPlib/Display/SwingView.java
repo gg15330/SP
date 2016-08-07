@@ -1,5 +1,6 @@
 package org.ggraver.DPlib.Display;
 
+import org.ggraver.DPlib.Result;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -17,9 +18,12 @@ import java.awt.event.ActionListener;
  */
 public class SwingView
 {
-    JTextArea editor = new JTextArea();
-    JTextArea terminal = new JTextArea();
-    JButton solveBtn = new JButton();
+    private JTextArea editor = new JTextArea();
+    private JTextArea terminal = new JTextArea();
+    private JButton solveBtn = new JButton();
+    private ChartPanel executionTimeChartPanel;
+    private ChartPanel instructionCountChartPanel;
+    private Result result;
 
     public void createAndShowGUI()
     {
@@ -34,18 +38,18 @@ public class SwingView
 
 //        executionTimeGraph
         Dimension chartDimension = new Dimension(200, 300);
-        ChartPanel executionTimeChartPanel = createChart("Execution Time",
+        executionTimeChartPanel = createChart("Execution Time",
                                                     null,
                                                     "Time (ms)",
-                                                    createDataset(),
+                                                    createDataset(0, 0),
                                                     PlotOrientation.VERTICAL,
                                                     chartDimension);
 
 //        instructionCountGraph
-        ChartPanel instructionCountChartPanel = createChart("Instruction",
+        instructionCountChartPanel = createChart("Instructions",
                                                             null,
-                                                            "Instructions executed",
-                                                            createDataset(),
+                                                            "No. of instructions executed",
+                                                            createDataset(0, 0),
                                                             PlotOrientation.VERTICAL,
                                                             chartDimension);
 
@@ -156,14 +160,14 @@ public class SwingView
     }
 
 
-    private CategoryDataset createDataset()
+    private CategoryDataset createDataset(long modelVal, long userVal)
     {
         final String model = "Model";
         final String user = "User";
         final String value = "";
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(150000000 , model, value);
-        dataset.addValue(140000000 , user , value);
+        dataset.addValue(modelVal , model, value);
+        dataset.addValue(userVal , user , value);
         return dataset;
     }
 
@@ -182,4 +186,14 @@ public class SwingView
         editor.setText(s);
     }
 
+    public void setResult(Result result)
+    {
+        this.result = result;
+    }
+
+    void setExecutionTimeGraph(long modelExecutionTime, long userExecutionTime)
+    {
+        System.out.println("setExecutionTimeGraph EDT: " + SwingUtilities.isEventDispatchThread());
+        executionTimeChartPanel.getChart().getCategoryPlot().setDataset(createDataset(modelExecutionTime, userExecutionTime));
+    }
 }
