@@ -8,10 +8,10 @@ import java.io.File;
 /**
  * Created by george on 01/08/16.
  */
-class Solver
+public class Solver
 {
 
-    Result solve(Model model, File file)
+    public Result solve(Model model, File file)
     throws AnalysisException
     {
         SourceAnalyser sa = new SourceAnalyser(file, model.getMethodToAnalyse().getName());

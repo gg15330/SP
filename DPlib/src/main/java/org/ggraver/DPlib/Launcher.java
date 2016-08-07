@@ -23,11 +23,34 @@ public class Launcher
 //        }
 //        else
 //        {
-            SwingView swingView = new SwingView();
-            SwingController swingController = new SwingController(swingView);
-            swingController.start();
-            javax.swing.SwingUtilities.invokeLater(swingView::createAndShowGUI);
-            System.out.println("Launcher EDT: " + SwingUtilities.isEventDispatchThread());
+        SwingView swingView = new SwingView();
+        IO io = new IO();
+        FileHandler fileHandler;
+        try
+        {
+            io.processArgs(args);
+            fileHandler = new FileHandler(io.getFilePath(), "java");
+            switch (io.getCommand()) {
+                case "model":
+                    Model model = new Modeler().model(fileHandler.getFile(), io.getMethodName());
+                    fileHandler.generateXML(model);
+                    break;
+                case "solve":
+                    SwingController swingController = new SwingController(swingView, io);
+                    javax.swing.SwingUtilities.invokeLater(swingView::createAndShowGUI);
+                    System.out.println("Launcher EDT: " + SwingUtilities.isEventDispatchThread());
+
+                    break;
+                default: throw new Error("Invalid command: " + io.getCommand());
+            }
+        }
+        catch (IOException | ModelingException | AnalysisException e)
+        {
+            io.exit(e);
+            System.exit(1);
+        }
+
+
 //        }
     }
 

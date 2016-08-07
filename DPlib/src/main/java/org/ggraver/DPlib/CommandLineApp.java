@@ -13,7 +13,7 @@ public class CommandLineApp
 
     private Result result;
 
-    void start(String[] args)
+    public void start(String[] args)
     throws IOException, ModelingException, AnalysisException
     {
         IO io = new IO();

@@ -1,9 +1,8 @@
 package org.ggraver.DPlib.Display;
 
-import org.ggraver.DPlib.CommandLineApp;
+import org.ggraver.DPlib.*;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
-import org.ggraver.DPlib.IO;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -17,26 +16,22 @@ public class SwingController
 {
 
     SwingView swingView;
+    Solver solver;
+    IO io;
 
-    public SwingController(SwingView swingView)
+    public SwingController(SwingView swingView, IO io)
+    throws AnalysisException, IOException
     {
         this.swingView = swingView;
         this.swingView.addSolveBtnListener(new solveBtnListener());
-        System.out.println("SwingController constructor EDT: " + SwingUtilities.isEventDispatchThread());
-    }
+        this.io = io;
 
-    public void start()
-    {
-        try
-        {
-            new CommandLineApp().start(args);
-            System.out.println("Main EDT: " + SwingUtilities.isEventDispatchThread());
-        }
-        catch (IOException | AnalysisException | ModelingException ex)
-        {
-            new IO().exit(ex);
-            System.exit(1);
-        }
+        FileHandler fileHandler = new FileHandler();
+        Model model = fileHandler.parseXML();
+        Result result = solver.solve(model, fileHandler.getFile());
+        io.displayResult(result);
+
+        SwingUtilities.invokeLater(swingView::createAndShowGUI);
     }
 
     private class solveBtnListener
@@ -46,7 +41,6 @@ public class SwingController
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            System.out.println("EDT: " + SwingUtilities.isEventDispatchThread());
             swingView.setEditorText("MVC BABByYYY!!!");
         }
 

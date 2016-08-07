@@ -26,8 +26,8 @@ public class SwingView
         System.out.println("SwingView createAndShowGUI EDT: " + SwingUtilities.isEventDispatchThread());
 
 //        text scroll panes
-        JScrollPane editorScrollPane = createTextAreaWithScrollPane(editor, "Editor");
-        JScrollPane terminalScrollPane = createTextAreaWithScrollPane(terminal, "Terminal");
+        JScrollPane editorScrollPane = createTextAreaWithScrollPane(editor, "Editor", true);
+        JScrollPane terminalScrollPane = createTextAreaWithScrollPane(terminal, "Terminal", false);
 
 //        button
         solveBtn.setText("Solve");
@@ -145,10 +145,11 @@ public class SwingView
         return chartPanel;
     }
 
-    private JScrollPane createTextAreaWithScrollPane(JTextArea jTextArea, String text)
+    private JScrollPane createTextAreaWithScrollPane(JTextArea jTextArea, String text, boolean editable)
     {
         jTextArea.setLineWrap(true);
         jTextArea.setText(text);
+        jTextArea.setEditable(editable);
         JScrollPane scrollPane = new JScrollPane(jTextArea);
         scrollPane.setPreferredSize(new Dimension(1, 1));
         return scrollPane;

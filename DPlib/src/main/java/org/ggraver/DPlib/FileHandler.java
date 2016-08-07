@@ -14,7 +14,7 @@ public class FileHandler
     private File file;
     private File dir;
 
-    FileHandler(String file, String ext)
+    public FileHandler(String file, String ext)
     throws IOException
     {
         System.out.println("File: " + file);
@@ -66,7 +66,7 @@ public class FileHandler
         }
     }
 
-    Model parseXML()
+    public Model parseXML()
     throws IOException
     {
         XStream xStream = new XStream();
@@ -81,7 +81,7 @@ public class FileHandler
         return dir;
     }
 
-    File getFile()
+    public File getFile()
     {
         return file;
     }

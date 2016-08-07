@@ -41,7 +41,7 @@ public class IO
         }
     }
 
-    void exit(Exception e)
+    public void exit(Exception e)
     {
         if (!(e instanceof AnalysisException)
                 && !(e instanceof ModelingException)
@@ -53,7 +53,7 @@ public class IO
         System.err.println(e.getMessage());
     }
 
-    void displayResult(Result result)
+    public void displayResult(Result result)
     {
         String[][] resultsTable = new String[4][4];
 
