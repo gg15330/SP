@@ -6,7 +6,7 @@ import org.ggraver.DPlib.Exception.ModelingException;
 import java.io.IOException;
 
 // IO handling
-class IO
+public class IO
 {
 
     private String command;

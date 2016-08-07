@@ -1,5 +1,7 @@
 package org.ggraver.DPlib;
 
+import org.ggraver.DPlib.Display.SwingController;
+import org.ggraver.DPlib.Display.SwingView;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
 
@@ -17,22 +19,15 @@ public class Launcher
     {
 //        if (System.getProperty("java.runtime.name").equals("Java(TM) SE Runtime Environment"))
 //        {
-//            launch(FXDisplay.class, args);
+//            launch(FXView.class, args);
 //        }
 //        else
 //        {
-            SwingDisplay swingDisplay = new SwingDisplay();
-            javax.swing.SwingUtilities.invokeLater(swingDisplay::createAndShowGUI);
-            try
-            {
-                new CommandLineApp().start(args);
-                System.out.println("Main EDT: " + SwingUtilities.isEventDispatchThread());
-            }
-            catch (IOException | AnalysisException | ModelingException ex)
-            {
-                new IO().exit(ex);
-                System.exit(1);
-            }
+            SwingView swingView = new SwingView();
+            SwingController swingController = new SwingController(swingView);
+            swingController.start();
+            javax.swing.SwingUtilities.invokeLater(swingView::createAndShowGUI);
+            System.out.println("Launcher EDT: " + SwingUtilities.isEventDispatchThread());
 //        }
     }
 

@@ -6,7 +6,7 @@ import java.util.prefs.PreferenceChangeEvent;
 /**
  * Created by george on 02/08/16.
  */
-class Result
+public class Result
 {
     private AbstractMap.SimpleEntry<AbstractMap.SimpleEntry<String, String>, Boolean> output;
     private AbstractMap.SimpleEntry<AbstractMap.SimpleEntry<Long, Long>, Boolean> executionTime;
@@ -55,12 +55,12 @@ class Result
         return output.getValue();
     }
 
-    long getModelExecutionTime()
+    public long getModelExecutionTime()
     {
         return executionTime.getKey().getKey();
     }
 
-    long getUserExecutionTime()
+    public long getUserExecutionTime()
     {
         return executionTime.getKey().getValue();
     }
@@ -70,12 +70,12 @@ class Result
         return executionTime.getValue();
     }
 
-    long getModelInstructionCount()
+    public long getModelInstructionCount()
     {
         return instructionCount.getKey().getKey();
     }
 
-    long getUserInstructionCount()
+    public long getUserInstructionCount()
     {
         return instructionCount.getKey().getValue();
     }

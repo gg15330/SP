@@ -1,21 +1,21 @@
-package org.ggraver.DPlib;
+package org.ggraver.DPlib.Display;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.ggraver.DPlib.Exception.AnalysisException;
-import org.ggraver.DPlib.Exception.ModelingException;
+import org.ggraver.DPlib.Display.FXController;
+import org.ggraver.DPlib.IO;
+import org.ggraver.DPlib.Result;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
 /**
  * Created by george on 04/08/16.
  */
-public class FXDisplay
+public class FXView
 extends Application
 {
 
@@ -39,7 +39,7 @@ extends Application
             assert fxmlURL != null;
             FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
             Parent root = fxmlLoader.load();
-            Controller controller = fxmlLoader.getController();
+            FXController controller = fxmlLoader.getController();
             controller.loadJavaFile();
             controller.setResult(result);
 

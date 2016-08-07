@@ -1,4 +1,4 @@
-package org.ggraver.DPlib;
+package org.ggraver.DPlib.Display;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -10,21 +10,26 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 /**
  * Created by george on 05/08/16.
  */
-class SwingDisplay
+public class SwingView
 {
+    JTextArea editor = new JTextArea();
+    JTextArea terminal = new JTextArea();
+    JButton solveBtn = new JButton();
 
-    void createAndShowGUI()
+    public void createAndShowGUI()
     {
+        System.out.println("SwingView createAndShowGUI EDT: " + SwingUtilities.isEventDispatchThread());
+
 //        text scroll panes
-        JScrollPane editorScrollPane = createTextAreaWithScrollPane("Editor");
-        JScrollPane terminalScrollPane = createTextAreaWithScrollPane("Terminal");
+        JScrollPane editorScrollPane = createTextAreaWithScrollPane(editor, "Editor");
+        JScrollPane terminalScrollPane = createTextAreaWithScrollPane(terminal, "Terminal");
 
 //        button
-        JButton solveBtn = new JButton();
         solveBtn.setText("Solve");
 
 //        executionTimeGraph
@@ -140,9 +145,8 @@ class SwingDisplay
         return chartPanel;
     }
 
-    private JScrollPane createTextAreaWithScrollPane(String text)
+    private JScrollPane createTextAreaWithScrollPane(JTextArea jTextArea, String text)
     {
-        JTextArea jTextArea = new JTextArea();
         jTextArea.setLineWrap(true);
         jTextArea.setText(text);
         JScrollPane scrollPane = new JScrollPane(jTextArea);
@@ -160,6 +164,21 @@ class SwingDisplay
         dataset.addValue(150000000 , model, value);
         dataset.addValue(140000000 , user , value);
         return dataset;
+    }
+
+    void addSolveBtnListener(ActionListener actionListener)
+    {
+        solveBtn.addActionListener(actionListener);
+    }
+
+    String getEditorText()
+    {
+        return editor.getText();
+    }
+
+    void setEditorText(String s)
+    {
+        editor.setText(s);
     }
 
 }
