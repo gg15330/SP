@@ -18,16 +18,18 @@ class ClassAnalyser
 
     private final int PERF_INSTR_LINE = 5;
     private final String TEMP_FILENAME = "temp.txt";
+    private String className;
     private File classFile;
     private String output;
     private long executionTime;
     private long instructionCount;
 
-    ClassAnalyser(File sourceFile)
+    ClassAnalyser(File sourceFile, String className)
     throws AnalysisException
     {
         try
         {
+            this.className = className;
             compile(sourceFile);
         }
         catch (CompileException e)
@@ -187,8 +189,7 @@ class ClassAnalyser
         }
 
         System.out.println(sourceFile.getName() + " compiled successfully.");
-        classFile = new File(sourceFile.getParent() + "/" +
-                             removeExtension(sourceFile.getName()) + ".class");
+        classFile = new File(sourceFile.getParent() + "/" + className + ".class");
         System.out.println("New class file: " + classFile.getPath());
 
         if (!classFile.exists())

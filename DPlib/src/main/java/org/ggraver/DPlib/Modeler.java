@@ -25,7 +25,7 @@ class Modeler
             model.setMethodToAnalyse(methodToAnalyse);
             model.setCallingMethod(main);
 
-            ClassAnalyser ca = new ClassAnalyser(sourceFile);
+            ClassAnalyser ca = new ClassAnalyser(sourceFile, sa.getClassName());
             ca.analyse();
             model.setOutput(ca.getOutput());
             model.setExecutionTime(ca.getExecutionTime());

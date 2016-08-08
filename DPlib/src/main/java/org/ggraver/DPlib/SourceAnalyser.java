@@ -42,7 +42,7 @@ class SourceAnalyser
         }
         catch (ParseException e)
         {
-            throw new AnalysisException("Could not parse .java file.");
+            throw new AnalysisException("\nCould not parse .java file: " + e.getMessage());
         }
         catch (IOException e)
         {
@@ -162,6 +162,12 @@ class SourceAnalyser
     CompilationUnit getCompilationUnit()
     {
         return cu;
+    }
+
+    String getClassName()
+    {
+        System.out.println("Class name: " + cu.getTypes().get(0).getName());
+        return cu.getTypes().get(0).getName();
     }
 
     public int getRecursiveCallLineNo()

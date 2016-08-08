@@ -4,7 +4,6 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import org.ggraver.DPlib.Exception.AnalysisException;
-import org.ggraver.DPlib.Exception.CompileException;
 
 import java.io.File;
 
@@ -53,7 +52,7 @@ public class ClassAnalyserTest
         }
 
         try {
-            ca = new ClassAnalyser(testClassFile);
+            ca = new ClassAnalyser(testClassFile, "FibonacciDP");
         } catch (AnalysisException e) {
             throw new Error(e);
         }

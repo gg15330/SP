@@ -25,7 +25,7 @@ public class Solver
                                                 model.getCallingMethod().getName() + "\".");
         }
 
-        ClassAnalyser ca = new ClassAnalyser(file);
+        ClassAnalyser ca = new ClassAnalyser(file, sa.getClassName());
         ca.analyse();
 
         Result result = new Result();

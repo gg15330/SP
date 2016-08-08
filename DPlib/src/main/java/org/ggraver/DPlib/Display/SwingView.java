@@ -147,8 +147,8 @@ class SwingView
 
     private JScrollPane createTextAreaWithScrollPane(JTextArea jTextArea, boolean editable)
     {
-        jTextArea.setLineWrap(true);
-        jTextArea.setTabSize(4);
+        jTextArea.setLineWrap(false);
+        jTextArea.setTabSize(2);
         jTextArea.setEditable(editable);
         JScrollPane scrollPane = new JScrollPane(jTextArea);
         scrollPane.setPreferredSize(new Dimension(1, 1));
