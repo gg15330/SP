@@ -49,18 +49,14 @@ public class SwingController
                 String editorText = swingView.getEditorText();
                 File javaFile = fileHandler.createJavaFile(editorText);
                 result = solver.solve(model, javaFile);
+                swingView.setExecutionTimeGraph(result.getModelExecutionTime(), result.getUserExecutionTime());
+                swingView.setInstructionCountGraph(result.getModelInstructionCount(), result.getUserInstructionCount());
             }
             catch (AnalysisException | IOException ex)
             {
                 io.errorMsg(ex);
-
-//                for development - delete for production
-//                ex.printStackTrace();
-//                System.exit(1);
             }
-            swingView.setExecutionTimeGraph(result.getModelExecutionTime(), result.getUserExecutionTime());
-            swingView.setInstructionCountGraph(result.getModelInstructionCount(), result.getUserInstructionCount());
-        }
+         }
 
     }
 
