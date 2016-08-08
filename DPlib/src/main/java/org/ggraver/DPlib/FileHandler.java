@@ -2,6 +2,7 @@ package org.ggraver.DPlib;
 
 import com.thoughtworks.xstream.XStream;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.io.output.FileWriterWithEncoding;
 
 import java.io.*;
@@ -96,5 +97,14 @@ public class FileHandler
         fileWriter.write(editorText);
         fileWriter.close();
         return javaFile;
+    }
+
+    public String getFileAsString()
+    throws IOException
+    {
+        FileInputStream fis = new FileInputStream(file);
+        String fileAsString =  IOUtils.toString(fis, "UTF-8");
+        fis.close();
+        return fileAsString;
     }
 }

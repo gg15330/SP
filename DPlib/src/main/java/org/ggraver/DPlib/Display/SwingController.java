@@ -22,20 +22,19 @@ public class SwingController
     private FileHandler fileHandler;
     private Result result;
 
-    public SwingController(FileHandler fileHandler)
+    public SwingController(String filePath)
     throws IOException
     {
         swingView.addSolveBtnListener(new solveBtnListener());
-        this.fileHandler = fileHandler;
+        this.fileHandler = new FileHandler(filePath, "java");
     }
 
     public void start()
     throws IOException, AnalysisException
     {
         model = fileHandler.parseXML();
-        result = solver.solve(model, fileHandler.getFile());
+        swingView.setEditorText(fileHandler.getFileAsString());
         SwingUtilities.invokeLater(swingView::createAndShowGUI);
-        System.out.println("SwingController EDT: " + SwingUtilities.isEventDispatchThread());
     }
 
     private class solveBtnListener
@@ -54,9 +53,25 @@ public class SwingController
             catch (AnalysisException | IOException ex)
             {
                 io.errorMsg(ex);
+
+//                for development - delete for production
+                ex.printStackTrace();
+                System.exit(1);
             }
             swingView.setExecutionTimeGraph(result.getModelExecutionTime(), result.getUserExecutionTime());
             swingView.setInstructionCountGraph(result.getModelInstructionCount(), result.getUserInstructionCount());
+        }
+
+    }
+
+    private class terminalListener
+    implements ActionListener
+    {
+
+        @Override
+        public void actionPerformed(ActionEvent e)
+        {
+
         }
 
     }

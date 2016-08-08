@@ -179,22 +179,19 @@ class ClassAnalyser
         }
         catch (IOException | InterruptedException e)
         {
-            throw new CompileException(e);
+            throw new Error(e);
         }
         if (result != 0)
         {
             throw new CompileException("Could not compile .java file. Please ensure your .java file is valid.");
         }
+
         System.out.println(sourceFile.getName() + " compiled successfully.");
-        try
-        {
-            this.classFile = new File(sourceFile.getParent() + "/" + removeExtension(sourceFile.getName()) + ".class");
-        }
-        catch (NullPointerException npe)
-        {
-            throw new CompileException("Could not create new file.");
-        }
-        if (!this.classFile.exists())
+        classFile = new File(sourceFile.getParent() + "/" +
+                             removeExtension(sourceFile.getName()) + ".class");
+        System.out.println("New class file: " + classFile.getPath());
+
+        if (!classFile.exists())
         {
             throw new CompileException("Could not find .class file.");
         }

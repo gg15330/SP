@@ -13,6 +13,7 @@ org/ggraver/DPlib/Exception/ModelingException.class
 org/ggraver/DPlib/Result.class
 org/ggraver/DPlib/Exception/CompileException.class
 org/ggraver/DPlib/Display/SwingController.class
+org/ggraver/DPlib/Display/SwingController$terminalListener.class
 org/ggraver/DPlib/Model.class
 org/ggraver/DPlib/Display/FXView.class
 org/ggraver/DPlib/Modeler.class

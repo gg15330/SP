@@ -32,17 +32,16 @@ public class Launcher
 
     private void start()
     {
-        FileHandler fileHandler;
         try
         {
-            fileHandler = new FileHandler(filePath, "java");
+            SwingController swingController = new SwingController(filePath);
             switch (command) {
                 case "model":
+                    FileHandler fileHandler = new FileHandler(filePath, "java");
                     Model model = new Modeler().model(fileHandler.getFile(), methodName);
                     fileHandler.generateXML(model);
                     break;
                 case "solve":
-                    SwingController swingController = new SwingController(fileHandler);
                     swingController.start();
                     break;
                 default: throw new Error("Invalid command: " + command);
@@ -50,6 +49,7 @@ public class Launcher
         }
         catch (IOException | ModelingException | AnalysisException e)
         {
+            System.out.println("EXEPTIO");
             new IO().errorMsg(e);
             System.exit(1);
         }
