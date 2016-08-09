@@ -8,7 +8,6 @@ import java.io.*;
 
 import static org.apache.commons.io.FilenameUtils.removeExtension;
 
-
 // generates .class files and analyses performance of user solution
 class ClassAnalyser
 {
@@ -166,7 +165,6 @@ class ClassAnalyser
         {
             throw new CompileException(".java file should not be null.");
         }
-        System.out.println("Compiling file: " + sourceFile.getPath());
         Process p;
         int result;
         try
