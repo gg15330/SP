@@ -1,5 +1,6 @@
 package org.ggraver.DPlib.Display;
 
+import org.ggraver.DPlib.CustomOutputStream;
 import org.ggraver.DPlib.Result;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -12,11 +13,12 @@ import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.io.PrintStream;
 
 /**
  * Created by george on 05/08/16.
  */
-class SwingView
+class View
 {
     private JTextArea editor = new JTextArea();
     private JTextArea terminal = new JTextArea();
@@ -26,11 +28,14 @@ class SwingView
 
     void createAndShowGUI()
     {
-        System.out.println("SwingView createAndShowGUI EDT: " + SwingUtilities.isEventDispatchThread());
-
-//        text scroll panes
+//        editor
         JScrollPane editorScrollPane = createTextAreaWithScrollPane(editor, true);
+
+//        terminal with output redirected from System.out and System.err
         JScrollPane terminalScrollPane = createTextAreaWithScrollPane(terminal, false);
+        PrintStream terminalPrintStream = new PrintStream(new CustomOutputStream(terminal));
+        System.setOut(terminalPrintStream);
+        System.setErr(terminalPrintStream);
 
 //        button
         solveBtn.setText("Solve");
@@ -51,22 +56,19 @@ class SwingView
                                                             createDataset(0, 0),
                                                             PlotOrientation.VERTICAL);
 
-//        ioPanel
+//        panels
         JPanel ioPanel = createIOPanel(editorScrollPane, terminalScrollPane);
-
-//        graphPanel
         JPanel graphPanel = createGraphPanel(btnPanel, executionTimeChartPanel, instructionCountChartPanel);
-
-//        mainPanel
         JPanel mainPanel = createMainPanel(ioPanel, graphPanel);
 
+//        frame
         JFrame frame = new JFrame("Test gui");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(800, 600));
         frame.setContentPane(mainPanel);
         frame.setResizable(false);
         frame.pack();
-        frame.setLocationRelativeTo(null);
+        frame.setLocationByPlatform(true);
         frame.setVisible(true);
     }
 
@@ -181,8 +183,6 @@ class SwingView
     {
         editor.setText(s);
     }
-
-    void setTerminalText(String s) { terminal.setText(s); }
 
     void setExecutionTimeGraph(long modelExecutionTime, long userExecutionTime)
     {

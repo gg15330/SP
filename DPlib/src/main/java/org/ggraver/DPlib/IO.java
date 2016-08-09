@@ -25,6 +25,11 @@ public class IO
         System.err.println(e.getMessage());
     }
 
+    void usage()
+    {
+        System.err.println(usage);
+    }
+
     void displayResult(Result result)
     {
         String[][] resultsTable = new String[4][4];
@@ -95,8 +100,4 @@ public class IO
         return command;
     }
 
-    String getUsage()
-    {
-        return usage;
-    }
 }

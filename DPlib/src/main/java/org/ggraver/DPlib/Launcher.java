@@ -1,6 +1,6 @@
 package org.ggraver.DPlib;
 
-import org.ggraver.DPlib.Display.SwingController;
+import org.ggraver.DPlib.Display.Controller;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
 
@@ -34,7 +34,7 @@ public class Launcher
     {
         try
         {
-            SwingController swingController = new SwingController(filePath);
+            Controller controller = new Controller(filePath);
             switch (command) {
                 case "model":
                     FileHandler fileHandler = new FileHandler(filePath, "java");
@@ -42,14 +42,13 @@ public class Launcher
                     fileHandler.generateXML(model);
                     break;
                 case "solve":
-                    swingController.start();
+                    controller.start();
                     break;
                 default: throw new Error("Invalid command: " + command);
             }
         }
         catch (IOException | ModelingException | AnalysisException e)
         {
-            System.out.println("EXEPTIO");
             new IO().errorMsg(e);
             System.exit(1);
         }
@@ -65,7 +64,7 @@ public class Launcher
             methodName = args[2];
             if(!command.equals("model"))
             {
-                System.err.println(io.getUsage());
+                io.usage();
                 System.exit(1);
             }
         }
@@ -75,13 +74,13 @@ public class Launcher
             filePath = args[1];
             if(!command.equals("solve"))
             {
-                System.err.println(io.getUsage());
+                io.usage();
                 System.exit(1);
             }
         }
         else
         {
-            System.err.println(io.getUsage());
+            io.usage();
             System.exit(1);
         }
     }
