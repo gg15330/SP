@@ -16,16 +16,9 @@ public class Model
     private double INSTRUCTION_COUNT_MARGIN = 1.2;
     private double EXECUTION_TIME_MARGIN = 1.2;
 
-    Model() {}
-
-    void setMethodToAnalyse(MethodDeclaration methodToAnalyse)
+    double getINSTRUCTION_COUNT_MARGIN()
     {
-        this.methodToAnalyse = methodToAnalyse;
-    }
-
-    void setOutput(String output)
-    {
-        this.output = output;
+        return INSTRUCTION_COUNT_MARGIN;
     }
 
     public void setINSTRUCTION_COUNT_MARGIN(int INSTRUCTION_COUNT_MARGIN)
@@ -33,29 +26,14 @@ public class Model
         this.INSTRUCTION_COUNT_MARGIN = INSTRUCTION_COUNT_MARGIN;
     }
 
-    public void setEXECUTION_TIME_MARGIN(int EXECUTION_TIME_MARGIN)
-    {
-        this.EXECUTION_TIME_MARGIN = EXECUTION_TIME_MARGIN;
-    }
-
-    double getINSTRUCTION_COUNT_MARGIN()
-    {
-        return INSTRUCTION_COUNT_MARGIN;
-    }
-
     double getEXECUTION_TIME_MARGIN()
     {
         return EXECUTION_TIME_MARGIN;
     }
 
-    void setExecutionTime(long executionTime)
+    public void setEXECUTION_TIME_MARGIN(int EXECUTION_TIME_MARGIN)
     {
-        this.executionTime = executionTime;
-    }
-
-    void setInstructionCount(long instructionCount)
-    {
-        this.instructionCount = instructionCount;
+        this.EXECUTION_TIME_MARGIN = EXECUTION_TIME_MARGIN;
     }
 
     MethodDeclaration getMethodToAnalyse()
@@ -63,9 +41,19 @@ public class Model
         return methodToAnalyse;
     }
 
+    void setMethodToAnalyse(MethodDeclaration methodToAnalyse)
+    {
+        this.methodToAnalyse = methodToAnalyse;
+    }
+
     String getOutput()
     {
         return output;
+    }
+
+    void setOutput(String output)
+    {
+        this.output = output;
     }
 
     long getExecutionTime()
@@ -73,9 +61,19 @@ public class Model
         return executionTime;
     }
 
+    void setExecutionTime(long executionTime)
+    {
+        this.executionTime = executionTime;
+    }
+
     long getInstructionCount()
     {
         return instructionCount;
+    }
+
+    void setInstructionCount(long instructionCount)
+    {
+        this.instructionCount = instructionCount;
     }
 
     MethodDeclaration getCallingMethod()

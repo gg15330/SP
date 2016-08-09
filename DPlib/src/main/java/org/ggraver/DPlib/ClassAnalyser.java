@@ -183,7 +183,7 @@ class ClassAnalyser
         }
         if (result != 0)
         {
-            throw new CompileException("Could not compile .java file. Please ensure your .java file inputStream valid.");
+            throw new CompileException("Could not compile .java file. Please ensure your .java file is valid.");
         }
 
         System.out.println(sourceFile.getName() + " compiled successfully.");

@@ -121,8 +121,8 @@ class View
 
         gbc.gridx = 0;
         gbc. gridy = 1;
-        gbc.weightx = 0;
-        gbc.weighty = 0.3;
+        gbc.weightx = 1;
+        gbc.weighty = 0.8;
         gbc.fill = GridBagConstraints.BOTH;
         ioPanel.add(terminalScrollPane, gbc);
         return ioPanel;
