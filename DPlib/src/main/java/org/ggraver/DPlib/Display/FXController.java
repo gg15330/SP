@@ -1,10 +1,11 @@
-package org.ggraver.DPlib;
+package org.ggraver.DPlib.Display;
 
 import javafx.application.Platform;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import org.ggraver.DPlib.Result;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,7 +15,7 @@ import java.util.TimerTask;
 /**
  * Created by george on 04/08/16.
  */
-public class Controller
+public class FXController
 implements Initializable
 {
 

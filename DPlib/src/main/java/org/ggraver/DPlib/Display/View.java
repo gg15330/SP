@@ -1,5 +1,7 @@
-package org.ggraver.DPlib;
+package org.ggraver.DPlib.Display;
 
+import org.ggraver.DPlib.CustomOutputStream;
+import org.ggraver.DPlib.Result;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -10,56 +12,63 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.io.PrintStream;
 
 /**
  * Created by george on 05/08/16.
  */
-class SwingDisplay
+class View
 {
+    private JTextArea editor = new JTextArea();
+    private JTextArea terminal = new JTextArea();
+    private JButton solveBtn = new JButton();
+    private ChartPanel executionTimeChartPanel;
+    private ChartPanel instructionCountChartPanel;
 
     void createAndShowGUI()
     {
-//        text scroll panes
-        JScrollPane editorScrollPane = createTextAreaWithScrollPane("Editor");
-        JScrollPane terminalScrollPane = createTextAreaWithScrollPane("Terminal");
+//        editor
+        JScrollPane editorScrollPane = createTextAreaWithScrollPane(editor, true);
+
+//        terminal with output redirected from System.out and System.err
+        JScrollPane terminalScrollPane = createTextAreaWithScrollPane(terminal, false);
+        PrintStream terminalPrintStream = new PrintStream(new CustomOutputStream(terminal));
+        System.setOut(terminalPrintStream);
+        System.setErr(terminalPrintStream);
 
 //        button
-        JButton solveBtn = new JButton();
         solveBtn.setText("Solve");
+        JPanel btnPanel = new JPanel();
+        btnPanel.add(solveBtn);
 
 //        executionTimeGraph
-        Dimension chartDimension = new Dimension(200, 300);
-        ChartPanel executionTimeChartPanel = createChart("Execution Time",
+        executionTimeChartPanel = createChart("Execution Time",
                                                     null,
                                                     "Time (ms)",
-                                                    createDataset(),
-                                                    PlotOrientation.VERTICAL,
-                                                    chartDimension);
+                                                    createDataset(0, 0),
+                                                    PlotOrientation.VERTICAL);
 
 //        instructionCountGraph
-        ChartPanel instructionCountChartPanel = createChart("Instruction",
+        instructionCountChartPanel = createChart("Instructions",
                                                             null,
-                                                            "Instructions executed",
-                                                            createDataset(),
-                                                            PlotOrientation.VERTICAL,
-                                                            chartDimension);
+                                                            "Instructions (millions)",
+                                                            createDataset(0, 0),
+                                                            PlotOrientation.VERTICAL);
 
-//        ioPanel
+//        panels
         JPanel ioPanel = createIOPanel(editorScrollPane, terminalScrollPane);
-
-//        graphPanel
-        JPanel graphPanel = createGraphPanel(solveBtn, executionTimeChartPanel, instructionCountChartPanel);
-
-//        mainPanel
+        JPanel graphPanel = createGraphPanel(btnPanel, executionTimeChartPanel, instructionCountChartPanel);
         JPanel mainPanel = createMainPanel(ioPanel, graphPanel);
 
+//        frame
         JFrame frame = new JFrame("Test gui");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(800, 600));
         frame.setContentPane(mainPanel);
         frame.setResizable(false);
         frame.pack();
-        frame.setLocationRelativeTo(null);
+        frame.setLocationByPlatform(true);
         frame.setVisible(true);
     }
 
@@ -85,13 +94,13 @@ class SwingDisplay
         return mainPanel;
     }
 
-    private JPanel createGraphPanel(JButton solveBtn, JPanel executionTimeChartPanel, JPanel instructionCountChartPanel)
+    private JPanel createGraphPanel(JPanel btnPanel, JPanel executionTimeChartPanel, JPanel instructionCountChartPanel)
     {
         JPanel graphPanel = new JPanel();
         BoxLayout graphPanelLayout = new BoxLayout(graphPanel, BoxLayout.Y_AXIS);
         graphPanel.setLayout(graphPanelLayout);
         graphPanel.setBorder(new EtchedBorder());
-        graphPanel.add(solveBtn);
+        graphPanel.add(btnPanel);
         graphPanel.add(executionTimeChartPanel);
         graphPanel.add(instructionCountChartPanel);
         return graphPanel;
@@ -113,7 +122,7 @@ class SwingDisplay
         gbc.gridx = 0;
         gbc. gridy = 1;
         gbc.weightx = 0;
-        gbc.weighty = 0.5;
+        gbc.weighty = 0.3;
         gbc.fill = GridBagConstraints.BOTH;
         ioPanel.add(terminalScrollPane, gbc);
         return ioPanel;
@@ -123,8 +132,7 @@ class SwingDisplay
                                    String xLabel,
                                    String yLabel,
                                    CategoryDataset dataSet,
-                                   PlotOrientation orientation,
-                                   Dimension size)
+                                   PlotOrientation orientation)
     {
         JFreeChart jFreeChart = ChartFactory.createBarChart(
                 name,
@@ -136,30 +144,53 @@ class SwingDisplay
                 true,
                 false);
         ChartPanel chartPanel = new ChartPanel(jFreeChart);
-        chartPanel.setPreferredSize(size);
         return chartPanel;
     }
 
-    private JScrollPane createTextAreaWithScrollPane(String text)
+    private JScrollPane createTextAreaWithScrollPane(JTextArea jTextArea, boolean editable)
     {
-        JTextArea jTextArea = new JTextArea();
-        jTextArea.setLineWrap(true);
-        jTextArea.setText(text);
+        jTextArea.setLineWrap(false);
+        jTextArea.setTabSize(2);
+        jTextArea.setEditable(editable);
         JScrollPane scrollPane = new JScrollPane(jTextArea);
         scrollPane.setPreferredSize(new Dimension(1, 1));
+
         return scrollPane;
     }
 
-
-    private CategoryDataset createDataset()
+    private CategoryDataset createDataset(long modelVal, long userVal)
     {
         final String model = "Model";
         final String user = "User";
         final String value = "";
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(150000000 , model, value);
-        dataset.addValue(140000000 , user , value);
+        dataset.addValue(modelVal , model, value);
+        dataset.addValue(userVal , user , value);
         return dataset;
     }
 
+    void addSolveBtnListener(ActionListener actionListener)
+    {
+        solveBtn.addActionListener(actionListener);
+    }
+
+    String getEditorText()
+    {
+        return editor.getText();
+    }
+
+    void setEditorText(String s)
+    {
+        editor.setText(s);
+    }
+
+    void setExecutionTimeGraph(long modelExecutionTime, long userExecutionTime)
+    {
+        executionTimeChartPanel.getChart().getCategoryPlot().setDataset(createDataset(modelExecutionTime, userExecutionTime));
+    }
+
+    void setInstructionCountGraph(long modelInstructionCount, long userInstructionCount)
+    {
+        instructionCountChartPanel.getChart().getCategoryPlot().setDataset(createDataset(modelInstructionCount / 1000000, userInstructionCount / 1000000));
+    }
 }

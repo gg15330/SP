@@ -5,7 +5,7 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 /**
  * Created by george on 28/07/16.
  */
-class Model
+public class Model
 {
 
     private MethodDeclaration methodToAnalyse;

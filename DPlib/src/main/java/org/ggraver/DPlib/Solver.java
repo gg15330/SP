@@ -3,15 +3,16 @@ package org.ggraver.DPlib;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import org.ggraver.DPlib.Exception.AnalysisException;
 
+import javax.swing.*;
 import java.io.File;
 
 /**
  * Created by george on 01/08/16.
  */
-class Solver
+public class Solver
 {
 
-    Result solve(Model model, File file)
+    public Result solve(Model model, File file)
     throws AnalysisException
     {
         SourceAnalyser sa = new SourceAnalyser(file, model.getMethodToAnalyse().getName());
@@ -25,7 +26,7 @@ class Solver
                                                 model.getCallingMethod().getName() + "\".");
         }
 
-        ClassAnalyser ca = new ClassAnalyser(file);
+        ClassAnalyser ca = new ClassAnalyser(file, sa.getClassName());
         ca.analyse();
 
         Result result = new Result();

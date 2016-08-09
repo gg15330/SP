@@ -2,6 +2,8 @@ package org.ggraver.DPlib;
 
 import com.thoughtworks.xstream.XStream;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.output.FileWriterWithEncoding;
 
 import java.io.*;
 
@@ -14,7 +16,7 @@ public class FileHandler
     private File file;
     private File dir;
 
-    FileHandler(String file, String ext)
+    public FileHandler(String file, String ext)
     throws IOException
     {
         System.out.println("File: " + file);
@@ -66,7 +68,7 @@ public class FileHandler
         }
     }
 
-    Model parseXML()
+    public Model parseXML()
     throws IOException
     {
         XStream xStream = new XStream();
@@ -81,9 +83,28 @@ public class FileHandler
         return dir;
     }
 
-    File getFile()
+    public File getFile()
     {
         return file;
     }
 
+    public File createJavaFile(String editorText)
+    throws IOException
+    {
+        File javaFile = new File(dir, "temp.java");
+        javaFile.deleteOnExit();
+        FileWriter fileWriter = new FileWriter(javaFile);
+        fileWriter.write(editorText);
+        fileWriter.close();
+        return javaFile;
+    }
+
+    public String getFileAsString()
+    throws IOException
+    {
+        FileInputStream fis = new FileInputStream(file);
+        String fileAsString =  IOUtils.toString(fis, "UTF-8");
+        fis.close();
+        return fileAsString;
+    }
 }

@@ -4,10 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.CompileException;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 import static org.apache.commons.io.FilenameUtils.removeExtension;
 
@@ -18,16 +15,18 @@ class ClassAnalyser
 
     private final int PERF_INSTR_LINE = 5;
     private final String TEMP_FILENAME = "temp.txt";
+    private String className;
     private File classFile;
     private String output;
     private long executionTime;
     private long instructionCount;
 
-    ClassAnalyser(File sourceFile)
+    ClassAnalyser(File sourceFile, String className)
     throws AnalysisException
     {
         try
         {
+            this.className = className;
             compile(sourceFile);
         }
         catch (CompileException e)
@@ -75,6 +74,10 @@ class ClassAnalyser
         {
             throw new Error(e);
         }
+        if (!log.delete())
+        {
+            throw new Error("temp log file not successfully deleted.");
+        }
     }
 
     private void execute(ProcessBuilder pb)
@@ -99,10 +102,11 @@ class ClassAnalyser
         String line;
         int lineCount = 0;
 
-        while((line = br.readLine()) != null) {
+        while ((line = br.readLine()) != null)
+        {
             sb.append(line);
             lineCount++;
-            if(lineCount > 1)
+            if (lineCount > 1)
             {
                 throw new AnalysisException("Program produced more than 1 line of output.");
             }
@@ -120,7 +124,6 @@ class ClassAnalyser
                 "java", classFileName
         );
         build.directory(dir);
-        build.redirectErrorStream(true);
         return build;
     }
 
@@ -128,16 +131,18 @@ class ClassAnalyser
     throws IOException
     {
         File temp = new File(dir + "/" + fileName);
-        temp.deleteOnExit();
 
-        if(!temp.createNewFile())
+        if (temp.exists())
         {
-            throw new Error("Temp file \"" + temp.getName() + "\" already exists.");
-        }
-
-        if(!temp.exists())
-        {
-            throw new Error("Could not create temp file.");
+            System.err.println("Deleting pre-existing temp file - should not exist...");
+            if (!temp.delete())
+            {
+                throw new Error("Could not delete pre-existing temp file.");
+            }
+            if (!temp.createNewFile())
+            {
+                throw new Error("Could not create new temp file after deleting the old one.");
+            }
         }
         return temp;
     }
@@ -147,9 +152,9 @@ class ClassAnalyser
     throws IOException, NumberFormatException
     {
         String instructionsString = FileUtils.readLines(f, "UTF-8").get(lineNum)
-                                      .replaceAll(" ", "")
-                                      .replaceAll("instructions:u", "")
-                                      .replaceAll(",", "");
+                                             .replaceAll(" ", "")
+                                             .replaceAll("instructions:u", "")
+                                             .replaceAll(",", "");
         return Long.parseLong(instructionsString);
     }
 
@@ -167,28 +172,24 @@ class ClassAnalyser
         try
         {
             ProcessBuilder build = new ProcessBuilder("javac", sourceFile.getPath());
-            build.inheritIO();
             p = build.start();
+            new SubProcessStream(p.getInputStream()).start();
+            new SubProcessStream(p.getErrorStream()).start();
             result = p.waitFor();
         }
         catch (IOException | InterruptedException e)
         {
-            throw new CompileException(e);
+            throw new Error(e);
         }
         if (result != 0)
         {
-            throw new CompileException("Could not compile .java file. Please ensure your .java file is valid.");
+            throw new CompileException("Could not compile .java file. Please ensure your .java file inputStream valid.");
         }
+
         System.out.println(sourceFile.getName() + " compiled successfully.");
-        try
-        {
-            this.classFile = new File(sourceFile.getParent() + "/" + removeExtension(sourceFile.getName()) + ".class");
-        }
-        catch (NullPointerException npe)
-        {
-            throw new CompileException("Could not create new file.");
-        }
-        if (!this.classFile.exists())
+        classFile = new File(sourceFile.getParent() + "/" + className + ".class");
+
+        if (!classFile.exists())
         {
             throw new CompileException("Could not find .class file.");
         }
@@ -209,4 +210,32 @@ class ClassAnalyser
         return output;
     }
 
+//    adapted from http://www.javaworld.com/article/2071275/core-java/when-runtime-exec---won-t.html?page=2
+    private class SubProcessStream extends Thread
+    {
+        InputStream inputStream;
+
+        SubProcessStream(InputStream inputStream)
+        {
+            this.inputStream = inputStream;
+        }
+
+        @Override
+        public void run()
+        {
+            try
+            {
+                BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+                String line;
+                while ((line = br.readLine()) != null)
+                {
+                    System.out.println(line);
+                }
+            }
+            catch (IOException e)
+            {
+                throw new Error(e);
+            }
+        }
+    }
 }

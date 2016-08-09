@@ -55,7 +55,8 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                    <!--<compilerArgument>-Xlint:unchecked</compilerArgument>-->
+                    <compilerArgument>-Xlint:unchecked</compilerArgument>
+                    <compilerArgument>-Xlint:deprecation</compilerArgument>
                 </configuration>
             </plugin>
 
@@ -73,7 +74,7 @@
                 <!--<configuration>-->
                     <!--<archive>-->
                         <!--<manifest>-->
-                            <!--<mainClass>org.ggraver.FXDisplay.Launchercher</mainClass>-->
+                            <!--<mainClass>org.ggraver.FXView.Launchercher</mainClass>-->
                         <!--</manifest>-->
                     <!--</archive>-->
                     <!--<descriptorRefs>-->
@@ -139,9 +140,9 @@
                                     <!--</resource>-->
                                 <!--</transformer>-->
                                 <!--<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">-->
-                                    <!--<mainClass>org.ggraver.FXDisplay.Launchercher</mainClass>-->
+                                    <!--<mainClass>org.ggraver.FXView.Launchercher</mainClass>-->
                                     <!--<manifestEntries>-->
-                                        <!--<Launcher-Class>org.ggraver.FXDisplay.Launchercher</Launcher-Class>-->
+                                        <!--<Launcher-Class>org.ggraver.FXView.Launchercher</Launcher-Class>-->
                                         <!--<X-Compile-Source-JDK>1.8</X-Compile-Source-JDK>-->
                                         <!--<X-Compile-Target-JDK>1.8</X-Compile-Target-JDK>-->
                                     <!--</manifestEntries>-->

@@ -6,51 +6,28 @@ import org.ggraver.DPlib.Exception.ModelingException;
 import java.io.IOException;
 
 // IO handling
-class IO
+public class IO
 {
 
     private String command;
     private String filePath;
     private String methodName;
 
-    void processArgs(String[] args)
-    throws IOException
+    public void errorMsg(Throwable t)
     {
-        if(args.length == 3)
+        if (!(t instanceof AnalysisException)
+                && !(t instanceof ModelingException)
+                && !(t instanceof IOException))
         {
-            command = args[0];
-            filePath = args[1];
-            methodName = args[2];
-            if(!command.equals("model"))
-            {
-                throw new IOException(usage);
-            }
-        }
-        else if(args.length == 2)
-        {
-            command = args[0];
-            filePath = args[1];
-            if(!command.equals("solve"))
-            {
-                throw new IOException(usage);
-            }
-        }
-        else
-        {
-            throw new IOException(usage);
-        }
-    }
-
-    void exit(Exception e)
-    {
-        if (!(e instanceof AnalysisException)
-                && !(e instanceof ModelingException)
-                && !(e instanceof IOException))
-        {
-            e.printStackTrace();
+            t.printStackTrace();
             throw new Error("Expected ModelingException, AnalysisException or IOException.");
         }
-        System.err.println(e.getMessage());
+        System.err.println(t.getMessage());
+    }
+
+    void usage()
+    {
+        System.err.println(usage);
     }
 
     void displayResult(Result result)
@@ -102,7 +79,7 @@ class IO
         return methodName;
     }
 
-    String getFilePath()
+    public String getFilePath()
     {
         return filePath;
     }

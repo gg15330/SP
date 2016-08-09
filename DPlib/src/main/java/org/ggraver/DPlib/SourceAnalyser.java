@@ -21,7 +21,7 @@ import org.ggraver.DPlib.Exception.AnalysisException;
 
 // this class analyses source code for invalid solutions/errors
 // the analysis can be different depending on whether the .java file
-// is submitted by the tutor or the student
+// inputStream submitted by the tutor or the student
 class SourceAnalyser
 {
 
@@ -42,7 +42,7 @@ class SourceAnalyser
         }
         catch (ParseException e)
         {
-            throw new AnalysisException("Could not parse .java file.");
+            throw new AnalysisException("\nCould not parse .java file: " + e.getMessage());
         }
         catch (IOException e)
         {
@@ -91,7 +91,7 @@ class SourceAnalyser
                                             + "\" does not exist in source file.");
     }
 
-    // checks method properties to ensure the submitted method is the same as the tutor-defined template
+    // checks method properties to ensure the submitted method inputStream the same as the tutor-defined template
     void checkMethodProperties(MethodDeclaration expected, MethodDeclaration actual)
     throws AnalysisException
     {
@@ -162,6 +162,12 @@ class SourceAnalyser
     CompilationUnit getCompilationUnit()
     {
         return cu;
+    }
+
+    String getClassName()
+    {
+        System.out.println("Class name: " + cu.getTypes().get(0).getName());
+        return cu.getTypes().get(0).getName();
     }
 
     public int getRecursiveCallLineNo()
