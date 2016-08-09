@@ -38,7 +38,7 @@ public class Controller
     }
 
     private class solveBtnListener
-            implements ActionListener
+    implements ActionListener
     {
 
         @Override
@@ -51,14 +51,13 @@ public class Controller
 
     //    solves problem in background thread
     private class SolverWorker
-            extends SwingWorker<Result, Void>
+    extends SwingWorker<Result, Void>
     {
 
         @Override
         public Result doInBackground()
         throws AnalysisException
         {
-            System.out.println("doInBackground EDT: " + SwingUtilities.isEventDispatchThread());
             File compiledJavaFile;
             try
             {
@@ -68,18 +67,15 @@ public class Controller
             {
                 throw new AnalysisException(e);
             }
-            System.out.println("doInBackground EDT: " + SwingUtilities.isEventDispatchThread());
             return solver.solve(model, compiledJavaFile);
         }
 
         @Override
         protected void done()
         {
-            System.out.println("done EDT: " + SwingUtilities.isEventDispatchThread());
             try
             {
                 Result result = get();
-                System.out.println("Result: " + result.getClass());
                 view.setExecutionTimeGraph(result.getModelExecutionTime(), result.getUserExecutionTime());
                 view.setInstructionCountGraph(result.getModelInstructionCount(), result.getUserInstructionCount());
             }
