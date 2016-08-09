@@ -41,7 +41,7 @@ class ClassAnalyser
     {
         if (!classFile.exists() || classFile.length() == 0)
         {
-            throw new AnalysisException(".class file does not exist or inputStream empty.");
+            throw new AnalysisException(".class file does not exist or is empty.");
         }
         File dir, log;
         try
@@ -124,7 +124,6 @@ class ClassAnalyser
                 "java", classFileName
         );
         build.directory(dir);
-        build.redirectErrorStream(true);
         return build;
     }
 

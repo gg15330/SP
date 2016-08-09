@@ -3,17 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="dbf27813-b393-4f5c-a162-70ce6f80ac8c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/DPlib-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/DPlib/target/DPlib-1.0-SNAPSHOT.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/ClassAnalyser$SubProcessStream.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/ClassAnalyser$SubProcessStream.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/ClassAnalyser.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/ClassAnalyser.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Display/Controller$SolverWorker.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Display/Controller$SolverWorker.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/IO.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/IO.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Launcher.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Launcher.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/jfx/app/DPlib-1.0-SNAPSHOT-jfx.jar" afterPath="$PROJECT_DIR$/DPlib/target/jfx/app/DPlib-1.0-SNAPSHOT-jfx.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ClassAnalyser.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ClassAnalyser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Display/Controller.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Display/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/IO.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/IO.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SourceAnalyser.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SourceAnalyser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/DPlib/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
     </list>
     <ignored path="SP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -84,7 +79,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SourceAnalyser.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SourceAnalyser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SourceAnalyser.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
@@ -133,21 +128,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClassAnalyser.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ClassAnalyser.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ClassAnalyser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="221" column="9" selection-start-line="221" selection-start-column="9" selection-end-line="221" selection-end-column="9" />
+            <state relative-caret-position="319">
+              <caret line="223" column="8" selection-start-line="223" selection-start-column="8" selection-end-line="223" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#ClassAnalyser#0;class#ClassAnalyser#0" expanded="false" />
-                <element signature="method#analyse#0;class#ClassAnalyser#0" expanded="false" />
-                <element signature="method#execute#0;class#ClassAnalyser#0" expanded="false" />
-                <element signature="method#buildPerfStat#0;class#ClassAnalyser#0" expanded="false" />
                 <element signature="method#tempFile#0;class#ClassAnalyser#0" expanded="false" />
                 <element signature="method#fetchInstructionCount#0;class#ClassAnalyser#0" expanded="false" />
-                <element signature="e#6380#6381#0" expanded="true" />
-                <element signature="e#6434#6435#0" expanded="true" />
+                <element signature="e#6330#6331#0" expanded="true" />
+                <element signature="e#6384#6385#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -223,8 +215,8 @@
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Launcher.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Solver.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/IO.java" />
-        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ClassAnalyser.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Display/Controller.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ClassAnalyser.java" />
       </list>
     </option>
   </component>
@@ -945,24 +937,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ClassAnalyser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="221" column="9" selection-start-line="221" selection-start-column="9" selection-end-line="221" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#ClassAnalyser#0;class#ClassAnalyser#0" expanded="false" />
-            <element signature="method#analyse#0;class#ClassAnalyser#0" expanded="false" />
-            <element signature="method#execute#0;class#ClassAnalyser#0" expanded="false" />
-            <element signature="method#buildPerfStat#0;class#ClassAnalyser#0" expanded="false" />
-            <element signature="method#tempFile#0;class#ClassAnalyser#0" expanded="false" />
-            <element signature="method#fetchInstructionCount#0;class#ClassAnalyser#0" expanded="false" />
-            <element signature="e#6380#6381#0" expanded="true" />
-            <element signature="e#6434#6435#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Solver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
@@ -993,6 +967,21 @@
             <element signature="method#findMethodCall#0;class#SourceAnalyser#0" expanded="false" />
             <element signature="method#isRecursive#0;class#SourceAnalyser#0" expanded="false" />
             <element signature="method#duplicateAnnotations#0;class#SourceAnalyser#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ClassAnalyser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="223" column="8" selection-start-line="223" selection-start-column="8" selection-end-line="223" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#ClassAnalyser#0;class#ClassAnalyser#0" expanded="false" />
+            <element signature="method#tempFile#0;class#ClassAnalyser#0" expanded="false" />
+            <element signature="method#fetchInstructionCount#0;class#ClassAnalyser#0" expanded="false" />
+            <element signature="e#6330#6331#0" expanded="true" />
+            <element signature="e#6384#6385#0" expanded="true" />
           </folding>
         </state>
       </provider>
