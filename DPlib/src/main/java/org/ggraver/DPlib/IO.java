@@ -13,16 +13,16 @@ public class IO
     private String filePath;
     private String methodName;
 
-    public void errorMsg(Exception e)
+    public void errorMsg(Throwable t)
     {
-        if (!(e instanceof AnalysisException)
-                && !(e instanceof ModelingException)
-                && !(e instanceof IOException))
+        if (!(t instanceof AnalysisException)
+                && !(t instanceof ModelingException)
+                && !(t instanceof IOException))
         {
-            e.printStackTrace();
+            t.printStackTrace();
             throw new Error("Expected ModelingException, AnalysisException or IOException.");
         }
-        System.err.println(e.getMessage());
+        System.err.println(t.getMessage());
     }
 
     void usage()

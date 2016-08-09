@@ -4,10 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.CompileException;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 import static org.apache.commons.io.FilenameUtils.removeExtension;
 
@@ -44,7 +41,7 @@ class ClassAnalyser
     {
         if (!classFile.exists() || classFile.length() == 0)
         {
-            throw new AnalysisException(".class file does not exist or is empty.");
+            throw new AnalysisException(".class file does not exist or inputStream empty.");
         }
         File dir, log;
         try
@@ -77,7 +74,7 @@ class ClassAnalyser
         {
             throw new Error(e);
         }
-        if(!log.delete())
+        if (!log.delete())
         {
             throw new Error("temp log file not successfully deleted.");
         }
@@ -105,10 +102,11 @@ class ClassAnalyser
         String line;
         int lineCount = 0;
 
-        while((line = br.readLine()) != null) {
+        while ((line = br.readLine()) != null)
+        {
             sb.append(line);
             lineCount++;
-            if(lineCount > 1)
+            if (lineCount > 1)
             {
                 throw new AnalysisException("Program produced more than 1 line of output.");
             }
@@ -135,14 +133,14 @@ class ClassAnalyser
     {
         File temp = new File(dir + "/" + fileName);
 
-        if(temp.exists())
+        if (temp.exists())
         {
             System.err.println("Deleting pre-existing temp file - should not exist...");
-            if(!temp.delete())
+            if (!temp.delete())
             {
                 throw new Error("Could not delete pre-existing temp file.");
             }
-            if(!temp.createNewFile())
+            if (!temp.createNewFile())
             {
                 throw new Error("Could not create new temp file after deleting the old one.");
             }
@@ -155,9 +153,9 @@ class ClassAnalyser
     throws IOException, NumberFormatException
     {
         String instructionsString = FileUtils.readLines(f, "UTF-8").get(lineNum)
-                                      .replaceAll(" ", "")
-                                      .replaceAll("instructions:u", "")
-                                      .replaceAll(",", "");
+                                             .replaceAll(" ", "")
+                                             .replaceAll("instructions:u", "")
+                                             .replaceAll(",", "");
         return Long.parseLong(instructionsString);
     }
 
@@ -175,8 +173,9 @@ class ClassAnalyser
         try
         {
             ProcessBuilder build = new ProcessBuilder("javac", sourceFile.getPath());
-            build.inheritIO();
             p = build.start();
+            new SubProcessStream(p.getInputStream()).start();
+            new SubProcessStream(p.getErrorStream()).start();
             result = p.waitFor();
         }
         catch (IOException | InterruptedException e)
@@ -185,12 +184,11 @@ class ClassAnalyser
         }
         if (result != 0)
         {
-            throw new CompileException("Could not compile .java file. Please ensure your .java file is valid.");
+            throw new CompileException("Could not compile .java file. Please ensure your .java file inputStream valid.");
         }
 
         System.out.println(sourceFile.getName() + " compiled successfully.");
         classFile = new File(sourceFile.getParent() + "/" + className + ".class");
-        System.out.println("New class file: " + classFile.getPath());
 
         if (!classFile.exists())
         {
@@ -213,4 +211,32 @@ class ClassAnalyser
         return output;
     }
 
+//    adapted from http://www.javaworld.com/article/2071275/core-java/when-runtime-exec---won-t.html?page=2
+    private class SubProcessStream extends Thread
+    {
+        InputStream inputStream;
+
+        SubProcessStream(InputStream inputStream)
+        {
+            this.inputStream = inputStream;
+        }
+
+        @Override
+        public void run()
+        {
+            try
+            {
+                BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+                String line;
+                while ((line = br.readLine()) != null)
+                {
+                    System.out.println(line);
+                }
+            }
+            catch (IOException e)
+            {
+                throw new Error(e);
+            }
+        }
+    }
 }

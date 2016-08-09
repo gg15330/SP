@@ -56,17 +56,10 @@ public class Controller
 
         @Override
         public Result doInBackground()
-        throws AnalysisException
+        throws AnalysisException, IOException
         {
             File compiledJavaFile;
-            try
-            {
-                compiledJavaFile = fileHandler.createJavaFile(view.getEditorText());
-            }
-            catch (IOException e)
-            {
-                throw new AnalysisException(e);
-            }
+            compiledJavaFile = fileHandler.createJavaFile(view.getEditorText());
             return solver.solve(model, compiledJavaFile);
         }
 
@@ -81,12 +74,7 @@ public class Controller
             }
             catch (ExecutionException e)
             {
-                if (!(e.getCause() instanceof AnalysisException))
-                {
-                    e.printStackTrace();
-                    throw new Error("Expected AnalysisException, got: " + e.getCause().getClass());
-                }
-                io.errorMsg((AnalysisException) e.getCause());
+                io.errorMsg(e.getCause());
             }
             catch (InterruptedException e)
             {

@@ -21,7 +21,7 @@ import org.ggraver.DPlib.Exception.AnalysisException;
 
 // this class analyses source code for invalid solutions/errors
 // the analysis can be different depending on whether the .java file
-// is submitted by the tutor or the student
+// inputStream submitted by the tutor or the student
 class SourceAnalyser
 {
 
@@ -91,7 +91,7 @@ class SourceAnalyser
                                             + "\" does not exist in source file.");
     }
 
-    // checks method properties to ensure the submitted method is the same as the tutor-defined template
+    // checks method properties to ensure the submitted method inputStream the same as the tutor-defined template
     void checkMethodProperties(MethodDeclaration expected, MethodDeclaration actual)
     throws AnalysisException
     {
