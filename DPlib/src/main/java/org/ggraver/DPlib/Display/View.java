@@ -1,7 +1,6 @@
 package org.ggraver.DPlib.Display;
 
 import org.ggraver.DPlib.CustomOutputStream;
-import org.ggraver.DPlib.Result;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
