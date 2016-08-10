@@ -19,7 +19,6 @@ public class FileHandler
     public FileHandler(String file, String ext)
     throws IOException
     {
-        System.out.println("File: " + file);
         this.file = new File(file);
         checkValidFile(this.file, ext);
 
@@ -30,11 +29,19 @@ public class FileHandler
     private void checkValidFile(File file, String extension)
     throws IOException
     {
-        if (!file.exists()
-                || file.isDirectory()
-                || !FilenameUtils.getExtension(file.getPath()).equals(extension))
+        if (!file.exists())
         {
-            throw new IOException("Invalid input file: " + file.getPath());
+            throw new IOException("Could not find file: " + file.getPath());
+        }
+        if(file.isDirectory())
+        {
+            throw new IOException("Specified file \"" + file.getPath()  +
+            "\" is a directory. Please specify a valid file.");
+        }
+        if(!FilenameUtils.getExtension(file.getPath()).equals(extension))
+        {
+            throw new IOException("Input file \"" + file.getPath() +
+            "\" does not match required file extension \"" + extension + "\".");
         }
     }
 
@@ -76,11 +83,6 @@ public class FileHandler
         checkValidFile(XML, "xml");
         FileInputStream fis = new FileInputStream(XML);
         return (Model) xStream.fromXML(fis);
-    }
-
-    File getDir()
-    {
-        return dir;
     }
 
     public File getFile()

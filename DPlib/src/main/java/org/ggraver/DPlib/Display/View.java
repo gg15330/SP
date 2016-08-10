@@ -10,6 +10,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.PrintStream;
@@ -28,10 +29,19 @@ class View
     void createAndShowGUI()
     {
 //        editor
-        JScrollPane editorScrollPane = createTextAreaWithScrollPane(editor, true);
+        Font font = new Font(null, Font.BOLD, 12);
+        editor.setFont(font);
+        editor.setForeground(Color.DARK_GRAY);
+        JScrollPane editorScrollPane = createTextAreaWithScrollPane(editor, true, false);
+        editorScrollPane.setBorder(new TitledBorder("Editor"));
 
 //        terminal with output redirected from System.out and System.err
-        JScrollPane terminalScrollPane = createTextAreaWithScrollPane(terminal, false);
+        terminal.setFont(font);
+        terminal.setForeground(Color.DARK_GRAY);
+        terminal.setBackground(Color.LIGHT_GRAY);
+        JScrollPane terminalScrollPane = createTextAreaWithScrollPane(terminal, false, true);
+        terminalScrollPane.setBorder(new TitledBorder("Console"));
+
         PrintStream terminalPrintStream = new PrintStream(new CustomOutputStream(terminal));
         System.setOut(terminalPrintStream);
         System.setErr(terminalPrintStream);
@@ -47,6 +57,7 @@ class View
                                                     "Time (ms)",
                                                     createDataset(0, 0),
                                                     PlotOrientation.VERTICAL);
+        executionTimeChartPanel.setPreferredSize(new Dimension(1, 1));
 
 //        instructionCountGraph
         instructionCountChartPanel = createChart("Instructions",
@@ -54,6 +65,7 @@ class View
                                                             "Instructions (millions)",
                                                             createDataset(0, 0),
                                                             PlotOrientation.VERTICAL);
+        instructionCountChartPanel.setPreferredSize(new Dimension(1, 1));
 
 //        panels
         JPanel ioPanel = createIOPanel(editorScrollPane, terminalScrollPane);
@@ -61,11 +73,11 @@ class View
         JPanel mainPanel = createMainPanel(ioPanel, graphPanel);
 
 //        frame
-        JFrame frame = new JFrame("Test gui");
+        JFrame frame = new JFrame("DPlib");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(800, 600));
         frame.setContentPane(mainPanel);
-        frame.setResizable(false);
+        frame.setResizable(true);
         frame.pack();
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
@@ -96,12 +108,32 @@ class View
     private JPanel createGraphPanel(JPanel btnPanel, JPanel executionTimeChartPanel, JPanel instructionCountChartPanel)
     {
         JPanel graphPanel = new JPanel();
-        BoxLayout graphPanelLayout = new BoxLayout(graphPanel, BoxLayout.Y_AXIS);
+        GridBagLayout graphPanelLayout = new GridBagLayout();
         graphPanel.setLayout(graphPanelLayout);
         graphPanel.setBorder(new EtchedBorder());
-        graphPanel.add(btnPanel);
-        graphPanel.add(executionTimeChartPanel);
-        graphPanel.add(instructionCountChartPanel);
+
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        gbc.gridx = 0;
+        gbc. gridy = 0;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+        gbc.fill = GridBagConstraints.BOTH;
+        graphPanel.add(btnPanel, gbc);
+
+        gbc.gridx = 0;
+        gbc. gridy = 1;
+        gbc.weightx = 1;
+        gbc.weighty = 5;
+        gbc.fill = GridBagConstraints.BOTH;
+        graphPanel.add(executionTimeChartPanel, gbc);
+
+        gbc.gridx = 0;
+        gbc. gridy = 2;
+        gbc.weightx = 1;
+        gbc.weighty = 5;
+        gbc.fill = GridBagConstraints.BOTH;
+        graphPanel.add(instructionCountChartPanel, gbc);
         return graphPanel;
     }
 
@@ -120,7 +152,11 @@ class View
 
         gbc.gridx = 0;
         gbc. gridy = 1;
+<<<<<<< HEAD
         gbc.weightx = 1;
+=======
+        gbc.weightx = 0;
+>>>>>>> 053039b02a7850b0ca6c540a85c474a58ce37d5e
         gbc.weighty = 0.8;
         gbc.fill = GridBagConstraints.BOTH;
         ioPanel.add(terminalScrollPane, gbc);
@@ -146,9 +182,9 @@ class View
         return chartPanel;
     }
 
-    private JScrollPane createTextAreaWithScrollPane(JTextArea jTextArea, boolean editable)
+    private JScrollPane createTextAreaWithScrollPane(JTextArea jTextArea, boolean editable, boolean wrap)
     {
-        jTextArea.setLineWrap(false);
+        jTextArea.setLineWrap(wrap);
         jTextArea.setTabSize(2);
         jTextArea.setEditable(editable);
         JScrollPane scrollPane = new JScrollPane(jTextArea);
