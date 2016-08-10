@@ -68,15 +68,10 @@ public class Launcher
                 System.exit(1);
             }
         }
-        else if(args.length == 2)
+        else if(args.length == 1)
         {
-            command = args[0];
-            filePath = args[1];
-            if(!command.equals("solve"))
-            {
-                io.usage();
-                System.exit(1);
-            }
+            command = "solve";
+            filePath = args[0];
         }
         else
         {
