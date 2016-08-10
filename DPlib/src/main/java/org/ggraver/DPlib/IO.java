@@ -90,7 +90,7 @@ public class IO
             "model <path/to/file_to_model.java> <method_to_analyse>\n" +
             "\nTo solve:\n" +
             "\njava -jar DPLib-1.0-SNAPSHOT.jar " +
-            "<path/to/file_to_solve.java>\n";
+            "solve <path/to/file_to_solve.java>\n";
 
     private String analysisReport;
 

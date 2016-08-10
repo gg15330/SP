@@ -8,6 +8,7 @@ import java.io.*;
 
 import static org.apache.commons.io.FilenameUtils.removeExtension;
 
+
 // generates .class files and analyses performance of user solution
 class ClassAnalyser
 {
@@ -167,6 +168,7 @@ class ClassAnalyser
         {
             throw new CompileException(".java file should not be null.");
         }
+        System.out.println("Compiling file: " + sourceFile.getPath());
         Process p;
         int result;
         try
@@ -183,7 +185,7 @@ class ClassAnalyser
         }
         if (result != 0)
         {
-            throw new CompileException("Could not compile .java file. Please ensure your .java file is valid.");
+            throw new CompileException("Could not compile .java file. Please ensure your .java file inputStream valid.");
         }
 
         System.out.println(sourceFile.getName() + " compiled successfully.");

@@ -1,6 +1,7 @@
 package org.ggraver.DPlib.Display;
 
 import org.ggraver.DPlib.CustomOutputStream;
+import org.ggraver.DPlib.Result;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -152,7 +153,7 @@ class View
 
         gbc.gridx = 0;
         gbc. gridy = 1;
-        gbc.weightx = 1;
+        gbc.weightx = 0;
         gbc.weighty = 0.8;
         gbc.fill = GridBagConstraints.BOTH;
         ioPanel.add(terminalScrollPane, gbc);

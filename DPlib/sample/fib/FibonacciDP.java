@@ -3,7 +3,7 @@ import java.lang.management.ManagementFactory;
 
 class FibonacciDP {
 
-    public static int fibDP(int n)
+    static int fibDP(int n)
     {
         int f[] = new int[n+1];
         int i;

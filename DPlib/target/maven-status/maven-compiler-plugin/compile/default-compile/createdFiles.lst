@@ -4,7 +4,6 @@ org/ggraver/DPlib/Launcher.class
 org/ggraver/DPlib/Display/FXController.class
 org/ggraver/DPlib/Display/Controller$SolverWorker.class
 org/ggraver/DPlib/Display/Controller$1.class
-org/ggraver/DPlib/CodeGenerator.class
 org/ggraver/DPlib/ClassAnalyser.class
 org/ggraver/DPlib/SourceAnalyser.class
 org/ggraver/DPlib/SolverWorker.class

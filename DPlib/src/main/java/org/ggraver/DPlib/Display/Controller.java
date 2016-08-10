@@ -33,7 +33,7 @@ public class Controller
     throws IOException, AnalysisException
     {
         model = fileHandler.parseXML();
-        view.setEditorText(new CodeGenerator().generate(model));
+        view.setEditorText(fileHandler.getFileAsString());
         SwingUtilities.invokeLater(view::createAndShowGUI);
     }
 
@@ -58,7 +58,8 @@ public class Controller
         public Result doInBackground()
         throws AnalysisException, IOException
         {
-            File compiledJavaFile = fileHandler.createJavaFile(view.getEditorText());
+            File compiledJavaFile;
+            compiledJavaFile = fileHandler.createJavaFile(view.getEditorText());
             return solver.solve(model, compiledJavaFile);
         }
 
