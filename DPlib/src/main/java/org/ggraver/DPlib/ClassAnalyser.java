@@ -124,6 +124,7 @@ class ClassAnalyser
                 "java", classFileName
         );
         build.directory(dir);
+        build.inheritIO();
         return build;
     }
 
@@ -139,11 +140,12 @@ class ClassAnalyser
             {
                 throw new Error("Could not delete pre-existing temp file.");
             }
-            if (!temp.createNewFile())
-            {
-                throw new Error("Could not create new temp file after deleting the old one.");
-            }
         }
+        if (!temp.createNewFile())
+        {
+            throw new Error("Could not create new temp file.");
+        }
+
         return temp;
     }
 
