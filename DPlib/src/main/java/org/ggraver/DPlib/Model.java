@@ -10,6 +10,7 @@ public class Model
 
     private MethodDeclaration methodToAnalyse;
     private MethodDeclaration callingMethod;
+    private String description = "Problem description";
     private String output;
     private long executionTime;
     private long instructionCount;
@@ -86,5 +87,10 @@ public class Model
     void setCallingMethod(MethodDeclaration callingMethod)
     {
         this.callingMethod = callingMethod;
+    }
+
+    public String getDescription()
+    {
+        return description;
     }
 }
