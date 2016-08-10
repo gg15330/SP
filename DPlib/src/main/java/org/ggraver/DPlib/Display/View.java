@@ -11,6 +11,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.PrintStream;
@@ -29,10 +30,19 @@ class View
     void createAndShowGUI()
     {
 //        editor
-        JScrollPane editorScrollPane = createTextAreaWithScrollPane(editor, true);
+        Font font = new Font(null, Font.BOLD, 12);
+        editor.setFont(font);
+        editor.setForeground(Color.DARK_GRAY);
+        JScrollPane editorScrollPane = createTextAreaWithScrollPane(editor, true, false);
+        editorScrollPane.setBorder(new TitledBorder("Editor"));
 
 //        terminal with output redirected from System.out and System.err
-        JScrollPane terminalScrollPane = createTextAreaWithScrollPane(terminal, false);
+        terminal.setFont(font);
+        terminal.setForeground(Color.DARK_GRAY);
+        terminal.setBackground(Color.LIGHT_GRAY);
+        JScrollPane terminalScrollPane = createTextAreaWithScrollPane(terminal, false, true);
+        terminalScrollPane.setBorder(new TitledBorder("Console"));
+
         PrintStream terminalPrintStream = new PrintStream(new CustomOutputStream(terminal));
         System.setOut(terminalPrintStream);
         System.setErr(terminalPrintStream);
@@ -169,9 +179,9 @@ class View
         return chartPanel;
     }
 
-    private JScrollPane createTextAreaWithScrollPane(JTextArea jTextArea, boolean editable)
+    private JScrollPane createTextAreaWithScrollPane(JTextArea jTextArea, boolean editable, boolean wrap)
     {
-        jTextArea.setLineWrap(false);
+        jTextArea.setLineWrap(wrap);
         jTextArea.setTabSize(2);
         jTextArea.setEditable(editable);
         JScrollPane scrollPane = new JScrollPane(jTextArea);
