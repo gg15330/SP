@@ -166,7 +166,6 @@ class SourceAnalyser
 
     String getClassName()
     {
-        System.out.println("Class name: " + cu.getTypes().get(0).getName());
         return cu.getTypes().get(0).getName();
     }
 
