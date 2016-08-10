@@ -157,7 +157,6 @@ class ClassAnalyser
                                              .replaceAll(" ", "")
                                              .replaceAll("instructions:u", "")
                                              .replaceAll(",", "");
-        System.out.println("Lines read ok.");
         return Long.parseLong(instructionsString);
     }
 
