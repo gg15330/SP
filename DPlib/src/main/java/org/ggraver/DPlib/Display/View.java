@@ -152,11 +152,7 @@ class View
 
         gbc.gridx = 0;
         gbc. gridy = 1;
-<<<<<<< HEAD
         gbc.weightx = 1;
-=======
-        gbc.weightx = 0;
->>>>>>> 053039b02a7850b0ca6c540a85c474a58ce37d5e
         gbc.weighty = 0.8;
         gbc.fill = GridBagConstraints.BOTH;
         ioPanel.add(terminalScrollPane, gbc);
