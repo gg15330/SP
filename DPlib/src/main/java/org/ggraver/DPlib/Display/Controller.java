@@ -33,7 +33,7 @@ public class Controller
     throws IOException, AnalysisException
     {
         model = fileHandler.parseXML();
-        view.setEditorText(fileHandler.getFileAsString());
+        view.setEditorText(new CodeGenerator().generate(model));
         SwingUtilities.invokeLater(view::createAndShowGUI);
     }
 
