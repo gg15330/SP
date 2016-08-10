@@ -1,9 +1,11 @@
 /home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/FileHandler.java
 /home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/IO.java
+/home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/SolverWorker.java
 /home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/Solver.java
 /home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/ClassAnalyser.java
 /home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/Launcher.java
-/home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/Display/SwingController.java
+/home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/CustomOutputStream.java
+/home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/Display/Controller.java
 /home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/SourceAnalyser.java
 /home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/Model.java
 /home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/Display/FXController.java
@@ -12,5 +14,5 @@
 /home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/Exception/ModelingException.java
 /home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/Exception/AnalysisException.java
 /home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/Result.java
-/home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/Display/SwingView.java
+/home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/Display/View.java
 /home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/Display/FXView.java
