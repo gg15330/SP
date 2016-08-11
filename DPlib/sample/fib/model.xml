@@ -2146,8 +2146,8 @@
   <callingMethod reference="../methodToAnalyse/parentNode/childrenNodes/com.github.javaparser.ast.body.MethodDeclaration[2]"/>
   <description>Problem description</description>
   <output></output>
-  <executionTime>70</executionTime>
-  <instructionCount>152778030</instructionCount>
+  <executionTime>114</executionTime>
+  <instructionCount>152810435</instructionCount>
   <INSTRUCTION__COUNT__MARGIN>1.2</INSTRUCTION__COUNT__MARGIN>
   <EXECUTION__TIME__MARGIN>1.2</EXECUTION__TIME__MARGIN>
 </org.dplib.Model>

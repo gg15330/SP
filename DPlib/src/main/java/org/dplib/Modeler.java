@@ -23,22 +23,18 @@ class Modeler
     throws ModelingException
     {
         Model model = new Model();
+        SourceAnalyser sa;
+        ClassAnalyser ca;
 
         try
         {
-            SourceAnalyser sa = new SourceAnalyser(sourceFile, methodName, "List");
+            sa = new SourceAnalyser(sourceFile, methodName);
             sa.analyse();
-            ClassAnalyser ca = new ClassAnalyser(sourceFile, sa.getClassName());
+            ca = new ClassAnalyser(sourceFile, sa.getClassName());
             ca.analyse();
 
             model.setCallingMethod(sa.findMethod("main"));
             model.setMethodToAnalyse(sa.findMethod(methodName));
-
-            model.setType(determineProblemType());
-
-            model.setOutput(ca.getOutput());
-            model.setExecutionTime(ca.getExecutionTime());
-            model.setInstructionCount(ca.getInstructionCount() + 100000); // margin of error - temporary
         }
         catch (AnalysisException | IOException e)
         {
@@ -48,6 +44,11 @@ class Modeler
         {
             throw new ModelingException("\nCould not parse .java file: " + e.getMessage());
         }
+
+        model.setType(determineProblemType());
+        model.setOutput(ca.getOutput());
+        model.setExecutionTime(ca.getExecutionTime());
+        model.setInstructionCount(ca.getInstructionCount() + 100000); // margin of error - temporary
 
         return model;
     }

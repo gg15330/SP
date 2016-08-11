@@ -3,7 +3,6 @@ package org.dplib;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -56,7 +55,16 @@ class SourceAnalyser
         methodDeclaration = findMethod(methodName);
         isRecursive = isRecursive(methodDeclaration);
         containsArray = containsArray(methodDeclaration);
-        containsRequiredClass = containsRequiredClass(methodDeclaration);
+        if (requiredClasses != null)
+        {
+            containsRequiredClass = containsRequiredClass(methodDeclaration);
+        }
+
+        System.out.println("Results of analysis:" +
+        "\nMethod declaration: " + methodDeclaration.getName() +
+        "\nRecursive: " + isRecursive +
+        "\nContains array: " + containsArray +
+        "\nContains required class: " + containsRequiredClass);
     }
 
     MethodDeclaration findMethod(String methodName)
