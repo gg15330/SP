@@ -19,12 +19,13 @@ import java.util.Collection;
 class Modeler
 {
 
+    private SourceAnalyser sa;
+    private ClassAnalyser ca;
+
     Model model(File sourceFile, String methodName)
     throws ModelingException
     {
         Model model = new Model();
-        SourceAnalyser sa;
-        ClassAnalyser ca;
 
         try
         {
@@ -46,6 +47,7 @@ class Modeler
         }
 
         model.setType(determineProblemType());
+        System.out.println(determineProblemType());
         model.setOutput(ca.getOutput());
         model.setExecutionTime(ca.getExecutionTime());
         model.setInstructionCount(ca.getInstructionCount() + 100000); // margin of error - temporary
@@ -54,6 +56,24 @@ class Modeler
     }
 
     private ProblemType determineProblemType() {
+        if(sa.isRecursive())
+        {
+            if(sa.containsArray() || sa.containsRequiredClass())
+            {
+                return ProblemType.MEMOIZED;
+            }
+            else
+            {
+                return ProblemType.RECURSIVE;
+            }
+        }
+        else if(!sa.isRecursive())
+        {
+            if(sa.containsArray() || sa.containsRequiredClass())
+            {
+                return ProblemType.ITERATIVE;
+            }
+        }
         return ProblemType.NONE;
     }
 
