@@ -19,7 +19,6 @@ org/dplib/FileHandler.class
 org/dplib/display/Controller$SolverWorker.class
 org/dplib/ClassAnalyser.class
 org/dplib/display/Controller$1.class
-org/dplib/SolverWorker.class
 org/dplib/IO.class
 org/dplib/enums/ProblemType.class
 org/dplib/display/Controller.class

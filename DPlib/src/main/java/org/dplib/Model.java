@@ -52,7 +52,7 @@ public class Model
         this.methodToAnalyse = methodToAnalyse;
     }
 
-    String getOutput()
+    public String getOutput()
     {
         return output;
     }
@@ -62,7 +62,7 @@ public class Model
         this.output = output;
     }
 
-    long getExecutionTime()
+    public long getExecutionTime()
     {
         return executionTime;
     }
@@ -72,7 +72,7 @@ public class Model
         this.executionTime = executionTime;
     }
 
-    long getInstructionCount()
+    public long getInstructionCount()
     {
         return instructionCount;
     }

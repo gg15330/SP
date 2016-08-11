@@ -1,6 +1,7 @@
 package org.dplib;
 
 import com.github.javaparser.ParseException;
+import com.github.javaparser.TokenMgrException;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import org.dplib.exception.AnalysisException;
 import org.dplib.exception.SolvingException;
@@ -25,6 +26,10 @@ public class Solver
         catch (IOException | ParseException e)
         {
             throw new SolvingException(e);
+        }
+        catch (TokenMgrException e)
+        {
+            throw new SolvingException(e.getMessage());
         }
 
         MethodDeclaration userCallingMethod = sa.findMethod("main");

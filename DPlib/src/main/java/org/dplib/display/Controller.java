@@ -34,6 +34,13 @@ public class Controller
     throws IOException, AnalysisException
     {
         model = fileHandler.parseXML();
+        System.out.println("Model data:" +
+        "\nDescription - " + model.getDescription() +
+        "\nType - " + model.getType() +
+        "\nRequired classes - " + model.getRequiredClasses() +
+        "\nOutput" + model.getOutput() +
+        "\nExecution time - " + model.getExecutionTime() +
+        "\nInstruction count - " + model.getInstructionCount());
         view.setEditorText(new CodeGenerator().generate(model));
         SwingUtilities.invokeLater(view::createAndShowGUI);
     }
@@ -75,7 +82,13 @@ public class Controller
             }
             catch (ExecutionException e)
             {
-                io.errorMsg(e.getCause());
+                if(e.getCause() instanceof Exception)
+                {
+                    io.errorMsg((Exception) e.getCause());
+                }
+                else {
+                    throw new Error(e);
+                }
             }
             catch (InterruptedException e)
             {

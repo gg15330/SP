@@ -2,6 +2,7 @@ package org.dplib;
 
 import org.dplib.exception.AnalysisException;
 import org.dplib.exception.ModelingException;
+import org.dplib.exception.SolvingException;
 
 import java.io.IOException;
 
@@ -13,11 +14,12 @@ public class IO
     private String filePath;
     private String methodName;
 
-    public void errorMsg(Throwable t)
+    public void errorMsg(Exception t)
     {
         if (!(t instanceof AnalysisException)
                 && !(t instanceof ModelingException)
-                && !(t instanceof IOException))
+                && !(t instanceof IOException)
+                && !(t instanceof SolvingException))
         {
             t.printStackTrace();
             throw new Error("Expected ModelingException, AnalysisException or IOException.");

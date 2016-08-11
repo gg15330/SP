@@ -1,6 +1,7 @@
 package org.dplib;
 
 import com.github.javaparser.ParseException;
+import com.github.javaparser.TokenMgrException;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.VariableDeclarationExpr;
 import org.dplib.enums.ProblemType;
@@ -47,10 +48,9 @@ class Modeler
         }
 
         model.setType(determineProblemType());
-        System.out.println(determineProblemType());
         model.setOutput(ca.getOutput());
         model.setExecutionTime(ca.getExecutionTime());
-        model.setInstructionCount(ca.getInstructionCount() + 100000); // margin of error - temporary
+        model.setInstructionCount(ca.getInstructionCount()); // margin of error - temporary
 
         return model;
     }

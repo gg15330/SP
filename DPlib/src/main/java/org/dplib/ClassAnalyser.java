@@ -5,6 +5,7 @@ import org.dplib.exception.AnalysisException;
 import org.dplib.exception.CompileException;
 
 import java.io.*;
+import java.util.Arrays;
 
 import static org.apache.commons.io.FilenameUtils.removeExtension;
 
@@ -60,6 +61,7 @@ class ClassAnalyser
 
         try
         {
+            System.out.println("Perf stat: " + Arrays.toString(perfStat.command().toArray()));
             execute(perfStat);
         }
         catch (Exception e)
@@ -104,6 +106,7 @@ class ClassAnalyser
 
         while ((line = br.readLine()) != null)
         {
+            System.out.println("[LINE] " + line);
             sb.append(line);
             lineCount++;
             if (lineCount > 1)
@@ -113,6 +116,7 @@ class ClassAnalyser
         }
 
         output = sb.toString();
+        System.out.println("Class analyser output: " + output);
     }
 
     private ProcessBuilder buildPerfStat(String logFileName, String classFileName, File dir)
@@ -124,7 +128,8 @@ class ClassAnalyser
                 "java", classFileName
         );
         build.directory(dir);
-        build.inheritIO();
+//        build.inheritIO();
+
         return build;
     }
 

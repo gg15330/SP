@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ParseException;
+import com.github.javaparser.TokenMgrException;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.MethodDeclaration;
@@ -15,6 +16,7 @@ import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import org.dplib.exception.AnalysisException;
+import sun.util.resources.cldr.de.CalendarData_de_AT;
 
 class SourceAnalyser
 {
@@ -32,7 +34,7 @@ class SourceAnalyser
 
     // construct a new SourceAnalyser with a method declaration to check against the source file
     SourceAnalyser(File file, String methodName)
-    throws IOException, ParseException
+    throws IOException, ParseException, TokenMgrException
     {
         FileInputStream fis = new FileInputStream(file);
         this.cu = JavaParser.parse(fis);
