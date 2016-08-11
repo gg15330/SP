@@ -1,23 +1,23 @@
-<org.ggraver.DPlib.Model>
+<org.dplib.Model>
   <methodToAnalyse>
     <range>
       <begin>
-        <line>6</line>
+        <line>9</line>
         <column>5</column>
       </begin>
       <end>
-        <line>19</line>
+        <line>22</line>
         <column>5</column>
       </end>
     </range>
     <parentNode class="com.github.javaparser.ast.body.ClassOrInterfaceDeclaration">
       <range>
         <begin>
-          <line>4</line>
+          <line>5</line>
           <column>1</column>
         </begin>
         <end>
-          <line>27</line>
+          <line>30</line>
           <column>1</column>
         </end>
       </range>
@@ -28,7 +28,7 @@
             <column>1</column>
           </begin>
           <end>
-            <line>27</line>
+            <line>30</line>
             <column>2</column>
           </end>
         </range>
@@ -41,7 +41,7 @@
               </begin>
               <end>
                 <line>2</line>
-                <column>46</column>
+                <column>22</column>
               </end>
             </range>
             <parentNode class="com.github.javaparser.ast.CompilationUnit" reference="../../.."/>
@@ -54,7 +54,7 @@
                   </begin>
                   <end>
                     <line>2</line>
-                    <column>45</column>
+                    <column>21</column>
                   </end>
                 </range>
                 <parentNode class="com.github.javaparser.ast.ImportDeclaration" reference="../../.."/>
@@ -64,47 +64,32 @@
                       <begin reference="../../../../range/begin"/>
                       <end>
                         <line>2</line>
-                        <column>27</column>
+                        <column>16</column>
                       </end>
                     </range>
                     <parentNode class="com.github.javaparser.ast.expr.QualifiedNameExpr" reference="../../.."/>
                     <childrenNodes class="linked-list">
-                      <com.github.javaparser.ast.expr.QualifiedNameExpr>
+                      <com.github.javaparser.ast.expr.NameExpr>
                         <range>
                           <begin reference="../../../../../../range/begin"/>
                           <end>
                             <line>2</line>
-                            <column>16</column>
+                            <column>11</column>
                           </end>
                         </range>
                         <parentNode class="com.github.javaparser.ast.expr.QualifiedNameExpr" reference="../../.."/>
-                        <childrenNodes class="linked-list">
-                          <com.github.javaparser.ast.expr.NameExpr>
-                            <range>
-                              <begin reference="../../../../../../../../range/begin"/>
-                              <end>
-                                <line>2</line>
-                                <column>11</column>
-                              </end>
-                            </range>
-                            <parentNode class="com.github.javaparser.ast.expr.QualifiedNameExpr" reference="../../.."/>
-                            <childrenNodes class="linked-list"/>
-                            <orphanComments class="linked-list"/>
-                            <name>java</name>
-                          </com.github.javaparser.ast.expr.NameExpr>
-                        </childrenNodes>
+                        <childrenNodes class="linked-list"/>
                         <orphanComments class="linked-list"/>
-                        <name>lang</name>
-                        <qualifier reference="../childrenNodes/com.github.javaparser.ast.expr.NameExpr"/>
-                      </com.github.javaparser.ast.expr.QualifiedNameExpr>
+                        <name>java</name>
+                      </com.github.javaparser.ast.expr.NameExpr>
                     </childrenNodes>
                     <orphanComments class="linked-list"/>
-                    <name>management</name>
-                    <qualifier class="com.github.javaparser.ast.expr.QualifiedNameExpr" reference="../childrenNodes/com.github.javaparser.ast.expr.QualifiedNameExpr"/>
+                    <name>util</name>
+                    <qualifier reference="../childrenNodes/com.github.javaparser.ast.expr.NameExpr"/>
                   </com.github.javaparser.ast.expr.QualifiedNameExpr>
                 </childrenNodes>
                 <orphanComments class="linked-list"/>
-                <name>ManagementFactory</name>
+                <name>List</name>
                 <qualifier class="com.github.javaparser.ast.expr.QualifiedNameExpr" reference="../childrenNodes/com.github.javaparser.ast.expr.QualifiedNameExpr"/>
               </com.github.javaparser.ast.expr.QualifiedNameExpr>
             </childrenNodes>
@@ -130,11 +115,78 @@
             <asterisk>false</asterisk>
             <isEmptyImportDeclaration>false</isEmptyImportDeclaration>
           </com.github.javaparser.ast.ImportDeclaration>
+          <com.github.javaparser.ast.ImportDeclaration>
+            <range>
+              <begin>
+                <line>3</line>
+                <column>1</column>
+              </begin>
+              <end>
+                <line>3</line>
+                <column>27</column>
+              </end>
+            </range>
+            <parentNode class="com.github.javaparser.ast.CompilationUnit" reference="../../.."/>
+            <childrenNodes class="linked-list">
+              <com.github.javaparser.ast.expr.QualifiedNameExpr>
+                <range>
+                  <begin>
+                    <line>3</line>
+                    <column>8</column>
+                  </begin>
+                  <end>
+                    <line>3</line>
+                    <column>26</column>
+                  </end>
+                </range>
+                <parentNode class="com.github.javaparser.ast.ImportDeclaration" reference="../../.."/>
+                <childrenNodes class="linked-list">
+                  <com.github.javaparser.ast.expr.QualifiedNameExpr>
+                    <range>
+                      <begin reference="../../../../range/begin"/>
+                      <end>
+                        <line>3</line>
+                        <column>16</column>
+                      </end>
+                    </range>
+                    <parentNode class="com.github.javaparser.ast.expr.QualifiedNameExpr" reference="../../.."/>
+                    <childrenNodes class="linked-list">
+                      <com.github.javaparser.ast.expr.NameExpr>
+                        <range>
+                          <begin reference="../../../../../../range/begin"/>
+                          <end>
+                            <line>3</line>
+                            <column>11</column>
+                          </end>
+                        </range>
+                        <parentNode class="com.github.javaparser.ast.expr.QualifiedNameExpr" reference="../../.."/>
+                        <childrenNodes class="linked-list"/>
+                        <orphanComments class="linked-list"/>
+                        <name>java</name>
+                      </com.github.javaparser.ast.expr.NameExpr>
+                    </childrenNodes>
+                    <orphanComments class="linked-list"/>
+                    <name>util</name>
+                    <qualifier reference="../childrenNodes/com.github.javaparser.ast.expr.NameExpr"/>
+                  </com.github.javaparser.ast.expr.QualifiedNameExpr>
+                </childrenNodes>
+                <orphanComments class="linked-list"/>
+                <name>ArrayList</name>
+                <qualifier class="com.github.javaparser.ast.expr.QualifiedNameExpr" reference="../childrenNodes/com.github.javaparser.ast.expr.QualifiedNameExpr"/>
+              </com.github.javaparser.ast.expr.QualifiedNameExpr>
+            </childrenNodes>
+            <orphanComments class="linked-list"/>
+            <name class="com.github.javaparser.ast.expr.QualifiedNameExpr" reference="../childrenNodes/com.github.javaparser.ast.expr.QualifiedNameExpr"/>
+            <static__>false</static__>
+            <asterisk>false</asterisk>
+            <isEmptyImportDeclaration>false</isEmptyImportDeclaration>
+          </com.github.javaparser.ast.ImportDeclaration>
           <com.github.javaparser.ast.body.ClassOrInterfaceDeclaration reference="../../.."/>
         </childrenNodes>
         <orphanComments class="linked-list"/>
         <imports class="linked-list">
           <com.github.javaparser.ast.ImportDeclaration reference="../../childrenNodes/com.github.javaparser.ast.ImportDeclaration"/>
+          <com.github.javaparser.ast.ImportDeclaration reference="../../childrenNodes/com.github.javaparser.ast.ImportDeclaration[2]"/>
         </imports>
         <types class="linked-list">
           <com.github.javaparser.ast.body.ClassOrInterfaceDeclaration reference="../../.."/>
@@ -153,15 +205,195 @@
           <childrenNodes class="linked-list"/>
           <orphanComments class="linked-list"/>
         </com.github.javaparser.ast.expr.NameExpr>
+        <com.github.javaparser.ast.body.FieldDeclaration>
+          <range>
+            <begin>
+              <line>7</line>
+              <column>5</column>
+            </begin>
+            <end>
+              <line>7</line>
+              <column>50</column>
+            </end>
+          </range>
+          <parentNode class="com.github.javaparser.ast.body.ClassOrInterfaceDeclaration" reference="../../.."/>
+          <childrenNodes class="linked-list">
+            <com.github.javaparser.ast.type.ReferenceType>
+              <range>
+                <begin>
+                  <line>7</line>
+                  <column>13</column>
+                </begin>
+                <end>
+                  <line>7</line>
+                  <column>24</column>
+                </end>
+              </range>
+              <parentNode class="com.github.javaparser.ast.body.FieldDeclaration" reference="../../.."/>
+              <childrenNodes class="linked-list">
+                <com.github.javaparser.ast.type.ClassOrInterfaceType>
+                  <range>
+                    <begin>
+                      <line>7</line>
+                      <column>13</column>
+                    </begin>
+                    <end>
+                      <line>7</line>
+                      <column>24</column>
+                    </end>
+                  </range>
+                  <parentNode class="com.github.javaparser.ast.type.ReferenceType" reference="../../.."/>
+                  <childrenNodes class="linked-list">
+                    <com.github.javaparser.ast.type.ReferenceType>
+                      <range>
+                        <begin>
+                          <line>7</line>
+                          <column>18</column>
+                        </begin>
+                        <end>
+                          <line>7</line>
+                          <column>23</column>
+                        </end>
+                      </range>
+                      <parentNode class="com.github.javaparser.ast.type.ClassOrInterfaceType" reference="../../.."/>
+                      <childrenNodes class="linked-list">
+                        <com.github.javaparser.ast.type.ClassOrInterfaceType>
+                          <range>
+                            <begin>
+                              <line>7</line>
+                              <column>18</column>
+                            </begin>
+                            <end>
+                              <line>7</line>
+                              <column>23</column>
+                            </end>
+                          </range>
+                          <parentNode class="com.github.javaparser.ast.type.ReferenceType" reference="../../.."/>
+                          <childrenNodes class="linked-list"/>
+                          <orphanComments class="linked-list"/>
+                          <annotations/>
+                          <name>String</name>
+                          <typeArguments>
+                            <typeArguments/>
+                            <usesDiamondOperator>false</usesDiamondOperator>
+                          </typeArguments>
+                        </com.github.javaparser.ast.type.ClassOrInterfaceType>
+                      </childrenNodes>
+                      <orphanComments class="linked-list"/>
+                      <annotations/>
+                      <type class="com.github.javaparser.ast.type.ClassOrInterfaceType" reference="../childrenNodes/com.github.javaparser.ast.type.ClassOrInterfaceType"/>
+                      <arrayCount>0</arrayCount>
+                      <arraysAnnotations/>
+                    </com.github.javaparser.ast.type.ReferenceType>
+                  </childrenNodes>
+                  <orphanComments class="linked-list"/>
+                  <annotations/>
+                  <name>List</name>
+                  <typeArguments>
+                    <typeArguments class="linked-list">
+                      <com.github.javaparser.ast.type.ReferenceType reference="../../../childrenNodes/com.github.javaparser.ast.type.ReferenceType"/>
+                    </typeArguments>
+                    <usesDiamondOperator>false</usesDiamondOperator>
+                  </typeArguments>
+                </com.github.javaparser.ast.type.ClassOrInterfaceType>
+              </childrenNodes>
+              <orphanComments class="linked-list"/>
+              <type class="com.github.javaparser.ast.type.ClassOrInterfaceType" reference="../childrenNodes/com.github.javaparser.ast.type.ClassOrInterfaceType"/>
+              <arrayCount>0</arrayCount>
+            </com.github.javaparser.ast.type.ReferenceType>
+            <com.github.javaparser.ast.body.VariableDeclarator>
+              <range>
+                <begin>
+                  <line>7</line>
+                  <column>26</column>
+                </begin>
+                <end>
+                  <line>7</line>
+                  <column>49</column>
+                </end>
+              </range>
+              <parentNode class="com.github.javaparser.ast.body.FieldDeclaration" reference="../../.."/>
+              <childrenNodes class="linked-list">
+                <com.github.javaparser.ast.body.VariableDeclaratorId>
+                  <range>
+                    <begin>
+                      <line>7</line>
+                      <column>26</column>
+                    </begin>
+                    <end>
+                      <line>7</line>
+                      <column>29</column>
+                    </end>
+                  </range>
+                  <parentNode class="com.github.javaparser.ast.body.VariableDeclarator" reference="../../.."/>
+                  <childrenNodes class="linked-list"/>
+                  <orphanComments class="linked-list"/>
+                  <name>strn</name>
+                  <arrayCount>0</arrayCount>
+                </com.github.javaparser.ast.body.VariableDeclaratorId>
+                <com.github.javaparser.ast.expr.ObjectCreationExpr>
+                  <range>
+                    <begin>
+                      <line>7</line>
+                      <column>33</column>
+                    </begin>
+                    <end>
+                      <line>7</line>
+                      <column>49</column>
+                    </end>
+                  </range>
+                  <parentNode class="com.github.javaparser.ast.body.VariableDeclarator" reference="../../.."/>
+                  <childrenNodes class="linked-list">
+                    <com.github.javaparser.ast.type.ClassOrInterfaceType>
+                      <range>
+                        <begin>
+                          <line>7</line>
+                          <column>37</column>
+                        </begin>
+                        <end>
+                          <line>7</line>
+                          <column>47</column>
+                        </end>
+                      </range>
+                      <parentNode class="com.github.javaparser.ast.expr.ObjectCreationExpr" reference="../../.."/>
+                      <childrenNodes class="linked-list"/>
+                      <orphanComments class="linked-list"/>
+                      <annotations/>
+                      <name>ArrayList</name>
+                      <typeArguments>
+                        <typeArguments class="empty-list"/>
+                        <usesDiamondOperator>true</usesDiamondOperator>
+                      </typeArguments>
+                    </com.github.javaparser.ast.type.ClassOrInterfaceType>
+                  </childrenNodes>
+                  <orphanComments class="linked-list"/>
+                  <type reference="../childrenNodes/com.github.javaparser.ast.type.ClassOrInterfaceType"/>
+                  <typeArgs/>
+                  <args/>
+                </com.github.javaparser.ast.expr.ObjectCreationExpr>
+              </childrenNodes>
+              <orphanComments class="linked-list"/>
+              <id reference="../childrenNodes/com.github.javaparser.ast.body.VariableDeclaratorId"/>
+              <init class="com.github.javaparser.ast.expr.ObjectCreationExpr" reference="../childrenNodes/com.github.javaparser.ast.expr.ObjectCreationExpr"/>
+            </com.github.javaparser.ast.body.VariableDeclarator>
+          </childrenNodes>
+          <orphanComments class="linked-list"/>
+          <annotations/>
+          <modifiers>2</modifiers>
+          <type class="com.github.javaparser.ast.type.ReferenceType" reference="../childrenNodes/com.github.javaparser.ast.type.ReferenceType"/>
+          <variables class="linked-list">
+            <com.github.javaparser.ast.body.VariableDeclarator reference="../../childrenNodes/com.github.javaparser.ast.body.VariableDeclarator"/>
+          </variables>
+        </com.github.javaparser.ast.body.FieldDeclaration>
         <com.github.javaparser.ast.body.MethodDeclaration reference="../../.."/>
         <com.github.javaparser.ast.body.MethodDeclaration>
           <range>
             <begin>
-              <line>21</line>
+              <line>24</line>
               <column>5</column>
             </begin>
             <end>
-              <line>25</line>
+              <line>28</line>
               <column>5</column>
             </end>
           </range>
@@ -170,11 +402,11 @@
             <com.github.javaparser.ast.type.VoidType>
               <range>
                 <begin>
-                  <line>21</line>
+                  <line>24</line>
                   <column>19</column>
                 </begin>
                 <end>
-                  <line>21</line>
+                  <line>24</line>
                   <column>22</column>
                 </end>
               </range>
@@ -191,11 +423,11 @@
             <com.github.javaparser.ast.body.Parameter>
               <range>
                 <begin>
-                  <line>21</line>
+                  <line>24</line>
                   <column>30</column>
                 </begin>
                 <end>
-                  <line>21</line>
+                  <line>24</line>
                   <column>42</column>
                 </end>
               </range>
@@ -204,11 +436,11 @@
                 <com.github.javaparser.ast.body.VariableDeclaratorId>
                   <range>
                     <begin>
-                      <line>21</line>
+                      <line>24</line>
                       <column>39</column>
                     </begin>
                     <end>
-                      <line>21</line>
+                      <line>24</line>
                       <column>42</column>
                     </end>
                   </range>
@@ -221,11 +453,11 @@
                 <com.github.javaparser.ast.type.ReferenceType>
                   <range>
                     <begin>
-                      <line>21</line>
+                      <line>24</line>
                       <column>30</column>
                     </begin>
                     <end>
-                      <line>21</line>
+                      <line>24</line>
                       <column>37</column>
                     </end>
                   </range>
@@ -234,17 +466,18 @@
                     <com.github.javaparser.ast.type.ClassOrInterfaceType>
                       <range>
                         <begin>
-                          <line>21</line>
+                          <line>24</line>
                           <column>30</column>
                         </begin>
                         <end>
-                          <line>21</line>
+                          <line>24</line>
                           <column>35</column>
                         </end>
                       </range>
                       <parentNode class="com.github.javaparser.ast.type.ReferenceType" reference="../../.."/>
                       <childrenNodes class="linked-list"/>
                       <orphanComments class="linked-list"/>
+                      <annotations/>
                       <name>String</name>
                       <typeArguments>
                         <typeArguments/>
@@ -269,11 +502,11 @@
             <com.github.javaparser.ast.stmt.BlockStmt>
               <range>
                 <begin>
-                  <line>22</line>
+                  <line>25</line>
                   <column>5</column>
                 </begin>
                 <end>
-                  <line>25</line>
+                  <line>28</line>
                   <column>5</column>
                 </end>
               </range>
@@ -282,11 +515,11 @@
                 <com.github.javaparser.ast.stmt.ExpressionStmt>
                   <range>
                     <begin>
-                      <line>23</line>
+                      <line>26</line>
                       <column>9</column>
                     </begin>
                     <end>
-                      <line>23</line>
+                      <line>26</line>
                       <column>19</column>
                     </end>
                   </range>
@@ -295,11 +528,11 @@
                     <com.github.javaparser.ast.expr.VariableDeclarationExpr>
                       <range>
                         <begin>
-                          <line>23</line>
+                          <line>26</line>
                           <column>9</column>
                         </begin>
                         <end>
-                          <line>23</line>
+                          <line>26</line>
                           <column>18</column>
                         </end>
                       </range>
@@ -308,11 +541,11 @@
                         <com.github.javaparser.ast.type.PrimitiveType>
                           <range>
                             <begin>
-                              <line>23</line>
+                              <line>26</line>
                               <column>9</column>
                             </begin>
                             <end>
-                              <line>23</line>
+                              <line>26</line>
                               <column>11</column>
                             </end>
                           </range>
@@ -324,11 +557,11 @@
                         <com.github.javaparser.ast.body.VariableDeclarator>
                           <range>
                             <begin>
-                              <line>23</line>
+                              <line>26</line>
                               <column>13</column>
                             </begin>
                             <end>
-                              <line>23</line>
+                              <line>26</line>
                               <column>18</column>
                             </end>
                           </range>
@@ -337,11 +570,11 @@
                             <com.github.javaparser.ast.body.VariableDeclaratorId>
                               <range>
                                 <begin>
-                                  <line>23</line>
+                                  <line>26</line>
                                   <column>13</column>
                                 </begin>
                                 <end>
-                                  <line>23</line>
+                                  <line>26</line>
                                   <column>13</column>
                                 </end>
                               </range>
@@ -354,11 +587,11 @@
                             <com.github.javaparser.ast.expr.IntegerLiteralExpr>
                               <range>
                                 <begin>
-                                  <line>23</line>
+                                  <line>26</line>
                                   <column>17</column>
                                 </begin>
                                 <end>
-                                  <line>23</line>
+                                  <line>26</line>
                                   <column>18</column>
                                 </end>
                               </range>
@@ -387,11 +620,11 @@
                 <com.github.javaparser.ast.stmt.ExpressionStmt>
                   <range>
                     <begin>
-                      <line>24</line>
+                      <line>27</line>
                       <column>9</column>
                     </begin>
                     <end>
-                      <line>24</line>
+                      <line>27</line>
                       <column>37</column>
                     </end>
                   </range>
@@ -400,11 +633,11 @@
                     <com.github.javaparser.ast.expr.MethodCallExpr>
                       <range>
                         <begin>
-                          <line>24</line>
+                          <line>27</line>
                           <column>9</column>
                         </begin>
                         <end>
-                          <line>24</line>
+                          <line>27</line>
                           <column>36</column>
                         </end>
                       </range>
@@ -413,11 +646,11 @@
                         <com.github.javaparser.ast.expr.FieldAccessExpr>
                           <range>
                             <begin>
-                              <line>24</line>
+                              <line>27</line>
                               <column>9</column>
                             </begin>
                             <end>
-                              <line>24</line>
+                              <line>27</line>
                               <column>18</column>
                             </end>
                           </range>
@@ -426,11 +659,11 @@
                             <com.github.javaparser.ast.expr.NameExpr>
                               <range>
                                 <begin>
-                                  <line>24</line>
+                                  <line>27</line>
                                   <column>9</column>
                                 </begin>
                                 <end>
-                                  <line>24</line>
+                                  <line>27</line>
                                   <column>14</column>
                                 </end>
                               </range>
@@ -448,11 +681,11 @@
                             <com.github.javaparser.ast.expr.NameExpr>
                               <range>
                                 <begin>
-                                  <line>24</line>
+                                  <line>27</line>
                                   <column>16</column>
                                 </begin>
                                 <end>
-                                  <line>24</line>
+                                  <line>27</line>
                                   <column>18</column>
                                 </end>
                               </range>
@@ -475,11 +708,11 @@
                         <com.github.javaparser.ast.expr.MethodCallExpr>
                           <range>
                             <begin>
-                              <line>24</line>
+                              <line>27</line>
                               <column>28</column>
                             </begin>
                             <end>
-                              <line>24</line>
+                              <line>27</line>
                               <column>35</column>
                             </end>
                           </range>
@@ -494,11 +727,11 @@
                             <com.github.javaparser.ast.expr.NameExpr>
                               <range>
                                 <begin>
-                                  <line>24</line>
+                                  <line>27</line>
                                   <column>34</column>
                                 </begin>
                                 <end>
-                                  <line>24</line>
+                                  <line>27</line>
                                   <column>34</column>
                                 </end>
                               </range>
@@ -510,11 +743,11 @@
                             <com.github.javaparser.ast.expr.NameExpr>
                               <range>
                                 <begin>
-                                  <line>24</line>
+                                  <line>27</line>
                                   <column>28</column>
                                 </begin>
                                 <end>
-                                  <line>24</line>
+                                  <line>27</line>
                                   <column>32</column>
                                 </end>
                               </range>
@@ -533,11 +766,11 @@
                         <com.github.javaparser.ast.expr.NameExpr>
                           <range>
                             <begin>
-                              <line>24</line>
+                              <line>27</line>
                               <column>20</column>
                             </begin>
                             <end>
-                              <line>24</line>
+                              <line>27</line>
                               <column>26</column>
                             </end>
                           </range>
@@ -568,11 +801,11 @@
             <com.github.javaparser.ast.expr.NameExpr>
               <range>
                 <begin>
-                  <line>21</line>
+                  <line>24</line>
                   <column>24</column>
                 </begin>
                 <end>
-                  <line>21</line>
+                  <line>24</line>
                   <column>27</column>
                 </end>
               </range>
@@ -596,11 +829,11 @@
         <com.github.javaparser.ast.expr.NameExpr>
           <range>
             <begin>
-              <line>4</line>
+              <line>5</line>
               <column>7</column>
             </begin>
             <end>
-              <line>4</line>
+              <line>5</line>
               <column>17</column>
             </end>
           </range>
@@ -615,6 +848,7 @@
       <name reference="../childrenNodes/com.github.javaparser.ast.expr.NameExpr[2]"/>
       <modifiers>0</modifiers>
       <members class="linked-list">
+        <com.github.javaparser.ast.body.FieldDeclaration reference="../../childrenNodes/com.github.javaparser.ast.body.FieldDeclaration"/>
         <com.github.javaparser.ast.body.MethodDeclaration reference="../../.."/>
         <com.github.javaparser.ast.body.MethodDeclaration reference="../../childrenNodes/com.github.javaparser.ast.body.MethodDeclaration[2]"/>
       </members>
@@ -627,11 +861,11 @@
       <com.github.javaparser.ast.type.PrimitiveType>
         <range>
           <begin>
-            <line>6</line>
+            <line>9</line>
             <column>12</column>
           </begin>
           <end>
-            <line>6</line>
+            <line>9</line>
             <column>14</column>
           </end>
         </range>
@@ -649,11 +883,11 @@
       <com.github.javaparser.ast.body.Parameter>
         <range>
           <begin>
-            <line>6</line>
+            <line>9</line>
             <column>22</column>
           </begin>
           <end>
-            <line>6</line>
+            <line>9</line>
             <column>26</column>
           </end>
         </range>
@@ -662,11 +896,11 @@
           <com.github.javaparser.ast.body.VariableDeclaratorId>
             <range>
               <begin>
-                <line>6</line>
+                <line>9</line>
                 <column>26</column>
               </begin>
               <end>
-                <line>6</line>
+                <line>9</line>
                 <column>26</column>
               </end>
             </range>
@@ -679,11 +913,11 @@
           <com.github.javaparser.ast.type.PrimitiveType>
             <range>
               <begin>
-                <line>6</line>
+                <line>9</line>
                 <column>22</column>
               </begin>
               <end>
-                <line>6</line>
+                <line>9</line>
                 <column>24</column>
               </end>
             </range>
@@ -702,11 +936,11 @@
       <com.github.javaparser.ast.stmt.BlockStmt>
         <range>
           <begin>
-            <line>7</line>
+            <line>10</line>
             <column>5</column>
           </begin>
           <end>
-            <line>19</line>
+            <line>22</line>
             <column>5</column>
           </end>
         </range>
@@ -715,11 +949,11 @@
           <com.github.javaparser.ast.stmt.ExpressionStmt>
             <range>
               <begin>
-                <line>8</line>
+                <line>11</line>
                 <column>9</column>
               </begin>
               <end>
-                <line>8</line>
+                <line>11</line>
                 <column>31</column>
               </end>
             </range>
@@ -728,11 +962,11 @@
               <com.github.javaparser.ast.expr.VariableDeclarationExpr>
                 <range>
                   <begin>
-                    <line>8</line>
+                    <line>11</line>
                     <column>9</column>
                   </begin>
                   <end>
-                    <line>8</line>
+                    <line>11</line>
                     <column>30</column>
                   </end>
                 </range>
@@ -741,11 +975,11 @@
                   <com.github.javaparser.ast.type.PrimitiveType>
                     <range>
                       <begin>
-                        <line>8</line>
+                        <line>11</line>
                         <column>9</column>
                       </begin>
                       <end>
-                        <line>8</line>
+                        <line>11</line>
                         <column>11</column>
                       </end>
                     </range>
@@ -757,11 +991,11 @@
                   <com.github.javaparser.ast.body.VariableDeclarator>
                     <range>
                       <begin>
-                        <line>8</line>
+                        <line>11</line>
                         <column>13</column>
                       </begin>
                       <end>
-                        <line>8</line>
+                        <line>11</line>
                         <column>30</column>
                       </end>
                     </range>
@@ -770,11 +1004,11 @@
                       <com.github.javaparser.ast.body.VariableDeclaratorId>
                         <range>
                           <begin>
-                            <line>8</line>
+                            <line>11</line>
                             <column>13</column>
                           </begin>
                           <end>
-                            <line>8</line>
+                            <line>11</line>
                             <column>15</column>
                           </end>
                         </range>
@@ -787,11 +1021,11 @@
                       <com.github.javaparser.ast.expr.ArrayCreationExpr>
                         <range>
                           <begin>
-                            <line>8</line>
+                            <line>11</line>
                             <column>19</column>
                           </begin>
                           <end>
-                            <line>8</line>
+                            <line>11</line>
                             <column>30</column>
                           </end>
                         </range>
@@ -800,11 +1034,11 @@
                           <com.github.javaparser.ast.type.PrimitiveType>
                             <range>
                               <begin>
-                                <line>8</line>
+                                <line>11</line>
                                 <column>23</column>
                               </begin>
                               <end>
-                                <line>8</line>
+                                <line>11</line>
                                 <column>25</column>
                               </end>
                             </range>
@@ -816,11 +1050,11 @@
                           <com.github.javaparser.ast.expr.BinaryExpr>
                             <range>
                               <begin>
-                                <line>8</line>
+                                <line>11</line>
                                 <column>27</column>
                               </begin>
                               <end>
-                                <line>8</line>
+                                <line>11</line>
                                 <column>29</column>
                               </end>
                             </range>
@@ -830,7 +1064,7 @@
                                 <range>
                                   <begin reference="../../../../range/begin"/>
                                   <end>
-                                    <line>8</line>
+                                    <line>11</line>
                                     <column>27</column>
                                   </end>
                                 </range>
@@ -842,11 +1076,11 @@
                               <com.github.javaparser.ast.expr.IntegerLiteralExpr>
                                 <range>
                                   <begin>
-                                    <line>8</line>
+                                    <line>11</line>
                                     <column>29</column>
                                   </begin>
                                   <end>
-                                    <line>8</line>
+                                    <line>11</line>
                                     <column>29</column>
                                   </end>
                                 </range>
@@ -893,11 +1127,11 @@
           <com.github.javaparser.ast.stmt.ExpressionStmt>
             <range>
               <begin>
-                <line>9</line>
+                <line>12</line>
                 <column>9</column>
               </begin>
               <end>
-                <line>9</line>
+                <line>12</line>
                 <column>14</column>
               </end>
             </range>
@@ -906,11 +1140,11 @@
               <com.github.javaparser.ast.expr.VariableDeclarationExpr>
                 <range>
                   <begin>
-                    <line>9</line>
+                    <line>12</line>
                     <column>9</column>
                   </begin>
                   <end>
-                    <line>9</line>
+                    <line>12</line>
                     <column>13</column>
                   </end>
                 </range>
@@ -919,11 +1153,11 @@
                   <com.github.javaparser.ast.type.PrimitiveType>
                     <range>
                       <begin>
-                        <line>9</line>
+                        <line>12</line>
                         <column>9</column>
                       </begin>
                       <end>
-                        <line>9</line>
+                        <line>12</line>
                         <column>11</column>
                       </end>
                     </range>
@@ -935,11 +1169,11 @@
                   <com.github.javaparser.ast.body.VariableDeclarator>
                     <range>
                       <begin>
-                        <line>9</line>
+                        <line>12</line>
                         <column>13</column>
                       </begin>
                       <end>
-                        <line>9</line>
+                        <line>12</line>
                         <column>13</column>
                       </end>
                     </range>
@@ -948,11 +1182,11 @@
                       <com.github.javaparser.ast.body.VariableDeclaratorId>
                         <range>
                           <begin>
-                            <line>9</line>
+                            <line>12</line>
                             <column>13</column>
                           </begin>
                           <end>
-                            <line>9</line>
+                            <line>12</line>
                             <column>13</column>
                           </end>
                         </range>
@@ -981,11 +1215,11 @@
           <com.github.javaparser.ast.stmt.ExpressionStmt>
             <range>
               <begin>
-                <line>10</line>
+                <line>13</line>
                 <column>9</column>
               </begin>
               <end>
-                <line>10</line>
+                <line>13</line>
                 <column>17</column>
               </end>
             </range>
@@ -994,11 +1228,11 @@
               <com.github.javaparser.ast.expr.AssignExpr>
                 <range>
                   <begin>
-                    <line>10</line>
+                    <line>13</line>
                     <column>9</column>
                   </begin>
                   <end>
-                    <line>10</line>
+                    <line>13</line>
                     <column>16</column>
                   </end>
                 </range>
@@ -1007,11 +1241,11 @@
                   <com.github.javaparser.ast.expr.ArrayAccessExpr>
                     <range>
                       <begin>
-                        <line>10</line>
+                        <line>13</line>
                         <column>9</column>
                       </begin>
                       <end>
-                        <line>10</line>
+                        <line>13</line>
                         <column>12</column>
                       </end>
                     </range>
@@ -1020,11 +1254,11 @@
                       <com.github.javaparser.ast.expr.NameExpr>
                         <range>
                           <begin>
-                            <line>10</line>
+                            <line>13</line>
                             <column>9</column>
                           </begin>
                           <end>
-                            <line>10</line>
+                            <line>13</line>
                             <column>9</column>
                           </end>
                         </range>
@@ -1036,11 +1270,11 @@
                       <com.github.javaparser.ast.expr.IntegerLiteralExpr>
                         <range>
                           <begin>
-                            <line>10</line>
+                            <line>13</line>
                             <column>11</column>
                           </begin>
                           <end>
-                            <line>10</line>
+                            <line>13</line>
                             <column>11</column>
                           </end>
                         </range>
@@ -1057,11 +1291,11 @@
                   <com.github.javaparser.ast.expr.IntegerLiteralExpr>
                     <range>
                       <begin>
-                        <line>10</line>
+                        <line>13</line>
                         <column>16</column>
                       </begin>
                       <end>
-                        <line>10</line>
+                        <line>13</line>
                         <column>16</column>
                       </end>
                     </range>
@@ -1083,11 +1317,11 @@
           <com.github.javaparser.ast.stmt.ExpressionStmt>
             <range>
               <begin>
-                <line>11</line>
+                <line>14</line>
                 <column>9</column>
               </begin>
               <end>
-                <line>11</line>
+                <line>14</line>
                 <column>17</column>
               </end>
             </range>
@@ -1096,11 +1330,11 @@
               <com.github.javaparser.ast.expr.AssignExpr>
                 <range>
                   <begin>
-                    <line>11</line>
+                    <line>14</line>
                     <column>9</column>
                   </begin>
                   <end>
-                    <line>11</line>
+                    <line>14</line>
                     <column>16</column>
                   </end>
                 </range>
@@ -1109,11 +1343,11 @@
                   <com.github.javaparser.ast.expr.ArrayAccessExpr>
                     <range>
                       <begin>
-                        <line>11</line>
+                        <line>14</line>
                         <column>9</column>
                       </begin>
                       <end>
-                        <line>11</line>
+                        <line>14</line>
                         <column>12</column>
                       </end>
                     </range>
@@ -1122,11 +1356,11 @@
                       <com.github.javaparser.ast.expr.NameExpr>
                         <range>
                           <begin>
-                            <line>11</line>
+                            <line>14</line>
                             <column>9</column>
                           </begin>
                           <end>
-                            <line>11</line>
+                            <line>14</line>
                             <column>9</column>
                           </end>
                         </range>
@@ -1138,11 +1372,11 @@
                       <com.github.javaparser.ast.expr.IntegerLiteralExpr>
                         <range>
                           <begin>
-                            <line>11</line>
+                            <line>14</line>
                             <column>11</column>
                           </begin>
                           <end>
-                            <line>11</line>
+                            <line>14</line>
                             <column>11</column>
                           </end>
                         </range>
@@ -1159,11 +1393,11 @@
                   <com.github.javaparser.ast.expr.IntegerLiteralExpr>
                     <range>
                       <begin>
-                        <line>11</line>
+                        <line>14</line>
                         <column>16</column>
                       </begin>
                       <end>
-                        <line>11</line>
+                        <line>14</line>
                         <column>16</column>
                       </end>
                     </range>
@@ -1185,11 +1419,11 @@
           <com.github.javaparser.ast.stmt.ForStmt>
             <range>
               <begin>
-                <line>13</line>
+                <line>16</line>
                 <column>9</column>
               </begin>
               <end>
-                <line>16</line>
+                <line>19</line>
                 <column>9</column>
               </end>
             </range>
@@ -1198,11 +1432,11 @@
               <com.github.javaparser.ast.expr.BinaryExpr>
                 <range>
                   <begin>
-                    <line>13</line>
+                    <line>16</line>
                     <column>21</column>
                   </begin>
                   <end>
-                    <line>13</line>
+                    <line>16</line>
                     <column>26</column>
                   </end>
                 </range>
@@ -1212,7 +1446,7 @@
                     <range>
                       <begin reference="../../../../range/begin"/>
                       <end>
-                        <line>13</line>
+                        <line>16</line>
                         <column>21</column>
                       </end>
                     </range>
@@ -1224,11 +1458,11 @@
                   <com.github.javaparser.ast.expr.NameExpr>
                     <range>
                       <begin>
-                        <line>13</line>
+                        <line>16</line>
                         <column>26</column>
                       </begin>
                       <end>
-                        <line>13</line>
+                        <line>16</line>
                         <column>26</column>
                       </end>
                     </range>
@@ -1246,11 +1480,11 @@
               <com.github.javaparser.ast.expr.AssignExpr>
                 <range>
                   <begin>
-                    <line>13</line>
+                    <line>16</line>
                     <column>14</column>
                   </begin>
                   <end>
-                    <line>13</line>
+                    <line>16</line>
                     <column>18</column>
                   </end>
                 </range>
@@ -1260,7 +1494,7 @@
                     <range>
                       <begin reference="../../../../range/begin"/>
                       <end>
-                        <line>13</line>
+                        <line>16</line>
                         <column>14</column>
                       </end>
                     </range>
@@ -1272,11 +1506,11 @@
                   <com.github.javaparser.ast.expr.IntegerLiteralExpr>
                     <range>
                       <begin>
-                        <line>13</line>
+                        <line>16</line>
                         <column>18</column>
                       </begin>
                       <end>
-                        <line>13</line>
+                        <line>16</line>
                         <column>18</column>
                       </end>
                     </range>
@@ -1294,11 +1528,11 @@
               <com.github.javaparser.ast.expr.UnaryExpr>
                 <range>
                   <begin>
-                    <line>13</line>
+                    <line>16</line>
                     <column>29</column>
                   </begin>
                   <end>
-                    <line>13</line>
+                    <line>16</line>
                     <column>31</column>
                   </end>
                 </range>
@@ -1308,7 +1542,7 @@
                     <range>
                       <begin reference="../../../../range/begin"/>
                       <end>
-                        <line>13</line>
+                        <line>16</line>
                         <column>29</column>
                       </end>
                     </range>
@@ -1325,11 +1559,11 @@
               <com.github.javaparser.ast.stmt.BlockStmt>
                 <range>
                   <begin>
-                    <line>14</line>
+                    <line>17</line>
                     <column>9</column>
                   </begin>
                   <end>
-                    <line>16</line>
+                    <line>19</line>
                     <column>9</column>
                   </end>
                 </range>
@@ -1338,11 +1572,11 @@
                   <com.github.javaparser.ast.stmt.ExpressionStmt>
                     <range>
                       <begin>
-                        <line>15</line>
+                        <line>18</line>
                         <column>13</column>
                       </begin>
                       <end>
-                        <line>15</line>
+                        <line>18</line>
                         <column>35</column>
                       </end>
                     </range>
@@ -1351,11 +1585,11 @@
                       <com.github.javaparser.ast.expr.AssignExpr>
                         <range>
                           <begin>
-                            <line>15</line>
+                            <line>18</line>
                             <column>13</column>
                           </begin>
                           <end>
-                            <line>15</line>
+                            <line>18</line>
                             <column>34</column>
                           </end>
                         </range>
@@ -1364,11 +1598,11 @@
                           <com.github.javaparser.ast.expr.ArrayAccessExpr>
                             <range>
                               <begin>
-                                <line>15</line>
+                                <line>18</line>
                                 <column>13</column>
                               </begin>
                               <end>
-                                <line>15</line>
+                                <line>18</line>
                                 <column>16</column>
                               </end>
                             </range>
@@ -1377,11 +1611,11 @@
                               <com.github.javaparser.ast.expr.NameExpr>
                                 <range>
                                   <begin>
-                                    <line>15</line>
+                                    <line>18</line>
                                     <column>13</column>
                                   </begin>
                                   <end>
-                                    <line>15</line>
+                                    <line>18</line>
                                     <column>13</column>
                                   </end>
                                 </range>
@@ -1393,11 +1627,11 @@
                               <com.github.javaparser.ast.expr.NameExpr>
                                 <range>
                                   <begin>
-                                    <line>15</line>
+                                    <line>18</line>
                                     <column>15</column>
                                   </begin>
                                   <end>
-                                    <line>15</line>
+                                    <line>18</line>
                                     <column>15</column>
                                   </end>
                                 </range>
@@ -1414,11 +1648,11 @@
                           <com.github.javaparser.ast.expr.BinaryExpr>
                             <range>
                               <begin>
-                                <line>15</line>
+                                <line>18</line>
                                 <column>20</column>
                               </begin>
                               <end>
-                                <line>15</line>
+                                <line>18</line>
                                 <column>34</column>
                               </end>
                             </range>
@@ -1428,7 +1662,7 @@
                                 <range>
                                   <begin reference="../../../../range/begin"/>
                                   <end>
-                                    <line>15</line>
+                                    <line>18</line>
                                     <column>25</column>
                                   </end>
                                 </range>
@@ -1437,11 +1671,11 @@
                                   <com.github.javaparser.ast.expr.NameExpr>
                                     <range>
                                       <begin>
-                                        <line>15</line>
+                                        <line>18</line>
                                         <column>20</column>
                                       </begin>
                                       <end>
-                                        <line>15</line>
+                                        <line>18</line>
                                         <column>20</column>
                                       </end>
                                     </range>
@@ -1453,11 +1687,11 @@
                                   <com.github.javaparser.ast.expr.BinaryExpr>
                                     <range>
                                       <begin>
-                                        <line>15</line>
+                                        <line>18</line>
                                         <column>22</column>
                                       </begin>
                                       <end>
-                                        <line>15</line>
+                                        <line>18</line>
                                         <column>24</column>
                                       </end>
                                     </range>
@@ -1467,7 +1701,7 @@
                                         <range>
                                           <begin reference="../../../../range/begin"/>
                                           <end>
-                                            <line>15</line>
+                                            <line>18</line>
                                             <column>22</column>
                                           </end>
                                         </range>
@@ -1479,11 +1713,11 @@
                                       <com.github.javaparser.ast.expr.IntegerLiteralExpr>
                                         <range>
                                           <begin>
-                                            <line>15</line>
+                                            <line>18</line>
                                             <column>24</column>
                                           </begin>
                                           <end>
-                                            <line>15</line>
+                                            <line>18</line>
                                             <column>24</column>
                                           </end>
                                         </range>
@@ -1506,11 +1740,11 @@
                               <com.github.javaparser.ast.expr.ArrayAccessExpr>
                                 <range>
                                   <begin>
-                                    <line>15</line>
+                                    <line>18</line>
                                     <column>29</column>
                                   </begin>
                                   <end>
-                                    <line>15</line>
+                                    <line>18</line>
                                     <column>34</column>
                                   </end>
                                 </range>
@@ -1519,11 +1753,11 @@
                                   <com.github.javaparser.ast.expr.NameExpr>
                                     <range>
                                       <begin>
-                                        <line>15</line>
+                                        <line>18</line>
                                         <column>29</column>
                                       </begin>
                                       <end>
-                                        <line>15</line>
+                                        <line>18</line>
                                         <column>29</column>
                                       </end>
                                     </range>
@@ -1535,11 +1769,11 @@
                                   <com.github.javaparser.ast.expr.BinaryExpr>
                                     <range>
                                       <begin>
-                                        <line>15</line>
+                                        <line>18</line>
                                         <column>31</column>
                                       </begin>
                                       <end>
-                                        <line>15</line>
+                                        <line>18</line>
                                         <column>33</column>
                                       </end>
                                     </range>
@@ -1549,7 +1783,7 @@
                                         <range>
                                           <begin reference="../../../../range/begin"/>
                                           <end>
-                                            <line>15</line>
+                                            <line>18</line>
                                             <column>31</column>
                                           </end>
                                         </range>
@@ -1561,11 +1795,11 @@
                                       <com.github.javaparser.ast.expr.IntegerLiteralExpr>
                                         <range>
                                           <begin>
-                                            <line>15</line>
+                                            <line>18</line>
                                             <column>33</column>
                                           </begin>
                                           <end>
-                                            <line>15</line>
+                                            <line>18</line>
                                             <column>33</column>
                                           </end>
                                         </range>
@@ -1621,11 +1855,11 @@
           <com.github.javaparser.ast.stmt.ReturnStmt>
             <range>
               <begin>
-                <line>18</line>
+                <line>21</line>
                 <column>9</column>
               </begin>
               <end>
-                <line>18</line>
+                <line>21</line>
                 <column>20</column>
               </end>
             </range>
@@ -1634,11 +1868,11 @@
               <com.github.javaparser.ast.expr.ArrayAccessExpr>
                 <range>
                   <begin>
-                    <line>18</line>
+                    <line>21</line>
                     <column>16</column>
                   </begin>
                   <end>
-                    <line>18</line>
+                    <line>21</line>
                     <column>19</column>
                   </end>
                 </range>
@@ -1647,11 +1881,11 @@
                   <com.github.javaparser.ast.expr.NameExpr>
                     <range>
                       <begin>
-                        <line>18</line>
+                        <line>21</line>
                         <column>16</column>
                       </begin>
                       <end>
-                        <line>18</line>
+                        <line>21</line>
                         <column>16</column>
                       </end>
                     </range>
@@ -1663,11 +1897,11 @@
                   <com.github.javaparser.ast.expr.NameExpr>
                     <range>
                       <begin>
-                        <line>18</line>
+                        <line>21</line>
                         <column>18</column>
                       </begin>
                       <end>
-                        <line>18</line>
+                        <line>21</line>
                         <column>18</column>
                       </end>
                     </range>
@@ -1699,11 +1933,11 @@
       <com.github.javaparser.ast.expr.NameExpr>
         <range>
           <begin>
-            <line>6</line>
+            <line>9</line>
             <column>16</column>
           </begin>
           <end>
-            <line>6</line>
+            <line>9</line>
             <column>20</column>
           </end>
         </range>
@@ -1727,8 +1961,8 @@
   <callingMethod reference="../methodToAnalyse/parentNode/childrenNodes/com.github.javaparser.ast.body.MethodDeclaration[2]"/>
   <description>Problem description</description>
   <output></output>
-  <executionTime>78</executionTime>
-  <instructionCount>152644155</instructionCount>
+  <executionTime>81</executionTime>
+  <instructionCount>152698947</instructionCount>
   <INSTRUCTION__COUNT__MARGIN>1.2</INSTRUCTION__COUNT__MARGIN>
   <EXECUTION__TIME__MARGIN>1.2</EXECUTION__TIME__MARGIN>
-</org.ggraver.DPlib.Model>
+</org.dplib.Model>

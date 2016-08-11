@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.ggraver.DPlib</groupId>
+  <groupId>org.ggraver.dplib</groupId>
   <artifactId>DPlib</artifactId>
   <name>DPlib</name>
   <version>1.0-SNAPSHOT</version>
@@ -33,9 +33,9 @@
                   <resource>META-INF/services/conf.file</resource>
                 </transformer>
                 <transformer>
-                  <mainClass>org.ggraver.DPlib.Launcher</mainClass>
+                  <mainClass>org.dplib.Launcher</mainClass>
                   <manifestEntries>
-                    <Main-Class>org.ggraver.DPlib.Launcher</Main-Class>
+                    <Main-Class>org.dplib.Launcher</Main-Class>
                     <X-Compile-Source-JDK>1.8</X-Compile-Source-JDK>
                     <X-Compile-Target-JDK>1.8</X-Compile-Target-JDK>
                   </manifestEntries>
