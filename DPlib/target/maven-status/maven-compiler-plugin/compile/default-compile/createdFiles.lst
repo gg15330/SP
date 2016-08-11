@@ -25,5 +25,4 @@ org/dplib/enums/ProblemType.class
 org/dplib/display/Controller.class
 org/dplib/exception/AnalysisException.class
 org/dplib/Modeler.class
-org/dplib/Model$1.class
 org/dplib/Model.class

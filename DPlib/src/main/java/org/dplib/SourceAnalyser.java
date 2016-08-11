@@ -3,6 +3,7 @@ package org.dplib;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -12,8 +13,8 @@ import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.*;
+import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
-import org.dplib.enums.ProblemType;
 import org.dplib.exception.AnalysisException;
 
 class SourceAnalyser
@@ -22,13 +23,13 @@ class SourceAnalyser
     private String methodName;
     private CompilationUnit cu;
     private MethodDeclaration methodDeclaration;
-    private ProblemType problemType;
 
     private boolean isRecursive;
     private int recursiveCallLineNo;
 
     private boolean containsArray;
     private boolean containsRequiredClass;
+    private String[] requiredClasses;
 
     // construct a new SourceAnalyser with a method declaration to check against the source file
     SourceAnalyser(File file, String methodName)
@@ -37,35 +38,49 @@ class SourceAnalyser
         FileInputStream fis = new FileInputStream(file);
         this.cu = JavaParser.parse(fis);
         fis.close();
-
         this.methodName = methodName;
+        requiredClasses = null;
+    }
+
+    SourceAnalyser(File file, String methodName, String... requiredClasses)
+    throws IOException, ParseException
+    {
+        FileInputStream fis = new FileInputStream(file);
+        this.cu = JavaParser.parse(fis);
+        fis.close();
+        this.methodName = methodName;
+        this.requiredClasses = requiredClasses;
+        System.out.println("Required classes: " + Arrays.toString(this.requiredClasses));
     }
 
     void analyse()
     throws AnalysisException
     {
+        System.out.println("Analysing...");
         methodDeclaration = findMethod(methodName);
-
-        problemType = determineProblemType();
+        isRecursive = isRecursive(methodDeclaration);
+        containsArray = containsArray(methodDeclaration);
+        containsRequiredClass = containsRequiredClass(methodDeclaration);
     }
 
-    private ProblemType determineProblemType() {
-        return null;
+    private boolean containsRequiredClass(Node node)
+    {
+        if(node instanceof ClassOrInterfaceType)
+        {
+            String classType = ((ClassOrInterfaceType) node).getName();
+            for(String requiredClass : requiredClasses)
+            {
+                if(classType.equals(requiredClass)) return true;
+            }
+        }
+        for(Node n : node.getChildrenNodes())
+        {
+            if(containsRequiredClass(n)) return true;
+        }
+        return false;
     }
 
-//    boolean containsRequiredClass(Node node, String className)
-//    {
-//        System.out.println("Class: " + node.getClass());
-//        System.out.println("Node: " + node.toString());
-//        System.out.println();
-//        for(Node n : node.getChildrenNodes())
-//        {
-//            containsRequiredClass(n, className);
-//        }
-//        return true;
-//    }
-
-    boolean containsArray(Node node)
+    private boolean containsArray(Node node)
     {
         if(node instanceof ArrayCreationExpr) return true;
         for(Node n : node.getChildrenNodes())
@@ -112,7 +127,7 @@ class SourceAnalyser
 
     }
 
-    boolean isRecursive(Node node)
+    private boolean isRecursive(Node node)
     {
         if (node instanceof MethodCallExpr)
         {
@@ -173,11 +188,6 @@ class SourceAnalyser
     public int getRecursiveCallLineNo()
     {
         return recursiveCallLineNo;
-    }
-
-    ProblemType getProblemType()
-    {
-        return problemType;
     }
 
     public MethodDeclaration getMethodDeclaration()

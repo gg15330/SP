@@ -5,5 +5,5 @@ package org.dplib.enums;
  */
 public enum ProblemType
 {
-    RECURSIVE, MEMOIZED, ITERATIVE
+    NONE, RECURSIVE, MEMOIZED, ITERATIVE
 }

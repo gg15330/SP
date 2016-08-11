@@ -14,7 +14,6 @@ public class Model
     private ProblemType type;
     private MethodDeclaration methodToAnalyse;
     private MethodDeclaration callingMethod;
-    private boolean recursionAllowed;
     private String[] requiredClasses;
     private String description = "Problem description";
     private String output;
@@ -22,27 +21,6 @@ public class Model
     private long instructionCount;
     private double INSTRUCTION_COUNT_MARGIN = 1.2;
     private double EXECUTION_TIME_MARGIN = 1.2;
-
-    Model(ProblemType type, String... requiredClasses)
-    {
-        this.type = type;
-        switch (type)
-        {
-            case RECURSIVE:
-                this.requiredClasses = null;
-                recursionAllowed = true;
-                break;
-            case MEMOIZED:
-                this.requiredClasses = requiredClasses;
-                recursionAllowed = true;
-                break;
-            case ITERATIVE:
-                this.requiredClasses = requiredClasses;
-                recursionAllowed = false;
-                break;
-            default: break;
-        }
-    }
 
     double getINSTRUCTION_COUNT_MARGIN()
     {

@@ -26,14 +26,15 @@ class Modeler
         ClassAnalyser ca;
         MethodDeclaration main;
         MethodDeclaration methodToAnalyse;
+        ProblemType problemType;
 
         try
         {
-            sa = new SourceAnalyser(sourceFile, methodName);
+            sa = new SourceAnalyser(sourceFile, methodName, "List");
             sa.analyse();
-
             main = sa.findMethod("main");
             methodToAnalyse = sa.findMethod(methodName);
+            problemType = determineProblemType();
 
             ca = new ClassAnalyser(sourceFile, sa.getClassName());
             ca.analyse();
@@ -47,8 +48,8 @@ class Modeler
             throw new ModelingException("\nCould not parse .java file: " + e.getMessage());
         }
 
-        Model model = new Model(ProblemType.ITERATIVE);
-        model.setType(sa.getProblemType());
+        Model model = new Model();
+        model.setType(problemType);
         model.setCallingMethod(main);
         model.setMethodToAnalyse(methodToAnalyse);
         model.setOutput(ca.getOutput());
@@ -56,6 +57,10 @@ class Modeler
         model.setInstructionCount(ca.getInstructionCount() + 100000); // margin of error - temporary
 
         return model;
+    }
+
+    private ProblemType determineProblemType() {
+        return ProblemType.NONE;
     }
 
 }
