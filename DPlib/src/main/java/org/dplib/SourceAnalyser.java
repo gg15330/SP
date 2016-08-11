@@ -11,11 +11,7 @@ import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.expr.AnnotationExpr;
-import com.github.javaparser.ast.expr.Expression;
-import com.github.javaparser.ast.expr.MarkerAnnotationExpr;
-import com.github.javaparser.ast.expr.MethodCallExpr;
-import com.github.javaparser.ast.type.ClassOrInterfaceType;
+import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import org.dplib.enums.ProblemType;
 import org.dplib.exception.AnalysisException;
@@ -23,13 +19,11 @@ import org.dplib.exception.AnalysisException;
 class SourceAnalyser
 {
 
-    private ProblemType problemType;
     private String methodName;
     private int recursiveCallLineNo;
     private CompilationUnit cu;
     private MethodDeclaration methodDeclaration;
-    private MethodCallExpr methodCall;
-    private List<Object> methodInputValues;
+    private ProblemType problemType;
 
     // construct a new SourceAnalyser with a method declaration to check against the source file
     SourceAnalyser(File file, String methodName)
@@ -58,18 +52,32 @@ class SourceAnalyser
         fis.close();
     }
 
-    void analyse(Node node)
+    void analyse()
+    throws AnalysisException
     {
+        methodDeclaration = findMethod(methodName);
+    }
+
+//    boolean containsRequiredClass(Node node, String className)
+//    {
+//        System.out.println("Class: " + node.getClass());
+//        System.out.println("Node: " + node.toString());
+//        System.out.println();
+//        for(Node n : node.getChildrenNodes())
+//        {
+//            containsRequiredClass(n, className);
+//        }
+//        return true;
+//    }
+
+    boolean containsArray(Node node)
+    {
+        if(node instanceof ArrayCreationExpr) return true;
         for(Node n : node.getChildrenNodes())
         {
-            if(n instanceof ClassOrInterfaceType)
-            {
-                System.out.println("[CLASS] " + n.getClass());
-                System.out.println("[NODE] " + n.toString());
-                System.out.println("[NAME] " + ((ClassOrInterfaceType) n).getName());
-            }
-            analyse(n);
+            if(containsArray(n)) return true;
         }
+        return false;
     }
 
     MethodDeclaration findMethod(String methodName)
@@ -82,22 +90,6 @@ class SourceAnalyser
             if (md.getName().equals(methodName))
             {
                 return md;
-            }
-        }
-        throw new AnalysisException("expected MethodDeclaration \"" + methodName
-                                            + "\" does not exist in source file.");
-    }
-
-    MethodCallExpr findMethodCall(MethodDeclaration parentMethod, String methodCallName)
-    throws AnalysisException
-    {
-        MethodCallExprVisitor methodCallExprVisitor = new MethodCallExprVisitor();
-        methodCallExprVisitor.visit(parentMethod, null);
-        for (MethodCallExpr mce : methodCallExprVisitor.getMethodCalls())
-        {
-            if (mce.getName().equals(methodCallName))
-            {
-                return mce;
             }
         }
         throw new AnalysisException("expected MethodDeclaration \"" + methodName
@@ -191,6 +183,11 @@ class SourceAnalyser
     ProblemType getProblemType()
     {
         return problemType;
+    }
+
+    public MethodDeclaration getMethodDeclaration()
+    {
+        return methodDeclaration;
     }
 
 

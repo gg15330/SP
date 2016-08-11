@@ -35,7 +35,7 @@ class ClassAnalyser
         }
     }
 
-    // analyse the compiled .class file for performance
+    // contains the compiled .class file for performance
     void analyse()
     throws AnalysisException
     {

@@ -2,68 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dbf27813-b393-4f5c-a162-70ce6f80ac8c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/enums/ProblemType.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/ClassAnalyser$SubProcessStream.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/ClassAnalyser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/CodeGenerator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/CustomOutputStream.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Display/Controller$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Display/Controller$SolverWorker.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Display/Controller$solveBtnListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Display/Controller.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Display/FXController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Display/FXView.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Display/View.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Exception/AnalysisException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Exception/CompileException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Exception/ModelingException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/FileHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/IO.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Launcher.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Model.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Modeler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Result.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/Solver.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/SolverWorker.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/SourceAnalyser$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/SourceAnalyser$MethodCallExprVisitor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/SourceAnalyser$MethodDeclarationVisitor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/ggraver/DPlib/SourceAnalyser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/test-classes/org/ggraver/DPlib/ClassAnalyserTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/test-classes/org/ggraver/DPlib/SourceAnalyserTest.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ClassAnalyser.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/ClassAnalyser.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/CodeGenerator.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/CodeGenerator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/CustomOutputStream.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/CustomOutputStream.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Display/Controller.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/Controller.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Display/FXController.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/FXController.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Display/FXView.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/FXView.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Display/View.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/View.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Exception/AnalysisException.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/exception/AnalysisException.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Exception/CompileException.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/exception/CompileException.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Exception/ModelingException.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/exception/ModelingException.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/FileHandler.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/FileHandler.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/IO.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/IO.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Launcher.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Launcher.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Model.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Model.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Modeler.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Modeler.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Result.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Result.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Solver.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Solver.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SolverWorker.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/SolverWorker.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SourceAnalyser.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/SourceAnalyser.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/test/java/org/ggraver/DPlib/ClassAnalyserTest.java" afterPath="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ClassAnalyserTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/test/java/org/ggraver/DPlib/SourceAnalyserTest.java" afterPath="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SourceAnalyserTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/sample/fib/fibDP.class" afterPath="$PROJECT_DIR$/DPlib/sample/fib/fibDP.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/sample/fib/FibonacciDP.class" afterPath="$PROJECT_DIR$/DPlib/sample/fib/FibonacciDP.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/DPlib-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/DPlib/target/DPlib-1.0-SNAPSHOT.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/Model.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/Model.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/Modeler.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/Modeler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/SourceAnalyser$MethodCallExprVisitor.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/SourceAnalyser$MethodCallExprVisitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/SourceAnalyser$MethodDeclarationVisitor.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/SourceAnalyser$MethodDeclarationVisitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/SourceAnalyser.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/SourceAnalyser.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/jfx/app/DPlib-1.0-SNAPSHOT-jfx.jar" afterPath="$PROJECT_DIR$/DPlib/target/jfx/app/DPlib-1.0-SNAPSHOT-jfx.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/dependency-reduced-pom.xml" afterPath="$PROJECT_DIR$/DPlib/dependency-reduced-pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/pom.xml" afterPath="$PROJECT_DIR$/DPlib/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/sample/fib/FibonacciDP.java" afterPath="$PROJECT_DIR$/DPlib/sample/fib/FibonacciDP.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/sample/fib/model.xml" afterPath="$PROJECT_DIR$/DPlib/sample/fib/model.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/resources/gui.fxml" afterPath="$PROJECT_DIR$/DPlib/src/main/resources/gui.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/gui.fxml" afterPath="$PROJECT_DIR$/DPlib/target/classes/gui.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/ClassAnalyser.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/ClassAnalyser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Model.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Model.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Modeler.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Modeler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/SourceAnalyser.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/SourceAnalyser.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/DPlib/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterPath="$PROJECT_DIR$/DPlib/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" />
     </list>
     <ignored path="SP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -100,34 +54,38 @@
       <file leaf-file-name="Modeler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Modeler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="22" column="46" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
+            <state relative-caret-position="280">
+              <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SourceAnalyser.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SourceAnalyser.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/SourceAnalyser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="45" column="29" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
+            <state relative-caret-position="226">
+              <caret line="179" column="5" selection-start-line="179" selection-start-column="5" selection-end-line="179" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#findMethodCall#0;class#SourceAnalyser#0" expanded="false" />
-                <element signature="method#checkMethodProperties#0;class#SourceAnalyser#0" expanded="false" />
                 <element signature="method#duplicateAnnotations#0;class#SourceAnalyser#0" expanded="false" />
+                <element signature="e#5107#5108#0" expanded="true" />
+                <element signature="e#5147#5148#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FibonacciDP.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/DPlib/sample/fib/FibonacciDP.java">
+      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Model.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="14">
-              <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-              <folding />
+            <state relative-caret-position="515">
+              <caret line="133" column="17" selection-start-line="133" selection-start-column="17" selection-end-line="133" selection-end-column="17" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2908#2909#0" expanded="true" />
+                <element signature="e#2946#2947#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -165,22 +123,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Model.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2071#2072#0" expanded="true" />
-                <element signature="e#2098#2099#0" expanded="true" />
-                <element signature="e#2147#2148#0" expanded="true" />
-                <element signature="e#2179#2180#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -202,7 +144,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/FailureType.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ResultType.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/PassResult.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Result/PassResult.java" />
@@ -250,9 +191,10 @@
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SourceAnalyser.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/dplib/SourceAnalyser.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/Controller.java" />
+        <option value="$PROJECT_DIR$/DPlib/sample/fib/FibonacciDP.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Model.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Modeler.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/SourceAnalyser.java" />
-        <option value="$PROJECT_DIR$/DPlib/sample/fib/FibonacciDP.java" />
       </list>
     </option>
   </component>
@@ -272,7 +214,7 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="18" />
+    <option name="y" value="-750" />
     <option name="width" value="1366" />
     <option name="height" value="750" />
   </component>
@@ -643,7 +585,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="18" width="1366" height="750" extended-state="6" />
+    <frame x="0" y="-750" width="1366" height="750" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -653,7 +595,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40528634" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4465593" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41508052" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20717423" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -899,7 +841,7 @@
         <state relative-caret-position="165">
           <caret line="29" column="58" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="58" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -919,20 +861,6 @@
         <state relative-caret-position="126">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2071#2072#0" expanded="true" />
-            <element signature="e#2098#2099#0" expanded="true" />
-            <element signature="e#2147#2148#0" expanded="true" />
-            <element signature="e#2179#2180#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -960,14 +888,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Modeler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="22" column="46" selection-start-line="22" selection-start-column="46" selection-end-line="22" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/ClassAnalyser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1694">
@@ -979,24 +899,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/SourceAnalyser.java">
+    <entry file="file://$PROJECT_DIR$/DPlib/sample/fib/FibonacciDP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="45" column="29" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
+        <state relative-caret-position="154">
+          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="12" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="515">
+          <caret line="133" column="17" selection-start-line="133" selection-start-column="17" selection-end-line="133" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#findMethodCall#0;class#SourceAnalyser#0" expanded="false" />
-            <element signature="method#checkMethodProperties#0;class#SourceAnalyser#0" expanded="false" />
-            <element signature="method#duplicateAnnotations#0;class#SourceAnalyser#0" expanded="false" />
+            <element signature="e#2908#2909#0" expanded="true" />
+            <element signature="e#2946#2947#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/sample/fib/FibonacciDP.java">
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Modeler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14">
-          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+        <state relative-caret-position="280">
+          <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/SourceAnalyser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="179" column="5" selection-start-line="179" selection-start-column="5" selection-end-line="179" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#duplicateAnnotations#0;class#SourceAnalyser#0" expanded="false" />
+            <element signature="e#5107#5108#0" expanded="true" />
+            <element signature="e#5147#5148#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
