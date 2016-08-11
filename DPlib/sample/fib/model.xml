@@ -1020,7 +1020,6 @@
                                 <parentNode class="com.github.javaparser.ast.type.ReferenceType" reference="../../.."/>
                                 <childrenNodes class="linked-list"/>
                                 <orphanComments class="linked-list"/>
-                                <annotations/>
                                 <name>Integer</name>
                                 <typeArguments>
                                   <typeArguments/>
@@ -1029,14 +1028,11 @@
                               </com.github.javaparser.ast.type.ClassOrInterfaceType>
                             </childrenNodes>
                             <orphanComments class="linked-list"/>
-                            <annotations/>
                             <type class="com.github.javaparser.ast.type.ClassOrInterfaceType" reference="../childrenNodes/com.github.javaparser.ast.type.ClassOrInterfaceType"/>
                             <arrayCount>0</arrayCount>
-                            <arraysAnnotations/>
                           </com.github.javaparser.ast.type.ReferenceType>
                         </childrenNodes>
                         <orphanComments class="linked-list"/>
-                        <annotations/>
                         <name>List</name>
                         <typeArguments>
                           <typeArguments class="linked-list">
@@ -2150,8 +2146,8 @@
   <callingMethod reference="../methodToAnalyse/parentNode/childrenNodes/com.github.javaparser.ast.body.MethodDeclaration[2]"/>
   <description>Problem description</description>
   <output></output>
-  <executionTime>73</executionTime>
-  <instructionCount>152782313</instructionCount>
+  <executionTime>70</executionTime>
+  <instructionCount>152778030</instructionCount>
   <INSTRUCTION__COUNT__MARGIN>1.2</INSTRUCTION__COUNT__MARGIN>
   <EXECUTION__TIME__MARGIN>1.2</EXECUTION__TIME__MARGIN>
 </org.dplib.Model>

@@ -45,12 +45,8 @@ class SourceAnalyser
     SourceAnalyser(File file, String methodName, String... requiredClasses)
     throws IOException, ParseException
     {
-        FileInputStream fis = new FileInputStream(file);
-        this.cu = JavaParser.parse(fis);
-        fis.close();
-        this.methodName = methodName;
-        this.requiredClasses = requiredClasses;
-        System.out.println("Required classes: " + Arrays.toString(this.requiredClasses));
+        this(file, methodName);
+        this.requiredClasses = requiredClasses;;
     }
 
     void analyse()
@@ -61,6 +57,43 @@ class SourceAnalyser
         isRecursive = isRecursive(methodDeclaration);
         containsArray = containsArray(methodDeclaration);
         containsRequiredClass = containsRequiredClass(methodDeclaration);
+    }
+
+    MethodDeclaration findMethod(String methodName)
+    throws AnalysisException
+    {
+        MethodDeclarationVisitor methodDeclarationVisitor = new MethodDeclarationVisitor();
+        methodDeclarationVisitor.visit(cu, null);
+        for (MethodDeclaration md : methodDeclarationVisitor.getMethods())
+        {
+            if (md.getName().equals(methodName))
+            {
+                return md;
+            }
+        }
+        throw new AnalysisException("expected MethodDeclaration \"" + methodName
+                                            + "\" does not exist in source file.");
+    }
+
+    private boolean isRecursive(Node node)
+    {
+        if (node instanceof MethodCallExpr)
+        {
+            MethodCallExpr mce = (MethodCallExpr) node;
+            if (mce.getName().equals(methodName))
+            {
+                recursiveCallLineNo = mce.getBeginLine();
+                return true;
+            }
+        }
+        for (Node child : node.getChildrenNodes())
+        {
+            if (isRecursive(child))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean containsRequiredClass(Node node)
@@ -90,22 +123,6 @@ class SourceAnalyser
         return false;
     }
 
-    MethodDeclaration findMethod(String methodName)
-    throws AnalysisException
-    {
-        MethodDeclarationVisitor methodDeclarationVisitor = new MethodDeclarationVisitor();
-        methodDeclarationVisitor.visit(cu, null);
-        for (MethodDeclaration md : methodDeclarationVisitor.getMethods())
-        {
-            if (md.getName().equals(methodName))
-            {
-                return md;
-            }
-        }
-        throw new AnalysisException("expected MethodDeclaration \"" + methodName
-                                            + "\" does not exist in source file.");
-    }
-
     // checks method properties to ensure the submitted method is the same as the tutor-defined template
     void checkMethodProperties(MethodDeclaration expected, MethodDeclaration actual)
     throws AnalysisException
@@ -125,27 +142,6 @@ class SourceAnalyser
                                                 "\nActual: " + actual.getParameters());
         }
 
-    }
-
-    private boolean isRecursive(Node node)
-    {
-        if (node instanceof MethodCallExpr)
-        {
-            MethodCallExpr mce = (MethodCallExpr) node;
-            if (mce.getName().equals(methodName))
-            {
-                recursiveCallLineNo = mce.getBeginLine();
-                return true;
-            }
-        }
-        for (Node child : node.getChildrenNodes())
-        {
-            if (isRecursive(child))
-            {
-                return true;
-            }
-        }
-        return false;
     }
 
     // To do: convert to check for duplicate method names/parameterList/type
@@ -181,7 +177,6 @@ class SourceAnalyser
 
     String getClassName()
     {
-        System.out.println("Class name: " + cu.getTypes().get(0).getName());
         return cu.getTypes().get(0).getName();
     }
 
@@ -193,6 +188,21 @@ class SourceAnalyser
     public MethodDeclaration getMethodDeclaration()
     {
         return methodDeclaration;
+    }
+
+    public boolean containsRequiredClass()
+    {
+        return containsRequiredClass;
+    }
+
+    public boolean containsArray()
+    {
+        return containsArray;
+    }
+
+    public boolean isRecursive()
+    {
+        return isRecursive;
     }
 
 
