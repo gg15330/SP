@@ -1,9 +1,12 @@
 package org.dplib;
 
+import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import org.dplib.exception.AnalysisException;
+import org.dplib.exception.SolvingException;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by george on 01/08/16.
@@ -12,9 +15,18 @@ public class Solver
 {
 
     public Result solve(Model model, File file)
-    throws AnalysisException
+    throws AnalysisException, SolvingException
     {
-        SourceAnalyser sa = new SourceAnalyser(file, model.getMethodToAnalyse().getName());
+        SourceAnalyser sa;
+        try
+        {
+            sa = new SourceAnalyser(file, model.getMethodToAnalyse().getName());
+        }
+        catch (IOException | ParseException e)
+        {
+            throw new SolvingException(e);
+        }
+
         MethodDeclaration userCallingMethod = sa.findMethod("main");
 
         if(!userCallingMethod.equals(model.getCallingMethod()))

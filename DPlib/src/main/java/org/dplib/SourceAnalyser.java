@@ -20,42 +20,37 @@ class SourceAnalyser
 {
 
     private String methodName;
-    private int recursiveCallLineNo;
     private CompilationUnit cu;
     private MethodDeclaration methodDeclaration;
     private ProblemType problemType;
 
+    private boolean isRecursive;
+    private int recursiveCallLineNo;
+
+    private boolean containsArray;
+    private boolean containsRequiredClass;
+
     // construct a new SourceAnalyser with a method declaration to check against the source file
     SourceAnalyser(File file, String methodName)
-    throws AnalysisException
-    {
-        try
-        {
-            parse(file);
-        }
-        catch (ParseException e)
-        {
-            throw new AnalysisException("\nCould not parse .java file: " + e.getMessage());
-        }
-        catch (IOException e)
-        {
-            throw new AnalysisException(e);
-        }
-        this.methodName = methodName;
-    }
-
-    private void parse(File file)
-    throws ParseException, IOException
+    throws IOException, ParseException
     {
         FileInputStream fis = new FileInputStream(file);
-        cu = JavaParser.parse(fis);
+        this.cu = JavaParser.parse(fis);
         fis.close();
+
+        this.methodName = methodName;
     }
 
     void analyse()
     throws AnalysisException
     {
         methodDeclaration = findMethod(methodName);
+
+        problemType = determineProblemType();
+    }
+
+    private ProblemType determineProblemType() {
+        return null;
     }
 
 //    boolean containsRequiredClass(Node node, String className)

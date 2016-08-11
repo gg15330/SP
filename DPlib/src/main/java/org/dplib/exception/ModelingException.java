@@ -3,7 +3,9 @@ package org.dplib.exception;
 /**
  * Created by george on 26/07/16.
  */
-public class ModelingException extends Exception {
+public class ModelingException
+extends Exception
+{
 
     public ModelingException(String message) {
 

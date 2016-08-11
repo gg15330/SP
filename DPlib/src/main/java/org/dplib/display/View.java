@@ -181,11 +181,10 @@ class View
     private JScrollPane createTextAreaWithScrollPane(JTextArea jTextArea, boolean editable, boolean wrap)
     {
         jTextArea.setLineWrap(wrap);
-        jTextArea.setTabSize(2);
+        jTextArea.setTabSize(1);
         jTextArea.setEditable(editable);
         JScrollPane scrollPane = new JScrollPane(jTextArea);
         scrollPane.setPreferredSize(new Dimension(1, 1));
-
         return scrollPane;
     }
 

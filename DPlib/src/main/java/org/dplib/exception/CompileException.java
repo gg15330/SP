@@ -3,7 +3,9 @@ package org.dplib.exception;
 /**
  * Created by george on 20/07/16.
  */
-public class CompileException extends Exception {
+public class CompileException
+extends Exception
+{
 
     public CompileException(String message) {
 

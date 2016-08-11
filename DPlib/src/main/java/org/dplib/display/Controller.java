@@ -1,8 +1,8 @@
 package org.dplib.display;
 
 import org.dplib.*;
-import org.dplib.*;
 import org.dplib.exception.AnalysisException;
+import org.dplib.exception.SolvingException;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -57,7 +57,7 @@ public class Controller
 
         @Override
         public Result doInBackground()
-        throws AnalysisException, IOException
+        throws AnalysisException, IOException, SolvingException
         {
             File compiledJavaFile;
             compiledJavaFile = fileHandler.createJavaFile(view.getEditorText());

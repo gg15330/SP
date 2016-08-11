@@ -62,7 +62,7 @@ public class SourceAnalyserTest
 
         try {
             sa = new SourceAnalyser(testJavaFile, null);
-        } catch (AnalysisException e) {
+        } catch (IOException | ParseException e) {
             throw new Error(e);
         }
 

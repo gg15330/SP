@@ -11,6 +11,7 @@ org/dplib/Launcher.class
 org/dplib/Result.class
 org/dplib/display/View.class
 org/dplib/SourceAnalyser$MethodDeclarationVisitor.class
+org/dplib/exception/SolvingException.class
 org/dplib/SourceAnalyser$1.class
 org/dplib/SourceAnalyser.class
 org/dplib/exception/CompileException.class
