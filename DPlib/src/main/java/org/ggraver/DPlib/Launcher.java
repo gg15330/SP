@@ -4,6 +4,7 @@ import org.ggraver.DPlib.Display.Controller;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
 
+import java.io.File;
 import java.io.IOException;
 
 import static javafx.application.Application.launch;
@@ -13,8 +14,9 @@ public class Launcher
 {
 
     private String command;
-    private String filePath;
+    private String javaFilePath;
     private String methodName;
+    private String inputFilePath;
 
     public static void main(String[] args)
     {
@@ -34,12 +36,15 @@ public class Launcher
     {
         try
         {
-            Controller controller = new Controller(filePath);
+            Controller controller = new Controller(javaFilePath);
             switch (command) {
                 case "model":
-                    FileHandler fileHandler = new FileHandler(filePath, "java");
-                    Model model = new Modeler().model(fileHandler.getFile(), methodName);
-                    fileHandler.generateXML(model);
+                    FileHandler fileHandler = new FileHandler(javaFilePath, "java");
+                    FileHandler inputFileHandler = new FileHandler(inputFilePath, "txt");
+                    String[][] input = inputFileHandler.parseInputTextFile(inputFileHandler.getFile());
+                    Model model = new Modeler().model(fileHandler.getFile(), methodName, input);
+//                    Model model = new Modeler().model(fileHandler.getFile(), methodName);
+//                    fileHandler.generateXML(model);
                     break;
                 case "solve":
                     controller.start();
@@ -57,11 +62,12 @@ public class Launcher
     private void processArgs(String[] args)
     {
         IO io = new IO();
-        if(args.length == 3)
+        if(args.length == 4)
         {
             command = args[0];
-            filePath = args[1];
-            methodName = args[2];
+            javaFilePath = args[1];
+            inputFilePath = args[2];
+            methodName = args[3];
             if(!command.equals("model"))
             {
                 io.usage();
@@ -71,7 +77,7 @@ public class Launcher
         else if(args.length == 1)
         {
             command = "solve";
-            filePath = args[0];
+            javaFilePath = args[0];
         }
         else
         {

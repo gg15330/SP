@@ -13,10 +13,11 @@ import java.io.*;
 class Modeler
 {
 
-    Model model(File sourceFile, String methodName)
+    Model model(File sourceFile, String methodName, String[][] input)
     throws ModelingException
     {
         Model model = new Model();
+        model.setInput(input);
         try
         {
             SourceAnalyser sa = new SourceAnalyser(sourceFile, methodName);

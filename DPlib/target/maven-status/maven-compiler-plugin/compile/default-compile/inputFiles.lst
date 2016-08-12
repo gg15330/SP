@@ -13,6 +13,7 @@
 /home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/Exception/CompileException.java
 /home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/Exception/ModelingException.java
 /home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/Exception/AnalysisException.java
+/home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/CodeGenerator.java
 /home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/Result.java
 /home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/Display/View.java
 /home/george/Documents/SPIDEA/SP/DPlib/src/main/java/org/ggraver/DPlib/Display/FXView.java

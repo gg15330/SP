@@ -11,6 +11,7 @@ public class Model
     private MethodDeclaration methodToAnalyse;
     private MethodDeclaration callingMethod;
     private String description = "Problem description";
+    private String[][] input;
     private String output;
     private long executionTime;
     private long instructionCount;
@@ -92,5 +93,10 @@ public class Model
     public String getDescription()
     {
         return description;
+    }
+
+    public void setInput(String[][] input)
+    {
+        this.input = input;
     }
 }
