@@ -13,11 +13,10 @@ import java.io.*;
 class Modeler
 {
 
-    Model model(File sourceFile, String methodName, String[][] input)
+    Model model(File sourceFile, String methodName, String[] inputs)
     throws ModelingException
     {
         Model model = new Model();
-        model.setInput(input);
         try
         {
             SourceAnalyser sa = new SourceAnalyser(sourceFile, methodName);
@@ -27,10 +26,13 @@ class Modeler
             model.setCallingMethod(main);
 
             ClassAnalyser ca = new ClassAnalyser(sourceFile, sa.getClassName());
-            ca.analyse();
+            for(String input : inputs)
+            {
+                ca.analyse(input);
+            }
             model.setOutput(ca.getOutput());
             model.setExecutionTime(ca.getExecutionTime());
-            model.setInstructionCount(ca.getInstructionCount() + 100000); // margin of error - temporary
+            model.setInstructionCount(ca.getInstructionCount()); // margin of error - temporary
         }
         catch (AnalysisException e)
         {

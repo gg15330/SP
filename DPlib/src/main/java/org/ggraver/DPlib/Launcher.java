@@ -41,9 +41,12 @@ public class Launcher
                 case "model":
                     FileHandler fileHandler = new FileHandler(javaFilePath, "java");
                     FileHandler inputFileHandler = new FileHandler(inputFilePath, "txt");
-                    String[][] input = inputFileHandler.parseInputTextFile(inputFileHandler.getFile());
+                    String[] input = inputFileHandler.parseInputTextFile(inputFileHandler.getFile());
+                    for(String s : input)
+                    {
+                        System.out.println(s);
+                    }
                     Model model = new Modeler().model(fileHandler.getFile(), methodName, input);
-//                    Model model = new Modeler().model(fileHandler.getFile(), methodName);
 //                    fileHandler.generateXML(model);
                     break;
                 case "solve":

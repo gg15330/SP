@@ -36,7 +36,7 @@ class ClassAnalyser
     }
 
     // analyse the compiled .class file for performance
-    void analyse()
+    void analyse(String input)
     throws AnalysisException
     {
         if (!classFile.exists() || classFile.length() == 0)

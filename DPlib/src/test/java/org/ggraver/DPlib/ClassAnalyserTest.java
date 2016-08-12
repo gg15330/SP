@@ -83,7 +83,7 @@ public class ClassAnalyserTest
         System.out.println("Setting up for test_analyse()...");
 
         try {
-            ca.analyse();
+            ca.analyse(input);
         } catch (Exception e) {
             throw new Error(e);
         }

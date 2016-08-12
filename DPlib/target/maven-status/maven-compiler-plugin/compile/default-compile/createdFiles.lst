@@ -7,6 +7,7 @@ org/ggraver/DPlib/Display/Controller$1.class
 org/ggraver/DPlib/CodeGenerator.class
 org/ggraver/DPlib/ClassAnalyser.class
 org/ggraver/DPlib/SourceAnalyser.class
+org/ggraver/DPlib/Result2.class
 org/ggraver/DPlib/SolverWorker.class
 org/ggraver/DPlib/CustomOutputStream.class
 org/ggraver/DPlib/SourceAnalyser$MethodDeclarationVisitor.class

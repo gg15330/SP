@@ -3,7 +3,6 @@ package org.ggraver.DPlib;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import org.ggraver.DPlib.Exception.AnalysisException;
 
-import javax.swing.*;
 import java.io.File;
 
 /**
@@ -27,7 +26,7 @@ public class Solver
         }
 
         ClassAnalyser ca = new ClassAnalyser(file, sa.getClassName());
-        ca.analyse();
+        ca.analyse(input);
 
         Result result = new Result();
         result.setOutput(model.getOutput(), ca.getOutput());

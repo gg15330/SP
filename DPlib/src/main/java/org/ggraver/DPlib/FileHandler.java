@@ -1,14 +1,11 @@
 package org.ggraver.DPlib;
 
-import com.github.javaparser.ast.expr.ArrayCreationExpr;
 import com.thoughtworks.xstream.XStream;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.output.FileWriterWithEncoding;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -89,20 +86,19 @@ public class FileHandler
         return (Model) xStream.fromXML(fis);
     }
 
-    public String[][] parseInputTextFile(File f)
+    public String[] parseInputTextFile(File f)
     throws IOException
     {
         FileReader fr = new FileReader(f);
         BufferedReader br = new BufferedReader(fr);
-        List<String[]> lines = new ArrayList<>();
+        List<String> lines = new ArrayList<>();
         String line;
 
         while((line = br.readLine()) != null)
         {
-            String[] tokens = line.split(" ");
-            lines.add(tokens);
+            lines.add(line);
         }
-        return lines.toArray(new String[lines.size()][]);
+        return lines.toArray(new String[lines.size()]);
     }
 
     public File getFile()
