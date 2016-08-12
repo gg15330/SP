@@ -2,6 +2,8 @@ package org.ggraver.DPlib;
 
 import com.github.javaparser.ast.body.MethodDeclaration;
 
+import java.util.List;
+
 /**
  * Created by george on 28/07/16.
  */
@@ -13,6 +15,7 @@ public class Model
     private String description = "Problem description";
     private String[] input;
     private String output;
+    private List<Result2> results;
     private long executionTime;
     private long instructionCount;
     private double INSTRUCTION_COUNT_MARGIN = 1.2;
@@ -99,4 +102,6 @@ public class Model
     {
         this.input = input;
     }
+
+    public void addResult(Result2 result2) {}
 }

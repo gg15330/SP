@@ -13,13 +13,10 @@ import static org.apache.commons.io.FilenameUtils.removeExtension;
 class ClassAnalyser
 {
 
-    private final int PERF_INSTR_LINE = 5;
-    private final String TEMP_FILENAME = "temp.txt";
     private String className;
     private File classFile;
     private String output;
     private long executionTime;
-    private long instructionCount;
 
     ClassAnalyser(File sourceFile, String className)
     throws AnalysisException
@@ -36,67 +33,47 @@ class ClassAnalyser
     }
 
     // analyse the compiled .class file for performance
-    void analyse(String input)
+    Result2 analyse(String input)
     throws AnalysisException
     {
         if (!classFile.exists() || classFile.length() == 0)
         {
             throw new AnalysisException(".class file does not exist or is empty.");
         }
-        File dir, log;
-        try
-        {
-            dir = new File(classFile.getParent());
-            log = tempFile(TEMP_FILENAME, dir);
-        }
-        catch (IOException ioe)
-        {
-            throw new AnalysisException(ioe);
-        }
-        ProcessBuilder perfStat = buildPerfStat(
-                log.getName(),
-                removeExtension(classFile.getName()),
-                dir);
+
+        ProcessBuilder build = new ProcessBuilder("java", classFile.getName());
+        build.directory(classFile.getParentFile());
+        build.inheritIO();
+
+        // remember to put timeout in waitFor()
+        long start = System.currentTimeMillis();
+        Process p;
 
         try
         {
-            execute(perfStat);
+            p = build.start();
+            p.waitFor();
+            output = fetchOutput(p.getInputStream());
         }
-        catch (Exception e)
+        catch (IOException | InterruptedException e)
         {
             throw new AnalysisException(e);
         }
-        try
-        {
-            instructionCount = fetchInstructionCount(log, PERF_INSTR_LINE);
-        }
-        catch (Exception e)
-        {
-            throw new Error(e);
-        }
-        if (!log.delete())
-        {
-            throw new Error("temp log file not successfully deleted.");
-        }
-    }
 
-    private void execute(ProcessBuilder pb)
-    throws IOException, InterruptedException, AnalysisException
-    {
-        // remember to put timeout in waitFor()
-        long start = System.currentTimeMillis();
-        Process p = pb.start();
-        p.waitFor();
         long end = System.currentTimeMillis();
-
-        if ((end - start) < 0)
-        {
-            throw new Error("Execution time should not be less than 0.");
-        }
-
+        if ((end - start) < 0) { throw new Error("Execution time should not be less than 0."); }
         executionTime = end - start;
 
-        InputStreamReader isr = new InputStreamReader(p.getInputStream());
+        Result2 result2 = new Result2();
+        result2.setInput(input);
+        result2.setOutput(output);
+        return result2;
+    }
+
+    private String fetchOutput(InputStream inputStream)
+    throws IOException, AnalysisException
+    {
+        InputStreamReader isr = new InputStreamReader(inputStream);
         BufferedReader br = new BufferedReader(isr);
         StringBuilder sb = new StringBuilder();
         String line;
@@ -112,41 +89,7 @@ class ClassAnalyser
             }
         }
 
-        output = sb.toString();
-    }
-
-    private ProcessBuilder buildPerfStat(String logFileName, String classFileName, File dir)
-    {
-        ProcessBuilder build = new ProcessBuilder(
-                "perf", "stat",
-                "-e", "instructions:u",
-                "-o", logFileName,
-                "java", classFileName
-        );
-        build.directory(dir);
-        build.inheritIO();
-        return build;
-    }
-
-    private File tempFile(String fileName, File dir)
-    throws IOException
-    {
-        File temp = new File(dir + "/" + fileName);
-
-        if (temp.exists())
-        {
-            System.err.println("Deleting pre-existing temp file - should not exist...");
-            if (!temp.delete())
-            {
-                throw new Error("Could not delete pre-existing temp file.");
-            }
-        }
-        if (!temp.createNewFile())
-        {
-            throw new Error("Could not create new temp file.");
-        }
-
-        return temp;
+        return sb.toString();
     }
 
     // get the line containing the instruction count from the perf stat output stream and return it as a long
@@ -195,11 +138,6 @@ class ClassAnalyser
         {
             throw new CompileException("Could not find .class file.");
         }
-    }
-
-    long getInstructionCount()
-    {
-        return instructionCount;
     }
 
     long getExecutionTime()

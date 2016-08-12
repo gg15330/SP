@@ -28,11 +28,12 @@ class Modeler
             ClassAnalyser ca = new ClassAnalyser(sourceFile, sa.getClassName());
             for(String input : inputs)
             {
-                ca.analyse(input);
+                Result2 result2 = ca.analyse(input);
+                model.addResult(result2);
             }
             model.setOutput(ca.getOutput());
             model.setExecutionTime(ca.getExecutionTime());
-            model.setInstructionCount(ca.getInstructionCount()); // margin of error - temporary
+//            model.setInstructionCount(ca.getInstructionCount()); // margin of error - temporary
         }
         catch (AnalysisException e)
         {
