@@ -18,16 +18,18 @@ import java.util.List;
  */
 public class CodeGenerator
 {
-    public String generate(String callingMethodDeclaration, String[] callingMethodBody,
+    public String generate(String className, String callingMethodDeclaration, String[] callingMethodBody,
                            String methodToAnalyseDeclaration)
     {
-//        method template
+////        method template
 //        Comment comment = new LineComment("Your code here");
 //
 //        BlockStmt blockStmt = new BlockStmt();
 //        blockStmt.addOrphanComment(comment);
 //
-//        MethodDeclaration modelMethod = model.getMethodToAnalyse();
+//        MethodDeclaration modelMethod = new MethodDeclaration();
+//        System.out.println("Method declaration: " + methodToAnalyseDeclaration);
+//
 //        MethodDeclaration methodTemplate = new MethodDeclaration();
 //        methodTemplate.setName(modelMethod.getName());
 //        methodTemplate.setTypeParameters(modelMethod.getTypeParameters());
@@ -55,11 +57,41 @@ public class CodeGenerator
 //        types.add(classDeclaration);
 //
 ////        compilation unit
-        CompilationUnit compilationUnit = new CompilationUnit();
+//        CompilationUnit compilationUnit = new CompilationUnit();
 //        compilationUnit.setTypes(types);
 //        compilationUnit.setComment(new BlockComment(model.getDescription()));
 
-        return compilationUnit.toString();
+
+//        return compilationUnit.toString();
+
+        String string = "public class " + className +
+                " {\n\n    " + createMethod(methodToAnalyseDeclaration) +
+                "\n\n    " + createMethod(callingMethodDeclaration, callingMethodBody) +
+                "\n\n}";
+
+        return string;
+    }
+
+    private String createMethod(String declaration)
+    {
+        return (declaration + "{" +
+                "\n        // Your code here" +
+                "\n    }");
+    }
+
+    private String createMethod(String declaration, String[] body)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append(declaration + " {");
+
+        for(String s : body)
+        {
+            sb.append("\n        " + s);
+        }
+
+        sb.append("\n    }");
+
+        return sb.toString();
     }
 
 }
