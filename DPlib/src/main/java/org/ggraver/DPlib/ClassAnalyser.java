@@ -39,9 +39,8 @@ class ClassAnalyser
             throw new AnalysisException(".class file does not exist or is empty.");
         }
 
-        ProcessBuilder build = new ProcessBuilder("java", className);
+        ProcessBuilder build = new ProcessBuilder("java", className, input);
         build.directory(classFile.getParentFile());
-        build.inheritIO();
 
         // remember to put timeout in waitFor()
         Process p;
@@ -68,11 +67,6 @@ class ClassAnalyser
         result2.setOutput(output);
         result2.setExecutionTime(executionTime);
 
-//        System.out.println("RESULTS:\n" +
-//        "\nINPUT: " + input +
-//        "\nOUTPUT: " + output +
-//        "\nEXECUTION TIME: " + executionTime);
-
         return result2;
     }
 
@@ -89,7 +83,11 @@ class ClassAnalyser
             sb.append(line);
         }
 
-        System.out.println("Output: " + sb.toString());
+        if(sb.length() == 0)
+        {
+            throw new IOException("Output is empty.");
+        }
+
         return sb.toString();
     }
 

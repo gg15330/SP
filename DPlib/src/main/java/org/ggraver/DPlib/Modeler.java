@@ -36,12 +36,19 @@ class Modeler
             String[] callingMethodStatements = toStringArray(statements);
             model.setCallingMethodBody(callingMethodStatements);
 
-            System.out.println("Class name: " + sa.getClassName());
             ClassAnalyser ca = new ClassAnalyser(sourceFile, sa.getClassName());
             for(String input : inputs)
             {
                 Result2 result2 = ca.analyse(input);
                 model.addResult(result2);
+            }
+
+            for(Result2 result2 : model.getResults())
+            {
+                System.out.println("Result:\n" +
+                "\nInput: " + result2.getInput() +
+                "\nOutput: " + result2.getOutput() +
+                "\nTime: " + result2.getExecutionTime() + "\n");
             }
         }
         catch (AnalysisException e)
