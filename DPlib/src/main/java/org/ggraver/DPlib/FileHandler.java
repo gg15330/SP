@@ -111,4 +111,24 @@ public class FileHandler
         fis.close();
         return fileAsString;
     }
+
+    public Model deserializeModelFile()
+    throws IOException
+    {
+        FileInputStream fis = new FileInputStream(file);
+        ObjectInputStream in = new ObjectInputStream(fis);
+        Model model;
+        try
+        {
+            model = (Model)in.readObject();
+        }
+        catch (ClassNotFoundException e)
+        {
+            throw new IOException(e);
+        }
+        in.close();
+        fis.close();
+        return model;
+    }
+
 }

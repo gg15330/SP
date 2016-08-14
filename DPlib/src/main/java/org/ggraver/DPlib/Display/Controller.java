@@ -32,9 +32,18 @@ public class Controller
     public void start()
     throws IOException, AnalysisException
     {
-//        model = fileHandler.deserializeModelFile();
-        view.setEditorText(new CodeGenerator().generate(model));
-        SwingUtilities.invokeLater(view::createAndShowGUI);
+        model = fileHandler.deserializeModelFile();
+
+        for(Result2 result2 : model.getResults())
+        {
+            System.out.println("Results:" +
+            "\n" + result2.getInput() + "\n" + result2.getOutput() + "\n" + result2.getExecutionTime());
+        }
+
+        view.setEditorText(new CodeGenerator().generate(model.getCallingMethodDeclaration(),
+                                                        model.getCallingMethodBody(),
+                                                        model.getMethodToAnalyseDeclaration()));
+//        SwingUtilities.invokeLater(view::createAndShowGUI);
     }
 
     private class solveBtnListener

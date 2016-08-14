@@ -18,7 +18,8 @@ import java.util.List;
  */
 public class CodeGenerator
 {
-    public String generate(Model model)
+    public String generate(String callingMethodDeclaration, String[] callingMethodBody,
+                           String methodToAnalyseDeclaration)
     {
 //        method template
 //        Comment comment = new LineComment("Your code here");
@@ -57,7 +58,7 @@ public class CodeGenerator
         CompilationUnit compilationUnit = new CompilationUnit();
 //        compilationUnit.setTypes(types);
 //        compilationUnit.setComment(new BlockComment(model.getDescription()));
-//
+
         return compilationUnit.toString();
     }
 
