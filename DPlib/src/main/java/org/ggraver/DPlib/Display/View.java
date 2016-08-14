@@ -4,7 +4,9 @@ import org.ggraver.DPlib.CustomOutputStream;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
@@ -177,6 +179,15 @@ class View
                 true,
                 false);
 
+        LineAndShapeRenderer renderer1 = new LineAndShapeRenderer();
+        renderer1.setSeriesPaint(0, Color.RED);
+        LineAndShapeRenderer renderer2 = new LineAndShapeRenderer();
+        renderer2.setSeriesPaint(0, Color.GREEN);
+
+        CategoryPlot plot = (CategoryPlot) jFreeChart.getPlot();
+        plot.setRenderer(0, renderer1);
+        plot.setRenderer(1, renderer2);
+
         ChartPanel chartPanel = new ChartPanel(jFreeChart);
         return chartPanel;
     }
@@ -190,17 +201,6 @@ class View
         scrollPane.setPreferredSize(new Dimension(1, 1));
 
         return scrollPane;
-    }
-
-    private CategoryDataset createDataset(long modelVal, long userVal)
-    {
-        final String model = "Tutor";
-        final String user = "Your code";
-        final String value = "";
-        final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(modelVal , model, value);
-        dataset.addValue(userVal , user , value);
-        return dataset;
     }
 
     void addSolveBtnListener(ActionListener actionListener)
