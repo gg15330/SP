@@ -86,6 +86,9 @@ class ClassAnalyser
             throw new IOException("Output is empty.");
         }
 
+        isr.close();
+        br.close();
+
         return sb.toString();
     }
 

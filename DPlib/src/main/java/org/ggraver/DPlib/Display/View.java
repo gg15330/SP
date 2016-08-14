@@ -4,7 +4,9 @@ import org.ggraver.DPlib.CustomOutputStream;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
@@ -24,7 +26,9 @@ class View
     private JTextArea terminal = new JTextArea();
     private JButton solveBtn = new JButton();
     private ChartPanel executionTimeChartPanel;
-    private ChartPanel instructionCountChartPanel;
+    private ChartPanel outputChartPanel;
+    private DefaultCategoryDataset tutorTimeData;
+    private DefaultCategoryDataset tutorOutputData;
 
     void createAndShowGUI()
     {
@@ -55,21 +59,21 @@ class View
         executionTimeChartPanel = createChart("Execution Time",
                                                     null,
                                                     "Time (ms)",
-                                                    createDataset(0, 0),
+                                                    tutorTimeData,
                                                     PlotOrientation.VERTICAL);
         executionTimeChartPanel.setPreferredSize(new Dimension(1, 1));
 
 //        instructionCountGraph
-        instructionCountChartPanel = createChart("Instructions",
-                                                            null,
-                                                            "Instructions (millions)",
-                                                            createDataset(0, 0),
-                                                            PlotOrientation.VERTICAL);
-        instructionCountChartPanel.setPreferredSize(new Dimension(1, 1));
+        outputChartPanel = createChart("Output",
+                                       null,
+                                       "Value",
+                                       tutorOutputData,
+                                       PlotOrientation.VERTICAL);
+        outputChartPanel.setPreferredSize(new Dimension(1, 1));
 
 //        panels
         JPanel ioPanel = createIOPanel(editorScrollPane, terminalScrollPane);
-        JPanel graphPanel = createGraphPanel(btnPanel, executionTimeChartPanel, instructionCountChartPanel);
+        JPanel graphPanel = createGraphPanel(btnPanel, executionTimeChartPanel, outputChartPanel);
         JPanel mainPanel = createMainPanel(ioPanel, graphPanel);
 
 //        frame
@@ -98,14 +102,14 @@ class View
 
         gbc.gridx = 1;
         gbc. gridy = 0;
-        gbc.weightx = 0.25;
+        gbc.weightx = 0.5;
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
         mainPanel.add(graphPanel, gbc);
         return mainPanel;
     }
 
-    private JPanel createGraphPanel(JPanel btnPanel, JPanel executionTimeChartPanel, JPanel instructionCountChartPanel)
+    private JPanel createGraphPanel(JPanel btnPanel, JPanel executionTimeChartPanel, JPanel outputChartPanel)
     {
         JPanel graphPanel = new JPanel();
         GridBagLayout graphPanelLayout = new GridBagLayout();
@@ -133,7 +137,7 @@ class View
         gbc.weightx = 1;
         gbc.weighty = 5;
         gbc.fill = GridBagConstraints.BOTH;
-        graphPanel.add(instructionCountChartPanel, gbc);
+        graphPanel.add(outputChartPanel, gbc);
         return graphPanel;
     }
 
@@ -165,7 +169,7 @@ class View
                                    CategoryDataset dataSet,
                                    PlotOrientation orientation)
     {
-        JFreeChart jFreeChart = ChartFactory.createBarChart(
+        JFreeChart jFreeChart = ChartFactory.createLineChart(
                 name,
                 xLabel,
                 yLabel,
@@ -174,6 +178,16 @@ class View
                 true,
                 true,
                 false);
+
+        LineAndShapeRenderer renderer1 = new LineAndShapeRenderer();
+        renderer1.setSeriesPaint(0, Color.RED);
+        LineAndShapeRenderer renderer2 = new LineAndShapeRenderer();
+        renderer2.setSeriesPaint(0, Color.GREEN);
+
+        CategoryPlot plot = (CategoryPlot) jFreeChart.getPlot();
+        plot.setRenderer(0, renderer1);
+        plot.setRenderer(1, renderer2);
+
         ChartPanel chartPanel = new ChartPanel(jFreeChart);
         return chartPanel;
     }
@@ -187,17 +201,6 @@ class View
         scrollPane.setPreferredSize(new Dimension(1, 1));
 
         return scrollPane;
-    }
-
-    private CategoryDataset createDataset(long modelVal, long userVal)
-    {
-        final String model = "Model";
-        final String user = "User";
-        final String value = "";
-        final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue(modelVal , model, value);
-        dataset.addValue(userVal , user , value);
-        return dataset;
     }
 
     void addSolveBtnListener(ActionListener actionListener)
@@ -215,13 +218,23 @@ class View
         editor.setText(s);
     }
 
-    void setExecutionTimeGraph(long modelExecutionTime, long userExecutionTime)
+    void setExecutionTimeGraph(CategoryDataset dataset)
     {
-        executionTimeChartPanel.getChart().getCategoryPlot().setDataset(createDataset(modelExecutionTime, userExecutionTime));
+        executionTimeChartPanel.getChart().getCategoryPlot().setDataset(1, dataset);
     }
 
-    void setInstructionCountGraph(long modelInstructionCount, long userInstructionCount)
+    void setOutputGraph(CategoryDataset dataset)
     {
-        instructionCountChartPanel.getChart().getCategoryPlot().setDataset(createDataset(modelInstructionCount / 1000000, userInstructionCount / 1000000));
+        outputChartPanel.getChart().getCategoryPlot().setDataset(1, dataset);
+    }
+
+    public void setTutorTimeData(DefaultCategoryDataset tutorTimeData)
+    {
+        this.tutorTimeData = tutorTimeData;
+    }
+
+    public void setTutorOutputData(DefaultCategoryDataset tutorOutputData)
+    {
+        this.tutorOutputData = tutorOutputData;
     }
 }

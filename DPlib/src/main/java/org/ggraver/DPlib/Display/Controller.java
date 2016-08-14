@@ -2,6 +2,9 @@ package org.ggraver.DPlib.Display;
 
 import org.ggraver.DPlib.*;
 import org.ggraver.DPlib.Exception.AnalysisException;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.category.IntervalCategoryDataset;
+import org.jfree.ui.IntegerDocument;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -34,17 +37,23 @@ public class Controller
     throws IOException, AnalysisException
     {
         model = fileHandler.deserializeModelFile();
+        DefaultCategoryDataset tutorTimeDataset = new DefaultCategoryDataset();
+        DefaultCategoryDataset tutorOutputDataset = new DefaultCategoryDataset();
 
-        for(Result result : model.getResults())
+        for(int i = 0; i < model.getResults().size(); i++)
         {
-            System.out.println("Results:" +
-            "\n" + result.getInput() + "\n" + result.getOutput() + "\n" + result.getExecutionTime());
+            Result r = model.getResults().get(i);
+            tutorTimeDataset.addValue(r.getExecutionTime(), "Tutor", String.valueOf(i));
+            tutorOutputDataset.addValue(Long.parseLong(r.getOutput()), "Tutor", String.valueOf(i));
         }
 
+        view.setTutorTimeData(tutorTimeDataset);
+        view.setTutorOutputData(tutorOutputDataset);
         view.setEditorText(new CodeGenerator().generate(model.getClassName(),
                                                         model.getCallingMethodDeclaration(),
                                                         model.getCallingMethodBody(),
                                                         model.getMethodToAnalyseDeclaration()));
+
         SwingUtilities.invokeLater(view::createAndShowGUI);
     }
 
@@ -78,11 +87,22 @@ public class Controller
         protected void done()
         {
             List<Result> results;
+
             try
             {
                 results = get();
-//                view.setExecutionTimeGraph(result.getModelExecutionTime(), result.getUserExecutionTime());
-//                view.setInstructionCountGraph(result.getModelInstructionCount(), result.getUserInstructionCount());
+                DefaultCategoryDataset studentTimeDataset = new DefaultCategoryDataset();
+                DefaultCategoryDataset studentOutputDataset = new DefaultCategoryDataset();
+
+                for(int i = 0; i < model.getResults().size(); i++)
+                {
+                    Result r = results.get(i);
+                    studentTimeDataset.addValue(r.getExecutionTime(), "Your code", String.valueOf(i));
+                    studentOutputDataset.addValue(Integer.parseInt(r.getOutput()), "Your code", String.valueOf(i));
+                }
+
+                view.setExecutionTimeGraph(studentTimeDataset);
+                view.setOutputGraph(studentOutputDataset);
             }
             catch (ExecutionException e)
             {
