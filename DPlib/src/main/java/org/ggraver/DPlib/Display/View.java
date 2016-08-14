@@ -1,6 +1,5 @@
 package org.ggraver.DPlib.Display;
 
-import javafx.scene.chart.XYChart;
 import org.ggraver.DPlib.CustomOutputStream;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -8,7 +7,6 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.general.Dataset;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -27,7 +25,8 @@ class View
     private JButton solveBtn = new JButton();
     private ChartPanel executionTimeChartPanel;
     private ChartPanel outputChartPanel;
-    private CategoryDataset tutorData;
+    private DefaultCategoryDataset tutorTimeData;
+    private DefaultCategoryDataset tutorOutputData;
 
     void createAndShowGUI()
     {
@@ -58,7 +57,7 @@ class View
         executionTimeChartPanel = createChart("Execution Time",
                                                     null,
                                                     "Time (ms)",
-                                                    tutorData,
+                                                    tutorTimeData,
                                                     PlotOrientation.VERTICAL);
         executionTimeChartPanel.setPreferredSize(new Dimension(1, 1));
 
@@ -66,7 +65,7 @@ class View
         outputChartPanel = createChart("Output",
                                        null,
                                        "Value",
-                                       createDataset(0, 0),
+                                       tutorOutputData,
                                        PlotOrientation.VERTICAL);
         outputChartPanel.setPreferredSize(new Dimension(1, 1));
 
@@ -224,13 +223,18 @@ class View
         executionTimeChartPanel.getChart().getCategoryPlot().setDataset(1, dataset);
     }
 
-    void setOutputGraph(long modelInstructionCount, long userInstructionCount)
+    void setOutputGraph(CategoryDataset dataset)
     {
-        outputChartPanel.getChart().getCategoryPlot().setDataset(createDataset(modelInstructionCount / 1000000, userInstructionCount / 1000000));
+        outputChartPanel.getChart().getCategoryPlot().setDataset(1, dataset);
     }
 
-    public void setTutorData(CategoryDataset initData)
+    public void setTutorTimeData(DefaultCategoryDataset tutorTimeData)
     {
-        this.tutorData = initData;
+        this.tutorTimeData = tutorTimeData;
+    }
+
+    public void setTutorOutputData(DefaultCategoryDataset tutorOutputData)
+    {
+        this.tutorOutputData = tutorOutputData;
     }
 }

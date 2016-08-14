@@ -3,6 +3,8 @@ package org.ggraver.DPlib.Display;
 import org.ggraver.DPlib.*;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.category.IntervalCategoryDataset;
+import org.jfree.ui.IntegerDocument;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -35,15 +37,18 @@ public class Controller
     throws IOException, AnalysisException
     {
         model = fileHandler.deserializeModelFile();
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        DefaultCategoryDataset tutorTimeDataset = new DefaultCategoryDataset();
+        DefaultCategoryDataset tutorOutputDataset = new DefaultCategoryDataset();
 
         for(int i = 0; i < model.getResults().size(); i++)
         {
             Result r = model.getResults().get(i);
-            dataset.addValue(r.getExecutionTime(), "Tutor", String.valueOf(i));
+            tutorTimeDataset.addValue(r.getExecutionTime(), "Tutor", String.valueOf(i));
+            tutorOutputDataset.addValue(Long.parseLong(r.getOutput()), "Tutor", String.valueOf(i));
         }
 
-        view.setTutorData(dataset);
+        view.setTutorTimeData(tutorTimeDataset);
+        view.setTutorOutputData(tutorOutputDataset);
         view.setEditorText(new CodeGenerator().generate(model.getClassName(),
                                                         model.getCallingMethodDeclaration(),
                                                         model.getCallingMethodBody(),
@@ -86,17 +91,18 @@ public class Controller
             try
             {
                 results = get();
-
-                DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+                DefaultCategoryDataset studentTimeDataset = new DefaultCategoryDataset();
+                DefaultCategoryDataset studentOutputDataset = new DefaultCategoryDataset();
 
                 for(int i = 0; i < model.getResults().size(); i++)
                 {
                     Result r = results.get(i);
-                    dataset.addValue(r.getExecutionTime(), "Your code", String.valueOf(i));
+                    studentTimeDataset.addValue(r.getExecutionTime(), "Your code", String.valueOf(i));
+                    studentOutputDataset.addValue(Integer.parseInt(r.getOutput()), "Your code", String.valueOf(i));
                 }
 
-                view.setExecutionTimeGraph(dataset);
-//                view.setOutputGraph(result.getModelInstructionCount(), result.getUserInstructionCount());
+                view.setExecutionTimeGraph(studentTimeDataset);
+                view.setOutputGraph(studentOutputDataset);
             }
             catch (ExecutionException e)
             {
