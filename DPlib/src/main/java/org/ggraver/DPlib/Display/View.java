@@ -1,5 +1,6 @@
 package org.ggraver.DPlib.Display;
 
+import javafx.scene.chart.XYChart;
 import org.ggraver.DPlib.CustomOutputStream;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -7,6 +8,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.Dataset;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -217,9 +219,9 @@ class View
         editor.setText(s);
     }
 
-    void setExecutionTimeGraph(String input, long executionTime)
+    void setExecutionTimeGraph(CategoryDataset dataset)
     {
-        executionTimeChartPanel.getChart().getCategoryPlot().setDataset(createDataset(1, executionTime));
+        executionTimeChartPanel.getChart().getCategoryPlot().setDataset(1, dataset);
     }
 
     void setOutputGraph(long modelInstructionCount, long userInstructionCount)

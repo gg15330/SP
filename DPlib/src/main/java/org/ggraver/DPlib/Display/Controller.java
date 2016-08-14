@@ -35,23 +35,20 @@ public class Controller
     throws IOException, AnalysisException
     {
         model = fileHandler.deserializeModelFile();
-
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        String tutor = "Tutor";
 
         for(int i = 0; i < model.getResults().size(); i++)
         {
             Result r = model.getResults().get(i);
-            dataset.addValue(r.getExecutionTime(), tutor, String.valueOf(i));
+            dataset.addValue(r.getExecutionTime(), "Tutor", String.valueOf(i));
         }
 
         view.setTutorData(dataset);
-
-
         view.setEditorText(new CodeGenerator().generate(model.getClassName(),
                                                         model.getCallingMethodDeclaration(),
                                                         model.getCallingMethodBody(),
                                                         model.getMethodToAnalyseDeclaration()));
+
         SwingUtilities.invokeLater(view::createAndShowGUI);
     }
 
@@ -89,7 +86,16 @@ public class Controller
             try
             {
                 results = get();
-//                view.setExecutionTimeGraph(result.getModelExecutionTime(), result.getUserExecutionTime());
+
+                DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+                for(int i = 0; i < model.getResults().size(); i++)
+                {
+                    Result r = results.get(i);
+                    dataset.addValue(r.getExecutionTime(), "Your code", String.valueOf(i));
+                }
+
+                view.setExecutionTimeGraph(dataset);
 //                view.setOutputGraph(result.getModelInstructionCount(), result.getUserInstructionCount());
             }
             catch (ExecutionException e)
