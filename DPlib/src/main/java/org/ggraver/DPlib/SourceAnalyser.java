@@ -36,10 +36,7 @@ class SourceAnalyser
     SourceAnalyser(File file, String methodName)
     throws AnalysisException
     {
-        try
-        {
-            parse(file);
-        }
+        try { parse(file); }
         catch (ParseException e)
         {
             throw new AnalysisException("\nCould not parse .java file: " + e.getMessage());
@@ -166,7 +163,6 @@ class SourceAnalyser
 
     String getClassName()
     {
-        System.out.println("Class name: " + cu.getTypes().get(0).getName());
         return cu.getTypes().get(0).getName();
     }
 

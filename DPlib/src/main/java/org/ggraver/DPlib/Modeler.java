@@ -1,10 +1,13 @@
 package org.ggraver.DPlib;
 
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.stmt.Statement;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by george on 22/07/16.
@@ -13,29 +16,51 @@ import java.io.*;
 class Modeler
 {
 
-    Model model(File sourceFile, String methodName)
+    Model model(File sourceFile, String methodName, String[] inputs)
     throws ModelingException
     {
         Model model = new Model();
+        if(!sourceFile.exists()) { throw new Error("Source file does not exist."); }
+        System.out.println("Source file path: " + sourceFile.getPath());
         try
         {
             SourceAnalyser sa = new SourceAnalyser(sourceFile, methodName);
-            MethodDeclaration main = sa.findMethod("main");
+
+            model.setClassName(sa.getClassName());
+
             MethodDeclaration methodToAnalyse = sa.findMethod(methodName);
-            model.setMethodToAnalyse(methodToAnalyse);
-            model.setCallingMethod(main);
+            model.setMethodToAnalyseDeclaration(methodToAnalyse.getDeclarationAsString());
+
+            MethodDeclaration callingMethod = sa.findMethod("main");
+            model.setCallingMethodDeclaration(callingMethod.getDeclarationAsString());
+
+            List<Statement> statements = new ArrayList<>(callingMethod.getBody().getStmts());
+            String[] callingMethodStatements = toStringArray(statements);
+            model.setCallingMethodBody(callingMethodStatements);
 
             ClassAnalyser ca = new ClassAnalyser(sourceFile, sa.getClassName());
-            ca.analyse();
-            model.setOutput(ca.getOutput());
-            model.setExecutionTime(ca.getExecutionTime());
-            model.setInstructionCount(ca.getInstructionCount() + 100000); // margin of error - temporary
+            for(String input : inputs)
+            {
+                Result result = ca.analyse(input);
+                model.addResult(result);
+            }
         }
         catch (AnalysisException e)
         {
             throw new ModelingException(e);
         }
         return model;
+    }
+
+    private String[] toStringArray(List<Statement> statements)
+    {
+        String[] strings = new String[statements.size()];
+
+        for(int i = 0; i < statements.size(); i++)
+        {
+            strings[i] = statements.get(i).toString();
+        }
+        return strings;
     }
 
 }

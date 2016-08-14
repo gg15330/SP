@@ -1,88 +1,44 @@
 package org.ggraver.DPlib;
 
-import java.util.AbstractMap;
-import java.util.prefs.PreferenceChangeEvent;
+import java.io.Serializable;
 
 /**
- * Created by george on 02/08/16.
+ * Created by george on 12/08/16.
  */
 public class Result
+implements Serializable
 {
-    private AbstractMap.SimpleEntry<AbstractMap.SimpleEntry<String, String>, Boolean> output;
-    private AbstractMap.SimpleEntry<AbstractMap.SimpleEntry<Long, Long>, Boolean> executionTime;
-    private AbstractMap.SimpleEntry<AbstractMap.SimpleEntry<Long, Long>, Boolean> instructionCount;
+    private String input;
+    private String output;
+    private long executionTime;
 
-    private boolean pass(String expected, String actual)
+    public void setInput(String input)
     {
-        return expected.equals(actual);
+        this.input = input;
     }
 
-    private boolean pass(long expected, long actual, double margin)
+    public void setOutput(String output)
     {
-        return actual < (Math.round(expected * margin));
+        this.output = output;
     }
 
-    void setOutput(String expected, String actual)
+    public String getInput()
     {
-        AbstractMap.SimpleEntry<String, String> outputs = new AbstractMap.SimpleEntry<>(expected, actual);
-        output = new AbstractMap.SimpleEntry<>(outputs, pass(expected, actual));
+        return input;
     }
 
-    void setExecutionTime(long expected, long actual, double margin)
+    public String getOutput()
     {
-        AbstractMap.SimpleEntry<Long, Long> times = new AbstractMap.SimpleEntry<>(expected, actual);
-        executionTime = new AbstractMap.SimpleEntry<>(times, pass(expected, actual, margin));
+        return output;
     }
 
-    void setInstructionCount(long expected, long actual, double margin)
+    public long getExecutionTime()
     {
-        AbstractMap.SimpleEntry<Long, Long> instructions = new AbstractMap.SimpleEntry<>(expected, actual);
-        instructionCount = new AbstractMap.SimpleEntry<>(instructions, pass(expected, actual, margin));
+        return executionTime;
     }
 
-    String getModelOutput()
+    public void setExecutionTime(long executionTime)
     {
-        return output.getKey().getKey();
-    }
-
-    String getUserOutput()
-    {
-        return output.getKey().getValue();
-    }
-
-    boolean getOutputPass()
-    {
-        return output.getValue();
-    }
-
-    public long getModelExecutionTime()
-    {
-        return executionTime.getKey().getKey();
-    }
-
-    public long getUserExecutionTime()
-    {
-        return executionTime.getKey().getValue();
-    }
-
-    boolean getExecutionTimePass()
-    {
-        return executionTime.getValue();
-    }
-
-    public long getModelInstructionCount()
-    {
-        return instructionCount.getKey().getKey();
-    }
-
-    public long getUserInstructionCount()
-    {
-        return instructionCount.getKey().getValue();
-    }
-
-    boolean getInstructionCountPass()
-    {
-        return instructionCount.getValue();
+        this.executionTime = executionTime;
     }
 }
-

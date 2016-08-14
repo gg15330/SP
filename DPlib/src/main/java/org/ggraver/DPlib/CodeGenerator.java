@@ -18,47 +18,80 @@ import java.util.List;
  */
 public class CodeGenerator
 {
-    public String generate(Model model)
+    public String generate(String className, String callingMethodDeclaration, String[] callingMethodBody,
+                           String methodToAnalyseDeclaration)
     {
-//        method template
-        Comment comment = new LineComment("Your code here");
+////        method template
+//        Comment comment = new LineComment("Your code here");
+//
+//        BlockStmt blockStmt = new BlockStmt();
+//        blockStmt.addOrphanComment(comment);
+//
+//        MethodDeclaration modelMethod = new MethodDeclaration();
+//        System.out.println("Method declaration: " + methodToAnalyseDeclaration);
+//
+//        MethodDeclaration methodTemplate = new MethodDeclaration();
+//        methodTemplate.setName(modelMethod.getName());
+//        methodTemplate.setTypeParameters(modelMethod.getTypeParameters());
+//        methodTemplate.setType(modelMethod.getType());
+//        methodTemplate.setModifiers(modelMethod.getModifiers());
+//        methodTemplate.setParameters(modelMethod.getParameters());
+//        methodTemplate.setThrows(modelMethod.getThrows());
+//        methodTemplate.setBody(blockStmt);
+//
+////        main method
+//        MethodDeclaration main = model.getCallingMethod();
+//
+////        method list
+//        List<BodyDeclaration> members = new ArrayList<>();
+//        members.add(methodTemplate);
+//        members.add(main);
+//
+////        class declaration
+//        ClassOrInterfaceDeclaration classDeclaration = new ClassOrInterfaceDeclaration();
+//        classDeclaration.setMembers(members);
+//        classDeclaration.setName(model.getMethodToAnalyse().getName());
+//
+////        type list
+//        List<TypeDeclaration> types = new ArrayList<>();
+//        types.add(classDeclaration);
+//
+////        compilation unit
+//        CompilationUnit compilationUnit = new CompilationUnit();
+//        compilationUnit.setTypes(types);
+//        compilationUnit.setComment(new BlockComment(model.getDescription()));
 
-        BlockStmt blockStmt = new BlockStmt();
-        blockStmt.addOrphanComment(comment);
 
-        MethodDeclaration modelMethod = model.getMethodToAnalyse();
-        MethodDeclaration methodTemplate = new MethodDeclaration();
-        methodTemplate.setName(modelMethod.getName());
-        methodTemplate.setTypeParameters(modelMethod.getTypeParameters());
-        methodTemplate.setType(modelMethod.getType());
-        methodTemplate.setModifiers(modelMethod.getModifiers());
-        methodTemplate.setParameters(modelMethod.getParameters());
-        methodTemplate.setThrows(modelMethod.getThrows());
-        methodTemplate.setBody(blockStmt);
+//        return compilationUnit.toString();
 
-//        main method
-        MethodDeclaration main = model.getCallingMethod();
+        String string = "class " + className +
+                " {\n\n    " + createMethod(methodToAnalyseDeclaration) +
+                "\n\n    " + createMethod(callingMethodDeclaration, callingMethodBody) +
+                "\n\n}";
 
-//        method list
-        List<BodyDeclaration> members = new ArrayList<>();
-        members.add(methodTemplate);
-        members.add(main);
+        return string;
+    }
 
-//        class declaration
-        ClassOrInterfaceDeclaration classDeclaration = new ClassOrInterfaceDeclaration();
-        classDeclaration.setMembers(members);
-        classDeclaration.setName(model.getMethodToAnalyse().getName());
+    private String createMethod(String declaration)
+    {
+        return (declaration + " {" +
+                "\n        // Your code here" +
+                "\n    }");
+    }
 
-//        type list
-        List<TypeDeclaration> types = new ArrayList<>();
-        types.add(classDeclaration);
+    private String createMethod(String declaration, String[] body)
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append(declaration + " {");
 
-//        compilation unit
-        CompilationUnit compilationUnit = new CompilationUnit();
-        compilationUnit.setTypes(types);
-        compilationUnit.setComment(new BlockComment(model.getDescription()));
+        for(String s : body)
+        {
+            sb.append("\n        " + s);
+        }
 
-        return compilationUnit.toString();
+        sb.append("\n    }");
+
+        return sb.toString();
     }
 
 }

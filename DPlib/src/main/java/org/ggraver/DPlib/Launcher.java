@@ -4,6 +4,7 @@ import org.ggraver.DPlib.Display.Controller;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
 
+import java.io.File;
 import java.io.IOException;
 
 import static javafx.application.Application.launch;
@@ -13,42 +14,49 @@ public class Launcher
 {
 
     private String command;
-    private String filePath;
+    private String javaFilePath;
+    private String inputFilePath;
+    private String modelFilePath;
     private String methodName;
 
     public static void main(String[] args)
     {
-//        if (System.getProperty("java.runtime.name").equals("Java(TM) SE Runtime Environment"))
-//        {
-//            launch(FXView.class, args);
-//        }
-//        else
-//        {
         Launcher launcher = new Launcher();
         launcher.processArgs(args);
         launcher.start();
-        //        }
     }
 
     private void start()
     {
         try
         {
-            Controller controller = new Controller(filePath);
             switch (command) {
                 case "model":
-                    FileHandler fileHandler = new FileHandler(filePath, "java");
-                    Model model = new Modeler().model(fileHandler.getFile(), methodName);
-                    fileHandler.generateXML(model);
+                    FileHandler fileHandler = new FileHandler(javaFilePath, "java");
+                    FileHandler inputFileHandler = new FileHandler(inputFilePath, "txt");
+
+                    String[] input = inputFileHandler.parseInputTextFile(inputFileHandler.getFile());
+                    for(String s : input)
+                    {
+                        System.out.println("[INPUT] " + s);
+                    }
+
+                    Model model = new Modeler().model(fileHandler.getFile(), methodName, input);
+
+                    fileHandler.serializeModel(model);
+                    System.out.println("File serialized.");
+//                    fileHandler.generateXML(model);
+//                    System.out.println("XML generated.");
                     break;
                 case "solve":
-                    controller.start();
+                    new Controller(modelFilePath).start();
                     break;
                 default: throw new Error("Invalid command: " + command);
             }
         }
         catch (IOException | ModelingException | AnalysisException e)
         {
+            e.printStackTrace(); // temp- remove for production
             new IO().errorMsg(e);
             System.exit(1);
         }
@@ -57,11 +65,12 @@ public class Launcher
     private void processArgs(String[] args)
     {
         IO io = new IO();
-        if(args.length == 3)
+        if(args.length == 4)
         {
             command = args[0];
-            filePath = args[1];
-            methodName = args[2];
+            javaFilePath = args[1];
+            inputFilePath = args[2];
+            methodName = args[3];
             if(!command.equals("model"))
             {
                 io.usage();
@@ -71,7 +80,7 @@ public class Launcher
         else if(args.length == 1)
         {
             command = "solve";
-            filePath = args[0];
+            modelFilePath = args[0];
         }
         else
         {

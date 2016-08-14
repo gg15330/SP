@@ -3,9 +3,10 @@ package org.ggraver.DPlib;
 import com.thoughtworks.xstream.XStream;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.output.FileWriterWithEncoding;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by george on 01/08/16.
@@ -54,35 +55,36 @@ public class FileHandler
         }
     }
 
-    void generateXML(Model m)
+    public void serializeModel(Model model)
     {
-        File XML = new File(dir, "model.xml");
-        XStream xstream = new XStream();
-        FileOutputStream fos;
         try
         {
-            fos = new FileOutputStream(XML);
-            xstream.toXML(m, fos);
+            File modelFile = new File(dir, (FilenameUtils.removeExtension(file.getName()) + ".mod"));
+            System.out.println("File path: " + file.getAbsolutePath());
+            FileOutputStream fos = new FileOutputStream(modelFile);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(model);
+            oos.close();
             fos.close();
-        }
-        catch (IOException e)
+        }catch(IOException i)
         {
-            throw new Error("Could not serialize Model object to XML.");
-        }
-        if (!XML.exists())
-        {
-            throw new Error("XML file does not exist.");
+            i.printStackTrace();
         }
     }
 
-    public Model parseXML()
+    public String[] parseInputTextFile(File f)
     throws IOException
     {
-        XStream xStream = new XStream();
-        File XML = new File(file.getParentFile() + "/model.xml");
-        checkValidFile(XML, "xml");
-        FileInputStream fis = new FileInputStream(XML);
-        return (Model) xStream.fromXML(fis);
+        FileReader fr = new FileReader(f);
+        BufferedReader br = new BufferedReader(fr);
+        List<String> lines = new ArrayList<>();
+        String line;
+
+        while((line = br.readLine()) != null)
+        {
+            lines.add(line);
+        }
+        return lines.toArray(new String[lines.size()]);
     }
 
     public File getFile()
@@ -109,4 +111,24 @@ public class FileHandler
         fis.close();
         return fileAsString;
     }
+
+    public Model deserializeModelFile()
+    throws IOException
+    {
+        FileInputStream fis = new FileInputStream(file);
+        ObjectInputStream in = new ObjectInputStream(fis);
+        Model model;
+        try
+        {
+            model = (Model)in.readObject();
+        }
+        catch (ClassNotFoundException e)
+        {
+            throw new IOException(e);
+        }
+        in.close();
+        fis.close();
+        return model;
+    }
+
 }

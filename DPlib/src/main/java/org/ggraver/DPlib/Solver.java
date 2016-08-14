@@ -1,10 +1,12 @@
 package org.ggraver.DPlib;
 
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.stmt.Statement;
 import org.ggraver.DPlib.Exception.AnalysisException;
 
-import javax.swing.*;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by george on 01/08/16.
@@ -12,33 +14,52 @@ import java.io.File;
 public class Solver
 {
 
-    public Result solve(Model model, File file)
+    public List<Result> solve(Model model, File file)
     throws AnalysisException
     {
-        SourceAnalyser sa = new SourceAnalyser(file, model.getMethodToAnalyse().getName());
+        SourceAnalyser sa = new SourceAnalyser(file, model.getMethodToAnalyseDeclaration());
         MethodDeclaration userCallingMethod = sa.findMethod("main");
 
-        if(!userCallingMethod.equals(model.getCallingMethod()))
+        String[] userCallingMethodBody = toStringArray(userCallingMethod.getBody().getStmts());
+
+        System.out.println("user main method length: " + userCallingMethodBody.length);
+        System.out.println("model main method length: " + model.getCallingMethodBody().length);
+        if(userCallingMethodBody.length != model.getCallingMethodBody().length)
         {
-            throw new AnalysisException("Submitted calling method \"" +
-                                                userCallingMethod.getName() +
-                                                "\" does not match modelled calling method \"" +
-                                                model.getCallingMethod().getName() + "\".");
+            throw new Error("method body lengths do not match.");
+        }
+
+        for(int i = 0; i < userCallingMethodBody.length; i++)
+        {
+            if(!userCallingMethodBody[i].equals(model.getCallingMethodBody()[i]))
+            {
+                throw new AnalysisException("Submitted calling method \"" +
+                                                    userCallingMethod.getDeclarationAsString() +
+                                                    "\" does not match modelled calling method \"" +
+                                                    model.getCallingMethodDeclaration() + "\".");
+            }
         }
 
         ClassAnalyser ca = new ClassAnalyser(file, sa.getClassName());
-        ca.analyse();
+        List<Result> results = new ArrayList<>();
 
-        Result result = new Result();
-        result.setOutput(model.getOutput(), ca.getOutput());
-        result.setExecutionTime(model.getExecutionTime(),
-                                ca.getExecutionTime(),
-                                model.getEXECUTION_TIME_MARGIN());
-        result.setInstructionCount(model.getInstructionCount(),
-                                   ca.getInstructionCount(),
-                                   model.getINSTRUCTION_COUNT_MARGIN());
+        for(Result result2 : model.getResults())
+        {
+            Result result = ca.analyse(result2.getInput());
+            results.add(result);
+        }
 
-        return result;
+        return results;
     }
 
+    private String[] toStringArray(List<Statement> statements)
+    {
+        String[] strings = new String[statements.size()];
+
+        for(int i = 0; i < statements.size(); i++)
+        {
+            strings[i] = statements.get(i).toString();
+        }
+        return strings;
+    }
 }

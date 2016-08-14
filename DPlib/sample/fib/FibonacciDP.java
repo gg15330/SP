@@ -1,6 +1,4 @@
 // sourced from http://www.geeksforgeeks.org/program-for-nth-fibonacci-number/
-import java.lang.management.ManagementFactory;
-
 class FibonacciDP {
 
     static int fibDP(int n)
@@ -20,7 +18,7 @@ class FibonacciDP {
 
     public static void main (String[] args)
     {
-        int n = 45;
+        int n = Integer.parseInt(args[0]);
         System.out.println(fibDP(n));
     }
 

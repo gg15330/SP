@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -26,14 +27,24 @@ public class Controller
     throws IOException
     {
         view.addSolveBtnListener(new solveBtnListener());
-        this.fileHandler = new FileHandler(filePath, "java");
+        this.fileHandler = new FileHandler(filePath, "mod");
     }
 
     public void start()
     throws IOException, AnalysisException
     {
-        model = fileHandler.parseXML();
-        view.setEditorText(new CodeGenerator().generate(model));
+        model = fileHandler.deserializeModelFile();
+
+        for(Result result : model.getResults())
+        {
+            System.out.println("Results:" +
+            "\n" + result.getInput() + "\n" + result.getOutput() + "\n" + result.getExecutionTime());
+        }
+
+        view.setEditorText(new CodeGenerator().generate(model.getClassName(),
+                                                        model.getCallingMethodDeclaration(),
+                                                        model.getCallingMethodBody(),
+                                                        model.getMethodToAnalyseDeclaration()));
         SwingUtilities.invokeLater(view::createAndShowGUI);
     }
 
@@ -51,11 +62,11 @@ public class Controller
 
     //    solves problem in background thread
     private class SolverWorker
-    extends SwingWorker<Result, Void>
+    extends SwingWorker<List<Result>, Void>
     {
 
         @Override
-        public Result doInBackground()
+        public List<Result> doInBackground()
         throws AnalysisException, IOException
         {
             File compiledJavaFile;
@@ -66,20 +77,36 @@ public class Controller
         @Override
         protected void done()
         {
+            List<Result> results;
             try
             {
-                Result result = get();
-                view.setExecutionTimeGraph(result.getModelExecutionTime(), result.getUserExecutionTime());
-                view.setInstructionCountGraph(result.getModelInstructionCount(), result.getUserInstructionCount());
+                results = get();
+//                view.setExecutionTimeGraph(result.getModelExecutionTime(), result.getUserExecutionTime());
+//                view.setInstructionCountGraph(result.getModelInstructionCount(), result.getUserInstructionCount());
             }
             catch (ExecutionException e)
             {
                 io.errorMsg(e.getCause());
+                return;
             }
             catch (InterruptedException e)
             {
                 e.printStackTrace();
+                return;
             }
+
+            for(int i = 0; i < results.size(); i++)
+            {
+                String userOutput = results.get(i).getOutput();
+                String tutorOutput = model.getResults().get(i).getOutput();
+
+                if(!userOutput.equals(tutorOutput))
+                {
+                    io.fail(userOutput, tutorOutput);
+                    return;
+                }
+            }
+            io.pass();
         }
 
     }
