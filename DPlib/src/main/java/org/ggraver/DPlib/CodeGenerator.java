@@ -64,7 +64,7 @@ public class CodeGenerator
 
 //        return compilationUnit.toString();
 
-        String string = "public class " + className +
+        String string = "class " + className +
                 " {\n\n    " + createMethod(methodToAnalyseDeclaration) +
                 "\n\n    " + createMethod(callingMethodDeclaration, callingMethodBody) +
                 "\n\n}";

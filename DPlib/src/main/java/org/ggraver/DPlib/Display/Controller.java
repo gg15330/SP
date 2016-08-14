@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -61,11 +62,11 @@ public class Controller
 
     //    solves problem in background thread
     private class SolverWorker
-    extends SwingWorker<Result, Void>
+    extends SwingWorker<List<Result2>, Void>
     {
 
         @Override
-        public Result doInBackground()
+        public List<Result2> doInBackground()
         throws AnalysisException, IOException
         {
             File compiledJavaFile;
@@ -78,9 +79,16 @@ public class Controller
         {
             try
             {
-                Result result = get();
-                view.setExecutionTimeGraph(result.getModelExecutionTime(), result.getUserExecutionTime());
-                view.setInstructionCountGraph(result.getModelInstructionCount(), result.getUserInstructionCount());
+                List<Result2> results = get();
+                for(Result2 result : results)
+                {
+                    System.out.println("RESULT: " +
+                                       "\nINPUT: " + result.getInput() +
+                                       "\nOUTPUT: " + result.getOutput() +
+                                       "\nTIME: " + result.getExecutionTime() + "\n\n");
+                }
+//                view.setExecutionTimeGraph(result.getModelExecutionTime(), result.getUserExecutionTime());
+//                view.setInstructionCountGraph(result.getModelInstructionCount(), result.getUserInstructionCount());
             }
             catch (ExecutionException e)
             {

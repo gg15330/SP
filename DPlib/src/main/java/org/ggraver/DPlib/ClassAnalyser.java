@@ -117,8 +117,8 @@ class ClassAnalyser
         {
             ProcessBuilder build = new ProcessBuilder("javac", sourceFile.getPath());
             p = build.start();
-//            new SubProcessStream(p.getInputStream()).start();
-//            new SubProcessStream(p.getErrorStream()).start();
+            new SubProcessStream(p.getInputStream()).start();
+            new SubProcessStream(p.getErrorStream()).start();
             result = p.waitFor();
         }
         catch (IOException | InterruptedException e)
@@ -127,7 +127,7 @@ class ClassAnalyser
         }
         if (result != 0)
         {
-            throw new CompileException("Could not compile .java file. Please ensure your .java file inputStream valid.");
+            throw new CompileException("Could not compile .java file. Please ensure your .java file is valid.");
         }
 
         System.out.println(sourceFile.getName() + " compiled successfully.");
