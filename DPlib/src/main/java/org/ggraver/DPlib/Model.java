@@ -14,38 +14,34 @@ implements Serializable
 {
 
     private String description = "Problem description";
+    private String className;
     private String methodToAnalyseDeclaration;
     private String callingMethodDeclaration;
     private String[] callingMethodBody;
     private List<Result2> results = new ArrayList<>();
-    private long executionTime;
 
 //    private long instructionCount;
 //    private double EXECUTION_TIME_MARGIN = 1.2;
 //    private double INSTRUCTION_COUNT_MARGIN = 1.2;
 
     public String getDescription() { return description; }
+    public void addResult(Result2 result2) { results.add(result2); }
+
+    public String getClassName() { return className; }
+    public void setClassName(String className) { this.className = className; }
+
     public void setDescription(String description) { this.description = description; }
-
     public void setMethodToAnalyseDeclaration(String name) { this.methodToAnalyseDeclaration = name; }
+
     public String getMethodToAnalyseDeclaration() { return methodToAnalyseDeclaration; }
-
     public void setCallingMethodDeclaration(String callingMethodDeclaration) { this.callingMethodDeclaration = callingMethodDeclaration; }
-    public String getCallingMethodDeclaration() { return callingMethodDeclaration; }
 
+    public String getCallingMethodDeclaration() { return callingMethodDeclaration; }
     public void setCallingMethodBody(String[] callingMethodBody) { this.callingMethodBody = callingMethodBody; }
+
     public String[] getCallingMethodBody() { return callingMethodBody; }
 
-    public void setExecutionTime(long executionTime) { this.executionTime = executionTime; }
-
-    public void addResult(Result2 result2) { results.add(result2); }
     public List<Result2> getResults() { return results; }
-
-    public long getExecutionTime()
-    {
-        return executionTime;
-    }
-
 
 
 //    void setInstructionCount(long instructionCount)
