@@ -6,8 +6,6 @@ import org.ggraver.DPlib.Exception.CompileException;
 
 import java.io.*;
 
-import static org.apache.commons.io.FilenameUtils.removeExtension;
-
 
 // generates .class files and analyses performance of user solution
 class ClassAnalyser
@@ -31,7 +29,7 @@ class ClassAnalyser
     }
 
     // analyse the compiled .class file for performance
-    Result2 analyse(String input)
+    Result analyse(String input)
     throws AnalysisException
     {
         if (!classFile.exists() || classFile.length() == 0)
@@ -62,12 +60,12 @@ class ClassAnalyser
             throw new AnalysisException(e);
         }
 
-        Result2 result2 = new Result2();
-        result2.setInput(input);
-        result2.setOutput(output);
-        result2.setExecutionTime(executionTime);
+        Result result = new Result();
+        result.setInput(input);
+        result.setOutput(output);
+        result.setExecutionTime(executionTime);
 
-        return result2;
+        return result;
     }
 
     private String fetchOutput(InputStream inputStream)

@@ -22,7 +22,7 @@ public class IO
             t.printStackTrace();
             throw new Error("Expected ModelingException, AnalysisException or IOException.");
         }
-        System.err.println(t.getMessage());
+        System.err.println(t.getMessage() + "\n");
     }
 
     void usage()
@@ -100,4 +100,25 @@ public class IO
         return command;
     }
 
+    public void printResult(boolean pass)
+    {
+        if(pass)
+        {
+        }
+        else
+        {
+        }
+
+    }
+
+    public void fail(String userOutput, String tutorOutput)
+    {
+        System.out.println("\nFAIL: output \"" + userOutput + "\"" +
+                           "does not match expected output \"" + tutorOutput + "\".\n");
+    }
+
+    public void pass()
+    {
+        System.out.println("\nPASS\n");
+    }
 }

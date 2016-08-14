@@ -10,6 +10,7 @@ org/ggraver/DPlib/FileHandler.class
 org/ggraver/DPlib/Display/Controller$SolverWorker.class
 org/ggraver/DPlib/Exception/ModelingException.class
 org/ggraver/DPlib/Display/Controller.class
+org/ggraver/DPlib/Result.class
 org/ggraver/DPlib/Display/Controller$1.class
 org/ggraver/DPlib/CodeGenerator.class
 org/ggraver/DPlib/Exception/CompileException.class
@@ -19,5 +20,4 @@ org/ggraver/DPlib/Model.class
 org/ggraver/DPlib/Modeler.class
 org/ggraver/DPlib/ClassAnalyser.class
 org/ggraver/DPlib/SourceAnalyser.class
-org/ggraver/DPlib/Result2.class
 org/ggraver/DPlib/Exception/AnalysisException.class

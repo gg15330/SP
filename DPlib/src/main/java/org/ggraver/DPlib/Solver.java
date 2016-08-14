@@ -14,7 +14,7 @@ import java.util.List;
 public class Solver
 {
 
-    public List<Result2> solve(Model model, File file)
+    public List<Result> solve(Model model, File file)
     throws AnalysisException
     {
         SourceAnalyser sa = new SourceAnalyser(file, model.getMethodToAnalyseDeclaration());
@@ -31,8 +31,6 @@ public class Solver
 
         for(int i = 0; i < userCallingMethodBody.length; i++)
         {
-            System.out.println("[USER STMT] " + userCallingMethodBody[i]);
-            System.out.println("[MODL STMT] " + model.getCallingMethodBody()[i]);
             if(!userCallingMethodBody[i].equals(model.getCallingMethodBody()[i]))
             {
                 throw new AnalysisException("Submitted calling method \"" +
@@ -42,15 +40,12 @@ public class Solver
             }
         }
 
-
-
-
         ClassAnalyser ca = new ClassAnalyser(file, sa.getClassName());
-        List<Result2> results = new ArrayList<>();
+        List<Result> results = new ArrayList<>();
 
-        for(Result2 result2 : model.getResults())
+        for(Result result2 : model.getResults())
         {
-            Result2 result = ca.analyse(result2.getInput());
+            Result result = ca.analyse(result2.getInput());
             results.add(result);
         }
 

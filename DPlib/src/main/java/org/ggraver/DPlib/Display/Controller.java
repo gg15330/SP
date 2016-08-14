@@ -35,10 +35,10 @@ public class Controller
     {
         model = fileHandler.deserializeModelFile();
 
-        for(Result2 result2 : model.getResults())
+        for(Result result : model.getResults())
         {
             System.out.println("Results:" +
-            "\n" + result2.getInput() + "\n" + result2.getOutput() + "\n" + result2.getExecutionTime());
+            "\n" + result.getInput() + "\n" + result.getOutput() + "\n" + result.getExecutionTime());
         }
 
         view.setEditorText(new CodeGenerator().generate(model.getClassName(),
@@ -62,11 +62,11 @@ public class Controller
 
     //    solves problem in background thread
     private class SolverWorker
-    extends SwingWorker<List<Result2>, Void>
+    extends SwingWorker<List<Result>, Void>
     {
 
         @Override
-        public List<Result2> doInBackground()
+        public List<Result> doInBackground()
         throws AnalysisException, IOException
         {
             File compiledJavaFile;
@@ -77,27 +77,36 @@ public class Controller
         @Override
         protected void done()
         {
+            List<Result> results;
             try
             {
-                List<Result2> results = get();
-                for(Result2 result : results)
-                {
-                    System.out.println("RESULT: " +
-                                       "\nINPUT: " + result.getInput() +
-                                       "\nOUTPUT: " + result.getOutput() +
-                                       "\nTIME: " + result.getExecutionTime() + "\n\n");
-                }
+                results = get();
 //                view.setExecutionTimeGraph(result.getModelExecutionTime(), result.getUserExecutionTime());
 //                view.setInstructionCountGraph(result.getModelInstructionCount(), result.getUserInstructionCount());
             }
             catch (ExecutionException e)
             {
                 io.errorMsg(e.getCause());
+                return;
             }
             catch (InterruptedException e)
             {
                 e.printStackTrace();
+                return;
             }
+
+            for(int i = 0; i < results.size(); i++)
+            {
+                String userOutput = results.get(i).getOutput();
+                String tutorOutput = model.getResults().get(i).getOutput();
+
+                if(!userOutput.equals(tutorOutput))
+                {
+                    io.fail(userOutput, tutorOutput);
+                    return;
+                }
+            }
+            io.pass();
         }
 
     }

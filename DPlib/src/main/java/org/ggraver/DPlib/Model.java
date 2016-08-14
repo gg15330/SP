@@ -1,7 +1,5 @@
 package org.ggraver.DPlib;
 
-import com.github.javaparser.ast.body.MethodDeclaration;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +16,14 @@ implements Serializable
     private String methodToAnalyseDeclaration;
     private String callingMethodDeclaration;
     private String[] callingMethodBody;
-    private List<Result2> results = new ArrayList<>();
+    private List<Result> results = new ArrayList<>();
 
 //    private long instructionCount;
 //    private double EXECUTION_TIME_MARGIN = 1.2;
 //    private double INSTRUCTION_COUNT_MARGIN = 1.2;
 
     public String getDescription() { return description; }
-    public void addResult(Result2 result2) { results.add(result2); }
+    public void addResult(Result result) { results.add(result); }
 
     public String getClassName() { return className; }
     public void setClassName(String className) { this.className = className; }
@@ -41,7 +39,7 @@ implements Serializable
 
     public String[] getCallingMethodBody() { return callingMethodBody; }
 
-    public List<Result2> getResults() { return results; }
+    public List<Result> getResults() { return results; }
 
 
 //    void setInstructionCount(long instructionCount)

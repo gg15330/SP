@@ -41,8 +41,8 @@ class Modeler
             ClassAnalyser ca = new ClassAnalyser(sourceFile, sa.getClassName());
             for(String input : inputs)
             {
-                Result2 result2 = ca.analyse(input);
-                model.addResult(result2);
+                Result result = ca.analyse(input);
+                model.addResult(result);
             }
         }
         catch (AnalysisException e)

@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by george on 12/08/16.
  */
-public class Result2
+public class Result
 implements Serializable
 {
     private String input;
