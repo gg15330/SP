@@ -40,11 +40,10 @@ public class Controller
             "\n" + result2.getInput() + "\n" + result2.getOutput() + "\n" + result2.getExecutionTime());
         }
 
-        view.setEditorText(new CodeGenerator().generate(model.getClassName(),
-                                                        model.getCallingMethodDeclaration(),
+        view.setEditorText(new CodeGenerator().generate(model.getCallingMethodDeclaration(),
                                                         model.getCallingMethodBody(),
                                                         model.getMethodToAnalyseDeclaration()));
-        SwingUtilities.invokeLater(view::createAndShowGUI);
+//        SwingUtilities.invokeLater(view::createAndShowGUI);
     }
 
     private class solveBtnListener
