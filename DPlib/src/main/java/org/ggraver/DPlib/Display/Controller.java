@@ -2,6 +2,7 @@ package org.ggraver.DPlib.Display;
 
 import org.ggraver.DPlib.*;
 import org.ggraver.DPlib.Exception.AnalysisException;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -35,11 +36,17 @@ public class Controller
     {
         model = fileHandler.deserializeModelFile();
 
-        for(Result result : model.getResults())
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        String tutor = "Tutor";
+
+        for(int i = 0; i < model.getResults().size(); i++)
         {
-            System.out.println("Results:" +
-            "\n" + result.getInput() + "\n" + result.getOutput() + "\n" + result.getExecutionTime());
+            Result r = model.getResults().get(i);
+            dataset.addValue(r.getExecutionTime(), tutor, String.valueOf(i));
         }
+
+        view.setTutorData(dataset);
+
 
         view.setEditorText(new CodeGenerator().generate(model.getClassName(),
                                                         model.getCallingMethodDeclaration(),
@@ -78,11 +85,12 @@ public class Controller
         protected void done()
         {
             List<Result> results;
+
             try
             {
                 results = get();
 //                view.setExecutionTimeGraph(result.getModelExecutionTime(), result.getUserExecutionTime());
-//                view.setInstructionCountGraph(result.getModelInstructionCount(), result.getUserInstructionCount());
+//                view.setOutputGraph(result.getModelInstructionCount(), result.getUserInstructionCount());
             }
             catch (ExecutionException e)
             {

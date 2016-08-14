@@ -24,7 +24,8 @@ class View
     private JTextArea terminal = new JTextArea();
     private JButton solveBtn = new JButton();
     private ChartPanel executionTimeChartPanel;
-    private ChartPanel instructionCountChartPanel;
+    private ChartPanel outputChartPanel;
+    private CategoryDataset tutorData;
 
     void createAndShowGUI()
     {
@@ -55,21 +56,21 @@ class View
         executionTimeChartPanel = createChart("Execution Time",
                                                     null,
                                                     "Time (ms)",
-                                                    createDataset(0, 0),
+                                                    tutorData,
                                                     PlotOrientation.VERTICAL);
         executionTimeChartPanel.setPreferredSize(new Dimension(1, 1));
 
 //        instructionCountGraph
-        instructionCountChartPanel = createChart("Instructions",
-                                                            null,
-                                                            "Instructions (millions)",
-                                                            createDataset(0, 0),
-                                                            PlotOrientation.VERTICAL);
-        instructionCountChartPanel.setPreferredSize(new Dimension(1, 1));
+        outputChartPanel = createChart("Output",
+                                       null,
+                                       "Value",
+                                       createDataset(0, 0),
+                                       PlotOrientation.VERTICAL);
+        outputChartPanel.setPreferredSize(new Dimension(1, 1));
 
 //        panels
         JPanel ioPanel = createIOPanel(editorScrollPane, terminalScrollPane);
-        JPanel graphPanel = createGraphPanel(btnPanel, executionTimeChartPanel, instructionCountChartPanel);
+        JPanel graphPanel = createGraphPanel(btnPanel, executionTimeChartPanel, outputChartPanel);
         JPanel mainPanel = createMainPanel(ioPanel, graphPanel);
 
 //        frame
@@ -98,14 +99,14 @@ class View
 
         gbc.gridx = 1;
         gbc. gridy = 0;
-        gbc.weightx = 0.25;
+        gbc.weightx = 0.5;
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
         mainPanel.add(graphPanel, gbc);
         return mainPanel;
     }
 
-    private JPanel createGraphPanel(JPanel btnPanel, JPanel executionTimeChartPanel, JPanel instructionCountChartPanel)
+    private JPanel createGraphPanel(JPanel btnPanel, JPanel executionTimeChartPanel, JPanel outputChartPanel)
     {
         JPanel graphPanel = new JPanel();
         GridBagLayout graphPanelLayout = new GridBagLayout();
@@ -133,7 +134,7 @@ class View
         gbc.weightx = 1;
         gbc.weighty = 5;
         gbc.fill = GridBagConstraints.BOTH;
-        graphPanel.add(instructionCountChartPanel, gbc);
+        graphPanel.add(outputChartPanel, gbc);
         return graphPanel;
     }
 
@@ -165,7 +166,7 @@ class View
                                    CategoryDataset dataSet,
                                    PlotOrientation orientation)
     {
-        JFreeChart jFreeChart = ChartFactory.createBarChart(
+        JFreeChart jFreeChart = ChartFactory.createLineChart(
                 name,
                 xLabel,
                 yLabel,
@@ -174,6 +175,7 @@ class View
                 true,
                 true,
                 false);
+
         ChartPanel chartPanel = new ChartPanel(jFreeChart);
         return chartPanel;
     }
@@ -191,8 +193,8 @@ class View
 
     private CategoryDataset createDataset(long modelVal, long userVal)
     {
-        final String model = "Model";
-        final String user = "User";
+        final String model = "Tutor";
+        final String user = "Your code";
         final String value = "";
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         dataset.addValue(modelVal , model, value);
@@ -215,13 +217,18 @@ class View
         editor.setText(s);
     }
 
-    void setExecutionTimeGraph(long modelExecutionTime, long userExecutionTime)
+    void setExecutionTimeGraph(String input, long executionTime)
     {
-        executionTimeChartPanel.getChart().getCategoryPlot().setDataset(createDataset(modelExecutionTime, userExecutionTime));
+        executionTimeChartPanel.getChart().getCategoryPlot().setDataset(createDataset(1, executionTime));
     }
 
-    void setInstructionCountGraph(long modelInstructionCount, long userInstructionCount)
+    void setOutputGraph(long modelInstructionCount, long userInstructionCount)
     {
-        instructionCountChartPanel.getChart().getCategoryPlot().setDataset(createDataset(modelInstructionCount / 1000000, userInstructionCount / 1000000));
+        outputChartPanel.getChart().getCategoryPlot().setDataset(createDataset(modelInstructionCount / 1000000, userInstructionCount / 1000000));
+    }
+
+    public void setTutorData(CategoryDataset initData)
+    {
+        this.tutorData = initData;
     }
 }
