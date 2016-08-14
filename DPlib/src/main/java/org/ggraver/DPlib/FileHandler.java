@@ -76,6 +76,23 @@ public class FileHandler
         }
     }
 
+    public void serializeModel(Model model)
+    {
+        try
+        {
+            File modelFile = new File(dir, (FilenameUtils.removeExtension(file.getName()) + ".mod"));
+            System.out.println("File path: " + file.getAbsolutePath());
+            FileOutputStream fos = new FileOutputStream(modelFile);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(model);
+            oos.close();
+            fos.close();
+        }catch(IOException i)
+        {
+            i.printStackTrace();
+        }
+    }
+
     public Model parseXML()
     throws IOException
     {

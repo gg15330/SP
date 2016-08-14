@@ -1727,8 +1727,13 @@
   <callingMethod reference="../methodToAnalyse/parentNode/childrenNodes/com.github.javaparser.ast.body.MethodDeclaration[2]"/>
   <description>Problem description</description>
   <output></output>
-  <executionTime>82</executionTime>
-  <instructionCount>152651259</instructionCount>
+  <results>
+    <org.ggraver.DPlib.Result2>
+      <executionTime>0</executionTime>
+    </org.ggraver.DPlib.Result2>
+  </results>
+  <executionTime>72</executionTime>
+  <instructionCount>0</instructionCount>
   <INSTRUCTION__COUNT__MARGIN>1.2</INSTRUCTION__COUNT__MARGIN>
   <EXECUTION__TIME__MARGIN>1.2</EXECUTION__TIME__MARGIN>
 </org.ggraver.DPlib.Model>

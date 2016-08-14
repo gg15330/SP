@@ -26,16 +26,16 @@ public class Solver
         }
 
         ClassAnalyser ca = new ClassAnalyser(file, sa.getClassName());
-        ca.analyse(input);
+//        ca.analyse(input);
 
         Result result = new Result();
         result.setOutput(model.getOutput(), ca.getOutput());
-        result.setExecutionTime(model.getExecutionTime(),
-                                ca.getExecutionTime(),
-                                model.getEXECUTION_TIME_MARGIN());
-        result.setInstructionCount(model.getInstructionCount(),
-                                   ca.getInstructionCount(),
-                                   model.getINSTRUCTION_COUNT_MARGIN());
+//        result.setExecutionTime(model.getExecutionTime(),
+//                                ca.getExecutionTime(),
+//                                model.getEXECUTION_TIME_MARGIN());
+//        result.setInstructionCount(model.getInstructionCount(),
+//                                   ca.getInstructionCount(),
+//                                   model.getINSTRUCTION_COUNT_MARGIN());
 
         return result;
     }

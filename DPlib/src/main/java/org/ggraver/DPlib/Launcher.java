@@ -20,23 +20,15 @@ public class Launcher
 
     public static void main(String[] args)
     {
-//        if (System.getProperty("java.runtime.name").equals("Java(TM) SE Runtime Environment"))
-//        {
-//            launch(FXView.class, args);
-//        }
-//        else
-//        {
         Launcher launcher = new Launcher();
         launcher.processArgs(args);
         launcher.start();
-        //        }
     }
 
     private void start()
     {
         try
         {
-            Controller controller = new Controller(javaFilePath);
             switch (command) {
                 case "model":
                     FileHandler fileHandler = new FileHandler(javaFilePath, "java");
@@ -47,16 +39,20 @@ public class Launcher
                         System.out.println(s);
                     }
                     Model model = new Modeler().model(fileHandler.getFile(), methodName, input);
+                    fileHandler.serializeModel(model);
+                    System.out.println("File serialized.");
 //                    fileHandler.generateXML(model);
+//                    System.out.println("XML generated.");
                     break;
                 case "solve":
-                    controller.start();
+                    new Controller(javaFilePath).start();
                     break;
                 default: throw new Error("Invalid command: " + command);
             }
         }
         catch (IOException | ModelingException | AnalysisException e)
         {
+            e.printStackTrace(); // temp- remove for production
             new IO().errorMsg(e);
             System.exit(1);
         }
