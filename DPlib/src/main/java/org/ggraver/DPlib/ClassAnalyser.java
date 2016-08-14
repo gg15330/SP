@@ -15,8 +15,6 @@ class ClassAnalyser
 
     private String className;
     private File classFile;
-    private String output;
-    private long executionTime;
 
     ClassAnalyser(File sourceFile, String className)
     throws AnalysisException
@@ -41,18 +39,23 @@ class ClassAnalyser
             throw new AnalysisException(".class file does not exist or is empty.");
         }
 
-        ProcessBuilder build = new ProcessBuilder("java", classFile.getName());
+        ProcessBuilder build = new ProcessBuilder("java", className);
         build.directory(classFile.getParentFile());
         build.inheritIO();
 
         // remember to put timeout in waitFor()
-        long start = System.currentTimeMillis();
         Process p;
+        String output;
+        long executionTime;
 
         try
         {
+            long start = System.currentTimeMillis();
             p = build.start();
             p.waitFor();
+            long end = System.currentTimeMillis();
+            executionTime = end - start;
+            if ((executionTime) < 0) { throw new Error("Execution time should not be less than 0."); }
             output = fetchOutput(p.getInputStream());
         }
         catch (IOException | InterruptedException e)
@@ -60,35 +63,33 @@ class ClassAnalyser
             throw new AnalysisException(e);
         }
 
-        long end = System.currentTimeMillis();
-        if ((end - start) < 0) { throw new Error("Execution time should not be less than 0."); }
-        executionTime = end - start;
-
         Result2 result2 = new Result2();
         result2.setInput(input);
         result2.setOutput(output);
+        result2.setExecutionTime(executionTime);
+
+//        System.out.println("RESULTS:\n" +
+//        "\nINPUT: " + input +
+//        "\nOUTPUT: " + output +
+//        "\nEXECUTION TIME: " + executionTime);
+
         return result2;
     }
 
     private String fetchOutput(InputStream inputStream)
-    throws IOException, AnalysisException
+    throws IOException
     {
         InputStreamReader isr = new InputStreamReader(inputStream);
         BufferedReader br = new BufferedReader(isr);
         StringBuilder sb = new StringBuilder();
         String line;
-        int lineCount = 0;
 
         while ((line = br.readLine()) != null)
         {
             sb.append(line);
-            lineCount++;
-            if (lineCount > 1)
-            {
-                throw new AnalysisException("Program produced more than 1 line of output.");
-            }
         }
 
+        System.out.println("Output: " + sb.toString());
         return sb.toString();
     }
 
@@ -118,8 +119,8 @@ class ClassAnalyser
         {
             ProcessBuilder build = new ProcessBuilder("javac", sourceFile.getPath());
             p = build.start();
-            new SubProcessStream(p.getInputStream()).start();
-            new SubProcessStream(p.getErrorStream()).start();
+//            new SubProcessStream(p.getInputStream()).start();
+//            new SubProcessStream(p.getErrorStream()).start();
             result = p.waitFor();
         }
         catch (IOException | InterruptedException e)
@@ -138,16 +139,6 @@ class ClassAnalyser
         {
             throw new CompileException("Could not find .class file.");
         }
-    }
-
-    long getExecutionTime()
-    {
-        return executionTime;
-    }
-
-    public String getOutput()
-    {
-        return output;
     }
 
 //    adapted from http://www.javaworld.com/article/2071275/core-java/when-runtime-exec---won-t.html?page=2

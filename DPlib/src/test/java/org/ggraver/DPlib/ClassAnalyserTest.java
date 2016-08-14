@@ -95,9 +95,9 @@ public class ClassAnalyserTest
 //        assertTrue(0 < ca.getInstructionCount());
     }
 
-    public static void test_ExecutionTimeGreaterThan0() {
-        assertTrue(0 < ca.getExecutionTime());
-    }
+//    public static void test_ExecutionTimeGreaterThan0() {
+//        assertTrue(0 < ca.getExecutionTime());
+//    }
 
     public static void test_AnalysisException() {
         Throwable t;
