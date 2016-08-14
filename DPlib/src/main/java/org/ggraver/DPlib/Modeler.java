@@ -42,14 +42,6 @@ class Modeler
                 Result2 result2 = ca.analyse(input);
                 model.addResult(result2);
             }
-
-            for(Result2 result2 : model.getResults())
-            {
-                System.out.println("Result:\n" +
-                "\nInput: " + result2.getInput() +
-                "\nOutput: " + result2.getOutput() +
-                "\nTime: " + result2.getExecutionTime() + "\n");
-            }
         }
         catch (AnalysisException e)
         {

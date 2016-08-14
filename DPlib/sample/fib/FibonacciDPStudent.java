@@ -7,8 +7,7 @@ class FibonacciDPStudent {
 
     public static void main (String[] args)
     {
-        int n = 45;
-
+        int n = Integer.parseInt(args[0]);
         System.out.println(fibDP(n));
     }
 

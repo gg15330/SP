@@ -26,13 +26,13 @@ public class Controller
     throws IOException
     {
         view.addSolveBtnListener(new solveBtnListener());
-        this.fileHandler = new FileHandler(filePath, "java");
+        this.fileHandler = new FileHandler(filePath, "mod");
     }
 
     public void start()
     throws IOException, AnalysisException
     {
-//        model = fileHandler.parseXML();
+//        model = fileHandler.deserializeModelFile();
         view.setEditorText(new CodeGenerator().generate(model));
         SwingUtilities.invokeLater(view::createAndShowGUI);
     }

@@ -15,8 +15,9 @@ public class Launcher
 
     private String command;
     private String javaFilePath;
-    private String methodName;
     private String inputFilePath;
+    private String modelFilePath;
+    private String methodName;
 
     public static void main(String[] args)
     {
@@ -48,7 +49,7 @@ public class Launcher
 //                    System.out.println("XML generated.");
                     break;
                 case "solve":
-                    new Controller(javaFilePath).start();
+                    new Controller(modelFilePath).start();
                     break;
                 default: throw new Error("Invalid command: " + command);
             }
@@ -79,7 +80,7 @@ public class Launcher
         else if(args.length == 1)
         {
             command = "solve";
-            javaFilePath = args[0];
+            modelFilePath = args[0];
         }
         else
         {
