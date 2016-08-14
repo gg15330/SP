@@ -2,6 +2,7 @@ package org.ggraver.DPlib;
 
 import com.github.javaparser.ast.body.MethodDeclaration;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,13 +10,13 @@ import java.util.List;
  * Created by george on 28/07/16.
  */
 public class Model
+implements Serializable
 {
 
     private String description = "Problem description";
     private String methodToAnalyseDeclaration;
     private String callingMethodDeclaration;
     private String[] callingMethodBody;
-    private String output;
     private List<Result2> results = new ArrayList<>();
     private long executionTime;
 
@@ -34,9 +35,6 @@ public class Model
 
     public void setCallingMethodBody(String[] callingMethodBody) { this.callingMethodBody = callingMethodBody; }
     public String[] getCallingMethodBody() { return callingMethodBody; }
-
-    public void setOutput(String output) { this.output = output; }
-    public String getOutput() { return output; }
 
     public void setExecutionTime(long executionTime) { this.executionTime = executionTime; }
 

@@ -1,10 +1,13 @@
 package org.ggraver.DPlib;
 
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.stmt.Statement;
 import org.ggraver.DPlib.Exception.AnalysisException;
 import org.ggraver.DPlib.Exception.ModelingException;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by george on 22/07/16.
@@ -17,13 +20,21 @@ class Modeler
     throws ModelingException
     {
         Model model = new Model();
+        if(!sourceFile.exists()) { throw new Error("Source file does not exist."); }
+        System.out.println("Source file path: " + sourceFile.getPath());
         try
         {
             SourceAnalyser sa = new SourceAnalyser(sourceFile, methodName);
-            MethodDeclaration main = sa.findMethod("main");
+
             MethodDeclaration methodToAnalyse = sa.findMethod(methodName);
-            model.setMethodToAnalyse(methodToAnalyse);
-            model.setCallingMethod(main);
+            model.setMethodToAnalyseDeclaration(methodToAnalyse.getDeclarationAsString());
+
+            MethodDeclaration callingMethod = sa.findMethod("main");
+            model.setCallingMethodDeclaration(callingMethod.getDeclarationAsString());
+
+            List<Statement> statements = new ArrayList<>(callingMethod.getBody().getStmts());
+            String[] callingMethodStatements = toStringArray(statements);
+            model.setCallingMethodBody(callingMethodStatements);
 
             ClassAnalyser ca = new ClassAnalyser(sourceFile, sa.getClassName());
             for(String input : inputs)
@@ -31,15 +42,23 @@ class Modeler
                 Result2 result2 = ca.analyse(input);
                 model.addResult(result2);
             }
-            model.setOutput(ca.getOutput());
-            model.setExecutionTime(ca.getExecutionTime());
-//            model.setInstructionCount(ca.getInstructionCount()); // margin of error - temporary
         }
         catch (AnalysisException e)
         {
             throw new ModelingException(e);
         }
         return model;
+    }
+
+    private String[] toStringArray(List<Statement> statements)
+    {
+        String[] strings = new String[statements.size()];
+
+        for(int i = 0; i < statements.size(); i++)
+        {
+            strings[i] = statements.get(i).toString();
+        }
+        return strings;
     }
 
 }

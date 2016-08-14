@@ -55,27 +55,6 @@ public class FileHandler
         }
     }
 
-    void generateXML(Model m)
-    {
-        File XML = new File(dir, "model.xml");
-        XStream xstream = new XStream();
-        FileOutputStream fos;
-        try
-        {
-            fos = new FileOutputStream(XML);
-            xstream.toXML(m, fos);
-            fos.close();
-        }
-        catch (IOException e)
-        {
-            throw new Error("Could not serialize Model object to XML.");
-        }
-        if (!XML.exists())
-        {
-            throw new Error("XML file does not exist.");
-        }
-    }
-
     public void serializeModel(Model model)
     {
         try
@@ -91,16 +70,6 @@ public class FileHandler
         {
             i.printStackTrace();
         }
-    }
-
-    public Model parseXML()
-    throws IOException
-    {
-        XStream xStream = new XStream();
-        File XML = new File(file.getParentFile() + "/model.xml");
-        checkValidFile(XML, "xml");
-        FileInputStream fis = new FileInputStream(XML);
-        return (Model) xStream.fromXML(fis);
     }
 
     public String[] parseInputTextFile(File f)

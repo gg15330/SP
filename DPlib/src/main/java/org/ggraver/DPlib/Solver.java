@@ -1,6 +1,7 @@
 package org.ggraver.DPlib;
 
 import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.stmt.Statement;
 import org.ggraver.DPlib.Exception.AnalysisException;
 
 import java.io.File;
@@ -14,22 +15,25 @@ public class Solver
     public Result solve(Model model, File file)
     throws AnalysisException
     {
-        SourceAnalyser sa = new SourceAnalyser(file, model.getMethodToAnalyse().getName());
+        SourceAnalyser sa = new SourceAnalyser(file, model.getMethodToAnalyseDeclaration());
         MethodDeclaration userCallingMethod = sa.findMethod("main");
 
-        if(!userCallingMethod.equals(model.getCallingMethod()))
-        {
-            throw new AnalysisException("Submitted calling method \"" +
-                                                userCallingMethod.getName() +
-                                                "\" does not match modelled calling method \"" +
-                                                model.getCallingMethod().getName() + "\".");
-        }
+        String[] userCallingMethodBody = new String[0];
 
-        ClassAnalyser ca = new ClassAnalyser(file, sa.getClassName());
+
+//        if(!userCallingMethod.equals(model.getCallingMethod()))
+//        {
+//            throw new AnalysisException("Submitted calling method \"" +
+//                                                userCallingMethod.getName() +
+//                                                "\" does not match modelled calling method \"" +
+//                                                model.getCallingMethod().getName() + "\".");
+//        }
+
+//        ClassAnalyser ca = new ClassAnalyser(file, sa.getClassName());
 //        ca.analyse(input);
 
         Result result = new Result();
-        result.setOutput(model.getOutput(), ca.getOutput());
+//        result.setOutput(model.getOutput(), ca.getOutput());
 //        result.setExecutionTime(model.getExecutionTime(),
 //                                ca.getExecutionTime(),
 //                                model.getEXECUTION_TIME_MARGIN());
