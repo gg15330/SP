@@ -45,7 +45,7 @@ class Modeler
             model.setCallingMethodBody(callingMethodStatements);
 
 //            set problem type
-            sa.analyse(methodToAnalyse);
+            sa.analyse();
             model.setType(sa.determineProblemType());
             System.out.println("Problem type: " + sa.determineProblemType());
 

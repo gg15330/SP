@@ -13,7 +13,6 @@ import com.github.javaparser.ast.Node;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.*;
 import com.github.javaparser.ast.stmt.Statement;
-import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import org.dplib.exception.AnalysisException;
 
@@ -25,12 +24,8 @@ class SourceAnalyser
 
     private String methodName;
     private CompilationUnit cu;
-    private String[] requiredClasses;
-
     private boolean isRecursive;
     private boolean containsArray;
-    private boolean containsRequiredClass;
-
     private int recursiveCallLineNo;
 
     // construct a new SourceAnalyser with a method declaration to check against the source file
@@ -41,26 +36,20 @@ class SourceAnalyser
         this.cu = JavaParser.parse(fis);
         fis.close();
         this.methodName = methodName;
-        requiredClasses = null;
     }
 
-    void analyse(MethodDeclaration methodDeclaration)
+    void analyse()
     throws AnalysisException
     {
         System.out.println("Analysing...");
-        methodDeclaration = findMethod(methodName);
+        MethodDeclaration methodDeclaration = findMethod(methodName);
         isRecursive = isRecursive(methodDeclaration);
         containsArray = containsArray(methodDeclaration);
-        if (requiredClasses != null)
-        {
-            containsRequiredClass = containsRequiredClass(methodDeclaration);
-        }
 
-        System.out.println("Results of analysis:" +
-                                   "\nMethod declaration: " + methodDeclaration.getName() +
-                                   "\nRecursive: " + isRecursive +
-                                   "\nContains array: " + containsArray +
-                                   "\nContains required class: " + containsRequiredClass);
+        System.out.println("\nResults of analysis:" +
+                           "\nMethod declaration: " + methodDeclaration.getDeclarationAsString() +
+                           "\nRecursive: " + isRecursive +
+                           "\nContains array: " + containsArray + "\n");
     }
 
     MethodDeclaration findMethod(String methodName)
@@ -75,8 +64,8 @@ class SourceAnalyser
                 return md;
             }
         }
-        throw new AnalysisException("expected MethodDeclaration \"" + methodName
-                                            + "\" does not exist in source file.");
+        throw new AnalysisException("expected MethodDeclaration \"" + methodName +
+                                    "\" does not exist in source file.");
     }
 
     boolean isRecursive(Node node)
@@ -96,23 +85,6 @@ class SourceAnalyser
             {
                 return true;
             }
-        }
-        return false;
-    }
-
-    private boolean containsRequiredClass(Node node)
-    {
-        if(node instanceof ClassOrInterfaceType)
-        {
-            String classType = ((ClassOrInterfaceType) node).getName();
-            for(String requiredClass : requiredClasses)
-            {
-                if(classType.equals(requiredClass)) return true;
-            }
-        }
-        for(Node n : node.getChildrenNodes())
-        {
-            if(containsRequiredClass(n)) return true;
         }
         return false;
     }

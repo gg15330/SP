@@ -1,7 +1,8 @@
 import java.util.*;
 import java.lang.*;
 
-public class LIS {
+// sourced from http://www.geeksforgeeks.org/dynamic-programming-set-3-longest-increasing-subsequence/
+public class LISDP {
 
     private static int[] arr;
     private static int max_ref;
