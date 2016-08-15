@@ -35,7 +35,7 @@ class Modeler
             model.setCallingMethodDeclaration(callingMethod.getDeclarationAsString());
 
             List<Statement> statements = new ArrayList<>(callingMethod.getBody().getStmts());
-            String[] callingMethodStatements = toStringArray(statements);
+            String[] callingMethodStatements = sa.StatementsToStringArray(statements);
             model.setCallingMethodBody(callingMethodStatements);
 
             ClassAnalyser ca = new ClassAnalyser(sourceFile, sa.getClassName());
@@ -50,17 +50,6 @@ class Modeler
             throw new ModelingException(e);
         }
         return model;
-    }
-
-    private String[] toStringArray(List<Statement> statements)
-    {
-        String[] strings = new String[statements.size()];
-
-        for(int i = 0; i < statements.size(); i++)
-        {
-            strings[i] = statements.get(i).toString();
-        }
-        return strings;
     }
 
 }

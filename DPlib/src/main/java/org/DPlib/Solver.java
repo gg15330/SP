@@ -37,7 +37,7 @@ extends SwingWorker<List<Result>, Void>
     {
         SourceAnalyser sa = new SourceAnalyser(file, model.getMethodToAnalyseDeclaration());
         MethodDeclaration userCallingMethod = sa.findMethod("main");
-        String[] userCallingMethodBody = toStringArray(userCallingMethod.getBody().getStmts());
+        String[] userCallingMethodBody = sa.StatementsToStringArray(userCallingMethod.getBody().getStmts());
 
         checkMatchingMethodLengths(userCallingMethodBody, model.getCallingMethodBody());
         checkMatchingMethodBodies(userCallingMethodBody,
@@ -46,14 +46,15 @@ extends SwingWorker<List<Result>, Void>
                                   model.getCallingMethodDeclaration());
 
         ClassAnalyser ca = new ClassAnalyser(file, sa.getClassName());
-        List<Result> results = new ArrayList<>();
+        List<Result> studentResults = new ArrayList<>();
 
-        for (Result r : model.getResults())
+        for (Result modelResult : model.getResults())
         {
-            results.add(ca.analyse(r.getInput()));
+            Result studentResult = ca.analyse(modelResult.getInput());
+            studentResults.add(studentResult);
         }
 
-        return results;
+        return studentResults;
     }
 
     private void checkMatchingMethodLengths(String[] userCallingMethod, String[] tutorCallingMethod)
@@ -81,17 +82,6 @@ extends SwingWorker<List<Result>, Void>
                                             "\" does not match modelled calling method \"" + modelMethodDeclaration + "\".");
             }
         }
-    }
-
-    private String[] toStringArray(List<Statement> statements)
-    {
-        String[] strings = new String[statements.size()];
-
-        for (int i = 0; i < statements.size(); i++)
-        {
-            strings[i] = statements.get(i).toString();
-        }
-        return strings;
     }
 
     @Override

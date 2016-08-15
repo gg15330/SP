@@ -7,7 +7,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.*;
 
 
-// generates .class files and analyses performance of user solution
+// generates .class files and analyses performance
 class ClassAnalyser
 {
 
@@ -40,19 +40,16 @@ class ClassAnalyser
         ProcessBuilder build = new ProcessBuilder("java", className, input);
         build.directory(classFile.getParentFile());
 
-        // remember to put timeout in waitFor()
-        Process p;
         String output;
-        long executionTime;
+        long start, end;
 
         try
         {
-            long start = System.currentTimeMillis();
-            p = build.start();
+            start = System.currentTimeMillis();
+            Process p = build.start();
             p.waitFor();
-            long end = System.currentTimeMillis();
-            executionTime = end - start;
-            if ((executionTime) < 0) { throw new Error("Execution time should not be less than 0."); }
+            end = System.currentTimeMillis();
+            if ((end - start) < 0) { throw new Error("Execution time should not be less than 0."); }
             output = fetchOutput(p.getInputStream());
         }
         catch (IOException | InterruptedException e)
@@ -63,7 +60,7 @@ class ClassAnalyser
         Result result = new Result();
         result.setInput(input);
         result.setOutput(output);
-        result.setExecutionTime(executionTime);
+        result.setExecutionTime(end - start);
 
         return result;
     }
@@ -76,15 +73,8 @@ class ClassAnalyser
         StringBuilder sb = new StringBuilder();
         String line;
 
-        while ((line = br.readLine()) != null)
-        {
-            sb.append(line);
-        }
-
-        if(sb.length() == 0)
-        {
-            throw new IOException("Output is empty.");
-        }
+        while ((line = br.readLine()) != null) { sb.append(line); }
+        if(sb.length() == 0) { throw new IOException("Output is empty."); }
 
         isr.close();
         br.close();
@@ -92,40 +82,25 @@ class ClassAnalyser
         return sb.toString();
     }
 
-    // get the line containing the instruction count from the perf stat output stream and return it as a long
-    private long fetchInstructionCount(File f, int lineNum)
-    throws IOException, NumberFormatException
-    {
-        String instructionsString = FileUtils.readLines(f, "UTF-8").get(lineNum)
-                                             .replaceAll(" ", "")
-                                             .replaceAll("instructions:u", "")
-                                             .replaceAll(",", "");
-        return Long.parseLong(instructionsString);
-    }
-
     // compile the user-submitted .java file for performance analysis
     private void compile(File sourceFile)
     throws CompileException
     {
-        if (sourceFile == null)
-        {
-            throw new CompileException(".java file should not be null.");
-        }
+        if (sourceFile == null) { throw new CompileException(".java file should not be null."); }
         System.out.println("Compiling file: " + sourceFile.getPath());
         Process p;
         int result;
+
         try
         {
             ProcessBuilder build = new ProcessBuilder("javac", sourceFile.getPath());
             p = build.start();
-            new SubProcessStream(p.getInputStream()).start();
-            new SubProcessStream(p.getErrorStream()).start();
+            new CompileStream(p.getInputStream()).start();
+            new CompileStream(p.getErrorStream()).start();
             result = p.waitFor();
         }
-        catch (IOException | InterruptedException e)
-        {
-            throw new Error(e);
-        }
+        catch (IOException | InterruptedException e) { throw new Error(e); }
+
         if (result != 0)
         {
             throw new CompileException("Could not compile .java file. Please ensure your .java file is valid.");
@@ -141,11 +116,11 @@ class ClassAnalyser
     }
 
 //    adapted from http://www.javaworld.com/article/2071275/core-java/when-runtime-exec---won-t.html?page=2
-    private class SubProcessStream extends Thread
+    private class CompileStream extends Thread
     {
-        InputStream inputStream;
+        private InputStream inputStream;
 
-        SubProcessStream(InputStream inputStream)
+        CompileStream(InputStream inputStream)
         {
             this.inputStream = inputStream;
         }
@@ -161,11 +136,12 @@ class ClassAnalyser
                 {
                     System.out.println(line);
                 }
+
+                br.close();
             }
-            catch (IOException e)
-            {
-                throw new Error(e);
-            }
+            catch (IOException e) { throw new Error(e); }
         }
+
     }
+
 }

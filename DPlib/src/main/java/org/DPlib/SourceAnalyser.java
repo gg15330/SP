@@ -15,6 +15,7 @@ import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.MarkerAnnotationExpr;
 import com.github.javaparser.ast.expr.MethodCallExpr;
+import com.github.javaparser.ast.stmt.Statement;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import org.DPlib.Exception.AnalysisException;
 
@@ -168,6 +169,17 @@ class SourceAnalyser
     public int getRecursiveCallLineNo()
     {
         return recursiveCallLineNo;
+    }
+
+    public String[] StatementsToStringArray(List<Statement> statements)
+    {
+        String[] strings = new String[statements.size()];
+
+        for(int i = 0; i < statements.size(); i++)
+        {
+            strings[i] = statements.get(i).toString();
+        }
+        return strings;
     }
 
 
