@@ -17,6 +17,7 @@ public class Launcher
     private String inputFilePath;
     private String modelFilePath;
     private String methodName;
+    private final IO io = new IO();
 
     public static void main(String[] args)
     {
@@ -35,6 +36,7 @@ public class Launcher
                     FileHandler inputFileHandler = new FileHandler(inputFilePath, "txt");
                     String[][] inputs = inputFileHandler.parseInputTextFile(inputFileHandler.getFile());
                     Model model = new Modeler().model(fileHandler.getFile(), methodName, inputs);
+                    io.displayResults(model.getResults());
                     fileHandler.serializeModel(model);
                     break;
                 case "solve":
@@ -52,7 +54,6 @@ public class Launcher
 
     private void processArgs(String[] args)
     {
-        IO io = new IO();
         if(args.length == 4)
         {
             command = args[0];

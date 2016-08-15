@@ -47,7 +47,6 @@ class ClassAnalyser
         ProcessBuilder build = new ProcessBuilder(commands);
         build.directory(classFile.getParentFile());
         build.redirectErrorStream(true);
-//        build.inheritIO();
 
         String output;
         long start, end;

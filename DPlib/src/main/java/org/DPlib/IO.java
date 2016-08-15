@@ -4,14 +4,12 @@ import org.DPlib.Exception.AnalysisException;
 import org.DPlib.Exception.ModelingException;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 // IO handling
 public class IO
 {
-
-    private String command;
-    private String filePath;
-    private String methodName;
 
     public void errorMsg(Throwable t)
     {
@@ -30,58 +28,35 @@ public class IO
         System.err.println(usage);
     }
 
-//    void displayResult(Result result)
-//    {
-//        String[][] resultsTable = new String[4][4];
-//
-//        resultsTable[0] = new String[] {"", "MODEL", "USER", "RESULT"};
-//        resultsTable[1] = new String[] {
-//                "OUTPUT",
-//                result.getModelOutput(),
-//                result.getUserOutput(),
-//                pass(result.getOutputPass())
-//        };
-//        resultsTable[2] = new String[] {
-//                "EXECUTION TIME",
-//                String.valueOf(result.getModelExecutionTime()),
-//                String.valueOf(result.getUserExecutionTime()),
-//                pass(result.getExecutionTimePass())
-//        };
-//        resultsTable[3] = new String[] {
-//                "INSTRUCTION COUNT",
-//                String.valueOf(result.getModelInstructionCount()),
-//                String.valueOf(result.getUserInstructionCount()),
-//                pass(result.getInstructionCountPass())
-//        };
-//
-//        System.out.println();
-//        for(String[] row : resultsTable)
-//        {
-//            System.out.format("%-20s%-20s%-20s%-20s\n", row[0], row[1], row[2], row[3]);
-//        }
-//        System.out.println();
-//    }
-
-    private String pass(boolean b)
+    void fail(String userOutput, String tutorOutput)
     {
-        if(b)
-        {
-            return "PASS";
-        }
-        else
-        {
-            return "FAIL";
-        }
+        System.out.println("\nFAIL: output \"" + userOutput + "\"" +
+                           "does not match expected output \"" + tutorOutput + "\".\n");
     }
 
-    String getMethodName()
+    void displayResults(List<Result> resultList)
     {
-        return methodName;
+        int i = 0;
+        final int width = 82;
+        System.out.println("\nRESULTS:\n");
+        System.out.format("%4s\t%-40s\t%15s\t%11s", "", "INPUT", "OUTPUT", "TIME[ms]\n");
+        for(int j = 0; j < width; j++) { System.out.print("-"); }
+        System.out.println();
+        for(Result r : resultList)
+        {
+            System.out.format("%4s\t%-40s\t%15s\t%10d\n",
+                              ("[" + String.valueOf(i) + "]"),
+                              Arrays.toString(r.getInput()),
+                              r.getOutput(),
+                              r.getExecutionTime());
+            i++;
+        }
+        System.out.println();
     }
 
-    public String getFilePath()
+    void pass()
     {
-        return filePath;
+        System.out.println("\nPASS\n");
     }
 
     private String usage = "\nUsage:\n" +
@@ -92,33 +67,4 @@ public class IO
             "\njava -jar DPLib-1.0-SNAPSHOT.jar " +
             "<path/to/file_to_solve.java>\n";
 
-    private String analysisReport;
-
-
-    String getCommand()
-    {
-        return command;
-    }
-
-    public void printResult(boolean pass)
-    {
-        if(pass)
-        {
-        }
-        else
-        {
-        }
-
-    }
-
-    public void fail(String userOutput, String tutorOutput)
-    {
-        System.out.println("\nFAIL: output \"" + userOutput + "\"" +
-                           "does not match expected output \"" + tutorOutput + "\".\n");
-    }
-
-    public void pass()
-    {
-        System.out.println("\nPASS\n");
-    }
 }

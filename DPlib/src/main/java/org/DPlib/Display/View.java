@@ -65,7 +65,7 @@ public class View
 
 //        instructionCountGraph
         outputChartPanel = createChart("Output",
-                                       null,
+                                       "Input",
                                        "Value",
                                        tutorOutputData,
                                        PlotOrientation.VERTICAL);
