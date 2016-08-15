@@ -20,9 +20,8 @@ import java.util.concurrent.ExecutionException;
 public class Controller
 {
 
-    private IO io = new IO();
+    private final IO io = new IO();
     private FileHandler fileHandler;
-    private Solver solver = new Solver();
     private View view = new View();
     private Model model;
 
@@ -64,69 +63,15 @@ public class Controller
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            new SolverWorker().execute();
-        }
-
-    }
-
-    //    solves problem in background thread
-    private class SolverWorker
-    extends SwingWorker<List<Result>, Void>
-    {
-
-        @Override
-        public List<Result> doInBackground()
-        throws AnalysisException, IOException
-        {
-            File compiledJavaFile;
-            compiledJavaFile = fileHandler.createJavaFile(view.getEditorText());
-            return solver.solve(model, compiledJavaFile);
-        }
-
-        @Override
-        protected void done()
-        {
-            List<Result> results;
-
             try
             {
-                results = get();
-                DefaultCategoryDataset studentTimeDataset = new DefaultCategoryDataset();
-                DefaultCategoryDataset studentOutputDataset = new DefaultCategoryDataset();
-
-                for(int i = 0; i < model.getResults().size(); i++)
-                {
-                    Result r = results.get(i);
-                    studentTimeDataset.addValue(r.getExecutionTime(), "Your code", String.valueOf(i));
-                    studentOutputDataset.addValue(Integer.parseInt(r.getOutput()), "Your code", String.valueOf(i));
-                }
-
-                view.setExecutionTimeGraph(studentTimeDataset);
-                view.setOutputGraph(studentOutputDataset);
+                File javaFile = fileHandler.createJavaFile(view.getEditorText());
+                new Solver(model, javaFile, view, io).execute();
             }
-            catch (ExecutionException e)
+            catch (IOException ioe)
             {
-                io.errorMsg(e.getCause());
-                return;
+                io.errorMsg(ioe);
             }
-            catch (InterruptedException e)
-            {
-                e.printStackTrace();
-                return;
-            }
-
-            for(int i = 0; i < results.size(); i++)
-            {
-                String userOutput = results.get(i).getOutput();
-                String tutorOutput = model.getResults().get(i).getOutput();
-
-                if(!userOutput.equals(tutorOutput))
-                {
-                    io.fail(userOutput, tutorOutput);
-                    return;
-                }
-            }
-            io.pass();
         }
 
     }

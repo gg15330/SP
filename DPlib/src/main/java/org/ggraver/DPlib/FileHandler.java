@@ -66,7 +66,8 @@ public class FileHandler
             oos.writeObject(model);
             oos.close();
             fos.close();
-        }catch(IOException i)
+        }
+        catch(IOException i)
         {
             i.printStackTrace();
         }
@@ -97,9 +98,17 @@ public class FileHandler
     {
         File javaFile = new File(dir, "temp.java");
         javaFile.deleteOnExit();
-        FileWriter fileWriter = new FileWriter(javaFile);
-        fileWriter.write(editorText);
-        fileWriter.close();
+        FileWriter fileWriter = null;
+        try
+        {
+            fileWriter = new FileWriter(javaFile);
+            fileWriter.write(editorText);
+            fileWriter.close();
+        }
+        catch (IOException e)
+        {
+            throw new IOException("Could not create temp java file.");
+        }
         return javaFile;
     }
 

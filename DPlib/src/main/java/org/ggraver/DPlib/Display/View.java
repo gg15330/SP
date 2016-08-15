@@ -20,7 +20,7 @@ import java.io.PrintStream;
 /**
  * Created by george on 05/08/16.
  */
-class View
+public class View
 {
     private JTextArea editor = new JTextArea();
     private JTextArea terminal = new JTextArea();
@@ -218,12 +218,12 @@ class View
         editor.setText(s);
     }
 
-    void setExecutionTimeGraph(CategoryDataset dataset)
+    public void setExecutionTimeGraph(CategoryDataset dataset)
     {
         executionTimeChartPanel.getChart().getCategoryPlot().setDataset(1, dataset);
     }
 
-    void setOutputGraph(CategoryDataset dataset)
+    public void setOutputGraph(CategoryDataset dataset)
     {
         outputChartPanel.getChart().getCategoryPlot().setDataset(1, dataset);
     }
