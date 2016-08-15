@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<root>
-    <input/>
-    <output/>
-    <performance>
-        <instructions>5000</instructions>
-        <time>100</time>
-    </performance>
-</root>
