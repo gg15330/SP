@@ -16,7 +16,7 @@ import java.util.List;
 class Modeler
 {
 
-    Model model(File sourceFile, String methodName, String[] inputs)
+    Model model(File sourceFile, String methodName, String[][] inputs)
     throws ModelingException
     {
         Model model = new Model();
@@ -40,9 +40,9 @@ class Modeler
 
             ClassAnalyser ca = new ClassAnalyser(sourceFile, sa.getClassName());
             System.out.println("Analysing...");
-            for(String input : inputs)
+            for(String[] args : inputs)
             {
-                Result result = ca.analyse(input);
+                Result result = ca.analyse(args);
                 model.addResult(result);
             }
             System.out.println("Analysis complete.");

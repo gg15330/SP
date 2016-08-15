@@ -2,9 +2,11 @@ package org.DPlib;
 
 import org.DPlib.Exception.AnalysisException;
 import org.DPlib.Exception.CompileException;
-import org.apache.commons.io.FileUtils;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 // generates .class files and analyses performance
@@ -29,7 +31,7 @@ class ClassAnalyser
     }
 
     // analyse the compiled .class file for performance
-    Result analyse(String input)
+    Result analyse(String[] args)
     throws AnalysisException
     {
         if (!classFile.exists() || classFile.length() == 0)
@@ -37,8 +39,16 @@ class ClassAnalyser
             throw new AnalysisException(".class file does not exist or is empty.");
         }
 
-        ProcessBuilder build = new ProcessBuilder("java", className, input);
+        List<String> commands = new ArrayList<>();
+        commands.add("java");
+        commands.add(className);
+        commands.addAll(Arrays.asList(args));
+        System.out.println("Commands: " + commands);
+
+        ProcessBuilder build = new ProcessBuilder(commands);
         build.directory(classFile.getParentFile());
+        build.redirectErrorStream(true);
+//        build.inheritIO();
 
         String output;
         long start, end;
@@ -58,7 +68,7 @@ class ClassAnalyser
         }
 
         Result result = new Result();
-        result.setInput(input);
+        result.setInput(args);
         result.setOutput(output);
         result.setExecutionTime(end - start);
 
@@ -106,13 +116,13 @@ class ClassAnalyser
             throw new CompileException("Could not compile .java file. Please ensure your .java file is valid.");
         }
 
-        System.out.println(sourceFile.getName() + " compiled successfully.");
         classFile = new File(sourceFile.getParent() + "/" + className + ".class");
 
         if (!classFile.exists())
         {
             throw new CompileException("Could not find .class file.");
         }
+        System.out.println(sourceFile.getName() + " compiled successfully.");
     }
 
 //    adapted from http://www.javaworld.com/article/2071275/core-java/when-runtime-exec---won-t.html?page=2

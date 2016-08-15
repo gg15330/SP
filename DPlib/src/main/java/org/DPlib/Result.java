@@ -8,11 +8,11 @@ import java.io.Serializable;
 public class Result
 implements Serializable
 {
-    private String input;
+    private String[] input;
     private String output;
     private long executionTime;
 
-    public void setInput(String input)
+    public void setInput(String[] input)
     {
         this.input = input;
     }
@@ -22,7 +22,7 @@ implements Serializable
         this.output = output;
     }
 
-    public String getInput()
+    public String[] getInput()
     {
         return input;
     }

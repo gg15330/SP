@@ -33,7 +33,7 @@ public class Launcher
                 case "model":
                     FileHandler fileHandler = new FileHandler(javaFilePath, "java");
                     FileHandler inputFileHandler = new FileHandler(inputFilePath, "txt");
-                    String[] inputs = inputFileHandler.parseInputTextFile(inputFileHandler.getFile());
+                    String[][] inputs = inputFileHandler.parseInputTextFile(inputFileHandler.getFile());
                     Model model = new Modeler().model(fileHandler.getFile(), methodName, inputs);
                     fileHandler.serializeModel(model);
                     break;
@@ -45,8 +45,7 @@ public class Launcher
         }
         catch (IOException | ModelingException | AnalysisException e)
         {
-            e.printStackTrace(); // temp- remove for production
-            new IO().errorMsg(e);
+            e.printStackTrace();
             System.exit(1);
         }
     }

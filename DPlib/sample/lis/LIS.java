@@ -9,7 +9,13 @@ public class LIS {
 
     public static void main(String[] args) {
 
-        int[] A = { 10, 22, 9, 33, 21, 50, 41, 60, 80 };
+        String[] argsStrings = args[0].split(" ");
+        int[] A = new int[argsStrings.length];
+        for(int i = 0; i < argsStrings.length; i++)
+        {
+            A[i] = Integer.parseInt(argsStrings[i]);
+        }
+
         int l = lisDP(A, (A.length));
         System.out.println(l);
 

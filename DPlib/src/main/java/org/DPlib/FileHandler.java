@@ -73,19 +73,21 @@ public class FileHandler
         System.out.println("Model file created.");
     }
 
-    public String[] parseInputTextFile(File f)
+    public String[][] parseInputTextFile(File f)
     throws IOException
     {
         FileReader fr = new FileReader(f);
         BufferedReader br = new BufferedReader(fr);
-        List<String> lines = new ArrayList<>();
+        List<String[]> lines = new ArrayList<>();
         String line;
 
         while((line = br.readLine()) != null)
         {
-            lines.add(line);
+            String[] inputs = line.split(" ");
+            System.out.println("[INPUTS] " + inputs.toString());
+            lines.add(inputs);
         }
-        return lines.toArray(new String[lines.size()]);
+        return lines.toArray(new String[lines.size()][]);
     }
 
     public File getFile()
