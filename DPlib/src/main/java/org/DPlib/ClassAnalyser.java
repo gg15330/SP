@@ -43,7 +43,6 @@ class ClassAnalyser
         commands.add("java");
         commands.add(className);
         commands.addAll(Arrays.asList(args));
-        System.out.println("Commands: " + commands);
 
         ProcessBuilder build = new ProcessBuilder(commands);
         build.directory(classFile.getParentFile());

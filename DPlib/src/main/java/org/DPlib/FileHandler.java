@@ -84,7 +84,6 @@ public class FileHandler
         while((line = br.readLine()) != null)
         {
             String[] inputs = line.split(" ");
-            System.out.println("[INPUTS] " + inputs.toString());
             lines.add(inputs);
         }
         return lines.toArray(new String[lines.size()][]);
