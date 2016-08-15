@@ -2,18 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dbf27813-b393-4f5c-a162-70ce6f80ac8c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DPlib/sample/lis/LISRec.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/sample/lis/LIS.java" afterPath="$PROJECT_DIR$/DPlib/sample/lis/LISDP.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/DPlib-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/DPlib/target/DPlib-1.0-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/Modeler.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/Modeler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/SourceAnalyser$MethodCallExprVisitor.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/SourceAnalyser$MethodCallExprVisitor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/SourceAnalyser$MethodDeclarationVisitor.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/SourceAnalyser$MethodDeclarationVisitor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/SourceAnalyser.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/SourceAnalyser.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/jfx/app/DPlib-1.0-SNAPSHOT-jfx.jar" afterPath="$PROJECT_DIR$/DPlib/target/jfx/app/DPlib-1.0-SNAPSHOT-jfx.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DPlib/sample/coinchange/CoinChangeRec.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DPlib/sample/coinchange/inputs.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/sample/fib/input.txt" afterPath="$PROJECT_DIR$/DPlib/sample/fib/inputs.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/sample/lis/LIS.mod" afterPath="$PROJECT_DIR$/DPlib/sample/lis/LIS.mod" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Modeler.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Modeler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/SourceAnalyser.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/SourceAnalyser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/sample/lis/LISDP.mod" afterPath="$PROJECT_DIR$/DPlib/sample/lis/LISDP.mod" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/sample/lis/LISRec.mod" afterPath="$PROJECT_DIR$/DPlib/sample/lis/LISRec.mod" />
     </list>
     <ignored path="SP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,8 +32,8 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
+            <state relative-caret-position="126">
+              <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
               <folding>
                 <element signature="class#solveBtnListener#0;class#Controller#0" expanded="false" />
               </folding>
@@ -50,18 +44,18 @@
       <file leaf-file-name="Modeler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Modeler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
+            <state relative-caret-position="39">
               <caret line="35" column="72" selection-start-line="35" selection-start-column="72" selection-end-line="35" selection-end-column="72" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LISDP.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LISDP.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DPlib/sample/lis/LISDP.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
+            <state relative-caret-position="196">
+              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="17" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -72,18 +66,38 @@
       <file leaf-file-name="LISRec.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DPlib/sample/lis/LISRec.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="252">
+              <caret line="18" column="5" selection-start-line="6" selection-start-column="2" selection-end-line="18" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Model.java">
+      <file leaf-file-name="CoinChangeRec.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DPlib/sample/coinchange/CoinChangeRec.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+            <state relative-caret-position="390">
+              <caret line="33" column="46" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Launcher.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Launcher.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-98">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/FileHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="417">
+              <caret line="121" column="20" selection-start-line="121" selection-start-column="20" selection-end-line="121" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -97,38 +111,6 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClassAnalyser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/ClassAnalyser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
-              <caret line="44" column="45" selection-start-line="44" selection-start-column="45" selection-end-line="44" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FibonacciDPList.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DPlib/sample/fib/FibonacciDPList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="inputs.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DPlib/sample/lis/inputs.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="28">
-              <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -170,8 +152,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/DPlib/pom.xml" />
-        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/TerminalWorker.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Display/SwingView.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SolverWorker.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Display/SwingController.java" />
@@ -219,8 +199,10 @@
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/ClassAnalyser.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/SourceAnalyser.java" />
         <option value="$PROJECT_DIR$/DPlib/sample/lis/LIS.java" />
-        <option value="$PROJECT_DIR$/DPlib/sample/lis/LISDP.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/Controller.java" />
         <option value="$PROJECT_DIR$/DPlib/sample/lis/LISRec.java" />
+        <option value="$PROJECT_DIR$/DPlib/sample/lis/LISDP.java" />
+        <option value="$PROJECT_DIR$/DPlib/sample/coinchange/CoinChangeRec.java" />
       </list>
     </option>
   </component>
@@ -240,6 +222,7 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="-1366" />
     <option name="y" value="18" />
     <option name="width" value="1366" />
     <option name="height" value="750" />
@@ -270,78 +253,7 @@
     </navigator>
     <panes>
       <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DPlib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DPlib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DPlib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sample" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
+        <subPane />
       </pane>
       <pane id="Scope" />
       <pane id="PackagesPane" />
@@ -378,6 +290,7 @@
       <recent name="org.ggraver.DPlib.Display" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/DPlib/sample/coinchange" />
       <recent name="$PROJECT_DIR$/DPlib/sample/fib" />
     </key>
   </component>
@@ -684,7 +597,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="18" width="1366" height="750" extended-state="6" />
+    <frame x="-1366" y="18" width="1366" height="750" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -694,10 +607,10 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40528634" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48316252" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.48316252" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20717423" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20717423" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -765,17 +678,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/resources/gui.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="577">
-          <caret line="65" column="23" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SwingGui.form" />
     <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/ChartExample.java" />
     <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/HelloWorldSwing.java" />
     <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Graph.java" />
@@ -917,19 +819,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/FileHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1120">
-          <caret line="84" column="46" selection-start-line="84" selection-start-column="46" selection-end-line="84" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2437#2438#0" expanded="false" />
-            <element signature="e#2464#2465#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/sample/fib/input.txt">
+    <entry file="file://$PROJECT_DIR$/DPlib/sample/fib/inputs.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="1" selection-start-line="0" selection-start-column="1" selection-end-line="0" selection-end-column="1" />
@@ -943,14 +833,6 @@
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Launcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -988,16 +870,6 @@
         <state relative-caret-position="112">
           <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
-          <folding>
-            <element signature="class#solveBtnListener#0;class#Controller#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1051,29 +923,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Modeler.java">
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Launcher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="35" column="72" selection-start-line="35" selection-start-column="72" selection-end-line="35" selection-end-column="72" />
+        <state relative-caret-position="-98">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/FileHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="417">
+          <caret line="121" column="20" selection-start-line="121" selection-start-column="20" selection-end-line="121" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+          <folding>
+            <element signature="class#solveBtnListener#0;class#Controller#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/sample/lis/LISRec.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="252">
+          <caret line="18" column="5" selection-start-line="6" selection-start-column="2" selection-end-line="18" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/sample/coinchange/inputs.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/sample/lis/LISDP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
+        <state relative-caret-position="196">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="17" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Modeler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="39">
+          <caret line="35" column="72" selection-start-line="35" selection-start-column="72" selection-end-line="35" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/sample/coinchange/CoinChangeRec.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="33" column="46" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
+          <folding />
         </state>
       </provider>
     </entry>
