@@ -1,2 +1,2 @@
-org/ggraver/DPlib/SourceAnalyserTest.class
-org/ggraver/DPlib/ClassAnalyserTest.class
+org/DPlib/ClassAnalyserTest.class
+org/DPlib/SourceAnalyserTest.class

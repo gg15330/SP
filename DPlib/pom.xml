@@ -97,7 +97,7 @@
                 <version>8.5.0</version>
                 <configuration>
                     <vendor>george</vendor>
-                    <mainClass>org.ggraver.DPlib.Launcher</mainClass>
+                    <mainClass>org.DPlib.Launcher</mainClass>
                     <appName>test</appName>
                 </configuration>
                 <executions>
