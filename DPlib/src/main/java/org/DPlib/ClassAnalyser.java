@@ -55,7 +55,8 @@ class ClassAnalyser
         {
             start = System.currentTimeMillis();
             Process p = build.start();
-            p.waitFor();
+            int result = p.waitFor();
+            if(result != 0) throw new AnalysisException("Program did not execute correctly - check code (and inputs if modeling a problem).");
             end = System.currentTimeMillis();
             if ((end - start) < 0) { throw new Error("Execution time should not be less than 0."); }
             output = fetchOutput(p.getInputStream());
