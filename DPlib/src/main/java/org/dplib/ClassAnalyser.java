@@ -46,8 +46,6 @@ class ClassAnalyser
 
         ProcessBuilder build = new ProcessBuilder(commands);
         build.directory(classFile.getParentFile());
-        build.redirectErrorStream(true);
-
         String output;
         long start, end;
 
@@ -55,6 +53,7 @@ class ClassAnalyser
         {
             start = System.currentTimeMillis();
             Process p = build.start();
+            new SubProcessInputStream(p.getErrorStream()).start();
             int result = p.waitFor();
             if(result != 0) throw new AnalysisException("Program did not execute correctly - check code (and inputs if modeling a problem).");
             end = System.currentTimeMillis();
@@ -104,8 +103,8 @@ class ClassAnalyser
         {
             ProcessBuilder build = new ProcessBuilder("javac", sourceFile.getPath());
             p = build.start();
-            new CompileStream(p.getInputStream()).start();
-            new CompileStream(p.getErrorStream()).start();
+            new SubProcessInputStream(p.getInputStream()).start();
+            new SubProcessInputStream(p.getErrorStream()).start();
             result = p.waitFor();
         }
         catch (IOException | InterruptedException e) { throw new Error(e); }
@@ -125,11 +124,11 @@ class ClassAnalyser
     }
 
 //    adapted from http://www.javaworld.com/article/2071275/core-java/when-runtime-exec---won-t.html?page=2
-    private class CompileStream extends Thread
+    private class SubProcessInputStream extends Thread
     {
         private InputStream inputStream;
 
-        CompileStream(InputStream inputStream)
+        SubProcessInputStream(InputStream inputStream)
         {
             this.inputStream = inputStream;
         }

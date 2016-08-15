@@ -19,7 +19,7 @@ import org.dplib.exception.AnalysisException;
 
 // this class analyses source code for invalid solutions/errors
 // the analysis can be different depending on whether the .java file
-// inputStream submitted by the tutor or the student
+// is submitted by the tutor or the student
 class SourceAnalyser
 {
 
@@ -42,13 +42,6 @@ class SourceAnalyser
         fis.close();
         this.methodName = methodName;
         requiredClasses = null;
-    }
-
-    SourceAnalyser(File file, String methodName, String... requiredClasses)
-    throws IOException, ParseException
-    {
-        this(file, methodName);
-        this.requiredClasses = requiredClasses;;
     }
 
     void analyse(MethodDeclaration methodDeclaration)
@@ -137,12 +130,12 @@ class SourceAnalyser
     ProblemType determineProblemType() {
         if(isRecursive)
         {
-            if(containsArray || containsRequiredClass) { return ProblemType.MEMOIZED; }
+            if(containsArray) { return ProblemType.MEMOIZED; }
             else { return ProblemType.RECURSIVE; }
         }
         else if(!isRecursive)
         {
-            if(containsArray || containsRequiredClass) { return ProblemType.ITERATIVE; }
+            if(containsArray) { return ProblemType.ITERATIVE; }
         }
         return ProblemType.UNDEFINED;
     }

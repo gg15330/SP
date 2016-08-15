@@ -5,13 +5,13 @@ org/dplib/Solver.class
 org/dplib/CustomOutputStream.class
 org/dplib/ClassAnalyser.class
 org/dplib/display/Controller$solveBtnListener.class
+org/dplib/ClassAnalyser$SubProcessInputStream.class
 org/dplib/display/Controller$1.class
 org/dplib/Launcher.class
 org/dplib/Result.class
 org/dplib/display/View.class
 org/dplib/SourceAnalyser$MethodDeclarationVisitor.class
 org/dplib/ProblemType.class
-org/dplib/ClassAnalyser$CompileStream.class
 org/dplib/IO.class
 org/dplib/SourceAnalyser$1.class
 org/dplib/display/Controller.class
