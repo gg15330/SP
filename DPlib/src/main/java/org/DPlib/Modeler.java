@@ -39,11 +39,13 @@ class Modeler
             model.setCallingMethodBody(callingMethodStatements);
 
             ClassAnalyser ca = new ClassAnalyser(sourceFile, sa.getClassName());
+            System.out.println("Analysing...");
             for(String input : inputs)
             {
                 Result result = ca.analyse(input);
                 model.addResult(result);
             }
+            System.out.println("Analysis complete.");
         }
         catch (AnalysisException e)
         {

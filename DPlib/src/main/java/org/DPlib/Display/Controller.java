@@ -61,7 +61,7 @@ public class Controller
         {
             try
             {
-                File javaFile = fileHandler.createJavaFile(view.getEditorText());
+                File javaFile = fileHandler.createTempJavaFile(view.getEditorText());
                 new Solver(model, javaFile, view, io).execute();
             }
             catch (IOException ioe)

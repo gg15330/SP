@@ -3,6 +3,7 @@ org/DPlib/Solver.class
 org/DPlib/Modeler.class
 org/DPlib/Result.class
 org/DPlib/Model.class
+org/DPlib/ClassAnalyser$CompileStream.class
 org/DPlib/Exception/AnalysisException.class
 org/DPlib/SourceAnalyser$MethodDeclarationVisitor.class
 org/DPlib/FileHandler.class
@@ -13,7 +14,6 @@ org/DPlib/SourceAnalyser.class
 org/DPlib/ClassAnalyser.class
 org/DPlib/Display/Controller$solveBtnListener.class
 org/DPlib/SourceAnalyser$1.class
-org/DPlib/ClassAnalyser$SubProcessStream.class
 org/DPlib/CustomOutputStream.class
 org/DPlib/IO.class
 org/DPlib/Display/Controller.class

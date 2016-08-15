@@ -48,11 +48,13 @@ extends SwingWorker<List<Result>, Void>
         ClassAnalyser ca = new ClassAnalyser(file, sa.getClassName());
         List<Result> studentResults = new ArrayList<>();
 
+        System.out.println("Analysing...");
         for (Result modelResult : model.getResults())
         {
             Result studentResult = ca.analyse(modelResult.getInput());
             studentResults.add(studentResult);
         }
+        System.out.println("Analysis complete.");
 
         return studentResults;
     }

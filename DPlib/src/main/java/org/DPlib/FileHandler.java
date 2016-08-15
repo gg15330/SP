@@ -22,8 +22,8 @@ public class FileHandler
         this.file = new File(file);
         checkValidFile(this.file, ext);
 
-        dir = this.file.getParentFile();
-        checkDir(dir);
+        this.dir = this.file.getParentFile();
+        checkDir(this.dir);
     }
 
     private void checkValidFile(File file, String extension)
@@ -56,10 +56,10 @@ public class FileHandler
 
     public void serializeModel(Model model)
     {
+        System.out.println("Creating model file...");
         try
         {
             File modelFile = new File(dir, (FilenameUtils.removeExtension(file.getName()) + ".mod"));
-            System.out.println("File path: " + file.getAbsolutePath());
             FileOutputStream fos = new FileOutputStream(modelFile);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(model);
@@ -70,6 +70,7 @@ public class FileHandler
         {
             i.printStackTrace();
         }
+        System.out.println("Model file created.");
     }
 
     public String[] parseInputTextFile(File f)
@@ -92,12 +93,13 @@ public class FileHandler
         return file;
     }
 
-    public File createJavaFile(String editorText)
+    public File createTempJavaFile(String editorText)
     throws IOException
     {
         File javaFile = new File(dir, "temp.java");
         javaFile.deleteOnExit();
-        FileWriter fileWriter = null;
+        FileWriter fileWriter;
+
         try
         {
             fileWriter = new FileWriter(javaFile);
@@ -108,16 +110,8 @@ public class FileHandler
         {
             throw new IOException("Could not create temp java file.");
         }
-        return javaFile;
-    }
 
-    public String getFileAsString()
-    throws IOException
-    {
-        FileInputStream fis = new FileInputStream(file);
-        String fileAsString =  IOUtils.toString(fis, "UTF-8");
-        fis.close();
-        return fileAsString;
+        return javaFile;
     }
 
     public Model deserializeModelFile()
@@ -126,14 +120,10 @@ public class FileHandler
         FileInputStream fis = new FileInputStream(file);
         ObjectInputStream in = new ObjectInputStream(fis);
         Model model;
-        try
-        {
-            model = (Model)in.readObject();
-        }
-        catch (ClassNotFoundException e)
-        {
-            throw new IOException(e);
-        }
+
+        try { model = (Model)in.readObject(); }
+        catch (ClassNotFoundException e) { throw new IOException(e); }
+
         in.close();
         fis.close();
         return model;

@@ -33,17 +33,9 @@ public class Launcher
                 case "model":
                     FileHandler fileHandler = new FileHandler(javaFilePath, "java");
                     FileHandler inputFileHandler = new FileHandler(inputFilePath, "txt");
-
-                    String[] input = inputFileHandler.parseInputTextFile(inputFileHandler.getFile());
-                    for(String s : input)
-                    {
-                        System.out.println("[INPUT] " + s);
-                    }
-
-                    Model model = new Modeler().model(fileHandler.getFile(), methodName, input);
-
+                    String[] inputs = inputFileHandler.parseInputTextFile(inputFileHandler.getFile());
+                    Model model = new Modeler().model(fileHandler.getFile(), methodName, inputs);
                     fileHandler.serializeModel(model);
-                    System.out.println("Model file created.");
                     break;
                 case "solve":
                     new Controller(modelFilePath).start();
