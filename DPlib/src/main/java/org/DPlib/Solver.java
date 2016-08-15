@@ -37,35 +37,50 @@ extends SwingWorker<List<Result>, Void>
     {
         SourceAnalyser sa = new SourceAnalyser(file, model.getMethodToAnalyseDeclaration());
         MethodDeclaration userCallingMethod = sa.findMethod("main");
-
         String[] userCallingMethodBody = toStringArray(userCallingMethod.getBody().getStmts());
 
-        if (userCallingMethodBody.length != model.getCallingMethodBody().length)
-        {
-            throw new Error("method body lengths do not match.");
-        }
-
-        for (int i = 0; i < userCallingMethodBody.length; i++)
-        {
-            if (!userCallingMethodBody[i].equals(model.getCallingMethodBody()[i]))
-            {
-                throw new AnalysisException("Submitted calling method \"" +
-                                                    userCallingMethod.getDeclarationAsString() +
-                                                    "\" does not match modelled calling method \"" +
-                                                    model.getCallingMethodDeclaration() + "\".");
-            }
-        }
+        checkMatchingMethodLengths(userCallingMethodBody, model.getCallingMethodBody());
+        checkMatchingMethodBodies(userCallingMethodBody,
+                                  model.getCallingMethodBody(),
+                                  userCallingMethod.getDeclarationAsString(),
+                                  model.getCallingMethodDeclaration());
 
         ClassAnalyser ca = new ClassAnalyser(file, sa.getClassName());
         List<Result> results = new ArrayList<>();
 
-        for (Result result2 : model.getResults())
+        for (Result r : model.getResults())
         {
-            Result result = ca.analyse(result2.getInput());
-            results.add(result);
+            results.add(ca.analyse(r.getInput()));
         }
 
         return results;
+    }
+
+    private void checkMatchingMethodLengths(String[] userCallingMethod, String[] tutorCallingMethod)
+    throws AnalysisException
+    {
+        if (userCallingMethod.length != tutorCallingMethod.length)
+        {
+            throw new AnalysisException("Method body lengths do not match: " +
+                                                userCallingMethod.length + " != " +
+                                                tutorCallingMethod.length);
+        }
+    }
+
+    private void checkMatchingMethodBodies(String[] userCallingMethod,
+                                           String[] tutorCallingMethod,
+                                           String userMethodDeclaration,
+                                           String modelMethodDeclaration)
+    throws AnalysisException
+    {
+        for (int i = 0; i < userCallingMethod.length; i++)
+        {
+            if (!userCallingMethod[i].equals(tutorCallingMethod[i]))
+            {
+                throw new AnalysisException("Submitted calling method \"" + userMethodDeclaration +
+                                            "\" does not match modelled calling method \"" + modelMethodDeclaration + "\".");
+            }
+        }
     }
 
     private String[] toStringArray(List<Statement> statements)
@@ -105,6 +120,12 @@ extends SwingWorker<List<Result>, Void>
             return;
         }
 
+        updateGraphs(results);
+        showResult(results);
+    }
+
+    private void updateGraphs(List<Result> results)
+    {
         DefaultCategoryDataset studentTimeDataset = new DefaultCategoryDataset();
         DefaultCategoryDataset studentOutputDataset = new DefaultCategoryDataset();
 
@@ -117,8 +138,6 @@ extends SwingWorker<List<Result>, Void>
 
         view.setExecutionTimeGraph(studentTimeDataset);
         view.setOutputGraph(studentOutputDataset);
-
-        showResult(results);
     }
 
     private void showResult(List<Result> results)
