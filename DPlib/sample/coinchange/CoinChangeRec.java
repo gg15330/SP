@@ -35,7 +35,6 @@ class CoinChangeRec
         for(int i = 0; i < coins.length; i++)
         {
             coins[i] = Integer.parseInt(args[i]);
-            System.out.println(coins[i]);
         }
 
         int m = coins.length;

@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dbf27813-b393-4f5c-a162-70ce6f80ac8c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DPlib/sample/coinchange/CoinChangeRec.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DPlib/sample/coinchange/inputs.txt" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/sample/fib/input.txt" afterPath="$PROJECT_DIR$/DPlib/sample/fib/inputs.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/sample/coinchange/CoinChangeRec.class" afterPath="$PROJECT_DIR$/DPlib/sample/coinchange/CoinChangeRec.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/sample/lis/LISDP.mod" afterPath="$PROJECT_DIR$/DPlib/sample/lis/LISDP.mod" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/sample/coinchange/CoinChangeRec.java" afterPath="$PROJECT_DIR$/DPlib/sample/coinchange/CoinChangeRec.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/sample/coinchange/CoinChangeRec.mod" afterPath="$PROJECT_DIR$/DPlib/sample/coinchange/CoinChangeRec.mod" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/sample/coinchange/inputs.txt" afterPath="$PROJECT_DIR$/DPlib/sample/coinchange/inputs.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/sample/lis/LISRec.mod" afterPath="$PROJECT_DIR$/DPlib/sample/lis/LISRec.mod" />
     </list>
     <ignored path="SP.iws" />
@@ -32,7 +32,7 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
+            <state relative-caret-position="53">
               <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
               <folding>
                 <element signature="class#solveBtnListener#0;class#Controller#0" expanded="false" />
@@ -73,11 +73,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CoinChangeRec.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CoinChangeRec.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DPlib/sample/coinchange/CoinChangeRec.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="33" column="46" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
+            <state relative-caret-position="441">
+              <caret line="36" column="49" selection-start-line="36" selection-start-column="49" selection-end-line="36" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="inputs.txt" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DPlib/sample/coinchange/inputs.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="14">
+              <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -152,7 +162,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Display/SwingView.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/SolverWorker.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/Display/SwingController.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/ggraver/DPlib/CustomOutputStream.java" />
@@ -203,6 +212,7 @@
         <option value="$PROJECT_DIR$/DPlib/sample/lis/LISRec.java" />
         <option value="$PROJECT_DIR$/DPlib/sample/lis/LISDP.java" />
         <option value="$PROJECT_DIR$/DPlib/sample/coinchange/CoinChangeRec.java" />
+        <option value="$PROJECT_DIR$/DPlib/sample/coinchange/inputs.txt" />
       </list>
     </option>
   </component>
@@ -222,7 +232,6 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1366" />
     <option name="y" value="18" />
     <option name="width" value="1366" />
     <option name="height" value="750" />
@@ -597,8 +606,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1366" y="18" width="1366" height="750" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="18" width="1366" height="750" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -607,7 +616,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40528634" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.48316252" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.6171303" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20717423" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -939,28 +948,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
-          <folding>
-            <element signature="class#solveBtnListener#0;class#Controller#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/sample/lis/LISRec.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="18" column="5" selection-start-line="6" selection-start-column="2" selection-end-line="18" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/sample/coinchange/inputs.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -983,10 +974,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="53">
+          <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
+          <folding>
+            <element signature="class#solveBtnListener#0;class#Controller#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/sample/coinchange/CoinChangeRec.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="33" column="46" selection-start-line="33" selection-start-column="46" selection-end-line="33" selection-end-column="46" />
+        <state relative-caret-position="441">
+          <caret line="36" column="49" selection-start-line="36" selection-start-column="49" selection-end-line="36" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/sample/coinchange/inputs.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14">
+          <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
           <folding />
         </state>
       </provider>
