@@ -1,5 +1,6 @@
 package org.dplib;
 
+import org.apache.commons.io.FilenameUtils;
 import org.dplib.exception.AnalysisException;
 import org.dplib.exception.CompileException;
 
@@ -11,27 +12,11 @@ import java.util.List;
 
 // generates .class files and analyses performance
 class ClassAnalyser
+extends SubProcess
 {
 
-    private String className;
-    private File classFile;
-
-    ClassAnalyser(File sourceFile, String className)
-    throws AnalysisException
-    {
-        try
-        {
-            this.className = className;
-            compile(sourceFile);
-        }
-        catch (CompileException e)
-        {
-            throw new AnalysisException(e);
-        }
-    }
-
     // analyse the compiled .class file for performance
-    Result analyse(String[] args)
+    List<Result> analyse(File classFile, String[][] inputs)
     throws AnalysisException
     {
         if (!classFile.exists() || classFile.length() == 0)
@@ -39,38 +24,40 @@ class ClassAnalyser
             throw new AnalysisException(".class file does not exist or is empty.");
         }
 
-        List<String> commands = new ArrayList<>();
-        commands.add("java");
-        commands.add(className);
-        commands.addAll(Arrays.asList(args));
+        List<Result> results = new ArrayList<>();
 
-        ProcessBuilder build = new ProcessBuilder(commands);
-        build.directory(classFile.getParentFile());
-        String output;
-        long start, end;
-
-        try
+        for(String[] input : inputs)
         {
-            start = System.currentTimeMillis();
-            Process p = build.start();
-            new SubProcessInputStream(p.getErrorStream()).start();
-            int result = p.waitFor();
-            if(result != 0) throw new AnalysisException("Program did not execute correctly - check code (and inputs if modeling a problem).");
-            end = System.currentTimeMillis();
+            List<String> commands = new ArrayList<>();
+            commands.add("java");
+            commands.add(FilenameUtils.removeExtension(classFile.getName()));
+            commands.addAll(Arrays.asList(input));
+
+            String output;
+            long start, end;
+            Process p;
+
+            try
+            {
+                start = System.currentTimeMillis();
+                p = subProcess(classFile.getParentFile(), commands);
+                redirectInputStream(p.getErrorStream());
+                if(p.waitFor() != 0) throw new AnalysisException("Program did not execute correctly - check code (and inputs if modeling a problem).");
+                end = System.currentTimeMillis();
+                output = fetchOutput(p.getInputStream());
+            }
+            catch (IOException | InterruptedException e) { throw new AnalysisException(e); }
+
             if ((end - start) < 0) { throw new Error("Execution time should not be less than 0."); }
-            output = fetchOutput(p.getInputStream());
-        }
-        catch (IOException | InterruptedException e)
-        {
-            throw new AnalysisException(e);
+
+            Result result = new Result();
+            result.setInput(input);
+            result.setOutput(output);
+            result.setExecutionTime(end - start);
+            results.add(result);
         }
 
-        Result result = new Result();
-        result.setInput(args);
-        result.setOutput(output);
-        result.setExecutionTime(end - start);
-
-        return result;
+        return results;
     }
 
     private String fetchOutput(InputStream inputStream)
@@ -90,66 +77,6 @@ class ClassAnalyser
         return sb.toString();
     }
 
-    // compile the user-submitted .java file for performance analysis
-    private void compile(File sourceFile)
-    throws CompileException
-    {
-        if (sourceFile == null) { throw new CompileException(".java file should not be null."); }
-        System.out.println("Compiling file: " + sourceFile.getPath());
-        Process p;
-        int result;
-
-        try
-        {
-            ProcessBuilder build = new ProcessBuilder("javac", sourceFile.getPath());
-            p = build.start();
-            new SubProcessInputStream(p.getInputStream()).start();
-            new SubProcessInputStream(p.getErrorStream()).start();
-            result = p.waitFor();
-        }
-        catch (IOException | InterruptedException e) { throw new Error(e); }
-
-        if (result != 0)
-        {
-            throw new CompileException("Could not compile .java file. Please ensure your .java file is valid.");
-        }
-
-        classFile = new File(sourceFile.getParent() + "/" + className + ".class");
-
-        if (!classFile.exists())
-        {
-            throw new CompileException("Could not find .class file.");
-        }
-        System.out.println(sourceFile.getName() + " compiled successfully.");
-    }
-
-//    adapted from http://www.javaworld.com/article/2071275/core-java/when-runtime-exec---won-t.html?page=2
-    private class SubProcessInputStream extends Thread
-    {
-        private InputStream inputStream;
-
-        SubProcessInputStream(InputStream inputStream)
-        {
-            this.inputStream = inputStream;
-        }
-
-        @Override
-        public void run()
-        {
-            try
-            {
-                BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-                String line;
-                while ((line = br.readLine()) != null)
-                {
-                    System.out.println(line);
-                }
-
-                br.close();
-            }
-            catch (IOException e) { throw new Error(e); }
-        }
-
-    }
+    //    adapted from http://www.javaworld.com/article/2071275/core-java/when-runtime-exec---won-t.html?page=2
 
 }

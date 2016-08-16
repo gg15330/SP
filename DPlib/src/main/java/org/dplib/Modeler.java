@@ -1,8 +1,10 @@
 package org.dplib;
 
 import com.github.javaparser.ParseException;
+import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.stmt.Statement;
+import org.dplib.exception.CompileException;
 import org.dplib.exception.ModelingException;
 import org.dplib.exception.AnalysisException;
 
@@ -27,6 +29,7 @@ class Modeler
 
         try
         {
+            System.out.println("Analysing source...");
             sa = new SourceAnalyser(sourceFile, methodName);
 
             model.setClassName(sa.getClassName());
@@ -41,27 +44,23 @@ class Modeler
 
 //            set method body for calling method as String array
             List<Statement> statements = new ArrayList<>(callingMethod.getBody().getStmts());
-            String[] callingMethodStatements = sa.StatementsToStringArray(statements);
+            String[] callingMethodStatements = sa.statementsToStringArray(statements);
             model.setCallingMethodBody(callingMethodStatements);
 
 //            set problem type
             sa.analyse();
             model.setType(sa.determineProblemType());
-            System.out.println("Problem type: " + sa.determineProblemType());
 
 //            create result set
-            ClassAnalyser ca = new ClassAnalyser(sourceFile, sa.getClassName());
-            System.out.println("Analysing...");
+            System.out.println("Analysing class...");
 
-            for(String[] args : inputs)
-            {
-                Result result = ca.analyse(args);
-                model.addResult(result);
-            }
+            File classFile = new SourceCompiler().compile(sourceFile, sa.getClassName());
+            List<Result> results = new ClassAnalyser().analyse(classFile, inputs);
+            model.setResults(results);
 
             System.out.println("Analysis complete.");
         }
-        catch (AnalysisException | ParseException | IOException e)
+        catch (CompileException | AnalysisException | ParseException | IOException e)
         {
             throw new ModelingException(e);
         }

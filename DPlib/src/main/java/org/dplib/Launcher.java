@@ -37,7 +37,9 @@ public class Launcher
                     String[][] inputs = inputFileHandler.parseInputTextFile(inputFileHandler.getFile());
                     Model model = new Modeler().model(fileHandler.getFile(), methodName, inputs);
                     io.displayResults(model.getResults());
+                    System.out.println("Creating model file...");
                     fileHandler.serializeModel(model);
+                    System.out.println("Model file created.");
                     break;
                 case "solve":
                     new Controller(modelFilePath).start();

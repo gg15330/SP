@@ -41,15 +41,9 @@ class SourceAnalyser
     void analyse()
     throws AnalysisException
     {
-        System.out.println("Analysing...");
         MethodDeclaration methodDeclaration = findMethod(methodName);
         isRecursive = isRecursive(methodDeclaration);
         containsArray = containsArray(methodDeclaration);
-
-        System.out.println("\nResults of analysis:" +
-                           "\nMethod declaration: " + methodDeclaration.getDeclarationAsString() +
-                           "\nRecursive: " + isRecursive +
-                           "\nContains array: " + containsArray + "\n");
     }
 
     MethodDeclaration findMethod(String methodName)
@@ -68,7 +62,7 @@ class SourceAnalyser
                                     "\" does not exist in source file.");
     }
 
-    boolean isRecursive(Node node)
+    private boolean isRecursive(Node node)
     {
         if (node instanceof MethodCallExpr)
         {
@@ -112,7 +106,7 @@ class SourceAnalyser
         return ProblemType.UNDEFINED;
     }
 
-    public String[] StatementsToStringArray(List<Statement> statements)
+    public String[] statementsToStringArray(List<Statement> statements)
     {
         String[] strings = new String[statements.size()];
 
@@ -132,6 +126,8 @@ class SourceAnalyser
     {
         return cu.getTypes().get(0).getName();
     }
+
+    String getMethodName() { return methodName; }
 
     public int getRecursiveCallLineNo()
     {
