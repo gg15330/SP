@@ -4,13 +4,9 @@ package org.dplib;
  * Created by george on 21/07/16.
  */
 
-import com.github.javaparser.ParseException;
-import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.visitor.ModifierVisitorAdapter;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.dplib.exception.AnalysisException;
 
 import java.io.File;
 import java.io.IOException;
@@ -71,10 +67,10 @@ public class FileHandlerTest
     {
 //        test invalid name
         try { fh = new FileHandler("INVALID", "java"); }
-        catch (Exception e) { assert(e.getMessage().equals("Could not find file: INVALID.java")); }
+        catch (Exception e) { assertEquals(e.getMessage(), "Could not find file: INVALID"); }
 //        test invalid extension
         try { fh = new FileHandler(testJavaFile.getPath(), "INVALID"); }
-        catch (Exception e) { assert(e.getMessage().equals("Input file \"src/test/resources/FibonacciDP.java\" does not match required file extension \"INVALID\".")); }
+        catch (Exception e) { assertEquals(e.getMessage(), "Input file \"src/test/resources/FibonacciDP.java\" does not match required file extension \"INVALID\"."); }
     }
 
     public static void test_constructor()

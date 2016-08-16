@@ -29,7 +29,7 @@ public class FileHandler
     {
         if (!file.exists())
         {
-            throw new IOException("Could not find file: " + file.getPath() + "." + extension);
+            throw new IOException("Could not find file: " + file.getPath());
         }
         if(file.isDirectory())
         {
