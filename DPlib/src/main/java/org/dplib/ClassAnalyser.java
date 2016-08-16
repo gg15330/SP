@@ -11,6 +11,7 @@ import java.util.List;
 
 // generates .class files and analyses performance
 class ClassAnalyser
+implements SubProcess
 {
 
     private String className;
@@ -31,7 +32,7 @@ class ClassAnalyser
     }
 
     // analyse the compiled .class file for performance
-    Result analyse(String[] args)
+    List<Result> analyse(String[][] inputs)
     throws AnalysisException
     {
         if (!classFile.exists() || classFile.length() == 0)
@@ -65,10 +66,12 @@ class ClassAnalyser
             throw new AnalysisException(e);
         }
 
+        List<Result> results;
         Result result = new Result();
         result.setInput(args);
         result.setOutput(output);
         result.setExecutionTime(end - start);
+        results.add(result);
 
         return result;
     }

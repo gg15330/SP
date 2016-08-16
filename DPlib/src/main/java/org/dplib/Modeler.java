@@ -50,8 +50,8 @@ class Modeler
             model.setType(sa.determineProblemType());
 
 //            create result set
-            ClassAnalyser ca = new ClassAnalyser(sourceFile, sa.getClassName());
             System.out.println("Analysing class...");
+            ClassAnalyser ca = new ClassAnalyser(sourceFile, sa.getClassName());
 
             for(String[] args : inputs)
             {
