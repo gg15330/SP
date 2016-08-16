@@ -7,6 +7,7 @@ org/dplib/display/Controller$solveBtnListener.class
 org/dplib/ClassAnalyser$SubProcessInputStream.class
 org/dplib/Launcher.class
 org/dplib/Result.class
+org/dplib/SourceCompiler.class
 org/dplib/display/View.class
 org/dplib/SourceAnalyser$MethodDeclarationVisitor.class
 org/dplib/ProblemType.class

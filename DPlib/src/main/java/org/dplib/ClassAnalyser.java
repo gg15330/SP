@@ -1,5 +1,6 @@
 package org.dplib;
 
+import org.apache.commons.io.FilenameUtils;
 import org.dplib.exception.AnalysisException;
 import org.dplib.exception.CompileException;
 
@@ -14,25 +15,8 @@ class ClassAnalyser
 implements SubProcess
 {
 
-    private String className;
-    private File classFile;
-
-    ClassAnalyser(File sourceFile, String className)
-    throws AnalysisException
-    {
-        try
-        {
-            this.className = className;
-            compile(sourceFile);
-        }
-        catch (CompileException e)
-        {
-            throw new AnalysisException(e);
-        }
-    }
-
     // analyse the compiled .class file for performance
-    List<Result> analyse(String[][] inputs)
+    List<Result> analyse(File classFile, String[][] inputs)
     throws AnalysisException
     {
         if (!classFile.exists() || classFile.length() == 0)
@@ -46,7 +30,7 @@ implements SubProcess
         {
             List<String> commands = new ArrayList<>();
             commands.add("java");
-            commands.add(className);
+            commands.add(FilenameUtils.removeExtension(classFile.getName()));
             commands.addAll(Arrays.asList(input));
 
             ProcessBuilder build = new ProcessBuilder(commands);
@@ -95,39 +79,6 @@ implements SubProcess
         br.close();
 
         return sb.toString();
-    }
-
-    // compile the user-submitted .java file for performance analysis
-    private void compile(File sourceFile)
-    throws CompileException
-    {
-        if (sourceFile == null) { throw new CompileException(".java file should not be null."); }
-        System.out.println("Compiling file: " + sourceFile.getPath());
-        Process p;
-        int result;
-
-        try
-        {
-            ProcessBuilder build = new ProcessBuilder("javac", sourceFile.getPath());
-            p = build.start();
-            new SubProcessInputStream(p.getInputStream()).start();
-            new SubProcessInputStream(p.getErrorStream()).start();
-            result = p.waitFor();
-        }
-        catch (IOException | InterruptedException e) { throw new Error(e); }
-
-        if (result != 0)
-        {
-            throw new CompileException("Could not compile .java file. Please ensure your .java file is valid.");
-        }
-
-        classFile = new File(sourceFile.getParent() + "/" + className + ".class");
-
-        if (!classFile.exists())
-        {
-            throw new CompileException("Could not find .class file.");
-        }
-        System.out.println(sourceFile.getName() + " compiled successfully.");
     }
 
 //    adapted from http://www.javaworld.com/article/2071275/core-java/when-runtime-exec---won-t.html?page=2

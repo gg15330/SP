@@ -1,8 +1,10 @@
 package org.dplib;
 
 import com.github.javaparser.ParseException;
+import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.stmt.Statement;
+import org.dplib.exception.CompileException;
 import org.dplib.exception.ModelingException;
 import org.dplib.exception.AnalysisException;
 
@@ -51,14 +53,14 @@ class Modeler
 
 //            create result set
             System.out.println("Analysing class...");
-            ClassAnalyser ca = new ClassAnalyser(sourceFile, sa.getClassName());
 
-            List<Result> results = ca.analyse(inputs);
+            File classFile = new SourceCompiler().compile(sourceFile, sa.getClassName());
+            List<Result> results = new ClassAnalyser().analyse(classFile, inputs);
             model.setResults(results);
 
             System.out.println("Analysis complete.");
         }
-        catch (AnalysisException | ParseException | IOException e)
+        catch (CompileException | AnalysisException | ParseException | IOException e)
         {
             throw new ModelingException(e);
         }

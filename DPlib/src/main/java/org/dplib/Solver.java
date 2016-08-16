@@ -4,6 +4,7 @@ import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import org.dplib.display.View;
 import org.dplib.exception.AnalysisException;
+import org.dplib.exception.CompileException;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import javax.swing.*;
@@ -52,13 +53,16 @@ extends SwingWorker<List<Result>, Void>
                                   userCallingMethod.getDeclarationAsString(),
                                   model.getCallingMethodDeclaration());
 
-        ClassAnalyser ca = new ClassAnalyser(file, sa.getClassName());
+        File classFile;
         System.out.println("Analysing...");
 
-        List<Result> studentResults = ca.analyse(fetchInputArray(model.getResults()));
+        try { classFile = new SourceCompiler().compile(file, sa.getClassName()); }
+        catch (CompileException e) { throw new AnalysisException(e); }
+        List<Result> results = new ClassAnalyser().analyse(classFile, fetchInputArray(model.getResults()));
+
         System.out.println("Analysis complete.");
 
-        return studentResults;
+        return results;
     }
 
     private String[][] fetchInputArray(List<Result> results)
