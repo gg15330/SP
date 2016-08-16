@@ -33,26 +33,22 @@ implements SubProcess
             commands.add(FilenameUtils.removeExtension(classFile.getName()));
             commands.addAll(Arrays.asList(input));
 
-            ProcessBuilder build = new ProcessBuilder(commands);
-            build.directory(classFile.getParentFile());
             String output;
             long start, end;
+            Process p;
 
             try
             {
                 start = System.currentTimeMillis();
-                Process p = build.start();
+                p = subProcess(classFile.getParentFile(), commands);
                 new SubProcessInputStream(p.getErrorStream()).start();
-                int result = p.waitFor();
-                if(result != 0) throw new AnalysisException("Program did not execute correctly - check code (and inputs if modeling a problem).");
+                if(p.waitFor() != 0) throw new AnalysisException("Program did not execute correctly - check code (and inputs if modeling a problem).");
                 end = System.currentTimeMillis();
-                if ((end - start) < 0) { throw new Error("Execution time should not be less than 0."); }
                 output = fetchOutput(p.getInputStream());
             }
-            catch (IOException | InterruptedException e)
-            {
-                throw new AnalysisException(e);
-            }
+            catch (IOException | InterruptedException e) { throw new AnalysisException(e); }
+
+            if ((end - start) < 0) { throw new Error("Execution time should not be less than 0."); }
 
             Result result = new Result();
             result.setInput(input);
@@ -81,7 +77,7 @@ implements SubProcess
         return sb.toString();
     }
 
-//    adapted from http://www.javaworld.com/article/2071275/core-java/when-runtime-exec---won-t.html?page=2
+    //    adapted from http://www.javaworld.com/article/2071275/core-java/when-runtime-exec---won-t.html?page=2
     private class SubProcessInputStream extends Thread
     {
         private InputStream inputStream;
