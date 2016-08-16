@@ -12,7 +12,7 @@ import java.util.List;
 
 // generates .class files and analyses performance
 class ClassAnalyser
-implements SubProcess
+extends SubProcess
 {
 
     // analyse the compiled .class file for performance
@@ -41,7 +41,7 @@ implements SubProcess
             {
                 start = System.currentTimeMillis();
                 p = subProcess(classFile.getParentFile(), commands);
-                new SubProcessInputStream(p.getErrorStream()).start();
+                redirectInputStream(p.getErrorStream());
                 if(p.waitFor() != 0) throw new AnalysisException("Program did not execute correctly - check code (and inputs if modeling a problem).");
                 end = System.currentTimeMillis();
                 output = fetchOutput(p.getInputStream());
@@ -78,32 +78,5 @@ implements SubProcess
     }
 
     //    adapted from http://www.javaworld.com/article/2071275/core-java/when-runtime-exec---won-t.html?page=2
-    private class SubProcessInputStream extends Thread
-    {
-        private InputStream inputStream;
-
-        SubProcessInputStream(InputStream inputStream)
-        {
-            this.inputStream = inputStream;
-        }
-
-        @Override
-        public void run()
-        {
-            try
-            {
-                BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-                String line;
-                while ((line = br.readLine()) != null)
-                {
-                    System.out.println(line);
-                }
-
-                br.close();
-            }
-            catch (IOException e) { throw new Error(e); }
-        }
-
-    }
 
 }

@@ -3,13 +3,12 @@ package org.dplib;
 import org.dplib.exception.CompileException;
 
 import java.io.*;
-import java.net.Inet4Address;
 
 /**
  * Created by george on 16/08/16.
  */
 public class SourceCompiler
-implements SubProcess
+extends SubProcess
 {
 
     // compile the user-submitted .java file for performance analysis
@@ -22,8 +21,8 @@ implements SubProcess
         try
         {
             p = subProcess(sourceFile.getParentFile(), "javac", sourceFile.getName());
-            new SubProcessInputStream(p.getInputStream()).start();
-            new SubProcessInputStream(p.getErrorStream()).start();
+            redirectInputStream(p.getInputStream());
+            redirectInputStream(p.getErrorStream());
             if (p.waitFor() != 0) { throw new CompileException("Could not compile .java file. Please ensure your .java file is valid."); }
         }
         catch (IOException | InterruptedException e) { throw new CompileException(e); }
@@ -35,32 +34,4 @@ implements SubProcess
         return classFile;
     }
 
-    //    adapted from http://www.javaworld.com/article/2071275/core-java/when-runtime-exec---won-t.html?page=2
-    private class SubProcessInputStream extends Thread
-    {
-        private InputStream inputStream;
-
-        SubProcessInputStream(InputStream inputStream)
-        {
-            this.inputStream = inputStream;
-        }
-
-        @Override
-        public void run()
-        {
-            try
-            {
-                BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-                String line;
-                while ((line = br.readLine()) != null)
-                {
-                    System.out.println(line);
-                }
-
-                br.close();
-            }
-            catch (IOException e) { throw new Error(e); }
-        }
-
-    }
 }

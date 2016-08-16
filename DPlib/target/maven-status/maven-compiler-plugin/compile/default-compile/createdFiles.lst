@@ -4,7 +4,6 @@ org/dplib/SourceAnalyser$MethodCallExprVisitor.class
 org/dplib/Solver.class
 org/dplib/CustomOutputStream.class
 org/dplib/display/Controller$solveBtnListener.class
-org/dplib/ClassAnalyser$SubProcessInputStream.class
 org/dplib/Launcher.class
 org/dplib/Result.class
 org/dplib/SourceCompiler.class
