@@ -27,6 +27,7 @@ class Modeler
 
         try
         {
+            System.out.println("Analysing source...");
             sa = new SourceAnalyser(sourceFile, methodName);
 
             model.setClassName(sa.getClassName());
@@ -41,17 +42,16 @@ class Modeler
 
 //            set method body for calling method as String array
             List<Statement> statements = new ArrayList<>(callingMethod.getBody().getStmts());
-            String[] callingMethodStatements = sa.StatementsToStringArray(statements);
+            String[] callingMethodStatements = sa.statementsToStringArray(statements);
             model.setCallingMethodBody(callingMethodStatements);
 
 //            set problem type
             sa.analyse();
             model.setType(sa.determineProblemType());
-            System.out.println("Problem type: " + sa.determineProblemType());
 
 //            create result set
             ClassAnalyser ca = new ClassAnalyser(sourceFile, sa.getClassName());
-            System.out.println("Analysing...");
+            System.out.println("Analysing class...");
 
             for(String[] args : inputs)
             {

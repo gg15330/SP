@@ -44,7 +44,7 @@ extends SwingWorker<List<Result>, Void>
         catch (ParseException | IOException e) { throw new AnalysisException(e); }
 
         MethodDeclaration userCallingMethod = sa.findMethod("main");
-        String[] userCallingMethodBody = sa.StatementsToStringArray(userCallingMethod.getBody().getStmts());
+        String[] userCallingMethodBody = sa.statementsToStringArray(userCallingMethod.getBody().getStmts());
 
         checkMatchingMethodLengths(userCallingMethodBody, model.getCallingMethodBody());
         checkMatchingMethodBodies(userCallingMethodBody,

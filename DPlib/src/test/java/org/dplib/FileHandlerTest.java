@@ -41,7 +41,7 @@ public class FileHandlerTest
             throw new Error("Test .java file does not exist.");
         }
 
-        invalidJavaFile = new File("src/test/resources/invalid.java");
+        invalidJavaFile = new File("src/test/resources/testInvalidJavaFile.java");
         if(!invalidJavaFile.exists()) {
             throw new Error("Test .java file (invalid) does not exist.");
         }
