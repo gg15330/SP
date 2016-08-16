@@ -9,7 +9,6 @@ org/dplib/Result.class
 org/dplib/SourceCompiler.class
 org/dplib/display/View.class
 org/dplib/SourceAnalyser$MethodDeclarationVisitor.class
-org/dplib/SourceCompiler$SubProcessInputStream.class
 org/dplib/ProblemType.class
 org/dplib/SourceAnalyser$1.class
 org/dplib/SourceAnalyser.class
