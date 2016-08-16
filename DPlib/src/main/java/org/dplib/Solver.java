@@ -53,17 +53,22 @@ extends SwingWorker<List<Result>, Void>
                                   model.getCallingMethodDeclaration());
 
         ClassAnalyser ca = new ClassAnalyser(file, sa.getClassName());
-        List<Result> studentResults = new ArrayList<>();
-
         System.out.println("Analysing...");
-        for (Result modelResult : model.getResults())
-        {
-            Result studentResult = ca.analyse(modelResult.getInput());
-            studentResults.add(studentResult);
-        }
+
+        List<Result> studentResults = ca.analyse(fetchInputArray(model.getResults()));
         System.out.println("Analysis complete.");
 
         return studentResults;
+    }
+
+    private String[][] fetchInputArray(List<Result> results)
+    {
+        String[][] inputs = new String[results.size()][];
+        for(int i = 0; i < results.size(); i++)
+        {
+            inputs[i] = results.get(i).getInput();
+        }
+        return inputs;
     }
 
     private void checkMatchingMethodLengths(String[] userCallingMethod, String[] tutorCallingMethod)

@@ -40,40 +40,44 @@ implements SubProcess
             throw new AnalysisException(".class file does not exist or is empty.");
         }
 
-        List<String> commands = new ArrayList<>();
-        commands.add("java");
-        commands.add(className);
-        commands.addAll(Arrays.asList(args));
+        List<Result> results = new ArrayList<>();
 
-        ProcessBuilder build = new ProcessBuilder(commands);
-        build.directory(classFile.getParentFile());
-        String output;
-        long start, end;
-
-        try
+        for(String[] input : inputs)
         {
-            start = System.currentTimeMillis();
-            Process p = build.start();
-            new SubProcessInputStream(p.getErrorStream()).start();
-            int result = p.waitFor();
-            if(result != 0) throw new AnalysisException("Program did not execute correctly - check code (and inputs if modeling a problem).");
-            end = System.currentTimeMillis();
-            if ((end - start) < 0) { throw new Error("Execution time should not be less than 0."); }
-            output = fetchOutput(p.getInputStream());
-        }
-        catch (IOException | InterruptedException e)
-        {
-            throw new AnalysisException(e);
+            List<String> commands = new ArrayList<>();
+            commands.add("java");
+            commands.add(className);
+            commands.addAll(Arrays.asList(input));
+
+            ProcessBuilder build = new ProcessBuilder(commands);
+            build.directory(classFile.getParentFile());
+            String output;
+            long start, end;
+
+            try
+            {
+                start = System.currentTimeMillis();
+                Process p = build.start();
+                new SubProcessInputStream(p.getErrorStream()).start();
+                int result = p.waitFor();
+                if(result != 0) throw new AnalysisException("Program did not execute correctly - check code (and inputs if modeling a problem).");
+                end = System.currentTimeMillis();
+                if ((end - start) < 0) { throw new Error("Execution time should not be less than 0."); }
+                output = fetchOutput(p.getInputStream());
+            }
+            catch (IOException | InterruptedException e)
+            {
+                throw new AnalysisException(e);
+            }
+
+            Result result = new Result();
+            result.setInput(input);
+            result.setOutput(output);
+            result.setExecutionTime(end - start);
+            results.add(result);
         }
 
-        List<Result> results;
-        Result result = new Result();
-        result.setInput(args);
-        result.setOutput(output);
-        result.setExecutionTime(end - start);
-        results.add(result);
-
-        return result;
+        return results;
     }
 
     private String fetchOutput(InputStream inputStream)

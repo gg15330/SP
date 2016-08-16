@@ -53,11 +53,8 @@ class Modeler
             System.out.println("Analysing class...");
             ClassAnalyser ca = new ClassAnalyser(sourceFile, sa.getClassName());
 
-            for(String[] args : inputs)
-            {
-                Result result = ca.analyse(args);
-                model.addResult(result);
-            }
+            List<Result> results = ca.analyse(inputs);
+            model.setResults(results);
 
             System.out.println("Analysis complete.");
         }

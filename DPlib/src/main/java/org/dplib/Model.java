@@ -52,6 +52,11 @@ implements Serializable
         return type;
     }
 
+    public void setResults(List<Result> results)
+    {
+        this.results = results;
+    }
+
 
 //    void setInstructionCount(long instructionCount)
 //    {
