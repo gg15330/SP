@@ -29,22 +29,22 @@ public class CodeGenerator
 
     private String createMethod(String declaration, String body)
     {
-        int indent = 0;
+        int indent = 1;
         StringBuilder sb = new StringBuilder();
-        sb.append(declaration + "\n");
-        for(int j = 0; j < indent; j++) { sb.append(indentString); }
-        for(int i = 2; i < body.length(); i++)
+
+        sb.append(declaration + " ");
+        String temp = body.replaceAll("    ", "");
+        System.out.println(temp);
+        String[] strings = temp.split("\n");
+        for(String s : strings)
         {
-            if(body.charAt(i-1) == '\n'
-            && body.charAt(i-2) == '{')
-            {
-                for(int j = 0; j < ++indent; j++) { sb.append(indentString); }
-            }
-            sb.append(body.charAt(i));
-            if(body.charAt(i-1) == '{') { indent++; }
-            if(body.charAt(i-1) == '}') { indent--; }
+            System.out.println("LINE: " + s);
+            if(s.contains("}")) { indent--; }
+            for(int i = 0; i < indent; i++) { sb.append(indentString); }
+            if(s.contains("{")) { indent++; }
+            sb.append(s + "\n");
         }
-        System.out.println(body);
+
         System.out.println(sb.toString());
         return sb.toString();
     }

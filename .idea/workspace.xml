@@ -86,8 +86,8 @@
       <file leaf-file-name="CodeGenerator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/CodeGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="35" column="21" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
+            <state relative-caret-position="14">
+              <caret line="7" column="45" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -209,7 +209,7 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="-750" />
+    <option name="y" value="274" />
     <option name="width" value="1366" />
     <option name="height" value="750" />
   </component>
@@ -588,7 +588,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-750" width="1366" height="750" extended-state="6" />
+    <frame x="0" y="274" width="1366" height="750" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1014,8 +1014,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/CodeGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="406">
-          <caret line="35" column="21" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
+        <state relative-caret-position="14">
+          <caret line="7" column="45" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="45" />
           <folding />
         </state>
       </provider>
