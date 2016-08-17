@@ -20,7 +20,6 @@ extends TestCase
 {
     private static Solver s;
     private static View testView = new View();
-    private static Model testModelInvalidLength = new Model();
     private static Model testInvalidModel = new Model();
     private static final IO io = new IO();
     private static File testJavaFile;
@@ -37,8 +36,7 @@ extends TestCase
         testJavaFile = new File("src/test/resources/FibonacciDP.java");
         if(!testJavaFile.exists()) { throw new Error("Test .java file does not exist."); }
 
-        testModelInvalidLength.setCallingMethodBody(new String[] { "test1"} );
-        testInvalidModel.setCallingMethodBody(new String[] { "test1", "test2"} );
+        testInvalidModel.setCallingMethodBody("test");
     }
 
     /**
@@ -53,18 +51,8 @@ extends TestCase
      * Rigourous Test :-)
      */
     public static void test_solve_exceptions() {
-//        test invalid method body length
-        s = new Solver(testModelInvalidLength, testJavaFile, testView, io); s.execute();
-        List<Result> results;
-        try { results = s.get(); throw new Error("Expected exception."); }
-        catch (Exception e)
-        {
-            assertEquals(ExecutionException.class, e.getClass());
-            assertEquals(AnalysisException.class, e.getCause().getClass());
-            assertEquals("Method body lengths do not match: 2 != 1", e.getCause().getMessage());
-        }
-
 //        test invalid model
+        List<Result> results;
         s = new Solver(testInvalidModel, testJavaFile, testView, io); s.execute();
         try { results = s.get(); throw new Error("Expected exception."); }
         catch (Exception e)

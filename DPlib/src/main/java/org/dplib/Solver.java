@@ -41,9 +41,8 @@ extends SwingWorker<List<Result>, Void>
         catch (ParseException | IOException e) { throw new AnalysisException(e); }
 
         MethodDeclaration userCallingMethod = sa.findMethod("main");
-        String[] userCallingMethodBody = sa.statementsToStringArray(userCallingMethod.getBody().getStmts());
+        String userCallingMethodBody = userCallingMethod.getBody().toString();
 
-        checkMatchingMethodLengths(userCallingMethodBody, model.getCallingMethodBody());
         checkMatchingMethodBodies(userCallingMethodBody,
                                   model.getCallingMethodBody(),
                                   userCallingMethod.getDeclarationAsString(),
@@ -71,30 +70,16 @@ extends SwingWorker<List<Result>, Void>
         return inputs;
     }
 
-    private void checkMatchingMethodLengths(String[] userCallingMethod, String[] tutorCallingMethod)
-    throws AnalysisException
-    {
-        if (userCallingMethod.length != tutorCallingMethod.length)
-        {
-            throw new AnalysisException("Method body lengths do not match: " +
-                                                userCallingMethod.length + " != " +
-                                                tutorCallingMethod.length);
-        }
-    }
-
-    private void checkMatchingMethodBodies(String[] userCallingMethod,
-                                           String[] tutorCallingMethod,
+    private void checkMatchingMethodBodies(String userCallingMethod,
+                                           String tutorCallingMethod,
                                            String userMethodDeclaration,
                                            String modelMethodDeclaration)
     throws AnalysisException
     {
-        for (int i = 0; i < userCallingMethod.length; i++)
+        if (!userCallingMethod.equals(tutorCallingMethod))
         {
-            if (!userCallingMethod[i].equals(tutorCallingMethod[i]))
-            {
-                throw new AnalysisException("Submitted calling method \"" + userMethodDeclaration +
-                                            "\" does not match modelled calling method \"" + modelMethodDeclaration + "\".");
-            }
+            throw new AnalysisException("Submitted calling method \"" + userMethodDeclaration +
+                                                "\" does not match modelled calling method \"" + modelMethodDeclaration + "\".");
         }
     }
 

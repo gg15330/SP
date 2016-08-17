@@ -15,7 +15,7 @@ implements Serializable
     private String className;
     private String methodToAnalyseDeclaration;
     private String callingMethodDeclaration;
-    private String[] callingMethodBody;
+    private String callingMethodBody;
     private List<Result> results = new ArrayList<>();
     private ProblemType type;
 
@@ -36,9 +36,9 @@ implements Serializable
     public void setCallingMethodDeclaration(String callingMethodDeclaration) { this.callingMethodDeclaration = callingMethodDeclaration; }
 
     public String getCallingMethodDeclaration() { return callingMethodDeclaration; }
-    public void setCallingMethodBody(String[] callingMethodBody) { this.callingMethodBody = callingMethodBody; }
+    public void setCallingMethodBody(String callingMethodBody) { this.callingMethodBody = callingMethodBody; }
 
-    public String[] getCallingMethodBody() { return callingMethodBody; }
+    public String getCallingMethodBody() { return callingMethodBody; }
 
     public List<Result> getResults() { return results; }
 

@@ -39,10 +39,8 @@ class Modeler
             MethodDeclaration callingMethod = sa.findMethod("main");
             model.setCallingMethodDeclaration(callingMethod.getDeclarationAsString());
 
-//            set method body for calling method as String array
-            List<Statement> statements = new ArrayList<>(callingMethod.getBody().getStmts());
-            String[] callingMethodStatements = sa.statementsToStringArray(statements);
-            model.setCallingMethodBody(callingMethodStatements);
+//            set method body for calling method
+            model.setCallingMethodBody(callingMethod.getBody().toString());
 
 //            set problem type
             sa.analyse();
