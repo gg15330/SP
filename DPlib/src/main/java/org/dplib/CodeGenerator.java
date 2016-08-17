@@ -5,7 +5,9 @@ package org.dplib;
  */
 public class CodeGenerator
 {
-    public String generate(String className, String callingMethodDeclaration, String[] callingMethodBody,
+    public String generate(String className,
+                           String callingMethodDeclaration,
+                           String callingMethodBody,
                            String methodToAnalyseDeclaration)
     {
         String string = "class " + className +
@@ -23,18 +25,10 @@ public class CodeGenerator
                 "\n    }");
     }
 
-    private String createMethod(String declaration, String[] body)
+    private String createMethod(String declaration, String body)
     {
         StringBuilder sb = new StringBuilder();
-        sb.append(declaration + " {");
-
-        for(String s : body)
-        {
-            sb.append("\n        " + s);
-        }
-
-        sb.append("\n    }");
-
+        sb.append(declaration + body);
         return sb.toString();
     }
 
