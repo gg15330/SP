@@ -5,7 +5,7 @@ package org.dplib;
  */
 public class CodeGenerator
 {
-    private final String indentString = "||||";
+    private final String indentString = "    ";
 
     public String generate(String className,
                            String callingMethodDeclaration,
@@ -15,7 +15,7 @@ public class CodeGenerator
         String string = "class " + className +
                 " {\n\n" + createMethod(methodToAnalyseDeclaration) +
                 "\n\n" + createMethod(callingMethodDeclaration, callingMethodBody) +
-                "\n\n}";
+                "\n}";
 
         return string;
     }
@@ -45,8 +45,6 @@ public class CodeGenerator
             if(trimmed.contains("{")) { indent++; }
             sb.append(trimmed + "\n");
         }
-
-        System.out.println(sb.toString());
         return sb.toString();
     }
 
