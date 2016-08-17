@@ -20,6 +20,7 @@ public class CodeGenerator
         return string;
     }
 
+//    method template
     private String createMethod(String declaration)
     {
         return (indentString + declaration + " {" +
@@ -27,13 +28,13 @@ public class CodeGenerator
                 "\n" + indentString + "}");
     }
 
+//    strip original formatting from method body and return as nicely formatted string
     private String createMethod(String declaration, String body)
     {
-        int indent = 1;
         StringBuilder sb = new StringBuilder();
-
         sb.append(indentString + declaration + "\n");
 
+        int indent = 1;
         String[] strings = body.split("\n");
 
         for(String s : strings)

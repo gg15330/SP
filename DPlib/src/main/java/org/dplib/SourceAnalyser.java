@@ -59,7 +59,7 @@ class SourceAnalyser
             }
         }
         throw new AnalysisException("expected MethodDeclaration \"" + methodName +
-                                    "\" does not exist in source file.");
+                                    "\" does not exist in source.");
     }
 
     private boolean isRecursive(Node node)
@@ -69,6 +69,7 @@ class SourceAnalyser
             MethodCallExpr mce = (MethodCallExpr) node;
             if (mce.getName().equals(methodName))
             {
+                System.out.println("Recursive function call found.");
                 recursiveCallLineNo = mce.getBeginLine();
                 return true;
             }

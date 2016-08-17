@@ -57,4 +57,8 @@ public class IO
                                    "does not match expected output \"" + tutorOutput + "\".\n");
     }
 
+    public void fail(ProblemType expectedType, ProblemType actualType)
+    {
+        System.out.println("\nFAIL: submitted solution is type: " + actualType + ". Required: " + expectedType + ".\n");
+    }
 }

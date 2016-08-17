@@ -23,6 +23,8 @@ extends SwingWorker<List<Result>, Void>
     private final File javaFile;
     private final View view;
     private final IO io;
+    private SourceAnalyser sa;
+    private ProblemType problemType;
 
     public Solver(Model model, File javaFile, View view, IO io)
     {
@@ -35,9 +37,8 @@ extends SwingWorker<List<Result>, Void>
     private List<Result> solve(Model model, File file)
     throws AnalysisException
     {
-        SourceAnalyser sa;
 
-        try { sa = new SourceAnalyser(file, model.getMethodToAnalyseDeclaration()); }
+        try { sa = new SourceAnalyser(file, model.getMethodToAnalyseName()); }
         catch (ParseException | IOException e) { throw new AnalysisException(e); }
 
         MethodDeclaration userCallingMethod = sa.findMethod("main");
@@ -49,6 +50,9 @@ extends SwingWorker<List<Result>, Void>
                                   model.getCallingMethodDeclaration());
 
         System.out.println("Analysing...");
+        sa.analyse();
+        problemType = sa.determineProblemType();
+
         File classFile;
 
         try { classFile = new SourceCompiler().compile(file, sa.getClassName()); }
@@ -106,6 +110,12 @@ extends SwingWorker<List<Result>, Void>
         catch (ExecutionException e)
         {
             io.exceptionMsg(new AnalysisException(e.getCause()));
+            return;
+        }
+
+        if(!problemType.equals(model.getType()))
+        {
+            io.fail(model.getType(), problemType);
             return;
         }
 
