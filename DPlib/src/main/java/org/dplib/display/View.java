@@ -213,7 +213,7 @@ public class View
         return editor.getText();
     }
 
-    void setEditorText(String s)
+    public void setEditorText(String s)
     {
         editor.setText(s);
     }

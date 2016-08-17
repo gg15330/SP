@@ -10,7 +10,6 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -33,15 +32,12 @@ extends SwingWorker<List<Result>, Void>
         this.io = io;
     }
 
-    public List<Result> solve(Model model, File file)
+    private List<Result> solve(Model model, File file)
     throws AnalysisException
     {
         SourceAnalyser sa;
 
-        try
-        {
-            sa = new SourceAnalyser(file, model.getMethodToAnalyseDeclaration());
-        }
+        try { sa = new SourceAnalyser(file, model.getMethodToAnalyseDeclaration()); }
         catch (ParseException | IOException e) { throw new AnalysisException(e); }
 
         MethodDeclaration userCallingMethod = sa.findMethod("main");
@@ -53,8 +49,8 @@ extends SwingWorker<List<Result>, Void>
                                   userCallingMethod.getDeclarationAsString(),
                                   model.getCallingMethodDeclaration());
 
-        File classFile;
         System.out.println("Analysing...");
+        File classFile;
 
         try { classFile = new SourceCompiler().compile(file, sa.getClassName()); }
         catch (CompileException e) { throw new AnalysisException(e); }
@@ -124,7 +120,7 @@ extends SwingWorker<List<Result>, Void>
         }
         catch (ExecutionException e)
         {
-            io.errorMsg(e.getCause());
+            io.exceptionMsg(new AnalysisException(e.getCause()));
             return;
         }
 

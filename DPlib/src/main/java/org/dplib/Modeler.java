@@ -1,7 +1,6 @@
 package org.dplib;
 
 import com.github.javaparser.ParseException;
-import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.stmt.Statement;
 import org.dplib.exception.CompileException;
@@ -19,8 +18,6 @@ import java.util.List;
 class Modeler
 {
 
-    private SourceAnalyser sa;
-
     Model model(File sourceFile, String methodName, String[][] inputs)
     throws ModelingException
     {
@@ -30,7 +27,7 @@ class Modeler
         try
         {
             System.out.println("Analysing source...");
-            sa = new SourceAnalyser(sourceFile, methodName);
+            SourceAnalyser sa = new SourceAnalyser(sourceFile, methodName);
 
             model.setClassName(sa.getClassName());
 

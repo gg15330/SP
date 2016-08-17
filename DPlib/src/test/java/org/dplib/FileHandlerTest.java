@@ -4,13 +4,9 @@ package org.dplib;
  * Created by george on 21/07/16.
  */
 
-import com.github.javaparser.ParseException;
-import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.visitor.ModifierVisitorAdapter;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.dplib.exception.AnalysisException;
 
 import java.io.File;
 import java.io.IOException;
@@ -70,11 +66,11 @@ public class FileHandlerTest
     public static void test_constructor_exceptions()
     {
 //        test invalid name
-        try { fh = new FileHandler("INVALID", "java"); }
-        catch (Exception e) { assert(e.getMessage().equals("Could not find file: INVALID.java")); }
+        try { fh = new FileHandler("INVALID", "java"); throw new Error("Expected Exception."); }
+        catch (Exception e) { assertEquals("Could not find file: INVALID", e.getMessage()); }
 //        test invalid extension
-        try { fh = new FileHandler(testJavaFile.getPath(), "INVALID"); }
-        catch (Exception e) { assert(e.getMessage().equals("Input file \"src/test/resources/FibonacciDP.java\" does not match required file extension \"INVALID\".")); }
+        try { fh = new FileHandler(testJavaFile.getPath(), "INVALID"); throw new Error("Expected Exception."); }
+        catch (Exception e) { assertEquals("Input file \"src/test/resources/FibonacciDP.java\" does not match required file extension \"INVALID\".", e.getMessage()); }
     }
 
     public static void test_constructor()
