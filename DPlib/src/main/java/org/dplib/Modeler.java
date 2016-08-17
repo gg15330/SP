@@ -19,8 +19,6 @@ import java.util.List;
 class Modeler
 {
 
-    private SourceAnalyser sa;
-
     Model model(File sourceFile, String methodName, String[][] inputs)
     throws ModelingException
     {
@@ -30,7 +28,7 @@ class Modeler
         try
         {
             System.out.println("Analysing source...");
-            sa = new SourceAnalyser(sourceFile, methodName);
+            SourceAnalyser sa = new SourceAnalyser(sourceFile, methodName);
 
             model.setClassName(sa.getClassName());
 
