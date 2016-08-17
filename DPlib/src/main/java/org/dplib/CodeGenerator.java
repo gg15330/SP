@@ -13,8 +13,8 @@ public class CodeGenerator
                            String methodToAnalyseDeclaration)
     {
         String string = "class " + className +
-                " {\n\n    " + createMethod(methodToAnalyseDeclaration) +
-                "\n\n    " + createMethod(callingMethodDeclaration, callingMethodBody) +
+                " {\n\n" + createMethod(methodToAnalyseDeclaration) +
+                "\n\n" + createMethod(callingMethodDeclaration, callingMethodBody) +
                 "\n\n}";
 
         return string;
@@ -22,9 +22,9 @@ public class CodeGenerator
 
     private String createMethod(String declaration)
     {
-        return (declaration + " {" +
-                "\n        // Your code here" +
-                "\n    }");
+        return (indentString + declaration + " {" +
+                "\n" + indentString + indentString + "// Your code here" +
+                "\n" + indentString + "}");
     }
 
     private String createMethod(String declaration, String body)
@@ -32,17 +32,18 @@ public class CodeGenerator
         int indent = 1;
         StringBuilder sb = new StringBuilder();
 
-        sb.append(declaration + " ");
-        String temp = body.replaceAll("    ", "");
-        System.out.println(temp);
-        String[] strings = temp.split("\n");
+        sb.append(indentString + declaration + "\n");
+
+        String[] strings = body.split("\n");
+
         for(String s : strings)
         {
-            System.out.println("LINE: " + s);
-            if(s.contains("}")) { indent--; }
+            String trimmed = s.trim();
+
+            if(trimmed.contains("}")) { indent--; }
             for(int i = 0; i < indent; i++) { sb.append(indentString); }
-            if(s.contains("{")) { indent++; }
-            sb.append(s + "\n");
+            if(trimmed.contains("{")) { indent++; }
+            sb.append(trimmed + "\n");
         }
 
         System.out.println(sb.toString());
