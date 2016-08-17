@@ -32,15 +32,12 @@ extends SwingWorker<List<Result>, Void>
         this.io = io;
     }
 
-    public List<Result> solve(Model model, File file)
+    private List<Result> solve(Model model, File file)
     throws AnalysisException
     {
         SourceAnalyser sa;
 
-        try
-        {
-            sa = new SourceAnalyser(file, model.getMethodToAnalyseDeclaration());
-        }
+        try { sa = new SourceAnalyser(file, model.getMethodToAnalyseDeclaration()); }
         catch (ParseException | IOException e) { throw new AnalysisException(e); }
 
         MethodDeclaration userCallingMethod = sa.findMethod("main");
@@ -52,8 +49,8 @@ extends SwingWorker<List<Result>, Void>
                                   userCallingMethod.getDeclarationAsString(),
                                   model.getCallingMethodDeclaration());
 
-        File classFile;
         System.out.println("Analysing...");
+        File classFile;
 
         try { classFile = new SourceCompiler().compile(file, sa.getClassName()); }
         catch (CompileException e) { throw new AnalysisException(e); }

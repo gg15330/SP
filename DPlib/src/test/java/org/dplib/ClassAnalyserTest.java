@@ -55,7 +55,7 @@ public class ClassAnalyserTest
      */
     public static Test suite()
     {
-        return new TestSuite( ClassAnalyserTest.class );
+        return new TestSuite( SolverTest.class );
     }
 
     /**

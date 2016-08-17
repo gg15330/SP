@@ -1,4 +1,5 @@
 org/dplib/ClassAnalyserTest.class
 org/dplib/FileHandlerTest.class
+org/dplib/SolverTest.class
 org/dplib/SourceAnalyserTest.class
 org/dplib/SourceCompilerTest.class

@@ -8,6 +8,7 @@ import java.util.List;
  */
 public abstract class SubProcess
 {
+
     Process subProcess(File dir, String... commands)
     throws IOException
     {
@@ -32,10 +33,7 @@ public abstract class SubProcess
             {
                 BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
                 String line;
-                while ((line = br.readLine()) != null)
-                {
-                    System.out.println(line);
-                }
+                while ((line = br.readLine()) != null) { System.out.println(line); }
                 br.close();
             }
             catch (IOException e) { throw new Error(e); }
