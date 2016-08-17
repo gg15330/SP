@@ -9,7 +9,7 @@ import java.util.List;
 public abstract class SubProcess
 {
     Process subProcess(File dir, String... commands)
-    throws IOException, InterruptedException
+    throws IOException
     {
         ProcessBuilder build = new ProcessBuilder(commands);
         build.directory(dir);
@@ -18,7 +18,7 @@ public abstract class SubProcess
     }
 
     Process subProcess(File dir, List<String> commands)
-    throws IOException, InterruptedException
+    throws IOException
     {
         return subProcess(dir, commands.toArray(new String[commands.size()]));
     }

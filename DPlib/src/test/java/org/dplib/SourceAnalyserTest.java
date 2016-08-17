@@ -40,30 +40,22 @@ public class SourceAnalyserTest
      */
     public SourceAnalyserTest(String testName)
     {
-        super( testName );
+        super(testName);
 
         testRecursiveJavaFile = new File("src/test/resources/FibonacciRecursive.java");
-        if(!testRecursiveJavaFile.exists()) {
-            throw new Error("Test recursive .java file does not exist.");
-        }
+        if (!testRecursiveJavaFile.exists()) { throw new Error("Test recursive .java file does not exist."); }
+
         testMemoizedJavaFile = new File("src/test/resources/FibonacciMemo.java");
-        if(!testMemoizedJavaFile.exists()) {
-            throw new Error("Test memoized .java file does not exist.");
-        }
+        if (!testMemoizedJavaFile.exists()) { throw new Error("Test memoized .java file does not exist."); }
+
         testIterativeJavaFile = new File("src/test/resources/FibonacciDP.java");
-        if(!testIterativeJavaFile.exists()) {
-            throw new Error("Test iterative .java file does not exist.");
-        }
+        if (!testIterativeJavaFile.exists()) { throw new Error("Test iterative .java file does not exist."); }
+
         testUndefinedJavaFile = new File("src/test/resources/FibonacciUndefined.java");
-        if(!testUndefinedJavaFile.exists()) {
-            throw new Error("Test undefined .java file does not exist.");
-        }
+        if (!testUndefinedJavaFile.exists()) { throw new Error("Test undefined .java file does not exist."); }
 
         testInvalidJavaFile = new File("src/test/resources/testInvalidJavaFile.java");
-        if(!testInvalidJavaFile.exists()) {
-            throw new Error("Test .java file (invalid) does not exist.");
-        }
-
+        if (!testInvalidJavaFile.exists()) { throw new Error("Test .java file (invalid) does not exist."); }
     }
 
     /**
@@ -71,42 +63,46 @@ public class SourceAnalyserTest
      */
     public static Test suite()
     {
-        return new TestSuite( SourceAnalyserTest.class );
+        return new TestSuite(SourceAnalyserTest.class);
     }
 
     /**
      * Rigourous Test :-)
      */
-
-    public static void test_constructor_exceptions() {
-        try { sa = new SourceAnalyser(null, null); }
+    public static void test_constructor_exceptions()
+    {
+        try { sa = new SourceAnalyser(null, null); throw new Error("Expected Exception."); }
         catch (Exception e) { assertEquals(NullPointerException.class, e.getClass()); }
-        try { sa = new SourceAnalyser(new File("INVALID"), null); }
-        catch (Exception e) { assertEquals( FileNotFoundException.class, e.getClass()); }
-        try { sa = new SourceAnalyser(testInvalidJavaFile, null); }
-        catch (Exception e) { assertEquals( ParseException.class, e.getClass()); }
+        try { sa = new SourceAnalyser(new File("INVALID"), null); throw new Error("Expected Exception."); }
+        catch (Exception e) { assertEquals(FileNotFoundException.class, e.getClass()); }
+        try { sa = new SourceAnalyser(testInvalidJavaFile, null); throw new Error("Expected Exception."); }
+        catch (Exception e) { assertEquals(ParseException.class, e.getClass()); }
     }
 
-    public static void test_constructor() {
+    public static void test_constructor()
+    {
         try { sa = new SourceAnalyser(testIterativeJavaFile, "test"); } catch (Exception e) { throw new Error(e); }
         assertEquals("test", sa.getMethodName());
         assertEquals("FibonacciDP", sa.getCompilationUnit().getTypes().get(0).getName());
     }
 
-    public static void test_findMethod_exceptions() {
+    public static void test_findMethod_exceptions()
+    {
         try { sa = new SourceAnalyser(testIterativeJavaFile, "test"); } catch (Exception e) { throw new Error(e); }
-        try { MethodDeclaration md = sa.findMethod("INVALID"); }
-        catch (AnalysisException e) { assertEquals(e.getMessage(), "expected MethodDeclaration \"INVALID\" does not exist in source file."); }
+        try { MethodDeclaration md = sa.findMethod("INVALID"); throw new Error("Expected AnalysisException."); }
+        catch (AnalysisException e) { assertEquals("expected MethodDeclaration \"INVALID\" does not exist in source file.", e.getMessage()); }
     }
 
-    public static void test_findMethod() {
+    public static void test_findMethod()
+    {
         try { sa = new SourceAnalyser(testIterativeJavaFile, "fibDP"); } catch (Exception e) { throw new Error(e); }
         MethodDeclaration md;
         try { md = sa.findMethod("fibDP"); } catch (AnalysisException e) { throw new Error(e); }
         assertEquals("fibDP", md.getName());
     }
 
-    public static void test_determineProblemType() {
+    public static void test_determineProblemType()
+    {
 //        test recursive type
         try { sa = new SourceAnalyser(testRecursiveJavaFile, "fibRec"); } catch (Exception e) { throw new Error(e); }
         try { sa.analyse(); } catch (AnalysisException e) { throw new Error(e); }
@@ -123,7 +119,11 @@ public class SourceAnalyserTest
         assertEquals(ProblemType.ITERATIVE, sa.determineProblemType());
 
 //        test undefined type
-        try { sa = new SourceAnalyser(testUndefinedJavaFile, "fibUndefined"); } catch (Exception e) { throw new Error(e); }
+        try { sa = new SourceAnalyser(testUndefinedJavaFile, "fibUndefined"); }
+        catch (Exception e)
+        {
+            throw new Error(e);
+        }
         try { sa.analyse(); } catch (AnalysisException e) { throw new Error(e); }
         assertEquals(ProblemType.UNDEFINED, sa.determineProblemType());
     }
@@ -136,18 +136,6 @@ public class SourceAnalyserTest
         List<Statement> statements = new ArrayList<>(md.getBody().getStmts());
         assertEquals("int n = Integer.parseInt(args[0]);", sa.statementsToStringArray(statements)[0]);
         assertEquals("System.out.println(fibDP(n));", sa.statementsToStringArray(statements)[1]);
-    }
-
-    public static void test_parse_IOException() {
-//        parseSetup();
-//        Throwable t;
-//        try {
-//            sa = new SourceAnalyser(new File("src/"), null);
-//            throw new Error("Expected ParseException.");
-//        } catch (Throwable ex) {
-//            t = ex;
-//        }
-//        assertTrue(t instanceof IOException);
     }
 
 }

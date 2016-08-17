@@ -7,7 +7,7 @@ import java.io.*;
 /**
  * Created by george on 16/08/16.
  */
-public class SourceCompiler
+class SourceCompiler
 extends SubProcess
 {
 
@@ -28,7 +28,7 @@ extends SubProcess
         catch (IOException | InterruptedException e) { throw new CompileException(e); }
 
         File classFile = new File(sourceFile.getParent() + "/" + className + ".class");
-        if (!classFile.exists()) { throw new CompileException("Could not find .class file."); }
+        if (!classFile.exists()) { throw new CompileException("Could not find .class file: " + className); }
         System.out.println(sourceFile.getName() + " compiled successfully.");
 
         return classFile;

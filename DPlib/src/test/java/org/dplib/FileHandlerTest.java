@@ -66,11 +66,11 @@ public class FileHandlerTest
     public static void test_constructor_exceptions()
     {
 //        test invalid name
-        try { fh = new FileHandler("INVALID", "java"); }
-        catch (Exception e) { assertEquals(e.getMessage(), "Could not find file: INVALID"); }
+        try { fh = new FileHandler("INVALID", "java"); throw new Error("Expected Exception."); }
+        catch (Exception e) { assertEquals("Could not find file: INVALID", e.getMessage()); }
 //        test invalid extension
-        try { fh = new FileHandler(testJavaFile.getPath(), "INVALID"); }
-        catch (Exception e) { assertEquals(e.getMessage(), "Input file \"src/test/resources/FibonacciDP.java\" does not match required file extension \"INVALID\"."); }
+        try { fh = new FileHandler(testJavaFile.getPath(), "INVALID"); throw new Error("Expected Exception."); }
+        catch (Exception e) { assertEquals("Input file \"src/test/resources/FibonacciDP.java\" does not match required file extension \"INVALID\".", e.getMessage()); }
     }
 
     public static void test_constructor()
