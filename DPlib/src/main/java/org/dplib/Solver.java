@@ -10,7 +10,6 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -124,7 +123,7 @@ extends SwingWorker<List<Result>, Void>
         }
         catch (ExecutionException e)
         {
-            io.errorMsg(e.getCause());
+            io.exceptionMsg(e.getCause());
             return;
         }
 

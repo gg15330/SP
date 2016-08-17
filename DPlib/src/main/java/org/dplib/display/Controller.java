@@ -66,7 +66,7 @@ public class Controller
             }
             catch (IOException ioe)
             {
-                io.errorMsg(ioe);
+                io.exceptionMsg(ioe);
             }
         }
 
