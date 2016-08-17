@@ -123,7 +123,7 @@ extends SwingWorker<List<Result>, Void>
         }
         catch (ExecutionException e)
         {
-            io.exceptionMsg(e.getCause());
+            io.exceptionMsg(new AnalysisException(e.getCause()));
             return;
         }
 
