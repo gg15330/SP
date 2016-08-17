@@ -46,7 +46,7 @@ extends TestCase
      */
     public static Test suite()
     {
-        return new TestSuite( SolverTest.class );
+        return new TestSuite( ModelerTest.class );
     }
 
     /**
