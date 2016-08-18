@@ -1,10 +1,9 @@
 org/dplib/analyse/Analysis.class
 org/dplib/Solver.class
+org/dplib/display/Controller$solveBtnListener.class
 org/dplib/analyse/SourceAnalyser.class
-org/dplib/display/GUIController$1.class
 org/dplib/Launcher.class
 org/dplib/analyse/SourceAnalyser$MethodDeclarationVisitor.class
-org/dplib/display/GUIController.class
 org/dplib/display/View.class
 org/dplib/analyse/SourceAnalyser$MethodCallExprVisitor.class
 org/dplib/analyse/ProblemType.class
@@ -13,13 +12,14 @@ org/dplib/FileHandler.class
 org/dplib/io/CustomOutputStream.class
 org/dplib/analyse/Result.class
 org/dplib/io/IO.class
+org/dplib/display/Controller$1.class
 org/dplib/io/CodeGenerator.class
 org/dplib/compile/SourceCompiler.class
 org/dplib/analyse/Model.class
 org/dplib/analyse/ClassAnalyser.class
-org/dplib/display/GUIController$solveBtnListener.class
 org/dplib/analyse/SourceAnalyser$1.class
 org/dplib/compile/CompileException.class
+org/dplib/display/Controller.class
 org/dplib/Modeler.class
 org/dplib/SubProcess.class
 org/dplib/analyse/AnalysisException.class
