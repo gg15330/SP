@@ -9,6 +9,7 @@ import org.dplib.display.View;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import javax.swing.*;
+import javax.xml.transform.Source;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -35,6 +36,7 @@ implements PropertyChangeListener
     private final FileHandler fileHandler = new FileHandler();
     private Model model;
     private Solver solver;
+    private File modelFile;
 
     public static void main(String[] args)
     {
@@ -49,11 +51,18 @@ implements PropertyChangeListener
         {
             switch (command) {
                 case "model":
+                    System.out.println("Creating model file...");
+
                     File sourceFile = fileHandler.locateFile(javaFilePath, "java");
-                    modelProblem(sourceFile);
+                    File inputFile = fileHandler.locateFile(inputFilePath, "txt");
+                    model = new Modeler().model(sourceFile, inputFile, methodName, fileHandler);
+
+                    fileHandler.serializeModel(model, sourceFile.getParentFile());
+                    System.out.println("Model file created.");
+                    io.displayResults(model.getResults());
                     break;
                 case "solve":
-                    File modelFile = fileHandler.locateFile(modelFilePath, "mod");
+                    modelFile = fileHandler.locateFile(modelFilePath, "mod");
                     model = fileHandler.deserializeModelFile(modelFile);
                     startGUI();
                     break;
@@ -67,54 +76,10 @@ implements PropertyChangeListener
         }
     }
 
-    private void modelProblem(File sourceFile)
-    throws ModelingException
-    {
-        SourceAnalyser sa;
-        MethodDeclaration methodToAnalyse;
-        MethodDeclaration callingMethod;
-        List<Result> results;
-        try
-        {
-            sa = new SourceAnalyser();
-            sa.parse(sourceFile);
-
-            methodToAnalyse = sa.locateMethod(methodName);
-            callingMethod = sa.locateMethod("main");
-
-            File classFile = new SourceCompiler().compile(sourceFile, sa.getClassName());
-            File inputFile = fileHandler.locateFile(inputFilePath, "txt");
-            String[][] inputs = fileHandler.parseInputTextFile(inputFile);
-            results = new ClassAnalyser().analyse(classFile, inputs);
-        }
-        catch (IOException | ParseException | CompileException | AnalysisException e)
-        {
-            throw new ModelingException(e);
-        }
-
-        System.out.println("Creating model file...");
-        Model model = new Modeler().model(sa.getClassName(),
-                                          methodToAnalyse,
-                                          callingMethod,
-                                          sa.determineProblemType(methodToAnalyse),
-                                          results);
-
-        fileHandler.serializeModel(model, sourceFile.getParentFile());
-        System.out.println("Model file created.");
-        io.displayResults(model.getResults());
-    }
-
     private void startGUI()
     {
-        DefaultCategoryDataset tutorTimeDataset = new DefaultCategoryDataset();
-        DefaultCategoryDataset tutorOutputDataset = new DefaultCategoryDataset();
-
-        for(int i = 0; i < model.getResults().size(); i++)
-        {
-            Result r = model.getResults().get(i);
-            tutorTimeDataset.addValue(r.getExecutionTime(), "Tutor", String.valueOf(i));
-            tutorOutputDataset.addValue(Long.parseLong(r.getOutput()), "Tutor", String.valueOf(i));
-        }
+        DefaultCategoryDataset tutorTimeDataset = createDataset(model, "time");
+        DefaultCategoryDataset tutorOutputDataset = createDataset(model, "output");
 
         view.addSolveBtnListener(new solveBtnListener());
         view.setTutorTimeData(tutorTimeDataset);
@@ -125,6 +90,27 @@ implements PropertyChangeListener
                                                         model.getMethodToAnalyseDeclaration()));
 
         SwingUtilities.invokeLater(view::createAndShowGUI);
+    }
+
+    private DefaultCategoryDataset createDataset(Model model, String type)
+    {
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+
+        for(int i = 0; i < model.getResults().size(); i++)
+        {
+            Result r = model.getResults().get(i);
+
+            if("time".equals(type))
+            {
+                dataset.addValue(r.getExecutionTime(), "Tutor", String.valueOf(i));
+            }
+            else if("output".equals(type))
+            {
+                dataset.addValue(Long.parseLong(r.getOutput()), "Tutor", String.valueOf(i));
+            }
+        }
+
+        return dataset;
     }
 
     private void processArgs(String[] args)

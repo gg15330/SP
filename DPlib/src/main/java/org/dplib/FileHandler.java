@@ -35,7 +35,7 @@ public class FileHandler
         return file;
     }
 
-    public File createTempJavaFile(String editorText)
+    public File createTempJavaFile(String className, String editorText)
     throws IOException
     {
         File javaFile = new File("temp.java");
