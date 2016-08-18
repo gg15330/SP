@@ -3,7 +3,9 @@ package org.dplib;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.dplib.exception.AnalysisException;
+import org.dplib.analyse.ClassAnalyser;
+import org.dplib.analyse.Result;
+import org.dplib.analyse.AnalysisException;
 
 import java.io.File;
 import java.io.IOException;

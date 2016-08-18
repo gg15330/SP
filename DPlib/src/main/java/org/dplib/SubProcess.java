@@ -9,7 +9,7 @@ import java.util.List;
 public abstract class SubProcess
 {
 
-    Process subProcess(File dir, String... commands)
+    protected Process subProcess(File dir, String... commands)
     throws IOException
     {
         ProcessBuilder build = new ProcessBuilder(commands);
@@ -18,14 +18,14 @@ public abstract class SubProcess
         return p;
     }
 
-    Process subProcess(File dir, List<String> commands)
+    protected Process subProcess(File dir, List<String> commands)
     throws IOException
     {
         return subProcess(dir, commands.toArray(new String[commands.size()]));
     }
 
 //    adapted from http://www.javaworld.com/article/2071275/core-java/when-runtime-exec---won-t.html?page=2
-    void redirectInputStream(InputStream inputStream)
+    protected void redirectInputStream(InputStream inputStream)
     {
         Runnable runnable = () ->
         {

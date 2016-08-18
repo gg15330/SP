@@ -2,9 +2,12 @@ package org.dplib;
 
 import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.body.MethodDeclaration;
+import org.dplib.analyse.*;
+import org.dplib.compile.SourceCompiler;
 import org.dplib.display.View;
-import org.dplib.exception.AnalysisException;
-import org.dplib.exception.CompileException;
+import org.dplib.analyse.AnalysisException;
+import org.dplib.compile.CompileException;
+import org.dplib.io.IO;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import javax.swing.*;
@@ -141,7 +144,6 @@ extends SwingWorker<Analysis, Void>
         if(!analysis.getProblemType().equals(model.getProblemType()))
         {
             io.fail(model.getProblemType(), analysis.getProblemType());
-            return;
         }
 
         for(int i = 0; i < analysis.getResults().size(); i++)
