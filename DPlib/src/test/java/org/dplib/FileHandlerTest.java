@@ -85,7 +85,7 @@ public class FileHandlerTest
         try { fh = new FileHandler(testJavaFile.getPath(), "java"); }
         catch (IOException e) { throw new Error(e); }
         assertEquals(0, fh.serializeModel(testModel));
-        File f = new File("src/test/resources/testModelFile.mod");
+        File f = new File("src/test/resources/FibonacciDP.mod");
         assertTrue(f.exists()); f.delete();
     }
 
