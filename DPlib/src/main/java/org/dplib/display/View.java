@@ -1,6 +1,6 @@
 package org.dplib.display;
 
-import org.dplib.CustomOutputStream;
+import org.dplib.io.CustomOutputStream;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;

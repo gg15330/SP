@@ -1,6 +1,7 @@
 package org.dplib;
 
 import org.apache.commons.io.FilenameUtils;
+import org.dplib.analyse.Model;
 
 import java.io.*;
 import java.util.ArrayList;

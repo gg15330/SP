@@ -5,15 +5,14 @@ package org.dplib;
  */
 
 import com.github.javaparser.ParseException;
-import com.github.javaparser.StreamProvider;
 import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.stmt.ForStmt;
-import com.github.javaparser.ast.stmt.IfStmt;
 import com.github.javaparser.ast.stmt.Statement;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.dplib.exception.AnalysisException;
+import org.dplib.analyse.ProblemType;
+import org.dplib.analyse.SourceAnalyser;
+import org.dplib.analyse.AnalysisException;
 
 import java.io.File;
 import java.io.FileNotFoundException;

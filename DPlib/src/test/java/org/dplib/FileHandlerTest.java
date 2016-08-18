@@ -7,6 +7,7 @@ package org.dplib;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import org.dplib.analyse.Model;
 
 import java.io.File;
 import java.io.IOException;
@@ -93,7 +94,7 @@ public class FileHandlerTest
     {
         try { fh = new FileHandler(testModelFile.getPath(), "mod"); }
         catch (IOException e) { throw new Error(e); }
-        assertEquals("Test", fh.deserializeModelFile().getClassName());
+        assertEquals("FibonacciDP", fh.deserializeModelFile().getClassName());
     }
 
 }

@@ -2,23 +2,25 @@ package org.dplib;
 
 import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.stmt.Statement;
-import org.dplib.exception.CompileException;
-import org.dplib.exception.ModelingException;
-import org.dplib.exception.AnalysisException;
+import org.dplib.compile.SourceCompiler;
+import org.dplib.analyse.ClassAnalyser;
+import org.dplib.analyse.Model;
+import org.dplib.analyse.Result;
+import org.dplib.analyse.SourceAnalyser;
+import org.dplib.compile.CompileException;
+import org.dplib.analyse.AnalysisException;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by george on 22/07/16.
  */
 // constructs a new Model object which contains one method to analyse in the Solver
-class Modeler
+public class Modeler
 {
 
-    Model model(File sourceFile, String methodName, String[][] inputs)
+    public Model model(File sourceFile, String methodName, String[][] inputs)
     throws ModelingException
     {
         Model model = new Model();

@@ -1,8 +1,9 @@
 package org.dplib;
 
-import org.dplib.display.Controller;
-import org.dplib.exception.AnalysisException;
-import org.dplib.exception.ModelingException;
+import org.dplib.analyse.Model;
+import org.dplib.display.GUIController;
+import org.dplib.analyse.AnalysisException;
+import org.dplib.io.IO;
 
 import java.io.IOException;
 
@@ -42,7 +43,7 @@ public class Launcher
                     System.out.println("Model file created.");
                     break;
                 case "solve":
-                    new Controller(modelFilePath).start();
+                    new GUIController(modelFilePath).start();
                     break;
                 default: throw new Error("Invalid command: " + command);
             }

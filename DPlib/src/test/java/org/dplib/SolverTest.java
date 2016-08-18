@@ -3,14 +3,14 @@ package org.dplib;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import org.dplib.analyse.Analysis;
+import org.dplib.analyse.Model;
 import org.dplib.display.View;
-import org.dplib.exception.AnalysisException;
-import org.dplib.exception.ModelingException;
+import org.dplib.io.CodeGenerator;
+import org.dplib.io.IO;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Unit test for ClassAnalyser class.
