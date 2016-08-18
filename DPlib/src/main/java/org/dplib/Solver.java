@@ -4,17 +4,13 @@ import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import org.dplib.analyse.*;
 import org.dplib.compile.SourceCompiler;
-import org.dplib.display.View;
 import org.dplib.analyse.AnalysisException;
 import org.dplib.compile.CompileException;
-import org.dplib.io.IO;
-import org.jfree.data.category.DefaultCategoryDataset;
 
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by george on 01/08/16.
@@ -22,12 +18,10 @@ import java.util.concurrent.ExecutionException;
 public class Solver
 extends SwingWorker<Analysis, Void>
 {
+    private final SourceAnalyser sa = new SourceAnalyser();
+    private final FileHandler fileHandler;
     private final Model model;
     private final String sourceCode;
-    private final SourceAnalyser sa = new SourceAnalyser();
-    private ProblemType problemType;
-    private List<Result> results;
-    private final FileHandler fileHandler;
 
     public Solver(Model model, String sourceCode, FileHandler fileHandler)
     {
@@ -38,38 +32,50 @@ extends SwingWorker<Analysis, Void>
 
     @Override
     public Analysis doInBackground()
-    throws AnalysisException, IOException
+    throws AnalysisException
     {
+        try { sa.parse(sourceCode); }
+        catch (ParseException e) { throw new AnalysisException(e); }
 
-        System.out.println("Analysing...\n");
-
-        try { sa.parse(sourceCode); } catch (ParseException e) { throw new AnalysisException(e); }
-
-        MethodDeclaration methodToAnalyse = sa.locateMethod(model.getMethodToAnalyseName());
-        problemType = sa.determineProblemType(methodToAnalyse);
-
-        MethodDeclaration callingMethod = sa.locateMethod("main");
-        String callingMethodBody = callingMethod.getBody().toString();
-
-        checkMatchingMethodBodies(callingMethodBody,
-                                  model.getCallingMethodBody(),
-                                  callingMethod.getDeclarationAsString(),
-                                  model.getCallingMethodDeclaration());
-
-        File tempJavaFile = fileHandler.createTempJavaFile(sourceCode);
-        File classFile;
-
-        try { classFile = new SourceCompiler().compile(tempJavaFile, sa.getClassName()); }
-        catch (CompileException e) { throw new AnalysisException(e); }
-        results = new ClassAnalyser().analyse(classFile, fetchInputArray(model.getResults()));
-
-        System.out.println("Analysis complete.\n");
-
+        checkValidSource();
 
         Analysis analysis = new Analysis();
-        analysis.setProblemType(problemType);
+        MethodDeclaration methodToAnalyse = sa.locateMethod(model.getMethodToAnalyseName());
+
+        analysis.setProblemType(sa.determineProblemType(methodToAnalyse));
+
+        File classFile;
+        try { classFile = createClassFile(sourceCode); }
+        catch (IOException | CompileException e) { throw new AnalysisException(e); }
+
+        String[][] inputs = fetchInputArray(model.getResults());
+        List<Result> results = new ClassAnalyser().analyse(classFile, inputs);
+
         analysis.setResults(results);
+
         return analysis;
+    }
+
+    private void checkValidSource()
+    throws AnalysisException
+    {
+        MethodDeclaration callingMethod = sa.locateMethod("main");
+
+        String callingMethodBody = callingMethod.getBody().toString();
+        if(!checkMatchingMethodBodies(callingMethodBody, model.getCallingMethodBody()))
+        {
+            throw new AnalysisException("Submitted calling method \"" +
+                                                callingMethod.getDeclarationAsString() +
+                                                "\" does not match modelled calling method \"" +
+                                                model.getCallingMethodDeclaration() + "\".");
+        }
+    }
+
+    private File createClassFile(String sourceCode)
+    throws IOException, CompileException
+    {
+        File tempJavaFile = fileHandler.createTempJavaFile(sourceCode);
+        return new SourceCompiler().compile(tempJavaFile, sa.getClassName());
     }
 
     private String[][] fetchInputArray(List<Result> results)
@@ -82,17 +88,11 @@ extends SwingWorker<Analysis, Void>
         return inputs;
     }
 
-    private void checkMatchingMethodBodies(String userCallingMethod,
-                                           String tutorCallingMethod,
-                                           String userMethodDeclaration,
-                                           String modelMethodDeclaration)
-    throws AnalysisException
+    private boolean checkMatchingMethodBodies(String userCallingMethod,
+                                           String tutorCallingMethod)
     {
-        if (!userCallingMethod.equals(tutorCallingMethod))
-        {
-            throw new AnalysisException("Submitted calling method \"" + userMethodDeclaration +
-                                                "\" does not match modelled calling method \"" + modelMethodDeclaration + "\".");
-        }
+        if (!userCallingMethod.equals(tutorCallingMethod)) { return false; }
+        return true;
     }
 
 }

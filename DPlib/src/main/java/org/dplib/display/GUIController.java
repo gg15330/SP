@@ -68,18 +68,20 @@ implements PropertyChangeListener
 
         if (pce.getNewValue().equals(SwingWorker.StateValue.DONE)) {
             Analysis analysis;
-            try
-            {
-                analysis = solver.get();
-            }
-            catch (InterruptedException e)
-            {
-                e.printStackTrace();
-                return;
-            }
+
+            try { analysis = solver.get(); }
+            catch (InterruptedException e) { e.printStackTrace(); return; }
             catch (ExecutionException e)
             {
-                io.exceptionMsg(new AnalysisException(e.getCause()));
+                if(!(e.getCause() instanceof AnalysisException)
+                || !(e.getCause()instanceof IOException))
+                {
+                    io.exceptionMsg(new AnalysisException(e.getCause()));
+                }
+                else
+                {
+                    io.exceptionMsg(e.getCause());
+                }
                 return;
             }
 
