@@ -16,6 +16,7 @@ org/dplib/exception/CompileException.class
 org/dplib/FileHandler.class
 org/dplib/ClassAnalyser.class
 org/dplib/display/Controller$1.class
+org/dplib/Analysis.class
 org/dplib/IO.class
 org/dplib/display/Controller.class
 org/dplib/exception/AnalysisException.class

@@ -30,6 +30,7 @@ class Modeler
             SourceAnalyser sa = new SourceAnalyser(sourceFile, methodName);
 
             model.setClassName(sa.getClassName());
+            model.setMethodToAnalyseName(methodName);
 
 //            set declaration string for method to analyse
             MethodDeclaration methodToAnalyse = sa.findMethod(methodName);
@@ -44,7 +45,8 @@ class Modeler
 
 //            set problem type
             sa.analyse();
-            model.setType(sa.determineProblemType());
+            model.setProblemType(sa.determineProblemType());
+            System.out.println("Problem type: " + model.getProblemType());
 
 //            create result set
             System.out.println("Analysing class...");
