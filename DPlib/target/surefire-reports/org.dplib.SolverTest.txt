@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: org.dplib.SolverTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 4.55 sec <<< FAILURE!
-test_model(org.dplib.ModelerTest)  Time elapsed: 3.856 sec  <<< FAILURE!
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 1.649 sec <<< FAILURE!
+test_model(org.dplib.ModelerTest)  Time elapsed: 1.44 sec  <<< FAILURE!
 junit.framework.ComparisonFailure: expected:<[int n = Integer.parseInt(args[0]);]> but was:<[{
     int n = Integer.parseInt(arg]>
 	at junit.framework.Assert.assertEquals(Assert.java:100)

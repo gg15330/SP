@@ -1,10 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: org.dplib.FileHandlerTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.059 sec <<< FAILURE!
-test_deserializeModelFile(org.dplib.FileHandlerTest)  Time elapsed: 0.047 sec  <<< ERROR!
-java.lang.Error: java.io.InvalidClassException: org.dplib.Model; local class incompatible: stream classdesc serialVersionUID = -1334492846861180281, local class serialVersionUID = -6889237387358540525
-	at org.dplib.FileHandler.deserializeModelFile(FileHandler.java:115)
+Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.018 sec <<< FAILURE!
+test_deserializeModelFile(org.dplib.FileHandlerTest)  Time elapsed: 0.014 sec  <<< FAILURE!
+junit.framework.ComparisonFailure: expected:<[Test]> but was:<[FibonacciDP]>
+	at junit.framework.Assert.assertEquals(Assert.java:100)
+	at junit.framework.Assert.assertEquals(Assert.java:107)
+	at junit.framework.TestCase.assertEquals(TestCase.java:269)
 	at org.dplib.FileHandlerTest.test_deserializeModelFile(FileHandlerTest.java:96)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -31,12 +33,3 @@ java.lang.Error: java.io.InvalidClassException: org.dplib.Model; local class inc
 	at org.apache.maven.surefire.booter.SurefireStarter.invokeProvider(SurefireStarter.java:175)
 	at org.apache.maven.surefire.booter.SurefireStarter.runSuitesInProcessWhenForked(SurefireStarter.java:107)
 	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:68)
-Caused by: java.io.InvalidClassException: org.dplib.Model; local class incompatible: stream classdesc serialVersionUID = -1334492846861180281, local class serialVersionUID = -6889237387358540525
-	at java.io.ObjectStreamClass.initNonProxy(ObjectStreamClass.java:616)
-	at java.io.ObjectInputStream.readNonProxyDesc(ObjectInputStream.java:1630)
-	at java.io.ObjectInputStream.readClassDesc(ObjectInputStream.java:1521)
-	at java.io.ObjectInputStream.readOrdinaryObject(ObjectInputStream.java:1781)
-	at java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1353)
-	at java.io.ObjectInputStream.readObject(ObjectInputStream.java:373)
-	at org.dplib.FileHandler.deserializeModelFile(FileHandler.java:109)
-	... 26 more
