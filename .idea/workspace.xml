@@ -2,83 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dbf27813-b393-4f5c-a162-70ce6f80ac8c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/Analysis.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/ClassAnalyser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/CodeGenerator.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/CustomOutputStream.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/IO.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/Model.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/ProblemType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/Result.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/SourceAnalyser$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/SourceAnalyser$MethodCallExprVisitor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/SourceAnalyser$MethodDeclarationVisitor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/SourceAnalyser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/SourceCompiler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/display/Controller$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/display/Controller$solveBtnListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/display/Controller.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/exception/AnalysisException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/exception/CompileException.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/exception/ModelingException.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Analysis.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Analysis.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/ClassAnalyser.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/ClassAnalyser.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/CodeGenerator.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/io/CodeGenerator.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/CustomOutputStream.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/io/CustomOutputStream.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/IO.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/io/IO.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Model.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Model.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/ProblemType.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/ProblemType.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Result.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Result.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/SourceAnalyser.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/SourceAnalyser.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/SourceCompiler.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/compile/SourceCompiler.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/Controller.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/GUIController.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/exception/AnalysisException.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/AnalysisException.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/exception/CompileException.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/compile/CompileException.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/exception/ModelingException.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/ModelingException.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/Modeler.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/ModelingException.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/Solver.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/analyse/SourceAnalyser$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/analyse/SourceAnalyser$MethodCallExprVisitor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/analyse/SourceAnalyser$MethodDeclarationVisitor.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/analyse/SourceAnalyser.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/display/GUIController$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/display/GUIController$solveBtnListener.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/display/GUIController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/io/CodeGenerator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/io/CustomOutputStream.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/sample/fib/FibonacciDP.class" afterPath="$PROJECT_DIR$/DPlib/sample/fib/FibonacciDP.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/DPlib-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/DPlib/target/DPlib-1.0-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/FileHandler.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/FileHandler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/Launcher.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/Launcher.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/Modeler.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/Modeler.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/Solver.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/Solver.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/SubProcess.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/SubProcess.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/display/View.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/display/View.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/jfx/app/DPlib-1.0-SNAPSHOT-jfx.jar" afterPath="$PROJECT_DIR$/DPlib/target/jfx/app/DPlib-1.0-SNAPSHOT-jfx.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/test-classes/org/dplib/ClassAnalyserTest.class" afterPath="$PROJECT_DIR$/DPlib/target/test-classes/org/dplib/ClassAnalyserTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/test-classes/org/dplib/FileHandlerTest.class" afterPath="$PROJECT_DIR$/DPlib/target/test-classes/org/dplib/FileHandlerTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/test-classes/org/dplib/ModelerTest.class" afterPath="$PROJECT_DIR$/DPlib/target/test-classes/org/dplib/ModelerTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/test-classes/org/dplib/SolverTest.class" afterPath="$PROJECT_DIR$/DPlib/target/test-classes/org/dplib/SolverTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/test-classes/org/dplib/SourceAnalyserTest.class" afterPath="$PROJECT_DIR$/DPlib/target/test-classes/org/dplib/SourceAnalyserTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/test-classes/org/dplib/SourceCompilerTest.class" afterPath="$PROJECT_DIR$/DPlib/target/test-classes/org/dplib/SourceCompilerTest.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/sample/fib/FibonacciDP.mod" afterPath="$PROJECT_DIR$/DPlib/sample/fib/FibonacciDP.mod" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/FileHandler.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/FileHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Launcher.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Launcher.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Modeler.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Modeler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Solver.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Solver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/SubProcess.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/SubProcess.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/View.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/View.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ClassAnalyserTest.java" afterPath="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ClassAnalyserTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/FileHandlerTest.java" afterPath="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/FileHandlerTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/SourceAnalyser.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/SourceAnalyser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/GUIController.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/GUIController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ModelerTest.java" afterPath="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ModelerTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SolverTest.java" afterPath="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SolverTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SourceAnalyserTest.java" afterPath="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SourceAnalyserTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SourceCompilerTest.java" afterPath="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SourceCompilerTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/test/resources/testModelFile.mod" afterPath="$PROJECT_DIR$/DPlib/src/test/resources/testModelFile.mod" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/DPlib/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.ClassAnalyserTest.xml" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.ClassAnalyserTest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.FileHandlerTest.xml" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.FileHandlerTest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.ModelerTest.xml" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.ModelerTest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.SolverTest.xml" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.SolverTest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.SourceAnalyserTest.xml" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.SourceAnalyserTest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.SourceCompilerTest.xml" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.SourceCompilerTest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.ClassAnalyserTest.txt" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.ClassAnalyserTest.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.FileHandlerTest.txt" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.FileHandlerTest.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.ModelerTest.txt" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.ModelerTest.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.SolverTest.txt" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.SolverTest.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.SourceAnalyserTest.txt" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.SourceAnalyserTest.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.SourceCompilerTest.txt" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.SourceCompilerTest.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/test-classes/testModelFile.mod" afterPath="$PROJECT_DIR$/DPlib/target/test-classes/testModelFile.mod" />
     </list>
     <ignored path="SP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -100,11 +48,51 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Solver.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Launcher.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Launcher.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GUIController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/GUIController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Solver.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Solver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="145" column="71" selection-start-line="145" selection-start-column="71" selection-end-line="145" selection-end-column="71" />
+            <state relative-caret-position="7">
+              <caret line="31" column="50" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/FileHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="749">
+              <caret line="86" column="5" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SourceAnalyser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/SourceAnalyser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="616">
+              <caret line="57" column="9" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -132,18 +120,15 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/DPlib/sample/coinchange/CoinChangeDP.java" />
         <option value="$PROJECT_DIR$/DPlib/sample/coinchange/CoinChangeRec.java" />
         <option value="$PROJECT_DIR$/DPlib/sample/maximumsubarraysum/maximumsubarraysum.java" />
         <option value="$PROJECT_DIR$/DPlib/sample/maximumsubarraysum/inputs.txt" />
         <option value="$PROJECT_DIR$/DPlib/sample/maximumsubarraysum/MaximumSubArraySumDP.java" />
-        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Launcher.java" />
         <option value="$PROJECT_DIR$/DPlib/src/test/resources/FibonacciMemo.java" />
         <option value="$PROJECT_DIR$/DPlib/sample/fib/FibonacciMemo.java" />
         <option value="$PROJECT_DIR$/DPlib/src/test/resources/FibonacciUndfined.java" />
         <option value="$PROJECT_DIR$/DPlib/src/test/resources/FibonacciUndefined.java" />
         <option value="$PROJECT_DIR$/DPlib/sample/fib/FibonacciStudentNoReturnStatement.java" />
-        <option value="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SourceAnalyserTest.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/SourceCompiler.java" />
         <option value="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SourceCompilerTest.java" />
         <option value="$PROJECT_DIR$/DPlib/src/test/resources/testJavaFileRuntimeException.java" />
@@ -155,16 +140,12 @@
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/CodeGenerator.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/IO.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/SourceAnalyser.java" />
-        <option value="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SolverTest.java" />
-        <option value="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ModelerTest.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Model.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Analysis.java" />
-        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/FileHandler.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/Controller.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Analysis.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Model.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/ClassAnalyser.java" />
-        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/SourceAnalyser.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Result.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/ProblemType.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/io/IO.java" />
@@ -173,7 +154,6 @@
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/model/Modeler.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/model/ModelingException.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/solve/Solver.java" />
-        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Modeler.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/SourceCompiler.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/CompileException.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/SubProcess.java" />
@@ -182,7 +162,15 @@
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/AnalysisException.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/SubProcess.java" />
         <option value="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/FileHandlerTest.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/FileHandler.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/SourceAnalyser.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Modeler.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Launcher.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ModelerTest.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SolverTest.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SourceAnalyserTest.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Solver.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/GUIController.java" />
       </list>
     </option>
   </component>
@@ -231,287 +219,12 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DPlib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DPlib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DPlib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dplib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DPlib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DPlib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dplib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DPlib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dplib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="io" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DPlib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dplib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="display" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DPlib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dplib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="compile" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SP" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DPlib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dplib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="analyse" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
+        <subPane />
       </pane>
       <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -888,29 +601,30 @@
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40528634" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42093703" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4509517" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19399707" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40528634" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42093703" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4714495" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21961933" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32842416" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1108,38 +822,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/GUIController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/FileHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="100" column="5" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/SourceAnalyser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Result.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -1152,7 +834,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="70">
           <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1160,7 +841,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="70">
           <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1168,27 +848,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="56">
           <caret line="7" column="99" selection-start-line="7" selection-start-column="99" selection-end-line="7" selection-end-column="99" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Launcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="938">
-          <caret line="67" column="22" selection-start-line="67" selection-start-column="22" selection-end-line="67" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Modeler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="56" column="58" selection-start-line="56" selection-start-column="58" selection-end-line="56" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1196,7 +855,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1220,7 +878,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
           <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1228,7 +885,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="203">
           <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1236,7 +892,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="140">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1244,23 +899,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="70">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ClassAnalyserTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-707">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/FileHandlerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="511">
-          <caret line="96" column="33" selection-start-line="96" selection-start-column="33" selection-end-line="96" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1268,11 +906,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="70">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Modeler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ModelerTest.java">
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="14">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ClassAnalyserTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="98">
           <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
@@ -1280,18 +933,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/FileHandlerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ModelerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="48" column="0" selection-start-line="48" selection-start-column="2" selection-end-line="83" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SolverTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        <state relative-caret-position="42">
+          <caret line="66" column="0" selection-start-line="66" selection-start-column="2" selection-end-line="102" selection-end-column="74" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SourceAnalyserTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="84" column="41" selection-start-line="84" selection-start-column="41" selection-end-line="84" selection-end-column="41" />
+        <state relative-caret-position="707">
+          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1299,15 +968,47 @@
     <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SourceCompilerTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="98">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/SourceAnalyser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="616">
+          <caret line="57" column="9" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Launcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/FileHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="749">
+          <caret line="86" column="5" selection-start-line="86" selection-start-column="5" selection-end-line="86" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Solver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="145" column="71" selection-start-line="145" selection-start-column="71" selection-end-line="145" selection-end-column="71" />
+        <state relative-caret-position="7">
+          <caret line="31" column="50" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/GUIController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="126" column="0" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
           <folding />
         </state>
       </provider>

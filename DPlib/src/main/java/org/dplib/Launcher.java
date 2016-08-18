@@ -1,11 +1,17 @@
 package org.dplib;
 
-import org.dplib.analyse.Model;
+import com.github.javaparser.ParseException;
+import com.github.javaparser.ast.body.MethodDeclaration;
+import org.dplib.analyse.*;
+import org.dplib.compile.CompileException;
+import org.dplib.compile.SourceCompiler;
 import org.dplib.display.GUIController;
-import org.dplib.analyse.AnalysisException;
 import org.dplib.io.IO;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static javafx.application.Application.launch;
 
@@ -36,7 +42,24 @@ public class Launcher
                     FileHandler fileHandler = new FileHandler(javaFilePath, "java");
                     FileHandler inputFileHandler = new FileHandler(inputFilePath, "txt");
                     String[][] inputs = inputFileHandler.parseInputTextFile(inputFileHandler.getFile());
-                    Model model = new Modeler().model(fileHandler.getFile(), methodName, inputs);
+
+                    String sourceCode = fileHandler.parseSourceFile(fileHandler.getFile());
+
+                    SourceAnalyser sa = new SourceAnalyser();
+                    sa.parse(sourceCode);
+
+                    MethodDeclaration methodToAnalyse = sa.locateMethod(methodName);
+                    MethodDeclaration callingMethod = sa.locateMethod("main");
+
+                    File classFile = new SourceCompiler().compile(fileHandler.getFile(), sa.getClassName());
+                    List<Result> results = new ClassAnalyser().analyse(classFile, inputs);
+
+                    Model model = new Modeler().model(sa.getClassName(),
+                                                      methodToAnalyse,
+                                                      callingMethod,
+                                                      sa.determineProblemType(methodToAnalyse),
+                                                      results);
+
                     io.displayResults(model.getResults());
                     System.out.println("Creating model file...");
                     fileHandler.serializeModel(model);
@@ -48,10 +71,14 @@ public class Launcher
                 default: throw new Error("Invalid command: " + command);
             }
         }
-        catch (IOException | ModelingException | AnalysisException e)
+        catch (IOException | AnalysisException e)
         {
             e.printStackTrace();
             System.exit(1);
+        }
+        catch (CompileException | ParseException e)
+        {
+            e.printStackTrace();
         }
     }
 

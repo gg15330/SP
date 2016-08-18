@@ -1,8 +1,8 @@
 package org.dplib.analyse;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -21,31 +21,18 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 public class SourceAnalyser
 {
 
-    private String methodName;
     private CompilationUnit cu;
-    private boolean isRecursive;
-    private boolean containsArray;
     private int recursiveCallLineNo;
 
-    // construct a new SourceAnalyser with a method declaration to check against the source file
-    public SourceAnalyser(File file, String methodName)
-    throws IOException, ParseException
+    public void parse(String sourceCode)
+    throws ParseException
     {
-        FileInputStream fis = new FileInputStream(file);
-        this.cu = JavaParser.parse(fis);
-        fis.close();
-        this.methodName = methodName;
+        StringReader sr = new StringReader(sourceCode);
+        this.cu = JavaParser.parse(sr);
+        sr.close();
     }
 
-    public void analyse()
-    throws AnalysisException
-    {
-        MethodDeclaration methodDeclaration = findMethod(methodName);
-        isRecursive = isRecursive(methodDeclaration);
-        containsArray = containsArray(methodDeclaration);
-    }
-
-    public MethodDeclaration findMethod(String methodName)
+    public MethodDeclaration locateMethod(String methodName)
     throws AnalysisException
     {
         MethodDeclarationVisitor methodDeclarationVisitor = new MethodDeclarationVisitor();
@@ -61,7 +48,20 @@ public class SourceAnalyser
                                     "\" does not exist in source.");
     }
 
-    private boolean isRecursive(Node node)
+    public ProblemType determineProblemType(MethodDeclaration methodDeclaration) {
+        if(isRecursive(methodDeclaration, methodDeclaration.getName()))
+        {
+            if(containsArray(methodDeclaration)) { return ProblemType.MEMOIZED; }
+            else { return ProblemType.RECURSIVE; }
+        }
+        else
+        {
+            if(containsArray(methodDeclaration)) { return ProblemType.ITERATIVE; }
+        }
+        return ProblemType.UNDEFINED;
+    }
+
+    private boolean isRecursive(Node node, String methodName)
     {
         if (node instanceof MethodCallExpr)
         {
@@ -75,7 +75,7 @@ public class SourceAnalyser
         }
         for (Node child : node.getChildrenNodes())
         {
-            if (isRecursive(child))
+            if (isRecursive(child, methodName))
             {
                 return true;
             }
@@ -93,30 +93,6 @@ public class SourceAnalyser
         return false;
     }
 
-    public ProblemType determineProblemType() {
-        if(isRecursive)
-        {
-            if(containsArray) { return ProblemType.MEMOIZED; }
-            else { return ProblemType.RECURSIVE; }
-        }
-        else if(!isRecursive)
-        {
-            if(containsArray) { return ProblemType.ITERATIVE; }
-        }
-        return ProblemType.UNDEFINED;
-    }
-
-    public String[] statementsToStringArray(List<Statement> statements)
-    {
-        String[] strings = new String[statements.size()];
-
-        for(int i = 0; i < statements.size(); i++)
-        {
-            strings[i] = statements.get(i).toString();
-        }
-        return strings;
-    }
-
     public CompilationUnit getCompilationUnit()
     {
         return cu;
@@ -126,8 +102,6 @@ public class SourceAnalyser
     {
         return cu.getTypes().get(0).getName();
     }
-
-    public String getMethodName() { return methodName; }
 
     public int getRecursiveCallLineNo()
     {

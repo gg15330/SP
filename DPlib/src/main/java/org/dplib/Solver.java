@@ -23,47 +23,53 @@ public class Solver
 extends SwingWorker<Analysis, Void>
 {
     private final Model model;
-    private final File javaFile;
-    private final View view;
-    private final IO io;
-    private SourceAnalyser sa;
+    private final String sourceCode;
+    private final SourceAnalyser sa = new SourceAnalyser();
     private ProblemType problemType;
     private List<Result> results;
+    private final FileHandler fileHandler;
 
-    public Solver(Model model, File javaFile, View view, IO io)
+    public Solver(Model model, String sourceCode, FileHandler fileHandler)
     {
         this.model = model;
-        this.javaFile = javaFile;
-        this.view = view;
-        this.io = io;
+        this.sourceCode = sourceCode;
+        this.fileHandler = fileHandler;
     }
 
-    private void solve(Model model, File file)
-    throws AnalysisException
+    @Override
+    public Analysis doInBackground()
+    throws AnalysisException, IOException
     {
 
-        try { sa = new SourceAnalyser(file, model.getMethodToAnalyseName()); }
-        catch (ParseException | IOException e) { throw new AnalysisException(e); }
+        System.out.println("Analysing...\n");
 
-        MethodDeclaration userCallingMethod = sa.findMethod("main");
-        String userCallingMethodBody = userCallingMethod.getBody().toString();
+        try { sa.parse(sourceCode); } catch (ParseException e) { throw new AnalysisException(e); }
 
-        checkMatchingMethodBodies(userCallingMethodBody,
+        MethodDeclaration methodToAnalyse = sa.locateMethod(model.getMethodToAnalyseName());
+        problemType = sa.determineProblemType(methodToAnalyse);
+
+        MethodDeclaration callingMethod = sa.locateMethod("main");
+        String callingMethodBody = callingMethod.getBody().toString();
+
+        checkMatchingMethodBodies(callingMethodBody,
                                   model.getCallingMethodBody(),
-                                  userCallingMethod.getDeclarationAsString(),
+                                  callingMethod.getDeclarationAsString(),
                                   model.getCallingMethodDeclaration());
 
-        System.out.println("Analysing...");
-        sa.analyse();
-        problemType = sa.determineProblemType();
-
+        File tempJavaFile = fileHandler.createTempJavaFile(sourceCode);
         File classFile;
 
-        try { classFile = new SourceCompiler().compile(file, sa.getClassName()); }
+        try { classFile = new SourceCompiler().compile(tempJavaFile, sa.getClassName()); }
         catch (CompileException e) { throw new AnalysisException(e); }
         results = new ClassAnalyser().analyse(classFile, fetchInputArray(model.getResults()));
 
-        System.out.println("Analysis complete.");
+        System.out.println("Analysis complete.\n");
+
+
+        Analysis analysis = new Analysis();
+        analysis.setProblemType(problemType);
+        analysis.setResults(results);
+        return analysis;
     }
 
     private String[][] fetchInputArray(List<Result> results)
@@ -87,78 +93,6 @@ extends SwingWorker<Analysis, Void>
             throw new AnalysisException("Submitted calling method \"" + userMethodDeclaration +
                                                 "\" does not match modelled calling method \"" + modelMethodDeclaration + "\".");
         }
-    }
-
-    @Override
-    public Analysis doInBackground()
-    throws AnalysisException, IOException
-    {
-        solve(model, javaFile);
-        Analysis analysis = new Analysis();
-        analysis.setProblemType(problemType);
-        analysis.setResults(results);
-        return analysis;
-    }
-
-    @Override
-    public void done()
-    {
-        Analysis analysis;
-        try
-        {
-            analysis = get();
-        }
-        catch (InterruptedException e)
-        {
-            e.printStackTrace();
-            return;
-        }
-        catch (ExecutionException e)
-        {
-            io.exceptionMsg(new AnalysisException(e.getCause()));
-            return;
-        }
-
-        updateGraphs(analysis.getResults());
-        showResult(analysis);
-    }
-
-    private void updateGraphs(List<Result> results)
-    {
-        DefaultCategoryDataset studentTimeDataset = new DefaultCategoryDataset();
-        DefaultCategoryDataset studentOutputDataset = new DefaultCategoryDataset();
-
-        for (int i = 0; i < results.size(); i++)
-        {
-            Result studentResult = results.get(i);
-            studentTimeDataset.addValue(studentResult.getExecutionTime(), "Your code", String.valueOf(i));
-            studentOutputDataset.addValue(Integer.parseInt(studentResult.getOutput()), "Your code", String.valueOf(i));
-        }
-
-        view.setExecutionTimeGraph(studentTimeDataset);
-        view.setOutputGraph(studentOutputDataset);
-    }
-
-    private void showResult(Analysis analysis)
-    {
-        if(!analysis.getProblemType().equals(model.getProblemType()))
-        {
-            io.fail(model.getProblemType(), analysis.getProblemType());
-        }
-
-        for(int i = 0; i < analysis.getResults().size(); i++)
-        {
-            Result studentResult = analysis.getResults().get(i);
-            Result tutorResult = model.getResults().get(i);
-
-            if(!studentResult.getOutput().equals(tutorResult.getOutput()))
-            {
-                io.fail(studentResult.getOutput(), tutorResult.getOutput());
-                return;
-            }
-        }
-
-        io.pass();
     }
 
 }

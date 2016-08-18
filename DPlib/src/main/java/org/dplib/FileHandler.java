@@ -1,5 +1,6 @@
 package org.dplib;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.dplib.analyse.Model;
 
@@ -79,6 +80,12 @@ public class FileHandler
             lines.add(inputs);
         }
         return lines.toArray(new String[lines.size()][]);
+    }
+
+    public String parseSourceFile(File source)
+    throws IOException
+    {
+        return FileUtils.readFileToString(source, "UTF-8");
     }
 
     public int serializeModel(Model model)
