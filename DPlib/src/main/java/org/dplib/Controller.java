@@ -1,14 +1,11 @@
-package org.dplib.display;
+package org.dplib;
 
 import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.body.MethodDeclaration;
-import org.dplib.*;
 import org.dplib.analyse.*;
 import org.dplib.compile.CompileException;
 import org.dplib.compile.SourceCompiler;
-import org.dplib.io.CodeGenerator;
-import org.dplib.io.IO;
-import org.dplib.Solver;
+import org.dplib.display.View;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import javax.swing.*;

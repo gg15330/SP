@@ -1,6 +1,5 @@
 package org.dplib.display;
 
-import org.dplib.io.CustomOutputStream;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -30,7 +29,7 @@ public class View
     private DefaultCategoryDataset tutorTimeData;
     private DefaultCategoryDataset tutorOutputData;
 
-    void createAndShowGUI()
+    public void createAndShowGUI()
     {
 //        editor
         Font font = new Font(null, Font.BOLD, 12);
@@ -188,8 +187,7 @@ public class View
         plot.setRenderer(0, renderer1);
         plot.setRenderer(1, renderer2);
 
-        ChartPanel chartPanel = new ChartPanel(jFreeChart);
-        return chartPanel;
+        return new ChartPanel(jFreeChart);
     }
 
     private JScrollPane createTextAreaWithScrollPane(JTextArea jTextArea, boolean editable, boolean wrap)
@@ -203,12 +201,12 @@ public class View
         return scrollPane;
     }
 
-    void addSolveBtnListener(ActionListener actionListener)
+    public void addSolveBtnListener(ActionListener actionListener)
     {
         solveBtn.addActionListener(actionListener);
     }
 
-    String getEditorText()
+    public String getEditorText()
     {
         return editor.getText();
     }

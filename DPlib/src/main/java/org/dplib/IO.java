@@ -1,4 +1,4 @@
-package org.dplib.io;
+package org.dplib;
 
 import org.dplib.analyse.ProblemType;
 import org.dplib.analyse.Result;

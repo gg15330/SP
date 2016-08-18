@@ -97,7 +97,7 @@
                 <version>8.5.0</version>
                 <configuration>
                     <vendor>george</vendor>
-                    <mainClass>org.dplib.display.Controller</mainClass>
+                    <mainClass>org.dplib.Controller</mainClass>
                     <appName>test</appName>
                 </configuration>
                 <executions>
