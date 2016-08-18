@@ -90,7 +90,7 @@ public class SourceAnalyserTest
     {
         try { sa = new SourceAnalyser(testIterativeJavaFile, "test"); } catch (Exception e) { throw new Error(e); }
         try { MethodDeclaration md = sa.findMethod("INVALID"); throw new Error("Expected AnalysisException."); }
-        catch (AnalysisException e) { assertEquals("expected MethodDeclaration \"INVALID\" does not exist in source file.", e.getMessage()); }
+        catch (AnalysisException e) { assertEquals("expected MethodDeclaration \"INVALID\" does not exist in source.", e.getMessage()); }
     }
 
     public static void test_findMethod()

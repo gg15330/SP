@@ -64,7 +64,7 @@ extends TestCase
         assertEquals("Problem description", model.getDescription());
         assertEquals("public static void main(String[] args)", model.getCallingMethodDeclaration());
         assertEquals("static int fibDP(int n)", model.getMethodToAnalyseDeclaration());
-        assertEquals("int n = Integer.parseInt(args[0]);", model.getCallingMethodBody().substring(0, 34));
+        assertEquals("int n = Integer.parseInt(args[0]);", model.getCallingMethodBody().substring(6, 40));
         assertEquals(ProblemType.ITERATIVE, model.getProblemType());
 
         List<Result> results = model.getResults();

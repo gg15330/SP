@@ -82,25 +82,25 @@ extends TestCase
                                                             testModel.getMethodToAnalyseDeclaration()));
 
 //        test
-//        s = new Solver(testModel, testJavaFile, testView, io); s.execute();
-//        List<Result> results;
-//        try { results = s.get(); } catch (Exception e) { throw new Error(e); }
-//
-//        assertEquals("1", results.get(0).getInput()[0]);
-//        assertEquals("1", results.get(0).getOutput());
-//        assertTrue(0 < results.get(0).getExecutionTime());
-//
-//        assertEquals("5", results.get(1).getInput()[0]);
-//        assertEquals("5", results.get(1).getOutput());
-//        assertTrue(0 < results.get(1).getExecutionTime());
-//
-//        assertEquals("10", results.get(2).getInput()[0]);
-//        assertEquals("55", results.get(2).getOutput());
-//        assertTrue(0 < results.get(2).getExecutionTime());
-//
-//        assertEquals("15", results.get(3).getInput()[0]);
-//        assertEquals("610", results.get(3).getOutput());
-//        assertTrue(0 < results.get(3).getExecutionTime());
+        s = new Solver(testModel, testJavaFile, testView, io); s.execute();
+        Analysis analysis;
+        try { analysis = s.get(); } catch (Exception e) { throw new Error(e); }
+
+        assertEquals("1", analysis.getResults().get(0).getInput()[0]);
+        assertEquals("1", analysis.getResults().get(0).getOutput());
+        assertTrue(0 < analysis.getResults().get(0).getExecutionTime());
+
+        assertEquals("5", analysis.getResults().get(1).getInput()[0]);
+        assertEquals("5", analysis.getResults().get(1).getOutput());
+        assertTrue(0 < analysis.getResults().get(1).getExecutionTime());
+
+        assertEquals("10", analysis.getResults().get(2).getInput()[0]);
+        assertEquals("55", analysis.getResults().get(2).getOutput());
+        assertTrue(0 < analysis.getResults().get(2).getExecutionTime());
+
+        assertEquals("15", analysis.getResults().get(3).getInput()[0]);
+        assertEquals("610", analysis.getResults().get(3).getOutput());
+        assertTrue(0 < analysis.getResults().get(3).getExecutionTime());
     }
 
 }
