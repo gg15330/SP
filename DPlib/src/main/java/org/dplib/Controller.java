@@ -32,7 +32,7 @@ implements PropertyChangeListener
 
     private final IO io = new IO();
     private final View view = new View();
-    private FileHandler fileHandler;
+    private final FileHandler fileHandler = new FileHandler();
     private Model model;
     private Solver solver;
 
@@ -49,11 +49,12 @@ implements PropertyChangeListener
         {
             switch (command) {
                 case "model":
-                    fileHandler = new FileHandler(javaFilePath, "java");
-                    modelProblem();
+                    File sourceFile = fileHandler.locateFile(javaFilePath, "java");
+                    modelProblem(sourceFile);
                     break;
                 case "solve":
-                    fileHandler = new FileHandler(modelFilePath, "mod");
+                    File modelFile = fileHandler.locateFile(modelFilePath, "mod");
+                    model = fileHandler.deserializeModelFile(modelFile);
                     startGUI();
                     break;
                 default: throw new Error("Invalid command: " + command);
@@ -66,7 +67,7 @@ implements PropertyChangeListener
         }
     }
 
-    private void modelProblem()
+    private void modelProblem(File sourceFile)
     throws ModelingException
     {
         SourceAnalyser sa;
@@ -75,17 +76,15 @@ implements PropertyChangeListener
         List<Result> results;
         try
         {
-            String sourceCode = fileHandler.parseSourceFile(fileHandler.getFile());
-
             sa = new SourceAnalyser();
-            sa.parse(sourceCode);
+            sa.parse(sourceFile);
 
             methodToAnalyse = sa.locateMethod(methodName);
             callingMethod = sa.locateMethod("main");
 
-            File classFile = new SourceCompiler().compile(fileHandler.getFile(), sa.getClassName());
-            FileHandler inputFileHandler = new FileHandler(inputFilePath, "txt");
-            String[][] inputs = inputFileHandler.parseInputTextFile(inputFileHandler.getFile());
+            File classFile = new SourceCompiler().compile(sourceFile, sa.getClassName());
+            File inputFile = fileHandler.locateFile(inputFilePath, "txt");
+            String[][] inputs = fileHandler.parseInputTextFile(inputFile);
             results = new ClassAnalyser().analyse(classFile, inputs);
         }
         catch (IOException | ParseException | CompileException | AnalysisException e)
@@ -100,15 +99,13 @@ implements PropertyChangeListener
                                           sa.determineProblemType(methodToAnalyse),
                                           results);
 
-        fileHandler.serializeModel(model);
+        fileHandler.serializeModel(model, sourceFile.getParentFile());
         System.out.println("Model file created.");
-
         io.displayResults(model.getResults());
     }
 
     private void startGUI()
     {
-        model = fileHandler.deserializeModelFile();
         DefaultCategoryDataset tutorTimeDataset = new DefaultCategoryDataset();
         DefaultCategoryDataset tutorOutputDataset = new DefaultCategoryDataset();
 

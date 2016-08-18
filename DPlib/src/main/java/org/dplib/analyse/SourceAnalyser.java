@@ -1,5 +1,6 @@
 package org.dplib.analyse;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.StringReader;
@@ -23,6 +24,12 @@ public class SourceAnalyser
 
     private CompilationUnit cu;
     private int recursiveCallLineNo;
+
+    public void parse(File sourceFile)
+    throws IOException, ParseException
+    {
+        this.cu = JavaParser.parse(sourceFile);
+    }
 
     public void parse(String sourceCode)
     throws ParseException

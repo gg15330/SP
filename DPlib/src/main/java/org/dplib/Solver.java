@@ -45,7 +45,10 @@ extends SwingWorker<Analysis, Void>
         analysis.setProblemType(sa.determineProblemType(methodToAnalyse));
 
         File classFile;
-        try { classFile = createClassFile(sourceCode); }
+        try {
+            File tempJavaFile = fileHandler.createTempJavaFile(sourceCode);
+            classFile = new SourceCompiler().compile(tempJavaFile, sa.getClassName());
+        }
         catch (IOException | CompileException e) { throw new AnalysisException(e); }
 
         String[][] inputs = fetchInputArray(model.getResults());
@@ -69,13 +72,6 @@ extends SwingWorker<Analysis, Void>
                                                 "\" does not match modelled calling method \"" +
                                                 model.getCallingMethodDeclaration() + "\".");
         }
-    }
-
-    private File createClassFile(String sourceCode)
-    throws IOException, CompileException
-    {
-        File tempJavaFile = fileHandler.createTempJavaFile(sourceCode);
-        return new SourceCompiler().compile(tempJavaFile, sa.getClassName());
     }
 
     private String[][] fetchInputArray(List<Result> results)

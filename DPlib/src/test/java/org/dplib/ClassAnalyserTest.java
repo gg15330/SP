@@ -32,24 +32,24 @@ public class ClassAnalyserTest
      */
     public ClassAnalyserTest(String testName )
     {
-        super( testName );
-
-        testJavaFile = new File("src/test/resources/FibonacciDP.java");
-        if(!testJavaFile.exists()) { throw new Error("Test .java file does not exist."); }
-
-        testClassFile = new File("src/test/resources/testClassFile.class");
-        if(!testClassFile.exists()) { throw new Error("Test .class file does not exist."); }
-
-        testEmptyClassFile = new File("src/test/resources/testEmptyClassFile.class");
-        if(!testEmptyClassFile.exists()) { throw new Error("Test empty .class file does not exist."); }
-
-        testClassFileRuntimeException = new File("src/test/resources/testJavaFileRuntimeException.class");
-        if(!testClassFileRuntimeException.exists()) { throw new Error("Test .java file does not exist."); }
-
-        File testInputFile = new File("src/test/resources/testInputFile.txt");
-        if(!testInputFile.exists()) { throw new Error("Test input file does not exist."); }
-        try { testInputs = new FileHandler(testInputFile.getPath(), "txt").parseInputTextFile(testInputFile); }
-        catch (IOException e) { throw new Error(e); }
+//        super( testName );
+//
+//        testJavaFile = new File("src/test/resources/FibonacciDP.java");
+//        if(!testJavaFile.exists()) { throw new Error("Test .java file does not exist."); }
+//
+//        testClassFile = new File("src/test/resources/testClassFile.class");
+//        if(!testClassFile.exists()) { throw new Error("Test .class file does not exist."); }
+//
+//        testEmptyClassFile = new File("src/test/resources/testEmptyClassFile.class");
+//        if(!testEmptyClassFile.exists()) { throw new Error("Test empty .class file does not exist."); }
+//
+//        testClassFileRuntimeException = new File("src/test/resources/testJavaFileRuntimeException.class");
+//        if(!testClassFileRuntimeException.exists()) { throw new Error("Test .java file does not exist."); }
+//
+//        File testInputFile = new File("src/test/resources/testInputFile.txt");
+//        if(!testInputFile.exists()) { throw new Error("Test input file does not exist."); }
+//        try { testInputs = new FileHandler(testInputFile.getPath(), "txt").parseInputTextFile(testInputFile); }
+//        catch (IOException e) { throw new Error(e); }
     }
 
     /**

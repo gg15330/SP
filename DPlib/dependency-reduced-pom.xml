@@ -33,9 +33,9 @@
                   <resource>META-INF/services/conf.file</resource>
                 </transformer>
                 <transformer>
-                  <mainClass>org.dplib.Launcher</mainClass>
+                  <mainClass>org.dplib.Controller</mainClass>
                   <manifestEntries>
-                    <Main-Class>org.dplib.Launcher</Main-Class>
+                    <Main-Class>org.dplib.Controller</Main-Class>
                     <X-Compile-Source-JDK>1.8</X-Compile-Source-JDK>
                     <X-Compile-Target-JDK>1.8</X-Compile-Target-JDK>
                   </manifestEntries>
