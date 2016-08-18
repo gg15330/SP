@@ -17,7 +17,7 @@ import java.util.concurrent.ExecutionException;
  * Created by george on 01/08/16.
  */
 public class Solver
-extends SwingWorker<List<Result>, Void>
+extends SwingWorker<Analysis, Void>
 {
     private final Model model;
     private final File javaFile;
@@ -25,6 +25,7 @@ extends SwingWorker<List<Result>, Void>
     private final IO io;
     private SourceAnalyser sa;
     private ProblemType problemType;
+    private List<Result> results;
 
     public Solver(Model model, File javaFile, View view, IO io)
     {
@@ -34,7 +35,7 @@ extends SwingWorker<List<Result>, Void>
         this.io = io;
     }
 
-    private List<Result> solve(Model model, File file)
+    private void solve(Model model, File file)
     throws AnalysisException
     {
 
@@ -57,11 +58,9 @@ extends SwingWorker<List<Result>, Void>
 
         try { classFile = new SourceCompiler().compile(file, sa.getClassName()); }
         catch (CompileException e) { throw new AnalysisException(e); }
-        List<Result> results = new ClassAnalyser().analyse(classFile, fetchInputArray(model.getResults()));
+        results = new ClassAnalyser().analyse(classFile, fetchInputArray(model.getResults()));
 
         System.out.println("Analysis complete.");
-
-        return results;
     }
 
     private String[][] fetchInputArray(List<Result> results)
@@ -88,19 +87,23 @@ extends SwingWorker<List<Result>, Void>
     }
 
     @Override
-    public List<Result> doInBackground()
+    public Analysis doInBackground()
     throws AnalysisException, IOException
     {
-        return solve(model, javaFile);
+        solve(model, javaFile);
+        Analysis analysis = new Analysis();
+        analysis.setProblemType(problemType);
+        analysis.setResults(results);
+        return analysis;
     }
 
     @Override
     public void done()
     {
-        List<Result> results;
+        Analysis analysis;
         try
         {
-            results = get();
+            analysis = get();
         }
         catch (InterruptedException e)
         {
@@ -113,14 +116,8 @@ extends SwingWorker<List<Result>, Void>
             return;
         }
 
-        if(!problemType.equals(model.getType()))
-        {
-            io.fail(model.getType(), problemType);
-            return;
-        }
-
-        updateGraphs(results);
-        showResult(results);
+        updateGraphs(analysis.getResults());
+        showResult(analysis);
     }
 
     private void updateGraphs(List<Result> results)
@@ -139,11 +136,17 @@ extends SwingWorker<List<Result>, Void>
         view.setOutputGraph(studentOutputDataset);
     }
 
-    private void showResult(List<Result> results)
+    private void showResult(Analysis analysis)
     {
-        for(int i = 0; i < results.size(); i++)
+        if(!analysis.getProblemType().equals(model.getProblemType()))
         {
-            Result studentResult = results.get(i);
+            io.fail(model.getProblemType(), analysis.getProblemType());
+            return;
+        }
+
+        for(int i = 0; i < analysis.getResults().size(); i++)
+        {
+            Result studentResult = analysis.getResults().get(i);
             Result tutorResult = model.getResults().get(i);
 
             if(!studentResult.getOutput().equals(tutorResult.getOutput()))

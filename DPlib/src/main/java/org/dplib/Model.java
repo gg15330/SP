@@ -8,6 +8,7 @@ import java.util.List;
  * Created by george on 28/07/16.
  */
 public class Model
+extends Analysis
 implements Serializable
 {
 
@@ -17,13 +18,10 @@ implements Serializable
     private String methodToAnalyseDeclaration;
     private String callingMethodDeclaration;
     private String callingMethodBody;
-    private List<Result> results = new ArrayList<>();
-    private ProblemType type;
 
 //    private long instructionCount;
 //    private double EXECUTION_TIME_MARGIN = 1.2;
 //    private double INSTRUCTION_COUNT_MARGIN = 1.2;
-
 
     public String getClassName() { return className; }
     public void setClassName(String className) { this.className = className; }
@@ -42,23 +40,6 @@ implements Serializable
 
     public String getCallingMethodBody() { return callingMethodBody; }
     public void setCallingMethodBody(String callingMethodBody) { this.callingMethodBody = callingMethodBody; }
-
-    public ProblemType getType()
-    {
-        return type;
-    }
-    public void setType(ProblemType type)
-    {
-        this.type = type;
-    }
-
-    public List<Result> getResults() { return results; }
-    public void addResult(Result result) { results.add(result); }
-    public void setResults(List<Result> results)
-    {
-        this.results = results;
-    }
-
 
 //    void setInstructionCount(long instructionCount)
 //    {

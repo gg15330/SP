@@ -45,8 +45,8 @@ class Modeler
 
 //            set problem type
             sa.analyse();
-            model.setType(sa.determineProblemType());
-            System.out.println("Problem type: " + model.getType());
+            model.setProblemType(sa.determineProblemType());
+            System.out.println("Problem type: " + model.getProblemType());
 
 //            create result set
             System.out.println("Analysing class...");
