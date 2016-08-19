@@ -1,11 +1,10 @@
 package org.dplib.display;
 
+import org.dplib.analyse.Model;
+import org.dplib.analyse.Result;
 import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
@@ -19,32 +18,36 @@ import java.awt.event.ActionListener;
  */
 public class View
 {
-    private Editor editorScrollPane;
-    private Terminal terminalScrollPane = new Terminal(new JTextArea());
+    private final Model model;
+    private Editor editor;
+    private final Terminal terminal = new Terminal(new JTextArea());
     private JButton solveBtn = new JButton();
     private CustomChartPanel executionTimeChartPanel;
     private CustomChartPanel outputChartPanel;
-    private DefaultCategoryDataset tutorTimeData;
-    private DefaultCategoryDataset tutorOutputData;
+    private DefaultCategoryDataset tutorTimeDataset;
+    private DefaultCategoryDataset tutorOutputDataset;
 
-    public View(String editorText)
+    public View(Model model, String editorText)
     {
-       editorScrollPane = new Editor(new JTextArea(), editorText);
+        editor = new Editor(new JTextArea(), editorText);
+        this.model = model;
     }
 
     public void createAndShowGUI()
     {
+
 //        button
         solveBtn.setText("Solve");
         JPanel btnPanel = new JPanel();
         btnPanel.add(solveBtn);
 
 //        executionTimeGraph
+        tutorTimeDataset = createDataset(model, "time");
         JFreeChart executionTimeChart = ChartFactory.createLineChart(
                 "Execution Time",
                 null,
                 "Time (ms)",
-                tutorTimeData,
+                tutorTimeDataset,
                 PlotOrientation.VERTICAL,
                 true,
                 true,
@@ -53,11 +56,12 @@ public class View
         executionTimeChartPanel = new CustomChartPanel(executionTimeChart);
 
 //        instructionCountGraph
+        tutorOutputDataset = createDataset(model, "output");
         JFreeChart outputChart = ChartFactory.createLineChart(
                 "Output",
                 "Input",
                 "Value",
-                tutorOutputData,
+                tutorOutputDataset,
                 PlotOrientation.VERTICAL,
                 true,
                 true,
@@ -66,7 +70,7 @@ public class View
         outputChartPanel = new CustomChartPanel(outputChart);
 
 //        panels
-        JPanel ioPanel = createIOPanel(editorScrollPane, terminalScrollPane);
+        JPanel ioPanel = createIOPanel(editor, terminal);
         JPanel graphPanel = createGraphPanel(btnPanel, executionTimeChartPanel, outputChartPanel);
         JPanel mainPanel = createMainPanel(ioPanel, graphPanel);
 
@@ -157,32 +161,26 @@ public class View
         return ioPanel;
     }
 
-    private ChartPanel createChart(String name,
-                                   String xLabel,
-                                   String yLabel,
-                                   CategoryDataset dataSet,
-                                   PlotOrientation orientation)
+
+    private DefaultCategoryDataset createDataset(Model model, String type)
     {
-        JFreeChart jFreeChart = ChartFactory.createLineChart(
-                name,
-                xLabel,
-                yLabel,
-                dataSet,
-                orientation,
-                true,
-                true,
-                false);
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        LineAndShapeRenderer renderer1 = new LineAndShapeRenderer();
-        renderer1.setSeriesPaint(0, Color.RED);
-        LineAndShapeRenderer renderer2 = new LineAndShapeRenderer();
-        renderer2.setSeriesPaint(0, Color.GREEN);
+        for(int i = 0; i < model.getResults().size(); i++)
+        {
+            Result r = model.getResults().get(i);
 
-        CategoryPlot plot = (CategoryPlot) jFreeChart.getPlot();
-        plot.setRenderer(0, renderer1);
-        plot.setRenderer(1, renderer2);
+            if("time".equals(type))
+            {
+                dataset.addValue(r.getExecutionTime(), "Tutor", String.valueOf(i));
+            }
+            else if("output".equals(type))
+            {
+                dataset.addValue(Long.parseLong(r.getOutput()), "Tutor", String.valueOf(i));
+            }
+        }
 
-        return new ChartPanel(jFreeChart);
+        return dataset;
     }
 
     public void addSolveBtnListener(ActionListener actionListener)
@@ -192,7 +190,7 @@ public class View
 
     public String getEditorText()
     {
-        return editorScrollPane.getText();
+        return editor.getText();
     }
 
     public void setExecutionTimeGraph(CategoryDataset dataset)
@@ -205,13 +203,13 @@ public class View
         outputChartPanel.getChart().getCategoryPlot().setDataset(1, dataset);
     }
 
-    public void setTutorTimeData(DefaultCategoryDataset tutorTimeData)
+    public void setTutorTimeData(DefaultCategoryDataset tutorTimeDataset)
     {
-        this.tutorTimeData = tutorTimeData;
+        this.tutorTimeDataset = tutorTimeDataset;
     }
 
-    public void setTutorOutputData(DefaultCategoryDataset tutorOutputData)
+    public void setTutorOutputData(DefaultCategoryDataset tutorOutputDataset)
     {
-        this.tutorOutputData = tutorOutputData;
+        this.tutorOutputDataset = tutorOutputDataset;
     }
 }

@@ -78,41 +78,15 @@ implements PropertyChangeListener
 
     private void startGUI()
     {
-        DefaultCategoryDataset tutorTimeDataset = createDataset(model, "time");
-        DefaultCategoryDataset tutorOutputDataset = createDataset(model, "output");
-
         String editorText = new CodeGenerator().generate(model.getClassName(),
                                                          model.getCallingMethodDeclaration(),
                                                          model.getCallingMethodBody(),
                                                          model.getMethodToAnalyseDeclaration());
 
-        view = new View(editorText);
+        view = new View(model, editorText);
         view.addSolveBtnListener(new solveBtnListener());
-        view.setTutorTimeData(tutorTimeDataset);
-        view.setTutorOutputData(tutorOutputDataset);
 
         SwingUtilities.invokeLater(view::createAndShowGUI);
-    }
-
-    private DefaultCategoryDataset createDataset(Model model, String type)
-    {
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-
-        for(int i = 0; i < model.getResults().size(); i++)
-        {
-            Result r = model.getResults().get(i);
-
-            if("time".equals(type))
-            {
-                dataset.addValue(r.getExecutionTime(), "Tutor", String.valueOf(i));
-            }
-            else if("output".equals(type))
-            {
-                dataset.addValue(Long.parseLong(r.getOutput()), "Tutor", String.valueOf(i));
-            }
-        }
-
-        return dataset;
     }
 
     private void processArgs(String[] args)

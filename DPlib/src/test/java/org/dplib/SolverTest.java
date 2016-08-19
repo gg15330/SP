@@ -15,7 +15,7 @@ public class SolverTest
 extends TestCase
 {
     private static Solver s;
-    private static View testView = new View("Test");
+    private static View testView = new View(new Model(), "Test");
     private static Model testInvalidModel = new Model();
     private static final IO io = new IO();
     private static File testJavaFile;
