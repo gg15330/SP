@@ -14,6 +14,7 @@ org/dplib/ModelingException.class
 org/dplib/Controller$solveBtnListener.class
 org/dplib/FileHandler.class
 org/dplib/analyse/Result.class
+org/dplib/display/CustomChartPanel.class
 org/dplib/compile/SourceCompiler.class
 org/dplib/analyse/Model.class
 org/dplib/analyse/ClassAnalyser.class

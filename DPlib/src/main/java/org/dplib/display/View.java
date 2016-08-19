@@ -11,10 +11,8 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.io.PrintStream;
 
 /**
  * Created by george on 05/08/16.
@@ -24,8 +22,8 @@ public class View
     private Editor editorScrollPane;
     private Terminal terminalScrollPane = new Terminal(new JTextArea());
     private JButton solveBtn = new JButton();
-    private ChartPanel executionTimeChartPanel;
-    private ChartPanel outputChartPanel;
+    private CustomChartPanel executionTimeChartPanel;
+    private CustomChartPanel outputChartPanel;
     private DefaultCategoryDataset tutorTimeData;
     private DefaultCategoryDataset tutorOutputData;
 
@@ -42,20 +40,30 @@ public class View
         btnPanel.add(solveBtn);
 
 //        executionTimeGraph
-        executionTimeChartPanel = createChart("Execution Time",
-                                                    null,
-                                                    "Time (ms)",
-                                                    tutorTimeData,
-                                                    PlotOrientation.VERTICAL);
-        executionTimeChartPanel.setPreferredSize(new Dimension(1, 1));
+        JFreeChart executionTimeChart = ChartFactory.createLineChart(
+                "Execution Time",
+                null,
+                "Time (ms)",
+                tutorTimeData,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false);
+
+        executionTimeChartPanel = new CustomChartPanel(executionTimeChart);
 
 //        instructionCountGraph
-        outputChartPanel = createChart("Output",
-                                       "Input",
-                                       "Value",
-                                       tutorOutputData,
-                                       PlotOrientation.VERTICAL);
-        outputChartPanel.setPreferredSize(new Dimension(1, 1));
+        JFreeChart outputChart = ChartFactory.createLineChart(
+                "Output",
+                "Input",
+                "Value",
+                tutorOutputData,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false);
+
+        outputChartPanel = new CustomChartPanel(outputChart);
 
 //        panels
         JPanel ioPanel = createIOPanel(editorScrollPane, terminalScrollPane);
@@ -177,15 +185,6 @@ public class View
         return new ChartPanel(jFreeChart);
     }
 
-    private JScrollPane createTextAreaWithScrollPane(JTextArea jTextArea)
-    {
-
-        JScrollPane scrollPane = new JScrollPane(jTextArea);
-        scrollPane.setPreferredSize(new Dimension(1, 1));
-
-        return scrollPane;
-    }
-
     public void addSolveBtnListener(ActionListener actionListener)
     {
         solveBtn.addActionListener(actionListener);
@@ -194,11 +193,6 @@ public class View
     public String getEditorText()
     {
         return editorScrollPane.getText();
-    }
-
-    public void setEditorText(String s)
-    {
-        editorScrollPane.setText(s);
     }
 
     public void setExecutionTimeGraph(CategoryDataset dataset)
