@@ -74,7 +74,6 @@ extends TestCase
      * Rigourous Test :-)
      */
     public static void test_solve_exceptions() {
-//        test invalid model
         Analysis analysis;
         s = new Solver(testInvalidModel, testSourceCode, fh); s.execute();
         try { analysis = s.get(); throw new Error("Expected exception."); }
@@ -88,8 +87,6 @@ extends TestCase
 
     public static void test_solve() {
         testView = new View(testSourceCode);
-
-//        test
         s = new Solver(testModel, testSourceCode, fh); s.execute();
         Analysis analysis;
         try { analysis = s.get(); } catch (Exception e) { throw new Error(e); }

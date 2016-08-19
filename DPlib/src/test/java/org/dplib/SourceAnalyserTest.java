@@ -9,12 +9,14 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import org.dplib.analyse.Analysis;
 import org.dplib.analyse.ProblemType;
 import org.dplib.analyse.SourceAnalyser;
 import org.dplib.analyse.AnalysisException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * Unit test for SourceAnalyser class.
@@ -22,7 +24,7 @@ import java.io.FileNotFoundException;
 public class SourceAnalyserTest
         extends TestCase
 {
-    private static SourceAnalyser sa;
+    private static SourceAnalyser sa = new SourceAnalyser();
     private static File testRecursiveJavaFile;
     private static File testMemoizedJavaFile;
     private static File testIterativeJavaFile;
@@ -65,63 +67,60 @@ public class SourceAnalyserTest
     /**
      * Rigourous Test :-)
      */
-//    public static void test_constructor_exceptions()
-//    {
-//        try { sa = new SourceAnalyser(null, null); throw new Error("Expected Exception."); }
-//        catch (Exception e) { assertEquals(NullPointerException.class, e.getClass()); }
-//        try { sa = new SourceAnalyser(new File("INVALID"), null); throw new Error("Expected Exception."); }
-//        catch (Exception e) { assertEquals(FileNotFoundException.class, e.getClass()); }
-//        try { sa = new SourceAnalyser(testInvalidJavaFile, null); throw new Error("Expected Exception."); }
-//        catch (Exception e) { assertEquals(ParseException.class, e.getClass()); }
-//    }
-//
-//    public static void test_constructor()
-//    {
-//        try { sa = new SourceAnalyser(testIterativeJavaFile, "test"); } catch (Exception e) { throw new Error(e); }
-//        assertEquals("test", sa.getMethodName());
-//        assertEquals("FibonacciDP", sa.getCompilationUnit().getTypes().get(0).getName());
-//    }
-//
-//    public static void test_findMethod_exceptions()
-//    {
-//        try { sa = new SourceAnalyser(testIterativeJavaFile, "test"); } catch (Exception e) { throw new Error(e); }
-//        try { MethodDeclaration md = sa.locateMethod("INVALID"); throw new Error("Expected AnalysisException."); }
-//        catch (AnalysisException e) { assertEquals("expected MethodDeclaration \"INVALID\" does not exist in source.", e.getMessage()); }
-//    }
-//
-//    public static void test_findMethod()
-//    {
-//        try { sa = new SourceAnalyser(testIterativeJavaFile, "fibDP"); } catch (Exception e) { throw new Error(e); }
-//        MethodDeclaration md;
-//        try { md = sa.locateMethod("fibDP"); } catch (AnalysisException e) { throw new Error(e); }
-//        assertEquals("fibDP", md.getName());
-//    }
-//
-//    public static void test_determineProblemType()
-//    {
-////        test recursive type
-//        try { sa = new SourceAnalyser(testRecursiveJavaFile, "fibRec"); } catch (Exception e) { throw new Error(e); }
-//        try { sa.analyse(); } catch (AnalysisException e) { throw new Error(e); }
-//        assertEquals(ProblemType.RECURSIVE, sa.determineProblemType());
-//
-////        test memoized type
-//        try { sa = new SourceAnalyser(testMemoizedJavaFile, "fibMem"); } catch (Exception e) { throw new Error(e); }
-//        try { sa.analyse(); } catch (AnalysisException e) { throw new Error(e); }
-//        assertEquals(ProblemType.MEMOIZED, sa.determineProblemType());
-//
-////        test iterative type
-//        try { sa = new SourceAnalyser(testIterativeJavaFile, "fibDP"); } catch (Exception e) { throw new Error(e); }
-//        try { sa.analyse(); } catch (AnalysisException e) { throw new Error(e); }
-//        assertEquals(ProblemType.ITERATIVE, sa.determineProblemType());
-//
-////        test undefined type
-//        try { sa = new SourceAnalyser(testUndefinedJavaFile, "fibUndefined"); }
-//        catch (Exception e)
-//        {
-//            throw new Error(e);
-//        }
-//        try { sa.analyse(); } catch (AnalysisException e) { throw new Error(e); }
-//        assertEquals(ProblemType.UNDEFINED, sa.determineProblemType());
-//    }
+    public static void test_parse_exceptions()
+    {
+        try { sa.parse(new File("")); throw new Error("Expected Exception."); }
+        catch (Exception e) { assertEquals(ParseException.class, e.getClass()); }
+    }
+
+    public static void test_parse()
+    {
+        try { sa.parse(testIterativeJavaFile); }
+        catch (Exception e) { throw new Error(e); }
+        assertEquals("FibonacciDP", sa.getClassName());
+    }
+
+    public static void test_locateMethod_exceptions()
+    {
+        try { sa.parse(testIterativeJavaFile); }
+        catch (IOException | ParseException e) { throw new Error(e); }
+        try { MethodDeclaration md = sa.locateMethod("INVALID"); throw new Error("Expected AnalysisException."); }
+        catch (AnalysisException e) { assertEquals("expected MethodDeclaration \"INVALID\" does not exist in source.", e.getMessage()); }
+    }
+
+    public static void test_locateMethod()
+    {
+        try { sa.parse(testIterativeJavaFile); }
+        catch (IOException | ParseException e) { throw new Error(e); }
+        MethodDeclaration md;
+        try { md = sa.locateMethod("fibDP"); }
+        catch (Exception e) { throw new Error(e); }
+        assertEquals("fibDP", md.getName());
+    }
+
+    public static void test_determineProblemType()
+    {
+        MethodDeclaration md;
+
+//        test recursive type
+        try { sa.parse(testRecursiveJavaFile); } catch (Exception e) { throw new Error(e); }
+        try { md = sa.locateMethod("fibRec"); } catch (Exception e) { throw new Error(e); }
+        assertEquals(ProblemType.RECURSIVE, sa.determineProblemType(md));
+
+//        test memoized type
+        try { sa.parse(testMemoizedJavaFile); } catch (Exception e) { throw new Error(e); }
+        try { md = sa.locateMethod("fibMem"); } catch (Exception e) { throw new Error(e); }
+        assertEquals(ProblemType.MEMOIZED, sa.determineProblemType(md));
+
+//        test iterative type
+        try { sa.parse(testIterativeJavaFile); } catch (Exception e) { throw new Error(e); }
+        try { md = sa.locateMethod("fibDP"); } catch (Exception e) { throw new Error(e); }
+        assertEquals(ProblemType.ITERATIVE, sa.determineProblemType(md));
+
+//        test undefined type
+        try { sa.parse(testUndefinedJavaFile); } catch (Exception e) { throw new Error(e); }
+        try { md = sa.locateMethod("fibUndefined"); } catch (Exception e) { throw new Error(e); }
+        assertEquals(ProblemType.UNDEFINED, sa.determineProblemType(md));
+    }
 
 }
