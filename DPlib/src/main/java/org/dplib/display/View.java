@@ -1,7 +1,5 @@
 package org.dplib.display;
 
-import org.dplib.analyse.Model;
-import org.dplib.analyse.Result;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
@@ -18,36 +16,32 @@ import java.awt.event.ActionListener;
  */
 public class View
 {
-    private final Model model;
     private Editor editor;
     private final Terminal terminal = new Terminal(new JTextArea());
     private JButton solveBtn = new JButton();
     private CustomChartPanel executionTimeChartPanel;
     private CustomChartPanel outputChartPanel;
-    private DefaultCategoryDataset tutorTimeDataset;
-    private DefaultCategoryDataset tutorOutputDataset;
+    private DefaultCategoryDataset tutorTimeData;
+    private DefaultCategoryDataset tutorOutputData;
 
-    public View(Model model, String editorText)
+    public View(String editorText)
     {
-        editor = new Editor(new JTextArea(), editorText);
-        this.model = model;
+       editor = new Editor(new JTextArea(), editorText);
     }
 
     public void createAndShowGUI()
     {
-
 //        button
         solveBtn.setText("Solve");
         JPanel btnPanel = new JPanel();
         btnPanel.add(solveBtn);
 
 //        executionTimeGraph
-        tutorTimeDataset = createDataset(model, "time");
         JFreeChart executionTimeChart = ChartFactory.createLineChart(
                 "Execution Time",
                 null,
                 "Time (ms)",
-                tutorTimeDataset,
+                tutorTimeData,
                 PlotOrientation.VERTICAL,
                 true,
                 true,
@@ -56,12 +50,11 @@ public class View
         executionTimeChartPanel = new CustomChartPanel(executionTimeChart);
 
 //        instructionCountGraph
-        tutorOutputDataset = createDataset(model, "output");
         JFreeChart outputChart = ChartFactory.createLineChart(
                 "Output",
                 "Input",
                 "Value",
-                tutorOutputDataset,
+                tutorOutputData,
                 PlotOrientation.VERTICAL,
                 true,
                 true,
@@ -161,28 +154,6 @@ public class View
         return ioPanel;
     }
 
-
-    private DefaultCategoryDataset createDataset(Model model, String type)
-    {
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-
-        for(int i = 0; i < model.getResults().size(); i++)
-        {
-            Result r = model.getResults().get(i);
-
-            if("time".equals(type))
-            {
-                dataset.addValue(r.getExecutionTime(), "Tutor", String.valueOf(i));
-            }
-            else if("output".equals(type))
-            {
-                dataset.addValue(Long.parseLong(r.getOutput()), "Tutor", String.valueOf(i));
-            }
-        }
-
-        return dataset;
-    }
-
     public void addSolveBtnListener(ActionListener actionListener)
     {
         solveBtn.addActionListener(actionListener);
@@ -203,13 +174,13 @@ public class View
         outputChartPanel.getChart().getCategoryPlot().setDataset(1, dataset);
     }
 
-    public void setTutorTimeData(DefaultCategoryDataset tutorTimeDataset)
+    public void setTutorTimeData(DefaultCategoryDataset tutorTimeData)
     {
-        this.tutorTimeDataset = tutorTimeDataset;
+        this.tutorTimeData = tutorTimeData;
     }
 
-    public void setTutorOutputData(DefaultCategoryDataset tutorOutputDataset)
+    public void setTutorOutputData(DefaultCategoryDataset tutorOutputData)
     {
-        this.tutorOutputDataset = tutorOutputDataset;
+        this.tutorOutputData = tutorOutputData;
     }
 }
