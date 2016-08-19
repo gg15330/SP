@@ -46,7 +46,7 @@ extends SwingWorker<Analysis, Void>
 
         File classFile;
         try {
-            File tempJavaFile = fileHandler.createTempJavaFile(sa.getClassName(), sourceCode);
+            File tempJavaFile = fileHandler.createTempJavaFile(sourceCode);
             classFile = new SourceCompiler().compile(tempJavaFile, sa.getClassName());
         }
         catch (IOException | CompileException e) { throw new AnalysisException(e); }

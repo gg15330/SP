@@ -35,7 +35,7 @@ public class FileHandler
         return file;
     }
 
-    public File createTempJavaFile(String className, String editorText)
+    public File createTempJavaFile(String editorText)
     throws IOException
     {
         File javaFile = new File("temp.java");
@@ -72,13 +72,7 @@ public class FileHandler
         return lines.toArray(new String[lines.size()][]);
     }
 
-    public String sourceFileToString(File source)
-    throws IOException
-    {
-        return FileUtils.readFileToString(source, "UTF-8");
-    }
-
-    public int serializeModel(Model model, File dir)
+    public File serializeModel(Model model, File dir)
     {
         File modelFile = new File(dir, (model.getClassName() + ".mod"));
         ObjectOutputStream oos;
@@ -94,7 +88,7 @@ public class FileHandler
         {
             throw new Error(e);
         }
-        return 0;
+        return modelFile;
     }
 
     public Model deserializeModelFile(File modelFile)

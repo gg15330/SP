@@ -4,15 +4,29 @@
     <list default="true" id="dbf27813-b393-4f5c-a162-70ce6f80ac8c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/FibonacciDP.class" afterPath="$PROJECT_DIR$/DPlib/FibonacciDP.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/DPlib-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/DPlib/target/DPlib-1.0-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/analyse/ClassAnalyser.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/analyse/ClassAnalyser.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/analyse/Result.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/analyse/Result.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/FileHandler.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/FileHandler.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/Solver.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/Solver.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/jfx/app/DPlib-1.0-SNAPSHOT-jfx.jar" afterPath="$PROJECT_DIR$/DPlib/target/jfx/app/DPlib-1.0-SNAPSHOT-jfx.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/test-classes/org/dplib/ClassAnalyserTest.class" afterPath="$PROJECT_DIR$/DPlib/target/test-classes/org/dplib/ClassAnalyserTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/test-classes/org/dplib/FileHandlerTest.class" afterPath="$PROJECT_DIR$/DPlib/target/test-classes/org/dplib/FileHandlerTest.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/sample/fib/FibonacciDP.mod" afterPath="$PROJECT_DIR$/DPlib/sample/fib/FibonacciDP.mod" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Controller.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Analysis.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Analysis.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/ClassAnalyser.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/ClassAnalyser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Result.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Result.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/FileHandler.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/FileHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Solver.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Solver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ClassAnalyserTest.java" afterPath="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ClassAnalyserTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/FileHandlerTest.java" afterPath="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/FileHandlerTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.ClassAnalyserTest.xml" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.ClassAnalyserTest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.FileHandlerTest.xml" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.FileHandlerTest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.ModelerTest.xml" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.ModelerTest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.SolverTest.xml" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.SolverTest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.SourceAnalyserTest.xml" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.SourceAnalyserTest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.SourceCompilerTest.xml" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.SourceCompilerTest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.ClassAnalyserTest.txt" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.ClassAnalyserTest.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.FileHandlerTest.txt" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.FileHandlerTest.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.ModelerTest.txt" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.ModelerTest.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.SolverTest.txt" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.SolverTest.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.SourceAnalyserTest.txt" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.SourceAnalyserTest.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.SourceCompilerTest.txt" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.SourceCompilerTest.txt" />
     </list>
     <ignored path="SP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,100 +48,82 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="932">
-              <caret line="181" column="32" selection-start-line="181" selection-start-column="32" selection-end-line="181" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Solver.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Solver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-42">
-              <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
+            <state relative-caret-position="143">
+              <caret line="48" column="63" selection-start-line="48" selection-start-column="63" selection-end-line="48" selection-end-column="63" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Analysis.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Analysis.java">
+      <file leaf-file-name="ClassAnalyserTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ClassAnalyserTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="19" column="56" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
+            <state relative-caret-position="67">
+              <caret line="71" column="31" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClassAnalyser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/ClassAnalyser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="View.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/View.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="154" column="5" selection-start-line="154" selection-start-column="5" selection-end-line="154" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#816#817#0" expanded="true" />
-                <element signature="e#879#880#0" expanded="true" />
-                <element signature="e#4807#4808#0" expanded="true" />
-                <element signature="e#4865#4866#0" expanded="true" />
-                <element signature="e#4906#4907#0" expanded="true" />
-                <element signature="e#4945#4946#0" expanded="true" />
-                <element signature="e#5331#5332#0" expanded="true" />
-                <element signature="e#5381#5382#0" expanded="true" />
-                <element signature="e#5463#5464#0" expanded="true" />
-                <element signature="e#5517#5518#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CodeGenerator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/CodeGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="70">
-              <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CustomChartPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/CustomChartPanel.java">
+      <file leaf-file-name="FileHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/FileHandler.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="448">
-              <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Terminal.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/Terminal.java">
+      <file leaf-file-name="FileHandlerTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/FileHandlerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="319">
+              <caret line="80" column="8" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModelerTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ModelerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="98">
+              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SolverTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SolverTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="112">
+              <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SourceAnalyserTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SourceAnalyserTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SourceCompilerTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SourceCompilerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="98">
+              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -185,12 +181,8 @@
         <option value="$PROJECT_DIR$/DPlib/dependency-reduced-pom.xml" />
         <option value="$PROJECT_DIR$/DPlib/pom.xml" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/SourceAnalyser.java" />
-        <option value="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ClassAnalyserTest.java" />
-        <option value="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/FileHandlerTest.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Modeler.java" />
-        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/FileHandler.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/compile/SourceCompiler.java" />
-        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Solver.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/CustomOutputStream.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/View.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/CodeGenerator.java" />
@@ -205,6 +197,10 @@
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Result.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Analysis.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Controller.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ClassAnalyserTest.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Solver.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/FileHandlerTest.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/FileHandler.java" />
       </list>
     </option>
   </component>
@@ -607,7 +603,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="253" width="1368" height="772" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -616,7 +612,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329429" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40528634" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4714495" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4714495" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21961933" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -861,43 +857,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ModelerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SourceAnalyserTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SourceCompilerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ClassAnalyserTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="34" column="28" selection-start-line="34" selection-start-column="28" selection-end-line="51" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/FileHandlerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="96" column="12" selection-start-line="94" selection-start-column="12" selection-end-line="96" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/compile/SourceCompiler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
@@ -918,14 +877,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="70">
           <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/FileHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="44" column="11" selection-start-line="44" selection-start-column="11" selection-end-line="44" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -1006,14 +957,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SolverTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/CodeGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="70">
@@ -1054,21 +997,77 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Solver.java">
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-42">
-          <caret line="25" column="4" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="4" />
+        <state relative-caret-position="134">
+          <caret line="124" column="30" selection-start-line="124" selection-start-column="30" selection-end-line="124" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ModelerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Controller.java">
+    <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SolverTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="932">
-          <caret line="181" column="32" selection-start-line="181" selection-start-column="32" selection-end-line="181" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="112">
+          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SourceAnalyserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SourceCompilerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Solver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="48" column="63" selection-start-line="48" selection-start-column="63" selection-end-line="48" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/FileHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ClassAnalyserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="71" column="31" selection-start-line="71" selection-start-column="31" selection-end-line="71" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/test/java/org/dplib/FileHandlerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="80" column="8" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
