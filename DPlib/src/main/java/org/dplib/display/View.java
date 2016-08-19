@@ -21,34 +21,21 @@ import java.io.PrintStream;
  */
 public class View
 {
-    private JTextArea editor = new JTextArea();
-    private JTextArea terminal = new JTextArea();
+    private Editor editorScrollPane;
+    private Terminal terminalScrollPane = new Terminal(new JTextArea());
     private JButton solveBtn = new JButton();
     private ChartPanel executionTimeChartPanel;
     private ChartPanel outputChartPanel;
     private DefaultCategoryDataset tutorTimeData;
     private DefaultCategoryDataset tutorOutputData;
 
+    public View(String editorText)
+    {
+       editorScrollPane = new Editor(new JTextArea(), editorText);
+    }
+
     public void createAndShowGUI()
     {
-//        editor
-        Font font = new Font(null, Font.BOLD, 12);
-        editor.setFont(font);
-        editor.setForeground(Color.DARK_GRAY);
-        JScrollPane editorScrollPane = createTextAreaWithScrollPane(editor, true, false);
-        editorScrollPane.setBorder(new TitledBorder("Editor"));
-
-//        terminal with output redirected from System.out and System.err
-        terminal.setFont(font);
-        terminal.setForeground(Color.DARK_GRAY);
-        terminal.setBackground(Color.LIGHT_GRAY);
-        JScrollPane terminalScrollPane = createTextAreaWithScrollPane(terminal, false, true);
-        terminalScrollPane.setBorder(new TitledBorder("Console"));
-
-        PrintStream terminalPrintStream = new PrintStream(new CustomOutputStream(terminal));
-        System.setOut(terminalPrintStream);
-        System.setErr(terminalPrintStream);
-
 //        button
         solveBtn.setText("Solve");
         JPanel btnPanel = new JPanel();
@@ -190,11 +177,9 @@ public class View
         return new ChartPanel(jFreeChart);
     }
 
-    private JScrollPane createTextAreaWithScrollPane(JTextArea jTextArea, boolean editable, boolean wrap)
+    private JScrollPane createTextAreaWithScrollPane(JTextArea jTextArea)
     {
-        jTextArea.setLineWrap(wrap);
-        jTextArea.setTabSize(2);
-        jTextArea.setEditable(editable);
+
         JScrollPane scrollPane = new JScrollPane(jTextArea);
         scrollPane.setPreferredSize(new Dimension(1, 1));
 
@@ -208,12 +193,12 @@ public class View
 
     public String getEditorText()
     {
-        return editor.getText();
+        return editorScrollPane.getText();
     }
 
     public void setEditorText(String s)
     {
-        editor.setText(s);
+        editorScrollPane.setText(s);
     }
 
     public void setExecutionTimeGraph(CategoryDataset dataset)

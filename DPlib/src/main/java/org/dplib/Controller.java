@@ -32,7 +32,7 @@ implements PropertyChangeListener
     private String methodName;
 
     private final IO io = new IO();
-    private final View view = new View();
+    private View view;
     private final FileHandler fileHandler = new FileHandler();
     private Model model;
     private Solver solver;
@@ -81,13 +81,15 @@ implements PropertyChangeListener
         DefaultCategoryDataset tutorTimeDataset = createDataset(model, "time");
         DefaultCategoryDataset tutorOutputDataset = createDataset(model, "output");
 
+        String editorText = new CodeGenerator().generate(model.getClassName(),
+                                                         model.getCallingMethodDeclaration(),
+                                                         model.getCallingMethodBody(),
+                                                         model.getMethodToAnalyseDeclaration());
+
+        view = new View(editorText);
         view.addSolveBtnListener(new solveBtnListener());
         view.setTutorTimeData(tutorTimeDataset);
         view.setTutorOutputData(tutorOutputDataset);
-        view.setEditorText(new CodeGenerator().generate(model.getClassName(),
-                                                        model.getCallingMethodDeclaration(),
-                                                        model.getCallingMethodBody(),
-                                                        model.getMethodToAnalyseDeclaration()));
 
         SwingUtilities.invokeLater(view::createAndShowGUI);
     }

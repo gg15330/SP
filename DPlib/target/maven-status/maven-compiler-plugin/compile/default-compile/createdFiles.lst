@@ -1,5 +1,7 @@
 org/dplib/analyse/Analysis.class
+org/dplib/display/Editor.class
 org/dplib/CodeGenerator.class
+org/dplib/display/Terminal.class
 org/dplib/Controller.class
 org/dplib/Solver.class
 org/dplib/Controller$1.class
