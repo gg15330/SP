@@ -19,8 +19,8 @@ extends SubProcess
     throws AnalysisException
     {
         if(classFile == null) throw new Error("Class file should not be null.");
-        if (!classFile.exists()) { throw new AnalysisException(".class file does not exist."); }
-        if (classFile.length() == 0) { throw new AnalysisException(".class file is empty."); }
+        if(!classFile.exists()) { throw new AnalysisException(".class file does not exist."); }
+        if(classFile.length() == 0) { throw new AnalysisException(".class file is empty."); }
         if(inputs == null) throw new Error("inputs should not be null.");
         if(inputs.length == 0) { throw new AnalysisException("Input array is empty."); }
 
@@ -28,14 +28,11 @@ extends SubProcess
 
         for(String[] input : inputs)
         {
-            List<String> commands = new ArrayList<>();
-            commands.add("java");
-            commands.add(FilenameUtils.removeExtension(classFile.getName()));
-            commands.addAll(Arrays.asList(input));
+            List<String> commands = buildCmdList(input, classFile.getName());
 
+            Process p;
             String output;
             long start, end;
-            Process p;
 
             try
             {
@@ -50,14 +47,19 @@ extends SubProcess
             if ((end - start) < 0) { throw new Error("Execution time should not be less than 0."); }
             output = fetchOutput(p.getInputStream());
 
-            Result result = new Result();
-            result.setInput(input);
-            result.setOutput(output);
-            result.setExecutionTime(end - start);
-            results.add(result);
+            results.add(new Result(input, output, (end - start)));
         }
 
         return results;
+    }
+
+    private List<String> buildCmdList(String[] input, String classFileName)
+    {
+        List<String> commands = new ArrayList<>();
+        commands.add("java");
+        commands.add(FilenameUtils.removeExtension(classFileName));
+        commands.addAll(Arrays.asList(input));
+        return commands;
     }
 
     private String fetchOutput(InputStream inputStream)

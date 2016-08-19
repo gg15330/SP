@@ -1,15 +1,10 @@
 package org.dplib;
 
-import com.github.javaparser.ParseException;
-import com.github.javaparser.ast.body.MethodDeclaration;
 import org.dplib.analyse.*;
-import org.dplib.compile.CompileException;
-import org.dplib.compile.SourceCompiler;
 import org.dplib.display.View;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import javax.swing.*;
-import javax.xml.transform.Source;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
@@ -163,7 +158,7 @@ implements PropertyChangeListener
             }
 
             updateGraphs(analysis.getResults());
-            showResult(analysis);
+            presentAnalysis(analysis);
         }
 
     }
@@ -184,7 +179,7 @@ implements PropertyChangeListener
         view.setOutputGraph(studentOutputDataset);
     }
 
-    private void showResult(Analysis analysis)
+    private void presentAnalysis(Analysis analysis)
     {
         if(!analysis.getProblemType().equals(model.getProblemType()))
         {

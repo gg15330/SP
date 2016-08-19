@@ -18,7 +18,6 @@ implements Serializable
     public void setProblemType(ProblemType problemType) { this.problemType = problemType; }
 
     public List<Result> getResults() { return results; }
-    public void addResult(Result result) { results.add(result); }
     public void setResults(List<Result> results) { this.results = results; }
 
 }
