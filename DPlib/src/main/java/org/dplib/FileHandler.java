@@ -1,5 +1,6 @@
 package org.dplib;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.dplib.analyse.Model;
 
@@ -13,21 +14,10 @@ import java.util.List;
 public class FileHandler
 {
 
-    private File file;
-    private File dir;
-
-    public FileHandler(String file, String ext)
+    File locateFile(String filePath, String extension)
     throws IOException
     {
-        this.file = new File(file);
-        checkValidFile(this.file, ext);
-
-        this.dir = this.file.getParentFile();
-    }
-
-    private void checkValidFile(File file, String extension)
-    throws IOException
-    {
+        File file = new File(filePath);
         if (!file.exists())
         {
             throw new IOException("Could not find file: " + file.getPath());
@@ -42,12 +32,13 @@ public class FileHandler
             throw new IOException("Input file \"" + file.getPath() +
             "\" does not match required file extension \"" + extension + "\".");
         }
+        return file;
     }
 
     public File createTempJavaFile(String editorText)
     throws IOException
     {
-        File javaFile = new File(dir, "temp.java");
+        File javaFile = new File("temp.java");
         javaFile.deleteOnExit();
         FileWriter fileWriter;
 
@@ -81,9 +72,9 @@ public class FileHandler
         return lines.toArray(new String[lines.size()][]);
     }
 
-    public int serializeModel(Model model)
+    public File serializeModel(Model model, File dir)
     {
-        File modelFile = new File(dir, (FilenameUtils.removeExtension(file.getName()) + ".mod"));
+        File modelFile = new File(dir, (model.getClassName() + ".mod"));
         ObjectOutputStream oos;
         try
         {
@@ -97,15 +88,15 @@ public class FileHandler
         {
             throw new Error(e);
         }
-        return 0;
+        return modelFile;
     }
 
-    public Model deserializeModelFile()
+    public Model deserializeModelFile(File modelFile)
     {
         Model model;
         try
         {
-            FileInputStream fis = new FileInputStream(file);
+            FileInputStream fis = new FileInputStream(modelFile);
             ObjectInputStream in = new ObjectInputStream(fis);
             model = (Model)in.readObject();
             in.close();
@@ -116,11 +107,6 @@ public class FileHandler
             throw new Error(e);
         }
         return model;
-    }
-
-    public File getFile()
-    {
-        return file;
     }
 
 }

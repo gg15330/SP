@@ -2,15 +2,12 @@ package org.dplib;
 
 import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.body.MethodDeclaration;
-import org.dplib.compile.SourceCompiler;
-import org.dplib.analyse.ClassAnalyser;
-import org.dplib.analyse.Model;
-import org.dplib.analyse.Result;
-import org.dplib.analyse.SourceAnalyser;
+import org.dplib.analyse.*;
 import org.dplib.compile.CompileException;
-import org.dplib.analyse.AnalysisException;
+import org.dplib.compile.SourceCompiler;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -20,50 +17,40 @@ import java.util.List;
 public class Modeler
 {
 
-    public Model model(File sourceFile, String methodName, String[][] inputs)
+    public Model model(File sourceFile,
+                       File inputFile,
+                       String methodName,
+                       FileHandler fileHandler)
     throws ModelingException
     {
-        Model model = new Model();
-        if(!sourceFile.exists()) { throw new Error("Source file does not exist."); }
-
+        MethodDeclaration methodToAnalyse;
+        MethodDeclaration callingMethod;
+        SourceAnalyser sa = new SourceAnalyser();
+        List<Result> results;
         try
         {
-            System.out.println("Analysing source...");
-            SourceAnalyser sa = new SourceAnalyser(sourceFile, methodName);
+            sa.parse(sourceFile);
 
-            model.setClassName(sa.getClassName());
-            model.setMethodToAnalyseName(methodName);
-
-//            set declaration string for method to analyse
-            MethodDeclaration methodToAnalyse = sa.findMethod(methodName);
-            model.setMethodToAnalyseDeclaration(methodToAnalyse.getDeclarationAsString());
-
-//            set declaration string for calling method
-            MethodDeclaration callingMethod = sa.findMethod("main");
-            model.setCallingMethodDeclaration(callingMethod.getDeclarationAsString());
-
-//            set method body for calling method
-            model.setCallingMethodBody(callingMethod.getBody().toString());
-
-//            set problem type
-            sa.analyse();
-            model.setProblemType(sa.determineProblemType());
-            System.out.println("Problem type: " + model.getProblemType());
-
-//            create result set
-            System.out.println("Analysing class...");
+            methodToAnalyse = sa.locateMethod(methodName);
+            callingMethod = sa.locateMethod("main");
 
             File classFile = new SourceCompiler().compile(sourceFile, sa.getClassName());
-            List<Result> results = new ClassAnalyser().analyse(classFile, inputs);
-            model.setResults(results);
-
-            System.out.println("Analysis complete.");
+            String[][] inputs = fileHandler.parseInputTextFile(inputFile);
+            results = new ClassAnalyser().analyse(classFile, inputs);
         }
-        catch (CompileException | AnalysisException | ParseException | IOException e)
+        catch (IOException | ParseException | CompileException | AnalysisException e)
         {
             throw new ModelingException(e);
         }
 
+        Model model = new Model();
+        model.setClassName(sa.getClassName());
+        model.setMethodToAnalyseName(methodToAnalyse.getName());
+        model.setMethodToAnalyseDeclaration(methodToAnalyse.getDeclarationAsString());
+        model.setCallingMethodDeclaration(callingMethod.getDeclarationAsString());
+        model.setCallingMethodBody(callingMethod.getBody().toString());
+        model.setProblemType(sa.determineProblemType(methodToAnalyse));
+        model.setResults(results);
         return model;
     }
 

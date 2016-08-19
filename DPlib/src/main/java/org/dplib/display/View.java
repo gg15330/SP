@@ -1,78 +1,69 @@
 package org.dplib.display;
 
-import org.dplib.io.CustomOutputStream;
 import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.io.PrintStream;
 
 /**
  * Created by george on 05/08/16.
  */
 public class View
 {
-    private JTextArea editor = new JTextArea();
-    private JTextArea terminal = new JTextArea();
+    private Editor editor;
+    private final Terminal terminal = new Terminal(new JTextArea());
     private JButton solveBtn = new JButton();
-    private ChartPanel executionTimeChartPanel;
-    private ChartPanel outputChartPanel;
+    private CustomChartPanel executionTimeChartPanel;
+    private CustomChartPanel outputChartPanel;
     private DefaultCategoryDataset tutorTimeData;
     private DefaultCategoryDataset tutorOutputData;
 
-    void createAndShowGUI()
+    public View(String editorText)
     {
-//        editor
-        Font font = new Font(null, Font.BOLD, 12);
-        editor.setFont(font);
-        editor.setForeground(Color.DARK_GRAY);
-        JScrollPane editorScrollPane = createTextAreaWithScrollPane(editor, true, false);
-        editorScrollPane.setBorder(new TitledBorder("Editor"));
+       editor = new Editor(new JTextArea(), editorText);
+    }
 
-//        terminal with output redirected from System.out and System.err
-        terminal.setFont(font);
-        terminal.setForeground(Color.DARK_GRAY);
-        terminal.setBackground(Color.LIGHT_GRAY);
-        JScrollPane terminalScrollPane = createTextAreaWithScrollPane(terminal, false, true);
-        terminalScrollPane.setBorder(new TitledBorder("Console"));
-
-        PrintStream terminalPrintStream = new PrintStream(new CustomOutputStream(terminal));
-        System.setOut(terminalPrintStream);
-        System.setErr(terminalPrintStream);
-
+    public void createAndShowGUI()
+    {
 //        button
         solveBtn.setText("Solve");
         JPanel btnPanel = new JPanel();
         btnPanel.add(solveBtn);
 
 //        executionTimeGraph
-        executionTimeChartPanel = createChart("Execution Time",
-                                                    null,
-                                                    "Time (ms)",
-                                                    tutorTimeData,
-                                                    PlotOrientation.VERTICAL);
-        executionTimeChartPanel.setPreferredSize(new Dimension(1, 1));
+        JFreeChart executionTimeChart = ChartFactory.createLineChart(
+                "Execution Time",
+                null,
+                "Time (ms)",
+                tutorTimeData,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false);
+
+        executionTimeChartPanel = new CustomChartPanel(executionTimeChart);
 
 //        instructionCountGraph
-        outputChartPanel = createChart("Output",
-                                       "Input",
-                                       "Value",
-                                       tutorOutputData,
-                                       PlotOrientation.VERTICAL);
-        outputChartPanel.setPreferredSize(new Dimension(1, 1));
+        JFreeChart outputChart = ChartFactory.createLineChart(
+                "Output",
+                "Input",
+                "Value",
+                tutorOutputData,
+                PlotOrientation.VERTICAL,
+                true,
+                true,
+                false);
+
+        outputChartPanel = new CustomChartPanel(outputChart);
 
 //        panels
-        JPanel ioPanel = createIOPanel(editorScrollPane, terminalScrollPane);
+        JPanel ioPanel = createIOPanel(editor, terminal);
         JPanel graphPanel = createGraphPanel(btnPanel, executionTimeChartPanel, outputChartPanel);
         JPanel mainPanel = createMainPanel(ioPanel, graphPanel);
 
@@ -163,59 +154,14 @@ public class View
         return ioPanel;
     }
 
-    private ChartPanel createChart(String name,
-                                   String xLabel,
-                                   String yLabel,
-                                   CategoryDataset dataSet,
-                                   PlotOrientation orientation)
-    {
-        JFreeChart jFreeChart = ChartFactory.createLineChart(
-                name,
-                xLabel,
-                yLabel,
-                dataSet,
-                orientation,
-                true,
-                true,
-                false);
-
-        LineAndShapeRenderer renderer1 = new LineAndShapeRenderer();
-        renderer1.setSeriesPaint(0, Color.RED);
-        LineAndShapeRenderer renderer2 = new LineAndShapeRenderer();
-        renderer2.setSeriesPaint(0, Color.GREEN);
-
-        CategoryPlot plot = (CategoryPlot) jFreeChart.getPlot();
-        plot.setRenderer(0, renderer1);
-        plot.setRenderer(1, renderer2);
-
-        ChartPanel chartPanel = new ChartPanel(jFreeChart);
-        return chartPanel;
-    }
-
-    private JScrollPane createTextAreaWithScrollPane(JTextArea jTextArea, boolean editable, boolean wrap)
-    {
-        jTextArea.setLineWrap(wrap);
-        jTextArea.setTabSize(2);
-        jTextArea.setEditable(editable);
-        JScrollPane scrollPane = new JScrollPane(jTextArea);
-        scrollPane.setPreferredSize(new Dimension(1, 1));
-
-        return scrollPane;
-    }
-
-    void addSolveBtnListener(ActionListener actionListener)
+    public void addSolveBtnListener(ActionListener actionListener)
     {
         solveBtn.addActionListener(actionListener);
     }
 
-    String getEditorText()
+    public String getEditorText()
     {
         return editor.getText();
-    }
-
-    public void setEditorText(String s)
-    {
-        editor.setText(s);
     }
 
     public void setExecutionTimeGraph(CategoryDataset dataset)

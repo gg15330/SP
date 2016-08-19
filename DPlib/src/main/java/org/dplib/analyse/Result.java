@@ -12,33 +12,24 @@ implements Serializable
     private String output;
     private long executionTime;
 
-    public void setInput(String[] input)
+    public Result(String[] input, String output, long executionTime)
     {
         this.input = input;
-    }
-
-    public void setOutput(String output)
-    {
         this.output = output;
+        this.executionTime = executionTime;
     }
 
     public String[] getInput()
     {
         return input;
     }
-
     public String getOutput()
     {
         return output;
     }
-
     public long getExecutionTime()
     {
         return executionTime;
     }
 
-    public void setExecutionTime(long executionTime)
-    {
-        this.executionTime = executionTime;
-    }
 }

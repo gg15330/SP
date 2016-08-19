@@ -48,7 +48,7 @@ public class ClassAnalyserTest
 
         File testInputFile = new File("src/test/resources/testInputFile.txt");
         if(!testInputFile.exists()) { throw new Error("Test input file does not exist."); }
-        try { testInputs = new FileHandler(testInputFile.getPath(), "txt").parseInputTextFile(testInputFile); }
+        try { testInputs = new FileHandler().parseInputTextFile(testInputFile); }
         catch (IOException e) { throw new Error(e); }
     }
 

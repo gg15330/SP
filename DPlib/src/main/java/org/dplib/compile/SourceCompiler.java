@@ -27,7 +27,7 @@ extends SubProcess
         }
         catch (IOException | InterruptedException e) { throw new CompileException(e); }
 
-        File classFile = new File(sourceFile.getParent() + "/" + className + ".class");
+        File classFile = new File(sourceFile.getParentFile(), className + ".class");
         if (!classFile.exists()) { throw new CompileException("Could not find .class file: " + className); }
         System.out.println(sourceFile.getName() + " compiled successfully.");
 

@@ -18,11 +18,12 @@ import java.io.IOException;
 public class FileHandlerTest
         extends TestCase
 {
-    private static FileHandler fh;
+    private static FileHandler fh = new FileHandler();
     private static File testJavaFile;
     private static File invalidJavaFile;
     private static File testModelFile;
-    private static Model testModel;
+    private static File testInputFile;
+    private static Model testModel = new Model();
 
     /**
      * Create the test case
@@ -43,13 +44,17 @@ public class FileHandlerTest
             throw new Error("Test .java file (invalid) does not exist.");
         }
 
-        testModelFile = new File("src/test/resources/testModelFile.mod");
-        if(!testModelFile.exists()) {
-            throw new Error("Test .mod file does not exist.");
+        testInputFile = new File("src/test/resources/testInputFile.txt");
+        if(!testInputFile.exists()) {
+            throw new Error("Test input .txt file does not exist.");
         }
 
-        testModel = new Model();
-        testModel.setClassName("Test");
+        testModelFile = new File("src/test/resources/testModelFile.mod");
+//        if(!testModelFile.exists()) {
+//            throw new Error("Test .mod file does not exist.");
+//        }
+
+        testModel.setClassName("testModelFile");
     }
 
     /**
@@ -64,37 +69,59 @@ public class FileHandlerTest
      * Rigourous Test :-)
      */
 
-    public static void test_constructor_exceptions()
+    public static void test_locateFile_exceptions()
     {
 //        test invalid name
-        try { fh = new FileHandler("INVALID", "java"); throw new Error("Expected Exception."); }
+        try { File invalid = fh.locateFile("INVALID", "java"); throw new Error("Expected Exception."); }
         catch (Exception e) { assertEquals("Could not find file: INVALID", e.getMessage()); }
 //        test invalid extension
-        try { fh = new FileHandler(testJavaFile.getPath(), "INVALID"); throw new Error("Expected Exception."); }
+        try { File invalidExt = fh.locateFile(testJavaFile.getPath(), "INVALID"); throw new Error("Expected Exception."); }
         catch (Exception e) { assertEquals("Input file \"src/test/resources/FibonacciDP.java\" does not match required file extension \"INVALID\".", e.getMessage()); }
     }
 
-    public static void test_constructor()
+    public static void test_locateFile()
     {
-        try { fh = new FileHandler(testJavaFile.getPath(), "java"); }
+        File test;
+        try { test = fh.locateFile(testJavaFile.getPath(), "java"); }
         catch (IOException e) { throw new Error(e); }
-        assertEquals(testJavaFile, fh.getFile());
+        assertEquals(testJavaFile, test);
+    }
+
+    public static void test_createTempJavaFile()
+    {
+        File test;
+        try { test = fh.createTempJavaFile("test"); }
+        catch (IOException e) { throw new Error(e); }
+        assertTrue(test.exists());
+    }
+
+    public static void test_parseInputTextFile_exceptions()
+    {
+        File invalid = new File("INVALID");
+        try { String[][] inputs = fh.parseInputTextFile(invalid); throw new Error("Expected Exception."); }
+        catch (Exception e) { assertTrue(e instanceof IOException); }
+    }
+
+    public static void test_parseInputTextFile()
+    {
+        String[][] inputs;
+        try { inputs = fh.parseInputTextFile(testInputFile); }
+        catch (Exception e) { throw new Error(e); }
+        assertEquals("1", inputs[0][0]);
+        assertEquals("5", inputs[1][0]);
+        assertEquals("10", inputs[2][0]);
+        assertEquals("15", inputs[3][0]);
     }
 
     public static void test_serializeModel()
     {
-        try { fh = new FileHandler(testJavaFile.getPath(), "java"); }
-        catch (IOException e) { throw new Error(e); }
-        assertEquals(0, fh.serializeModel(testModel));
-        File f = new File("src/test/resources/FibonacciDP.mod");
-        assertTrue(f.exists()); f.delete();
+        testModelFile = fh.serializeModel(testModel, new File("src/test/resources"));
+        assertTrue(testModelFile.exists());
     }
 
     public static void test_deserializeModelFile()
     {
-        try { fh = new FileHandler(testModelFile.getPath(), "mod"); }
-        catch (IOException e) { throw new Error(e); }
-        assertEquals("FibonacciDP", fh.deserializeModelFile().getClassName());
+        assertEquals("testModelFile", fh.deserializeModelFile(testModelFile).getClassName());
     }
 
 }

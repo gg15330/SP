@@ -1,4 +1,4 @@
-package org.dplib.io;
+package org.dplib.display;
 
 import java.io.IOException;
 import java.io.OutputStream;

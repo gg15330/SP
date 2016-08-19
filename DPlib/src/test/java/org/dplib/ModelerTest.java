@@ -19,6 +19,9 @@ extends TestCase
 {
 
     private static File testJavaFile;
+    private static final FileHandler fh = new FileHandler();
+    private static File testInputFile;
+    private static String[][] testInputs;
 
     /**
      * Create the test case
@@ -31,6 +34,12 @@ extends TestCase
 
         testJavaFile = new File("src/test/resources/FibonacciDP.java");
         if(!testJavaFile.exists()) { throw new Error("Test .java file does not exist."); }
+
+        testInputFile = new File("src/test/resources/testInputFile.txt");
+        if(!testInputFile.exists()) { throw new Error("Test input .txt file does not exist."); }
+
+        try { testInputs = fh.parseInputTextFile(testInputFile); }
+        catch (IOException e) { throw new Error(e); }
     }
 
     /**
@@ -46,17 +55,9 @@ extends TestCase
      */
 
     public static void test_model() {
-//        setup
-        File testInputFile = new File("src/test/resources/testInputFile.txt");
-        if(!testInputFile.exists()) { throw new Error("Test input .txt file does not exist."); }
-
-        String[][] testInputs;
-        try { testInputs = new FileHandler(testJavaFile.getPath(), "java").parseInputTextFile(testInputFile); }
-        catch (IOException e) { throw new Error(e); }
-
 //        test
         Model model;
-        try { model = new Modeler().model(testJavaFile, "fibDP", testInputs); }
+        try { model = new Modeler().model(testJavaFile, testInputFile, "fibDP", fh); }
         catch (ModelingException e) { throw new Error(e); }
 
         assertEquals("FibonacciDP", model.getClassName());
