@@ -10,23 +10,28 @@ import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.io.PrintStream;
 
 /**
  * Created by george on 05/08/16.
  */
 public class View
 {
-    private Editor editor;
-    private final Terminal terminal = new Terminal(new JTextArea());
-    private JButton solveBtn = new JButton();
-    private CustomChartPanel executionTimeChartPanel;
-    private CustomChartPanel outputChartPanel;
     private DefaultCategoryDataset tutorTimeData;
     private DefaultCategoryDataset tutorOutputData;
 
+    private final String editorText;
+    private final Font font = new Font(null, Font.BOLD, 12);
+
+    private JButton solveBtn = new JButton();
+    private CustomScrollPane editor;
+
+    private CustomChartPanel executionTimeChartPanel;
+    private CustomChartPanel outputChartPanel;
+
     public View(String editorText)
     {
-       editor = new Editor(new JTextArea(), editorText);
+        this.editorText = editorText;
     }
 
     public void createAndShowGUI()
@@ -35,6 +40,23 @@ public class View
         solveBtn.setText("Solve");
         JPanel btnPanel = new JPanel();
         btnPanel.add(solveBtn);
+
+        editor = new CustomScrollPane(new JTextArea(),
+                                      font,
+                                      Color.WHITE,
+                                      false,
+                                      true,
+                                      "Editor",
+                                      editorText);
+
+        CustomScrollPane terminal = new CustomScrollPane(new JTextArea(),
+                                                         font,
+                                                         Color.LIGHT_GRAY,
+                                                         true,
+                                                         false,
+                                                         "Console");
+        redirectStreams(terminal.getJTextArea());
+
 
 //        executionTimeGraph
         JFreeChart executionTimeChart = ChartFactory.createLineChart(
@@ -76,6 +98,13 @@ public class View
         frame.pack();
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
+    }
+
+    private void redirectStreams(JTextArea jTextArea)
+    {
+        PrintStream terminalPrintStream = new PrintStream(new CustomOutputStream(jTextArea));
+        System.setOut(terminalPrintStream);
+        System.setErr(terminalPrintStream);
     }
 
     private JPanel createMainPanel(JPanel ioPanel, JPanel graphPanel)
