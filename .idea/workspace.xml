@@ -2,28 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dbf27813-b393-4f5c-a162-70ce6f80ac8c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/Editor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/display/Editor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/display/Terminal.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/Terminal.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/CustomScrollPane.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/DPlib-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/DPlib/target/DPlib-1.0-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/display/View.class" afterPath="$PROJECT_DIR$/DPlib/target/classes/org/dplib/display/View.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/jfx/app/DPlib-1.0-SNAPSHOT-jfx.jar" afterPath="$PROJECT_DIR$/DPlib/target/jfx/app/DPlib-1.0-SNAPSHOT-jfx.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/View.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/View.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/DPlib/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.ClassAnalyserTest.xml" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.ClassAnalyserTest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.FileHandlerTest.xml" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.FileHandlerTest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.ModelerTest.xml" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.ModelerTest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.SolverTest.xml" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.SolverTest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.SourceAnalyserTest.xml" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.SourceAnalyserTest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.SourceCompilerTest.xml" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/TEST-org.dplib.SourceCompilerTest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.ClassAnalyserTest.txt" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.ClassAnalyserTest.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.FileHandlerTest.txt" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.FileHandlerTest.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.ModelerTest.txt" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.ModelerTest.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.SolverTest.txt" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.SolverTest.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.SourceAnalyserTest.txt" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.SourceAnalyserTest.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.SourceCompilerTest.txt" afterPath="$PROJECT_DIR$/DPlib/target/surefire-reports/org.dplib.SourceCompilerTest.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Analysis.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Analysis.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/ClassAnalyser.java" afterPath="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/ClassAnalyser.java" />
     </list>
     <ignored path="SP.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,38 +25,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Solver.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Solver.java">
+      <file leaf-file-name="Analysis.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Analysis.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="48" column="63" selection-start-line="48" selection-start-column="63" selection-end-line="48" selection-end-column="63" />
+            <state relative-caret-position="126">
+              <caret line="9" column="92" selection-start-line="9" selection-start-column="92" selection-end-line="9" selection-end-column="92" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AnalysisException.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/AnalysisException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="View.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/View.java">
+      <file leaf-file-name="ClassAnalyser.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/ClassAnalyser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-66">
-              <caret line="75" column="25" selection-start-line="75" selection-start-column="25" selection-end-line="75" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#886#887#0" expanded="true" />
-                <element signature="e#930#931#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CustomScrollPane.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/CustomScrollPane.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="543">
-              <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="476">
+              <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -143,9 +119,7 @@
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/CustomChart.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/CustomChartPanel.java" />
         <option value="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/SolverTest.java" />
-        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/ClassAnalyser.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Result.java" />
-        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Analysis.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Controller.java" />
         <option value="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/ClassAnalyserTest.java" />
         <option value="$PROJECT_DIR$/DPlib/src/test/java/org/dplib/FileHandlerTest.java" />
@@ -154,6 +128,8 @@
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/Terminal.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/CustomScrollPane.java" />
         <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/View.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Analysis.java" />
+        <option value="$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/ClassAnalyser.java" />
       </list>
     </option>
   </component>
@@ -750,13 +726,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/AnalysisException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/ModelingException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="70">
@@ -826,6 +795,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="36" column="50" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -833,13 +805,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="333">
           <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/CustomChartPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -868,20 +833,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Analysis.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="19" column="56" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/ClassAnalyser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="52" column="23" selection-start-line="52" selection-start-column="23" selection-end-line="52" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -951,14 +902,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Solver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="48" column="63" selection-start-line="48" selection-start-column="63" selection-end-line="48" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/Editor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="98">
@@ -967,12 +910,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/CustomScrollPane.java">
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/CustomChartPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="543">
-          <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
+        <state relative-caret-position="448">
+          <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -986,6 +929,50 @@
             <element signature="e#886#887#0" expanded="true" />
             <element signature="e#930#931#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/display/CustomScrollPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="543">
+          <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/Solver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="48" column="63" selection-start-line="48" selection-start-column="63" selection-end-line="48" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/Analysis.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="9" column="92" selection-start-line="9" selection-start-column="92" selection-end-line="9" selection-end-column="92" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/AnalysisException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DPlib/src/main/java/org/dplib/analyse/ClassAnalyser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>

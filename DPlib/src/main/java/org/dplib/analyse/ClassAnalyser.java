@@ -29,28 +29,36 @@ extends SubProcess
         for(String[] input : inputs)
         {
             List<String> commands = buildCmdList(input, classFile.getName());
-
-            Process p;
-            String output;
-            long start, end;
-
-            try
-            {
-                start = System.currentTimeMillis();
-                p = subProcess(classFile.getParentFile(), commands);
-                redirectInputStream(p.getErrorStream());
-                if(p.waitFor() != 0) { throw new AnalysisException("Program did not execute correctly - check code (and inputs if modeling a problem)."); }
-                end = System.currentTimeMillis();
-            }
-            catch (IOException | InterruptedException e) { throw new AnalysisException(e); }
-
-            if ((end - start) < 0) { throw new Error("Execution time should not be less than 0."); }
-            output = fetchOutput(p.getInputStream());
-
-            results.add(new Result(input, output, (end - start)));
+            results.add(computeResult(commands, input, classFile));
         }
 
         return results;
+    }
+
+    private Result computeResult(List<String> commands, String[] input, File classFile)
+    throws AnalysisException
+    {
+        Process p;
+        String output;
+        long start, end;
+
+        try
+        {
+            start = System.currentTimeMillis();
+            p = subProcess(classFile.getParentFile(), commands);
+            redirectInputStream(p.getErrorStream());
+            if(p.waitFor() != 0) { throw new AnalysisException("Program did not execute correctly - check code (and inputs if modeling a problem)."); }
+            end = System.currentTimeMillis();
+        }
+        catch (IOException | InterruptedException e)
+        {
+            throw new AnalysisException(e);
+        }
+
+        if ((end - start) < 0) { throw new Error("Execution time should not be less than 0."); }
+        output = fetchOutput(p.getInputStream());
+
+        return new Result(input, output, (end - start));
     }
 
     private List<String> buildCmdList(String[] input, String classFileName)
