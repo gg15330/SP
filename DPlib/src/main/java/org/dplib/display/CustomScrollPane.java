@@ -7,7 +7,9 @@ import java.awt.*;
 /**
  * Created by george on 19/08/16.
  */
-public class CustomScrollPane
+
+// custom JScrollPane for editor and terminal
+class CustomScrollPane
 extends JScrollPane
 {
 

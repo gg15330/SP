@@ -15,6 +15,8 @@ import java.io.PrintStream;
 /**
  * Created by george on 05/08/16.
  */
+
+// handles creation and display of GUI
 public class View
 {
     private DefaultCategoryDataset tutorTimeData;
@@ -25,6 +27,7 @@ public class View
 
     private JButton solveBtn = new JButton();
     private CustomScrollPane editor;
+    private CustomScrollPane terminal;
 
     private CustomChartPanel executionTimeChartPanel;
     private CustomChartPanel outputChartPanel;
@@ -41,6 +44,7 @@ public class View
         JPanel btnPanel = new JPanel();
         btnPanel.add(solveBtn);
 
+//        text panes
         editor = new CustomScrollPane(new JTextArea(),
                                       font,
                                       Color.WHITE,
@@ -49,7 +53,7 @@ public class View
                                       "Editor",
                                       editorText);
 
-        CustomScrollPane terminal = new CustomScrollPane(new JTextArea(),
+        terminal = new CustomScrollPane(new JTextArea(),
                                                          font,
                                                          Color.LIGHT_GRAY,
                                                          true,
@@ -58,7 +62,7 @@ public class View
         redirectStreams(terminal.getJTextArea());
 
 
-//        executionTimeGraph
+//        charts
         JFreeChart executionTimeChart = ChartFactory.createLineChart(
                 "Execution Time",
                 null,
@@ -71,7 +75,6 @@ public class View
 
         executionTimeChartPanel = new CustomChartPanel(executionTimeChart);
 
-//        instructionCountGraph
         JFreeChart outputChart = ChartFactory.createLineChart(
                 "Output",
                 "Input",

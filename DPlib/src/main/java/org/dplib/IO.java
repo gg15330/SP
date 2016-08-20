@@ -1,16 +1,15 @@
 package org.dplib;
 
+import org.dplib.analyse.AnalysisException;
 import org.dplib.analyse.ProblemType;
 import org.dplib.analyse.Result;
-import org.dplib.analyse.AnalysisException;
-import org.dplib.ModelingException;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
 // IO handling
-public class IO
+class IO
 {
 
     private String usage = "\nUsage:\n" +
@@ -21,9 +20,9 @@ public class IO
             "\njava -jar DPLib-1.0-SNAPSHOT.jar " +
             "<path/to/file_to_solve.java>\n";
 
-    public void usage() { System.err.println(usage); }
+    void usage() { System.err.println(usage); }
 
-    public void exceptionMsg(Throwable t)
+    void exceptionMsg(Throwable t)
     {
         if (!(t instanceof AnalysisException)
             && !(t instanceof ModelingException)
@@ -33,7 +32,7 @@ public class IO
         System.err.println(t.getMessage() + "\n");
     }
 
-    public void displayResults(List<Result> resultList)
+    void displayResults(List<Result> resultList)
     {
         final int width = 82;
         System.out.println("\nRESULTS:\n");
@@ -51,15 +50,15 @@ public class IO
         System.out.println();
     }
 
-    public void pass() { System.out.println("\nPASS\n"); }
+    void pass() { System.out.println("\nPASS\n"); }
 
-    public void fail(String userOutput, String tutorOutput)
+    void fail(String userOutput, String tutorOutput)
     {
         System.out.println("\nFAIL: output \"" + userOutput + "\"" +
                                    "does not match expected output \"" + tutorOutput + "\".\n");
     }
 
-    public void fail(ProblemType expectedType, ProblemType actualType)
+    void fail(ProblemType expectedType, ProblemType actualType)
     {
         System.out.println("\nFAIL: submitted solution is type: " + actualType + ". Required: " + expectedType + ".\n");
     }

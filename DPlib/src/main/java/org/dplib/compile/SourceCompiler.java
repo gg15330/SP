@@ -7,11 +7,12 @@ import java.io.*;
 /**
  * Created by george on 16/08/16.
  */
+
+// compiles the given .java file using a sub-process
 public class SourceCompiler
 extends SubProcess
 {
 
-    // compile the user-submitted .java file for performance analysis
     public File compile(File sourceFile, String className)
     throws CompileException
     {

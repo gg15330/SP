@@ -6,6 +6,8 @@ import java.util.List;
 /**
  * Created by george on 16/08/16.
  */
+
+// generic template for running a subprocess
 public abstract class SubProcess
 {
 
@@ -25,6 +27,7 @@ public abstract class SubProcess
     }
 
 //    adapted from http://www.javaworld.com/article/2071275/core-java/when-runtime-exec---won-t.html?page=2
+//    redirects given InputStream to System.out on a separate thread
     protected void redirectInputStream(InputStream inputStream)
     {
         Runnable runnable = () ->

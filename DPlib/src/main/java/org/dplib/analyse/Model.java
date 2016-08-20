@@ -1,12 +1,12 @@
 package org.dplib.analyse;
 
-import org.dplib.analyse.Analysis;
-
 import java.io.Serializable;
 
 /**
  * Created by george on 28/07/16.
  */
+
+// this class contains all the information required to fully model a DP problem for solving
 public class Model
 extends Analysis
 implements Serializable
@@ -18,10 +18,6 @@ implements Serializable
     private String methodToAnalyseDeclaration;
     private String callingMethodDeclaration;
     private String callingMethodBody;
-
-//    private long instructionCount;
-//    private double EXECUTION_TIME_MARGIN = 1.2;
-//    private double INSTRUCTION_COUNT_MARGIN = 1.2;
 
     public String getClassName() { return className; }
     public void setClassName(String className) { this.className = className; }
@@ -40,35 +36,5 @@ implements Serializable
 
     public String getCallingMethodBody() { return callingMethodBody; }
     public void setCallingMethodBody(String callingMethodBody) { this.callingMethodBody = callingMethodBody; }
-
-//    void setInstructionCount(long instructionCount)
-//    {
-//        this.instructionCount = instructionCount;
-//    }
-//
-//    long getInstructionCount()
-//    {
-//        return instructionCount;
-//    }
-//
-//    public void setINSTRUCTION_COUNT_MARGIN(int INSTRUCTION_COUNT_MARGIN)
-//    {
-//        this.INSTRUCTION_COUNT_MARGIN = INSTRUCTION_COUNT_MARGIN;
-//    }
-//
-//    public void setEXECUTION_TIME_MARGIN(int EXECUTION_TIME_MARGIN)
-//    {
-//        this.EXECUTION_TIME_MARGIN = EXECUTION_TIME_MARGIN;
-//    }
-//
-//    double getINSTRUCTION_COUNT_MARGIN()
-//    {
-//        return INSTRUCTION_COUNT_MARGIN;
-//    }
-//
-//    double getEXECUTION_TIME_MARGIN()
-//    {
-//        return EXECUTION_TIME_MARGIN;
-//    }
 
 }

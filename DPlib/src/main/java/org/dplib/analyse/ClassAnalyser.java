@@ -9,12 +9,11 @@ import java.util.Arrays;
 import java.util.List;
 
 
-// generates .class files and analyses performance
+// generates List of Results for a given class file and inputs
 public class ClassAnalyser
 extends SubProcess
 {
 
-    // analyse the compiled .class file for performance
     public List<Result> analyse(File classFile, String[][] inputs)
     throws AnalysisException
     {
@@ -70,6 +69,7 @@ extends SubProcess
         return commands;
     }
 
+//    fetch the output of the program from the InputStream of the subprocess
     private String fetchOutput(InputStream inputStream)
     throws AnalysisException
     {

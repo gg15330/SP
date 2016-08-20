@@ -17,6 +17,8 @@ import java.util.concurrent.ExecutionException;
 /**
  * Created by george on 07/08/16.
  */
+
+// overall program control - uses MVC structure to pass/retrieve information to/from GUI
 public class Controller
 implements PropertyChangeListener
 {
@@ -27,10 +29,11 @@ implements PropertyChangeListener
     private String methodName;
 
     private final IO io = new IO();
-    private View view;
     private final FileHandler fileHandler = new FileHandler();
-    private Model model;
+    private View view;
     private Solver solver;
+    private Model model;
+
     private File modelFile;
 
     public static void main(String[] args)
@@ -38,6 +41,32 @@ implements PropertyChangeListener
         Controller guiController = new Controller();
         guiController.processArgs(args);
         guiController.run();
+    }
+
+    private void processArgs(String[] args)
+    {
+        if(args.length == 4)
+        {
+            if(!args[0].equals("model"))
+            {
+                io.usage();
+                System.exit(1);
+            }
+            command = args[0];
+            javaFilePath = args[1];
+            inputFilePath = args[2];
+            methodName = args[3];
+        }
+        else if(args.length == 1)
+        {
+            command = "solve";
+            modelFilePath = args[0];
+        }
+        else
+        {
+            io.usage();
+            System.exit(1);
+        }
     }
 
     private void run()
@@ -110,32 +139,7 @@ implements PropertyChangeListener
         return dataset;
     }
 
-    private void processArgs(String[] args)
-    {
-        if(args.length == 4)
-        {
-            if(!args[0].equals("model"))
-            {
-                io.usage();
-                System.exit(1);
-            }
-            command = args[0];
-            javaFilePath = args[1];
-            inputFilePath = args[2];
-            methodName = args[3];
-        }
-        else if(args.length == 1)
-        {
-            command = "solve";
-            modelFilePath = args[0];
-        }
-        else
-        {
-            io.usage();
-            System.exit(1);
-        }
-    }
-
+//    updates the graphs and presents results of analysis upon completion of Solver background thread
     public void propertyChange(PropertyChangeEvent pce) {
 
         if (pce.getNewValue().equals(SwingWorker.StateValue.DONE)) {
@@ -179,6 +183,7 @@ implements PropertyChangeListener
         view.setOutputGraph(studentOutputDataset);
     }
 
+//    displays either pass or fail depending on whether the submitted solution matches the model
     private void presentAnalysis(Analysis analysis)
     {
         if(!analysis.getProblemType().equals(model.getProblemType()))

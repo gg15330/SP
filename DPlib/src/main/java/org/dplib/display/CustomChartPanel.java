@@ -1,11 +1,8 @@
 package org.dplib.display;
 
-import oracle.jrockit.jfr.JFR;
-import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.Plot;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 
 import java.awt.*;
@@ -13,11 +10,13 @@ import java.awt.*;
 /**
  * Created by george on 19/08/16.
  */
-public class CustomChartPanel
+
+// custom chart panel with separate colours for tutor and student data plots
+class CustomChartPanel
 extends ChartPanel
 {
 
-    public CustomChartPanel(JFreeChart jFreeChart)
+    CustomChartPanel(JFreeChart jFreeChart)
     {
         super(jFreeChart);
 
