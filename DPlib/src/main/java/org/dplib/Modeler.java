@@ -13,8 +13,9 @@ import java.util.List;
 /**
  * Created by george on 22/07/16.
  */
-// constructs a new Model object which contains one method to analyse in the Solver
-public class Modeler
+
+// constructs a new Model object based on analysis of source code and class file
+class Modeler
 {
 
     public Model model(File sourceFile,

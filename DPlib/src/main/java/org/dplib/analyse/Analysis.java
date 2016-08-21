@@ -7,6 +7,7 @@ import java.util.List;
  * Created by george on 18/08/16.
  */
 
+// stores ProblemType as determined in SourceAnalyser and List of Results from ClassAnalyser
 public class Analysis
 implements Serializable
 {

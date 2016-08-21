@@ -3,8 +3,8 @@ package org.dplib;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.dplib.compile.SourceCompiler;
 import org.dplib.compile.CompileException;
+import org.dplib.compile.SourceCompiler;
 
 import java.io.File;
 

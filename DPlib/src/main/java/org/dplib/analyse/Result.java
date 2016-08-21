@@ -5,6 +5,8 @@ import java.io.Serializable;
 /**
  * Created by george on 12/08/16.
  */
+
+// individual result of program run
 public class Result
 implements Serializable
 {

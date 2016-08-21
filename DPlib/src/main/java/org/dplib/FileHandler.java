@@ -1,6 +1,5 @@
 package org.dplib;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.dplib.analyse.Model;
 
@@ -11,7 +10,9 @@ import java.util.List;
 /**
  * Created by george on 01/08/16.
  */
-public class FileHandler
+
+// general file handling
+class FileHandler
 {
 
     File locateFile(String filePath, String extension)
@@ -35,10 +36,10 @@ public class FileHandler
         return file;
     }
 
-    public File createTempJavaFile(String editorText)
+    File createTempJavaFile(File dir, String editorText)
     throws IOException
     {
-        File javaFile = new File("temp.java");
+        File javaFile = new File(dir, "temp.java");
         javaFile.deleteOnExit();
         FileWriter fileWriter;
 
@@ -56,7 +57,7 @@ public class FileHandler
         return javaFile;
     }
 
-    public String[][] parseInputTextFile(File f)
+    String[][] parseInputTextFile(File f)
     throws IOException
     {
         FileReader fr = new FileReader(f);
@@ -72,7 +73,7 @@ public class FileHandler
         return lines.toArray(new String[lines.size()][]);
     }
 
-    public File serializeModel(Model model, File dir)
+    File serializeModel(Model model, File dir)
     {
         File modelFile = new File(dir, (model.getClassName() + ".mod"));
         ObjectOutputStream oos;
@@ -91,7 +92,7 @@ public class FileHandler
         return modelFile;
     }
 
-    public Model deserializeModelFile(File modelFile)
+    Model deserializeModelFile(File modelFile)
     {
         Model model;
         try

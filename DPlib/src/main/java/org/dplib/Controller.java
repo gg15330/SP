@@ -17,51 +17,57 @@ import java.util.concurrent.ExecutionException;
 /**
  * Created by george on 07/08/16.
  */
+
+// overall program control - uses MVC structure to pass/retrieve information to/from GUI
 public class Controller
 implements PropertyChangeListener
 {
-    private String command;
-    private String javaFilePath;
-    private String inputFilePath;
-    private String modelFilePath;
-    private String methodName;
 
     private final IO io = new IO();
-    private View view;
     private final FileHandler fileHandler = new FileHandler();
-    private Model model;
+    private View view;
     private Solver solver;
+    private Model model;
+
     private File modelFile;
 
     public static void main(String[] args)
     {
         Controller guiController = new Controller();
-        guiController.processArgs(args);
-        guiController.run();
+        guiController.run(args);
     }
 
-    private void run()
+    private void run(String[] args)
     {
+        io.processArgs(args);
         try
         {
-            switch (command) {
+            switch (io.getCommand()) {
                 case "model":
-                    System.out.println("Creating model file...");
+                    File sourceFile = fileHandler.locateFile(io.getJavaFilePath(), "java");
+                    io.filePath("Source", sourceFile.getPath());
+                    File inputFile = fileHandler.locateFile(io.getInputFilePath(), "txt");
+                    io.filePath("Input", inputFile.getPath());
 
-                    File sourceFile = fileHandler.locateFile(javaFilePath, "java");
-                    File inputFile = fileHandler.locateFile(inputFilePath, "txt");
-                    model = new Modeler().model(sourceFile, inputFile, methodName, fileHandler);
+                    io.createModelMsg();
+                    model = new Modeler().model(sourceFile, inputFile, io.getMethodName(), fileHandler);
+                    io.modelCreatedMsg();
 
+                    io.createModFileMsg();
                     fileHandler.serializeModel(model, sourceFile.getParentFile());
-                    System.out.println("Model file created.");
-                    io.displayResults(model.getResults());
+                    io.modFileCreatedMsg();
+
+                    io.printModel(model);
                     break;
+
                 case "solve":
-                    modelFile = fileHandler.locateFile(modelFilePath, "mod");
+                    modelFile = fileHandler.locateFile(io.getModelFilePath(), "mod");
+                    io.filePath("Model", modelFile.getPath());
                     model = fileHandler.deserializeModelFile(modelFile);
                     startGUI();
                     break;
-                default: throw new Error("Invalid command: " + command);
+
+                default: throw new Error("Invalid command: " + io.getCommand());
             }
         }
         catch (IOException | ModelingException e)
@@ -110,32 +116,7 @@ implements PropertyChangeListener
         return dataset;
     }
 
-    private void processArgs(String[] args)
-    {
-        if(args.length == 4)
-        {
-            if(!args[0].equals("model"))
-            {
-                io.usage();
-                System.exit(1);
-            }
-            command = args[0];
-            javaFilePath = args[1];
-            inputFilePath = args[2];
-            methodName = args[3];
-        }
-        else if(args.length == 1)
-        {
-            command = "solve";
-            modelFilePath = args[0];
-        }
-        else
-        {
-            io.usage();
-            System.exit(1);
-        }
-    }
-
+//    updates the graphs and presents results of analysis upon completion of Solver background thread
     public void propertyChange(PropertyChangeEvent pce) {
 
         if (pce.getNewValue().equals(SwingWorker.StateValue.DONE)) {
@@ -179,6 +160,7 @@ implements PropertyChangeListener
         view.setOutputGraph(studentOutputDataset);
     }
 
+//    displays either pass or fail depending on whether the submitted solution matches the model
     private void presentAnalysis(Analysis analysis)
     {
         if(!analysis.getProblemType().equals(model.getProblemType()))
@@ -209,7 +191,7 @@ implements PropertyChangeListener
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            solver = new Solver(model, view.getEditorText(), fileHandler);
+            solver = new Solver(model, view.getEditorText(), fileHandler, modelFile.getParentFile());
             solver.addPropertyChangeListener(Controller.this);
             solver.execute();
         }

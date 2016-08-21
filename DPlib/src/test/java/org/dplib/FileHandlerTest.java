@@ -20,7 +20,7 @@ public class FileHandlerTest
 {
     private static FileHandler fh = new FileHandler();
     private static File testJavaFile;
-    private static File invalidJavaFile;
+    private static File testInvalidJavaFile;
     private static File testModelFile;
     private static File testInputFile;
     private static Model testModel = new Model();
@@ -39,8 +39,8 @@ public class FileHandlerTest
             throw new Error("Test .java file does not exist.");
         }
 
-        invalidJavaFile = new File("src/test/resources/testInvalidJavaFile.java");
-        if(!invalidJavaFile.exists()) {
+        testInvalidJavaFile = new File("src/test/resources/testInvalidJavaFile.java");
+        if(!testInvalidJavaFile.exists()) {
             throw new Error("Test .java file (invalid) does not exist.");
         }
 
@@ -90,7 +90,7 @@ public class FileHandlerTest
     public static void test_createTempJavaFile()
     {
         File test;
-        try { test = fh.createTempJavaFile("test"); }
+        try { test = fh.createTempJavaFile(new File("src/test/resources"), "test"); }
         catch (IOException e) { throw new Error(e); }
         assertTrue(test.exists());
     }

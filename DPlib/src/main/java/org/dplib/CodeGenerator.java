@@ -3,6 +3,8 @@ package org.dplib;
 /**
  * Created by george on 10/08/16.
  */
+
+// generates a code template based on the model file
 class CodeGenerator
 {
     private final String indentString = "    ";

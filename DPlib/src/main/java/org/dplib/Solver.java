@@ -3,9 +3,8 @@ package org.dplib;
 import com.github.javaparser.ParseException;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import org.dplib.analyse.*;
-import org.dplib.compile.SourceCompiler;
-import org.dplib.analyse.AnalysisException;
 import org.dplib.compile.CompileException;
+import org.dplib.compile.SourceCompiler;
 
 import javax.swing.*;
 import java.io.File;
@@ -15,19 +14,24 @@ import java.util.List;
 /**
  * Created by george on 01/08/16.
  */
-public class Solver
+
+// analyses source code and class file on a SwingWorker thread
+// then returns an Analysis with ProblemType and List<Result>
+class Solver
 extends SwingWorker<Analysis, Void>
 {
     private final SourceAnalyser sa = new SourceAnalyser();
     private final FileHandler fileHandler;
     private final Model model;
     private final String sourceCode;
+    private final File dir;
 
-    public Solver(Model model, String sourceCode, FileHandler fileHandler)
+    Solver(Model model, String sourceCode, FileHandler fileHandler, File dir)
     {
         this.model = model;
         this.sourceCode = sourceCode;
         this.fileHandler = fileHandler;
+        this.dir = dir;
     }
 
     @Override
@@ -46,7 +50,7 @@ extends SwingWorker<Analysis, Void>
 
         File classFile;
         try {
-            File tempJavaFile = fileHandler.createTempJavaFile(sourceCode);
+            File tempJavaFile = fileHandler.createTempJavaFile(dir, sourceCode);
             classFile = new SourceCompiler().compile(tempJavaFile, sa.getClassName());
         }
         catch (IOException | CompileException e) { throw new AnalysisException(e); }
@@ -87,8 +91,7 @@ extends SwingWorker<Analysis, Void>
     private boolean checkMatchingMethodBodies(String userCallingMethod,
                                            String tutorCallingMethod)
     {
-        if (!userCallingMethod.equals(tutorCallingMethod)) { return false; }
-        return true;
+        return userCallingMethod.equals(tutorCallingMethod);
     }
 
 }

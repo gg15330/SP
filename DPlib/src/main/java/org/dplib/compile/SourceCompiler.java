@@ -7,11 +7,12 @@ import java.io.*;
 /**
  * Created by george on 16/08/16.
  */
+
+// compiles the given .java file using a sub-process
 public class SourceCompiler
 extends SubProcess
 {
 
-    // compile the user-submitted .java file for performance analysis
     public File compile(File sourceFile, String className)
     throws CompileException
     {
@@ -29,6 +30,7 @@ extends SubProcess
 
         File classFile = new File(sourceFile.getParentFile(), className + ".class");
         if (!classFile.exists()) { throw new CompileException("Could not find .class file: " + className); }
+        classFile.deleteOnExit();
         System.out.println(sourceFile.getName() + " compiled successfully.");
 
         return classFile;
