@@ -48,10 +48,10 @@ class IO
     private void usage() {
         String usage = "\nUsage:\n" +
                 "\nTo model a problem:\n" +
-                "\njava -jar DPLib-1.0-SNAPSHOT.jar " +
-                "model <path/to/file_to_model.java> <method_to_analyse>\n" +
+                "\njava -jar DPLib-1.0-SNAPSHOT-jfx.jar " +
+                "model <path/to/file_to_model.java> <path/to/input_file.txt> <method_to_analyse>\n" +
                 "\nTo solve:\n" +
-                "\njava -jar DPLib-1.0-SNAPSHOT.jar " +
+                "\njava -jar DPLib-1.0-SNAPSHOT-jfx.jar " +
                 "<path/to/file_to_solve.java>\n";
 
         System.err.println(usage);
