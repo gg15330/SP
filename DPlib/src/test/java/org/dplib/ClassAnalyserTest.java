@@ -3,9 +3,9 @@ package org.dplib;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import org.dplib.analyse.AnalysisException;
 import org.dplib.analyse.ClassAnalyser;
 import org.dplib.analyse.Result;
-import org.dplib.analyse.AnalysisException;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +23,6 @@ public class ClassAnalyserTest
     private static File testEmptyClassFile;
     private static File testClassFileRuntimeException;
     private static String[][] testInputs;
-    private static String[][] testInvalidInputs;
 
     /**
      * Create the test case

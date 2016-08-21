@@ -9,13 +9,11 @@ import com.github.javaparser.ast.body.MethodDeclaration;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.dplib.analyse.Analysis;
+import org.dplib.analyse.AnalysisException;
 import org.dplib.analyse.ProblemType;
 import org.dplib.analyse.SourceAnalyser;
-import org.dplib.analyse.AnalysisException;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -70,6 +68,9 @@ public class SourceAnalyserTest
     public static void test_parse_exceptions()
     {
         try { sa.parse(new File("")); throw new Error("Expected Exception."); }
+        catch (Exception e) { assertEquals(ParseException.class, e.getClass()); }
+
+        try { sa.parse(testInvalidJavaFile); throw new Error("Expected Exception."); }
         catch (Exception e) { assertEquals(ParseException.class, e.getClass()); }
     }
 

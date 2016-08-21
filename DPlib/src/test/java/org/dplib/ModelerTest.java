@@ -18,10 +18,9 @@ public class ModelerTest
 extends TestCase
 {
 
-    private static File testJavaFile;
     private static final FileHandler fh = new FileHandler();
+    private static File testJavaFile;
     private static File testInputFile;
-    private static String[][] testInputs;
 
     /**
      * Create the test case
@@ -37,9 +36,6 @@ extends TestCase
 
         testInputFile = new File("src/test/resources/testInputFile.txt");
         if(!testInputFile.exists()) { throw new Error("Test input .txt file does not exist."); }
-
-        try { testInputs = fh.parseInputTextFile(testInputFile); }
-        catch (IOException e) { throw new Error(e); }
     }
 
     /**
@@ -55,7 +51,6 @@ extends TestCase
      */
 
     public static void test_model() {
-//        test
         Model model;
         try { model = new Modeler().model(testJavaFile, testInputFile, "fibDP", fh); }
         catch (ModelingException e) { throw new Error(e); }
