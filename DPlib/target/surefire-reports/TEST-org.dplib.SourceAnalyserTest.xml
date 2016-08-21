@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="5" failures="0" name="org.dplib.SourceAnalyserTest" time="0.03" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="org.dplib.SourceAnalyserTest" time="0.032" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/amd64"/>
@@ -59,9 +59,9 @@
     <property name="sun.desktop" value="gnome"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase classname="org.dplib.SourceAnalyserTest" name="test_locateMethod" time="0.003"/>
-  <testcase classname="org.dplib.SourceAnalyserTest" name="test_parse_exceptions" time="0.002"/>
-  <testcase classname="org.dplib.SourceAnalyserTest" name="test_determineProblemType" time="0.015"/>
-  <testcase classname="org.dplib.SourceAnalyserTest" name="test_locateMethod_exceptions" time="0.004"/>
+  <testcase classname="org.dplib.SourceAnalyserTest" name="test_locateMethod" time="0.007"/>
+  <testcase classname="org.dplib.SourceAnalyserTest" name="test_parse_exceptions" time="0.003"/>
+  <testcase classname="org.dplib.SourceAnalyserTest" name="test_determineProblemType" time="0.013"/>
+  <testcase classname="org.dplib.SourceAnalyserTest" name="test_locateMethod_exceptions" time="0.003"/>
   <testcase classname="org.dplib.SourceAnalyserTest" name="test_parse" time="0.003"/>
 </testsuite>

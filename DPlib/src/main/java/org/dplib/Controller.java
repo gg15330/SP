@@ -57,7 +57,7 @@ implements PropertyChangeListener
                     fileHandler.serializeModel(model, sourceFile.getParentFile());
                     io.modFileCreatedMsg();
 
-                    io.displayResults(model.getResults());
+                    io.printModel(model);
                     break;
 
                 case "solve":

@@ -1,6 +1,7 @@
 package org.dplib;
 
 import org.dplib.analyse.AnalysisException;
+import org.dplib.analyse.Model;
 import org.dplib.analyse.ProblemType;
 import org.dplib.analyse.Result;
 
@@ -86,20 +87,25 @@ class IO
         System.out.println("Creating .mod file...");
     }
 
-    void displayResults(List<Result> resultList)
+    void printModel(Model model)
     {
         final int width = 82;
-        System.out.println("\nRESULTS:\n");
-        System.out.format("%4s\t%-40s\t%15s\t%11s", "", "INPUT", "OUTPUT", "TIME[ms]\n");
+        System.out.println("\n\nPROBLEM MODEL\n");
+        System.out.println("Class name: " + model.getClassName());
+        System.out.println("Calling method: " + model.getCallingMethodDeclaration());
+        System.out.println("Method to analyse: " + model.getMethodToAnalyseDeclaration());
+        System.out.println("Problem type: " + model.getProblemType());
+        System.out.println("Results:");
+        System.out.format("\n%4s\t%-40s\t%15s\t%11s", "", "INPUT", "OUTPUT", "TIME[ms]\n");
         for(int i = 0; i < width; i++) { System.out.print("-"); }
         System.out.println();
-        for(int j = 0; j < resultList.size(); j++)
+        for(int j = 0; j < model.getResults().size(); j++)
         {
             System.out.format("%4s\t%-40s\t%15s\t%10d\n",
                               ("[" + String.valueOf(j) + "]"),
-                              Arrays.toString(resultList.get(j).getInput()),
-                              resultList.get(j).getOutput(),
-                              resultList.get(j).getExecutionTime());
+                              Arrays.toString(model.getResults().get(j).getInput()),
+                              model.getResults().get(j).getOutput(),
+                              model.getResults().get(j).getExecutionTime());
         }
         System.out.println();
     }
