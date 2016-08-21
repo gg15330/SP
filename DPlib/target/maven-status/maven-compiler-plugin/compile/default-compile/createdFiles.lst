@@ -6,7 +6,6 @@ org/dplib/Controller$1.class
 org/dplib/analyse/SourceAnalyser.class
 org/dplib/analyse/SourceAnalyser$MethodDeclarationVisitor.class
 org/dplib/display/View.class
-org/dplib/analyse/SourceAnalyser$MethodCallExprVisitor.class
 org/dplib/analyse/ProblemType.class
 org/dplib/ModelingException.class
 org/dplib/Controller$solveBtnListener.class

@@ -6,12 +6,9 @@ import junit.framework.TestSuite;
 import org.dplib.analyse.Analysis;
 import org.dplib.analyse.AnalysisException;
 import org.dplib.analyse.Model;
-import org.dplib.analyse.Result;
 import org.dplib.display.View;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -75,7 +72,7 @@ extends TestCase
      */
     public static void test_solve_exceptions() {
         Analysis analysis;
-        s = new Solver(testInvalidModel, testSourceCode, fh); s.execute();
+        s = new Solver(testInvalidModel, testSourceCode, fh, testModelFile.getParentFile()); s.execute();
         try { analysis = s.get(); throw new Error("Expected exception."); }
         catch (Exception e)
         {
@@ -87,7 +84,7 @@ extends TestCase
 
     public static void test_solve() {
         testView = new View(testSourceCode);
-        s = new Solver(testModel, testSourceCode, fh); s.execute();
+        s = new Solver(testModel, testSourceCode, fh, testModelFile.getParentFile()); s.execute();
         Analysis analysis;
         try { analysis = s.get(); } catch (Exception e) { throw new Error(e); }
 

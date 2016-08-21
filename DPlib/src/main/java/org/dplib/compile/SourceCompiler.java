@@ -30,6 +30,7 @@ extends SubProcess
 
         File classFile = new File(sourceFile.getParentFile(), className + ".class");
         if (!classFile.exists()) { throw new CompileException("Could not find .class file: " + className); }
+        classFile.deleteOnExit();
         System.out.println(sourceFile.getName() + " compiled successfully.");
 
         return classFile;

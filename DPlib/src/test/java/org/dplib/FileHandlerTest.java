@@ -90,7 +90,7 @@ public class FileHandlerTest
     public static void test_createTempJavaFile()
     {
         File test;
-        try { test = fh.createTempJavaFile("test"); }
+        try { test = fh.createTempJavaFile(new File("src/test/resources"), "test"); }
         catch (IOException e) { throw new Error(e); }
         assertTrue(test.exists());
     }

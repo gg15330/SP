@@ -24,12 +24,14 @@ extends SwingWorker<Analysis, Void>
     private final FileHandler fileHandler;
     private final Model model;
     private final String sourceCode;
+    private final File dir;
 
-    Solver(Model model, String sourceCode, FileHandler fileHandler)
+    Solver(Model model, String sourceCode, FileHandler fileHandler, File dir)
     {
         this.model = model;
         this.sourceCode = sourceCode;
         this.fileHandler = fileHandler;
+        this.dir = dir;
     }
 
     @Override
@@ -48,7 +50,7 @@ extends SwingWorker<Analysis, Void>
 
         File classFile;
         try {
-            File tempJavaFile = fileHandler.createTempJavaFile(sourceCode);
+            File tempJavaFile = fileHandler.createTempJavaFile(dir, sourceCode);
             classFile = new SourceCompiler().compile(tempJavaFile, sa.getClassName());
         }
         catch (IOException | CompileException e) { throw new AnalysisException(e); }

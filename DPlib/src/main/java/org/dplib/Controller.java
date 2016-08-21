@@ -214,7 +214,7 @@ implements PropertyChangeListener
         @Override
         public void actionPerformed(ActionEvent e)
         {
-            solver = new Solver(model, view.getEditorText(), fileHandler);
+            solver = new Solver(model, view.getEditorText(), fileHandler, modelFile.getParentFile());
             solver.addPropertyChangeListener(Controller.this);
             solver.execute();
         }

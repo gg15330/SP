@@ -36,10 +36,10 @@ class FileHandler
         return file;
     }
 
-    File createTempJavaFile(String editorText)
+    File createTempJavaFile(File dir, String editorText)
     throws IOException
     {
-        File javaFile = new File("temp.java");
+        File javaFile = new File(dir, "temp.java");
         javaFile.deleteOnExit();
         FileWriter fileWriter;
 
