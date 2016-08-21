@@ -7,7 +7,7 @@ import java.util.List;
  * Created by george on 16/08/16.
  */
 
-// generic template for running a subprocess
+// generic class for running a subprocess
 public abstract class SubProcess
 {
 

@@ -22,11 +22,6 @@ import java.util.concurrent.ExecutionException;
 public class Controller
 implements PropertyChangeListener
 {
-    private String command;
-    private String javaFilePath;
-    private String inputFilePath;
-    private String modelFilePath;
-    private String methodName;
 
     private final IO io = new IO();
     private final FileHandler fileHandler = new FileHandler();
@@ -39,58 +34,40 @@ implements PropertyChangeListener
     public static void main(String[] args)
     {
         Controller guiController = new Controller();
-        guiController.processArgs(args);
-        guiController.run();
+        guiController.run(args);
     }
 
-    private void processArgs(String[] args)
+    private void run(String[] args)
     {
-        if(args.length == 4)
-        {
-            if(!args[0].equals("model"))
-            {
-                io.usage();
-                System.exit(1);
-            }
-            command = args[0];
-            javaFilePath = args[1];
-            inputFilePath = args[2];
-            methodName = args[3];
-        }
-        else if(args.length == 1)
-        {
-            command = "solve";
-            modelFilePath = args[0];
-        }
-        else
-        {
-            io.usage();
-            System.exit(1);
-        }
-    }
-
-    private void run()
-    {
+        io.processArgs(args);
         try
         {
-            switch (command) {
+            switch (io.getCommand()) {
                 case "model":
-                    System.out.println("Creating model file...");
+                    File sourceFile = fileHandler.locateFile(io.getJavaFilePath(), "java");
+                    io.filePath("Source", sourceFile.getPath());
+                    File inputFile = fileHandler.locateFile(io.getInputFilePath(), "txt");
+                    io.filePath("Input", inputFile.getPath());
 
-                    File sourceFile = fileHandler.locateFile(javaFilePath, "java");
-                    File inputFile = fileHandler.locateFile(inputFilePath, "txt");
-                    model = new Modeler().model(sourceFile, inputFile, methodName, fileHandler);
+                    io.createModelMsg();
+                    model = new Modeler().model(sourceFile, inputFile, io.getMethodName(), fileHandler);
+                    io.modelCreatedMsg();
 
+                    io.createModFileMsg();
                     fileHandler.serializeModel(model, sourceFile.getParentFile());
-                    System.out.println("Model file created.");
+                    io.modFileCreatedMsg();
+
                     io.displayResults(model.getResults());
                     break;
+
                 case "solve":
-                    modelFile = fileHandler.locateFile(modelFilePath, "mod");
+                    modelFile = fileHandler.locateFile(io.getModelFilePath(), "mod");
+                    io.filePath("Model", modelFile.getPath());
                     model = fileHandler.deserializeModelFile(modelFile);
                     startGUI();
                     break;
-                default: throw new Error("Invalid command: " + command);
+
+                default: throw new Error("Invalid command: " + io.getCommand());
             }
         }
         catch (IOException | ModelingException e)
