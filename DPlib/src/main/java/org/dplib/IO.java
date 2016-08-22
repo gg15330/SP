@@ -52,7 +52,7 @@ class IO
                 "model <path/to/file_to_model.java> <path/to/input_file.txt> <method_to_analyse>\n" +
                 "\nTo solve:\n" +
                 "\njava -jar DPLib-1.0-SNAPSHOT-jfx.jar " +
-                "<path/to/file_to_solve.java>\n";
+                "<path/to/file_to_solve.mod>\n";
 
         System.err.println(usage);
     }
